@@ -1,0 +1,19 @@
+2023-08-09T12:08:20.719Z   +394ms [debug] Config loaded {"version":"2.23.14","cdkVersion":"2.84.0","constructsVersion":"10.1.156","config":{"name":"policy-gen","region":"us-west-2","profile":"staging","stage":"ctantay","ssmPrefix":"/sst/policy-gen/ctantay/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":285,"imports":[{"path":"sst","kind":"import-statement","external":true},{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1691582900656.mjs":{"imports":[],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":196}},"bytes":378}}},"paths":{"config":"/home/cecil/dev/cr/policy-gen/sst.config.ts","root":"/home/cecil/dev/cr/policy-gen","out":"/home/cecil/dev/cr/policy-gen/.sst","artifacts":"/home/cecil/dev/cr/policy-gen/.sst/artifacts"}}
+2023-08-09T12:08:22.584Z  +1865ms [debug] Using AWS profile staging
+2023-08-09T12:08:22.611Z    +27ms [debug] Created AWS client IoTClient
+2023-08-09T12:08:22.611Z     +0ms [debug] Getting IoT endpoint
+2023-08-09T12:08:23.749Z  +1138ms [debug] Using IoT endpoint: abz448zqgu19w-ats.iot.us-west-2.amazonaws.com
+2023-08-09T12:08:23.749Z     +0ms [debug] Initializing bootstrap context
+2023-08-09T12:08:23.750Z     +1ms [debug] Created AWS client CloudFormationClient
+2023-08-09T12:08:24.082Z   +332ms [debug] Loaded bootstrap status
+2023-08-09T12:08:24.082Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.2","bucket":"sstbootstrap-uswest210626703-1aan4ta4u7g37"}
+2023-08-09T12:08:24.083Z     +1ms [debug] Created AWS client S3Client
+2023-08-09T12:08:24.143Z    +60ms [debug] Synthesizing stacks...
+2023-08-09T12:08:24.173Z    +30ms [debug] Created AWS client STSClient
+2023-08-09T12:08:24.389Z   +216ms [debug] IoT connected
+2023-08-09T12:08:24.452Z    +63ms [debug] Using identity Account: 694509587593 User: AROA2DM77JSE52DMDTZWE:cjbt
+2023-08-09T12:08:24.579Z   +127ms [debug] Generating types in /home/cecil/dev/cr/policy-gen/.sst/types
+2023-08-09T12:08:24.581Z     +2ms [debug] Running 1 deferred tasks with concurrency: 15
+2023-08-09T12:08:24.724Z   +143ms [debug] 
+2023-08-09T12:08:24.724Z     +0ms [debug] Loading v2 AWS SDK
+2023-08-09T12:08:24.724Z     +0ms [debug] Finished synthesizing
