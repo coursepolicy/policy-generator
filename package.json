@@ -24,8 +24,10 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "sst": "^2.23.14",
     "aws-cdk-lib": "2.84.0",
-    "constructs": "10.1.156"
+    "constructs": "10.1.156",
+    "prettier": "^3.0.1",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "sst": "^2.23.14"
   }
 }
