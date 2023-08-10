@@ -1,13 +1,13 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Header from './components/Header';
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Header from "./components/Header";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'CourcePolicy.AI',
-  description: 'AI Policy Generation',
+  title: "CourcePolicy.AI",
+  description: "AI Policy Generation",
 };
 
 export default function RootLayout({

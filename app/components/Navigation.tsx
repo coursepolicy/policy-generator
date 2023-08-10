@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <div className="mr-[22px] hidden w-[495px] items-center justify-between lg:flex">
+    <nav className="mr-[22px] hidden w-[495px] items-center justify-between md:flex">
       <div className="text-right text-sm font-semibold leading-[25px] text-white">
         <Link href="/blog">Findings + Insights</Link>
       </div>
@@ -19,6 +19,6 @@ export default function Navigation() {
           </div>
         </div>
       </Link>
-    </div>
+    </nav>
   );
 }
