@@ -1,31 +1,31 @@
 {
   "version": "32.0.0",
   "artifacts": {
-    "ctantay-policy-gen-Site.assets": {
+    "staging-policy-gen-Site.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "ctantay-policy-gen-Site.assets.json",
+        "file": "staging-policy-gen-Site.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "ctantay-policy-gen-Site": {
+    "staging-policy-gen-Site": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://694509587593/us-west-2",
       "properties": {
-        "templateFile": "ctantay-policy-gen-Site.template.json",
+        "templateFile": "staging-policy-gen-Site.template.json",
         "tags": {
           "sst:app": "policy-gen",
-          "sst:stage": "ctantay"
+          "sst:stage": "staging"
         },
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::694509587593:role/cdk-hnb659fds-deploy-role-694509587593-us-west-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::694509587593:role/cdk-hnb659fds-cfn-exec-role-694509587593-us-west-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-694509587593-us-west-2/5483af4f9a1f0e9828ce2c69448f579cef85b0d348200452326798086b85b48c.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-694509587593-us-west-2/a2c55f126b87dd6e17e4d60f76e690c6c86f467a96eb80236a0c0b1aec4c6791.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "ctantay-policy-gen-Site.assets"
+          "staging-policy-gen-Site.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::694509587593:role/cdk-hnb659fds-lookup-role-694509587593-us-west-2",
@@ -34,10 +34,10 @@
         }
       },
       "dependencies": [
-        "ctantay-policy-gen-Site.assets"
+        "staging-policy-gen-Site.assets"
       ],
       "metadata": {
-        "/ctantay-policy-gen-Site": [
+        "/staging-policy-gen-Site": [
           {
             "type": "aws:cdk:stack-tags",
             "data": [
@@ -47,97 +47,307 @@
               },
               {
                 "Key": "sst:stage",
-                "Value": "ctantay"
+                "Value": "staging"
               }
             ]
           }
         ],
-        "/ctantay-policy-gen-Site/CustomResourceHandler/ServiceRole/Resource": [
+        "/staging-policy-gen-Site/CustomResourceHandler/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomResourceHandlerServiceRole41AEC181"
           }
         ],
-        "/ctantay-policy-gen-Site/CustomResourceHandler/Resource": [
+        "/staging-policy-gen-Site/CustomResourceHandler/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomResourceHandlerE8FB56BA"
           }
         ],
-        "/ctantay-policy-gen-Site/site/ServerFunctionRole/Resource": [
+        "/staging-policy-gen-Site/site/S3Bucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "siteServerFunctionRole1F8F4FAC"
+            "data": "siteS3Bucket2B2851F3"
           }
         ],
-        "/ctantay-policy-gen-Site/site/ServerFunction/AssetReplacerPolicy/Resource": [
+        "/staging-policy-gen-Site/site/S3Bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3BucketPolicyBB4DF05F"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3BucketAutoDeleteObjectsCustomResource3E10A2DE"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ServerFunction/AssetReplacerPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "siteServerFunctionAssetReplacerPolicy304BF125"
           }
         ],
-        "/ctantay-policy-gen-Site/site/ServerFunction/AssetReplacer/Default": [
+        "/staging-policy-gen-Site/site/ServerFunction/AssetReplacer/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "siteServerFunctionAssetReplacer9A11D516"
           }
         ],
-        "/ctantay-policy-gen-Site/site/ServerFunction/ServerFunction/Resource": [
+        "/staging-policy-gen-Site/site/ServerFunction/ServerFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerFunctionServiceRole8328A688"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ServerFunction/ServerFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerFunctionServiceRoleDefaultPolicy6EA49472"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ServerFunction/ServerFunction/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "siteServerFunction6DFA6F1B"
           }
         ],
-        "/ctantay-policy-gen-Site/site/ServerFunction/ServerFunction/LogRetention/Resource": [
+        "/staging-policy-gen-Site/site/ServerFunction/ServerFunction/LogRetention/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "siteServerFunctionLogRetention7123678D"
           }
         ],
-        "/ctantay-policy-gen-Site/site/Parameter_url/Resource": [
+        "/staging-policy-gen-Site/site/ServerFunction/ServerFunction/FunctionUrl/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerFunctionFunctionUrl1B09C490"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ServerFunction/ServerFunction/invoke-function-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerFunctioninvokefunctionurlEABB57E1"
+          }
+        ],
+        "/staging-policy-gen-Site/site/CloudFrontFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteCloudFrontFunctionE91DD486"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ServerCache/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerCacheDD54ACDF"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ImageFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteImageFunctionServiceRoleAD5B95E2"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ImageFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteImageFunctionServiceRoleDefaultPolicy39F33332"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ImageFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteImageFunctionD6B403E9"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ImageFunction/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteImageFunctionLogRetentionD1B5BECE"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ImageFunction/FunctionUrl/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteImageFunctionFunctionUrl110B87E7"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ImageFunction/invoke-function-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteImageFunctioninvokefunctionurl443403A1"
+          }
+        ],
+        "/staging-policy-gen-Site/site/Distribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteDistribution706F5265"
+          }
+        ],
+        "/staging-policy-gen-Site/site/Distribution/Origin3/S3Origin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteDistributionOrigin3S3Origin7C72BBD7"
+          }
+        ],
+        "/staging-policy-gen-Site/site/ServerFunctionInvalidatorPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerFunctionInvalidatorPolicy004B2ED1"
+          }
+        ],
+        "/staging-policy-gen-Site/site/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteAwsCliLayer359A0EF0"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Uploader/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3UploaderServiceRole973F5A0B"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Uploader/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3UploaderServiceRoleDefaultPolicy8BA893D3"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Uploader/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3Uploader2837C218"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Handler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3HandlerServiceRole6D2CC8E3"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Handler/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3HandlerServiceRoleDefaultPolicy1BD27252"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Handler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3Handler84D19388"
+          }
+        ],
+        "/staging-policy-gen-Site/site/S3Deployment/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteS3DeploymentB932FFDB"
+          }
+        ],
+        "/staging-policy-gen-Site/site/CloudFrontInvalidatorPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteCloudFrontInvalidatorPolicyEE18C654"
+          }
+        ],
+        "/staging-policy-gen-Site/site/CloudFrontInvalidator/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteCloudFrontInvalidator18BEA866"
+          }
+        ],
+        "/staging-policy-gen-Site/site/RevalidationQueue/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteRevalidationQueue355EB7DA"
+          }
+        ],
+        "/staging-policy-gen-Site/site/RevalidationFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteRevalidationFunctionServiceRole02D71DA1"
+          }
+        ],
+        "/staging-policy-gen-Site/site/RevalidationFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteRevalidationFunctionServiceRoleDefaultPolicy57C55CA4"
+          }
+        ],
+        "/staging-policy-gen-Site/site/RevalidationFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteRevalidationFunctionEB84F6D0"
+          }
+        ],
+        "/staging-policy-gen-Site/site/RevalidationFunction/SqsEventSource:stagingpolicygenSitesiteRevalidationQueue87AE6902/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteRevalidationFunctionSqsEventSourcestagingpolicygenSitesiteRevalidationQueue87AE6902B1D296BF"
+          }
+        ],
+        "/staging-policy-gen-Site/site/Parameter_url/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "siteParameterurl3D1716BC"
           }
         ],
-        "/ctantay-policy-gen-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+        "/staging-policy-gen-Site/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/staging-policy-gen-Site/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/staging-policy-gen-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
           }
         ],
-        "/ctantay-policy-gen-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+        "/staging-policy-gen-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB"
           }
         ],
-        "/ctantay-policy-gen-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+        "/staging-policy-gen-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A"
           }
         ],
-        "/ctantay-policy-gen-Site/SSTStackOutputSSTMetadata": [
+        "/staging-policy-gen-Site/SSTStackOutputSiteUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SiteUrl"
+          }
+        ],
+        "/staging-policy-gen-Site/SSTStackOutputSSTMetadata": [
           {
             "type": "aws:cdk:logicalId",
             "data": "SSTMetadata"
           }
         ],
-        "/ctantay-policy-gen-Site/BootstrapVersion": [
+        "/staging-policy-gen-Site/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/ctantay-policy-gen-Site/CheckBootstrapVersion": [
+        "/staging-policy-gen-Site/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "ctantay-policy-gen-Site"
+      "displayName": "staging-policy-gen-Site"
     },
     "Tree": {
       "type": "cdk:tree",

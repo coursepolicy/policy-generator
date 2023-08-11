@@ -19,7 +19,7 @@ export default function BurgerMenu({
           <Image
             className="absolute left-[13px] top-[13px]"
             alt="Burger menu"
-            src="/burger-menu-open.png"
+            src="/images/burger-menu-open.png"
             width={24}
             height={24}
           />
@@ -28,7 +28,7 @@ export default function BurgerMenu({
         <Image
           className="mb-[10px] mr-[16px] cursor-pointer md:hidden"
           alt="Burger menu"
-          src="/burger-menu-close.png"
+          src="/images/burger-menu-close.png"
           width={24}
           height={24}
           onClick={() => toggleMenu()}

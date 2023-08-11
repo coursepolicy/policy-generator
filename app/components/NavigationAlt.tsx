@@ -10,33 +10,36 @@ export default function NavigationAlt({
   isMenuOpen,
   toggleMenu,
 }: NavigationAltProps) {
+  const navItems = [
+    {
+      title: "Findings + Insights",
+      href: "/blog",
+    },
+    {
+      title: "About",
+      href: "/about",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
+    },
+  ];
+
   return (
     <nav className="absolute top-[50px] w-[100%] bg-indigo-900 md:hidden">
       {isMenuOpen && (
         <>
-          <Link href="/" onClick={() => toggleMenu()}>
-            <div className="h-[49px] border border-slate-700">
-              <div className="ml-[26px] mt-[15px] text-sm font-bold leading-normal text-white">
-                Findings + Insights
+          {navItems.map((item, i) => (
+            <Link href={item.href} onClick={() => toggleMenu()} key={i}>
+              <div className="h-[49px] border-t-[1px] border-slate-700">
+                <div className="ml-[26px] mt-[15px] text-sm font-bold leading-normal text-white">
+                  {item.title}
+                </div>
               </div>
-            </div>
-          </Link>
-          <Link href="/about" onClick={() => toggleMenu()}>
-            <div className="h-[50px] border border-slate-700">
-              <div className="ml-[26px] mt-[15px] text-sm font-bold leading-normal text-white">
-                About
-              </div>
-            </div>
-          </Link>
-          <Link href="contact" onClick={() => toggleMenu()}>
-            <div className="h-[49px] border border-slate-700">
-              <div className="ml-[26px] mt-[15px] text-sm font-bold leading-normal text-white">
-                Contact
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
           <Link href="/generate" onClick={() => toggleMenu()}>
-            <div className="h-[49px] border border-slate-700">
+            <div className="h-[49px] border-t-[1px] border-slate-700">
               <div className="ml-[26px] mt-[11px] flex items-center text-sm font-bold leading-normal text-white">
                 <div className="text-sm font-bold leading-normal text-emerald-300">
                   Generate a Policy

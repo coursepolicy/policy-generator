@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:local": "sst deploy --stage ctantay"
+    "deploy:local": "sst deploy --stage ctantay",
+    "deploy:staging": "sst deploy --stage staging"
   },
   "dependencies": {
     "@types/node": "20.4.9",
@@ -20,12 +21,15 @@
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-iframe": "^1.8.5",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "sst": "^2.23.14",
     "aws-cdk-lib": "2.84.0",
-    "constructs": "10.1.156"
+    "constructs": "10.1.156",
+    "prettier": "^3.0.1",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "sst": "^2.23.14"
   }
 }
