@@ -13,7 +13,7 @@ export default function NavigationAlt({
   toggleMenu,
 }: NavigationAltProps) {
   return (
-    <nav className="absolute top-[50px] w-[100%] bg-indigo-900 md:hidden">
+    <nav className="absolute top-[50px] z-10 w-[100%] bg-indigo-900 md:hidden">
       {isMenuOpen && (
         <>
           {navItems.map((item, i) => (
