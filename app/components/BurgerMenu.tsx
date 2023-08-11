@@ -16,17 +16,17 @@ export default function BurgerMenu({
       {isMenuOpen ? (
         <Image
           className="cursor-pointer md:hidden"
-          alt="Opened Burger menu"
+          alt="Opened burger menu"
           src={burgerMenuOpen}
           onClick={() => toggleMenu()}
         />
       ) : (
-        <Image
-          className="mr-[16px] cursor-pointer md:hidden"
-          alt="Closed Burger menu"
-          src={burgerMenuClose}
+        <div
+          className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center md:hidden"
           onClick={() => toggleMenu()}
-        />
+        >
+          <Image alt="Closed burger menu" src={burgerMenuClose} />
+        </div>
       )}
     </>
   );
