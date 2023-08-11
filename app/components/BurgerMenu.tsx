@@ -1,4 +1,6 @@
 import Image from "next/image";
+import burgerMenuOpen from "../../public/images/burger-open.svg";
+import burgerMenuClose from "../../public/images/burger-close.svg";
 
 interface BurgerMenuProps {
   toggleMenu: () => void;
@@ -12,25 +14,17 @@ export default function BurgerMenu({
   return (
     <>
       {isMenuOpen ? (
-        <div
-          className="relative h-[50px] w-[50px] cursor-pointer bg-slate-800 md:hidden"
+        <Image
+          className="cursor-pointer md:hidden"
+          alt="Opened Burger menu"
+          src={burgerMenuOpen}
           onClick={() => toggleMenu()}
-        >
-          <Image
-            className="absolute left-[13px] top-[13px]"
-            alt="Burger menu"
-            src="/images/burger-menu-open.png"
-            width={24}
-            height={24}
-          />
-        </div>
+        />
       ) : (
         <Image
-          className="mb-[10px] mr-[16px] cursor-pointer md:hidden"
-          alt="Burger menu"
-          src="/images/burger-menu-close.png"
-          width={24}
-          height={24}
+          className="mr-[16px] cursor-pointer md:hidden"
+          alt="Closed Burger menu"
+          src={burgerMenuClose}
           onClick={() => toggleMenu()}
         />
       )}

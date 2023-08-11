@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import greenPointer from "../../public/images/green-pointer.svg";
+import { navItems } from "../utils/constants";
 
 interface NavigationAltProps {
   toggleMenu: () => void;
@@ -10,21 +12,6 @@ export default function NavigationAlt({
   isMenuOpen,
   toggleMenu,
 }: NavigationAltProps) {
-  const navItems = [
-    {
-      title: "Findings + Insights",
-      href: "/blog",
-    },
-    {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-    },
-  ];
-
   return (
     <nav className="absolute top-[50px] w-[100%] bg-indigo-900 md:hidden">
       {isMenuOpen && (
@@ -45,13 +32,7 @@ export default function NavigationAlt({
                   Generate a Policy
                 </div>
                 <div className="ml-[4px]">
-                  <Image
-                    className=""
-                    alt="Green right pointed arrow"
-                    src="/green-right-arrow.png"
-                    width={17}
-                    height={24}
-                  />
+                  <Image alt="Green right pointed arrow" src={greenPointer} />
                 </div>
               </div>
             </div>

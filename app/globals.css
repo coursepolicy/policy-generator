@@ -6,7 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-} */
+}  */
 /* 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -17,6 +17,7 @@
 } */
 
 body {
+  font-family: 'MessinaSans', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -32,6 +33,6 @@ body {
 
 @layer components {
   .i-frame-styles {
-    height: calc(100vh - 85px)
+    height: calc(100vh - 85px);
   }
 }
