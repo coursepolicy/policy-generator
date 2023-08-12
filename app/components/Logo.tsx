@@ -1,8 +1,12 @@
 import Link from "next/link";
 
-export default function Logo() {
+interface LogoProps {
+  toggleMenu: (pref: boolean) => void;
+}
+
+export default function Logo({ toggleMenu }: LogoProps) {
   return (
-    <Link href="/">
+    <Link href="/" onClick={() => toggleMenu(false)}>
       <h1 className="ml-[16px] md:ml-[32px]">
         <span className="text-xl font-bold leading-[35px] text-white md:text-2xl md:leading-9">
           CoursePolicy.

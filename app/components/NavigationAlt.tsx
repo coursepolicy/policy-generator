@@ -4,7 +4,7 @@ import greenPointer from "../../public/images/green-pointer.svg";
 import { navItems } from "../utils/constants";
 
 interface NavigationAltProps {
-  toggleMenu: () => void;
+  toggleMenu: (pref: boolean) => void;
   isMenuOpen: boolean;
 }
 
@@ -17,7 +17,7 @@ export default function NavigationAlt({
       {isMenuOpen && (
         <>
           {navItems.map((item, i) => (
-            <Link href={item.href} onClick={() => toggleMenu()} key={i}>
+            <Link href={item.href} onClick={() => toggleMenu(false)} key={i}>
               <div className="h-[49px] border-t-[1px] border-slate-700">
                 <div className="ml-[26px] mt-[15px] text-sm font-bold leading-normal text-white">
                   {item.title}
@@ -25,7 +25,7 @@ export default function NavigationAlt({
               </div>
             </Link>
           ))}
-          <Link href="/generate" onClick={() => toggleMenu()}>
+          <Link href="/generate" onClick={() => toggleMenu(false)}>
             <div className="h-[49px] border-t-[1px] border-slate-700">
               <div className="ml-[26px] mt-[11px] flex items-center text-sm font-bold leading-normal text-white">
                 <div className="text-sm font-bold leading-normal text-emerald-300">
