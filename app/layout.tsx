@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Header from "./components/Header";
+import Header from "./_components/Header";
 
 const messinaSans = localFont({
   src: [
@@ -60,7 +60,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${messinaSans.variable} font-sans`}>
+    <html
+      lang="en"
+      className={`${messinaSans.variable} bg-neutral-50 font-sans`}
+    >
       <body>
         <Header />
         {children}

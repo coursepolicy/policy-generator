@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navItems } from "../utils/constants";
+import { navItems } from "../_utils/constants";
 
 export default function Navigation() {
   return (
