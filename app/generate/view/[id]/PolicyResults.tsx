@@ -135,3 +135,12 @@ export default function Result({ response }: { response: GenerativeAiPolicy }) {
     </>
   );
 }
+
+/**
+ * TODO:
+ * - [] Persist state to db by storing in new column
+ * - [] Send mapper to db hook
+ * - [] Text editing lmao good luck
+ * - [] sample policies
+ *     - if samplePolicy is true, don't persist until user saves?
+ */
