@@ -1,5 +1,4 @@
-import { DragEvent } from "react";
-import Droppable from "./Droppable";
+import SortableContainer from "./SortableContainer";
 import { DragEndEvent } from "@dnd-kit/core";
 import { CourseAiPolicy } from "./PolicyResults";
 
@@ -37,7 +36,7 @@ export default function SectionModifier({
           􀆈
         </div>
       </div>
-      <Droppable
+      <SortableContainer
         surveyContents={surveyContents}
         handleSectionDragEvent={handleSectionDragEvent}
         handleSubSectionDragEvent={handleSubSectionDragEvent}
