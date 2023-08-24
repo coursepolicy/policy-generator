@@ -1,4 +1,4 @@
-import { useEffect, useRef, Fragment } from "react";
+import React, { useEffect, useRef, Fragment } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { Section } from "./PolicyResults";
 

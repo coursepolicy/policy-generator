@@ -17,6 +17,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { Section } from "./PolicyResults";
+import React from "react";
 
 export default function SortableSection({
   section,
@@ -46,7 +47,7 @@ export default function SortableSection({
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
+    // transition,
   };
   const sensors = useSensors(
     useSensor(PointerSensor),

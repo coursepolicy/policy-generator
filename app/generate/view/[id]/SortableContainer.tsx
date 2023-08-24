@@ -14,6 +14,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CourseAiPolicy } from "./PolicyResults";
+import React from "react";
 
 export default function Droppable({
   surveyContents,

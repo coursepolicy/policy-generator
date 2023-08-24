@@ -1,6 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { SubSection } from "./PolicyResults";
+import React from "react";
 
 export default function SortableSubSection({
   subSection,
@@ -21,7 +22,7 @@ export default function SortableSubSection({
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
+    // transition,
   };
   return (
     <div

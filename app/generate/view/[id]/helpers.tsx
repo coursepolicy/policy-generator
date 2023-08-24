@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { GenerativeAiPolicy } from "./types";
-import { CourseAiPolicy } from "./PolicyResults";
+import { CourseAiPolicy, SubSection } from "./PolicyResults";
 
 export const formatResult = (response: GenerativeAiPolicy): CourseAiPolicy => {
-  const courseDescriptionSubSections = [];
-  const generativeAiPolicySubSections = [];
-  const additionalPoliciesSubSections = [];
+  const courseDescriptionSubSections: SubSection[] = [];
+  const generativeAiPolicySubSections: SubSection[] = [];
+  const additionalPoliciesSubSections: SubSection[] = [];
 
   courseDescriptionSubSections.push({
     id: uuidv4(),

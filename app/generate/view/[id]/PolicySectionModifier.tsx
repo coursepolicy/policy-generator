@@ -1,6 +1,7 @@
 import SortableContainer from "./SortableContainer";
 import { DragEndEvent } from "@dnd-kit/core";
 import { CourseAiPolicy } from "./PolicyResults";
+import React from "react";
 
 export default function SectionModifier({
   surveyContents,
