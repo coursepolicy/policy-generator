@@ -6,12 +6,12 @@ export default async function View({
 }: {
   params: { id: string };
 }) {
-  const surveyData = await getSurveyData(id);
-  console.log({ surveyData });
+  const { data } = await getSurveyData(id);
+  console.log({ data });
 
   return (
     <main className="mx-auto my-0 mt-[64px] flex w-[100%] max-w-[1000px] flex-col bg-white">
-      <PolicyResults data={surveyData} />
+      <PolicyResults response={data} />
     </main>
   );
 }
