@@ -20,7 +20,14 @@ export default function Droppable({
   surveyContents,
   handleSectionDragEvent,
   handleSubSectionDragEvent,
+  handleDeleteSubSection,
+  handleDeleteSection,
 }: {
+  handleDeleteSubSection: (
+    sectionIndex: string,
+    subSectionIndex: string,
+  ) => void;
+  handleDeleteSection: (sectionIndex: string) => void;
   handleSectionDragEvent: (e: DragEndEvent) => void;
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
   surveyContents: CourseAiPolicy;
@@ -50,6 +57,8 @@ export default function Droppable({
               key={section.id}
               handleSubSectionDragEvent={handleSubSectionDragEvent}
               sectionIndex={index}
+              handleDeleteSection={handleDeleteSection}
+              handleDeleteSubSection={handleDeleteSubSection}
             />
           ))}
         </div>

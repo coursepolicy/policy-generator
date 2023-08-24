@@ -7,7 +7,14 @@ export default function SectionModifier({
   surveyContents,
   handleSectionDragEvent,
   handleSubSectionDragEvent,
+  handleDeleteSubSection,
+  handleDeleteSection,
 }: {
+  handleDeleteSubSection: (
+    sectionIndex: string,
+    subSectionIndex: string,
+  ) => void;
+  handleDeleteSection: (sectionIndex: string) => void;
   handleSectionDragEvent: (event: DragEndEvent) => void;
   handleSubSectionDragEvent: (index: number, event: DragEndEvent) => void;
   surveyContents: CourseAiPolicy;
@@ -34,6 +41,8 @@ export default function SectionModifier({
         surveyContents={surveyContents}
         handleSectionDragEvent={handleSectionDragEvent}
         handleSubSectionDragEvent={handleSubSectionDragEvent}
+        handleDeleteSection={handleDeleteSection}
+        handleDeleteSubSection={handleDeleteSubSection}
       />
     </div>
   );

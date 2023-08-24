@@ -1,4 +1,5 @@
 "use client";
+
 import {
   DndContext,
   DragEndEvent,
@@ -23,7 +24,14 @@ export default function SortableSection({
   section,
   handleSubSectionDragEvent,
   sectionIndex,
+  handleDeleteSubSection,
+  handleDeleteSection,
 }: {
+  handleDeleteSubSection: (
+    sectionIndex: string,
+    subSectionIndex: string,
+  ) => void;
+  handleDeleteSection: (sectionIndex: string) => void;
   sectionIndex: number;
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
   section: Section;
@@ -48,26 +56,41 @@ export default function SortableSection({
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
+
   return (
-    <section ref={sectionSortRef} style={style}>
-      <div {...attributes} {...listeners}>
-        {section.sectionTitle}
-      </div>
-      <DndContext
-        onDragEnd={(e) => handleSubSectionDragEvent(sectionIndex, e)}
-        sensors={sensors}
-        collisionDetection={closestCenter}
-      >
-        <SortableContext
-          id="modify-sub-sections"
-          items={section.subSections}
-          strategy={verticalListSortingStrategy}
+    <section
+      ref={sectionSortRef}
+      style={style}
+      className="flex justify-between border border-red-500"
+    >
+      <div>
+        <div {...attributes} {...listeners}>
+          {section.sectionTitle}
+        </div>
+        <DndContext
+          onDragEnd={(e) => handleSubSectionDragEvent(sectionIndex, e)}
+          sensors={sensors}
+          collisionDetection={closestCenter}
         >
-          {section.subSections.map((subSection) => (
-            <SortableSubSection subSection={subSection} key={subSection.id} />
-          ))}
-        </SortableContext>
-      </DndContext>
+          <SortableContext
+            id="modify-sub-sections"
+            items={section.subSections}
+            strategy={verticalListSortingStrategy}
+          >
+            {section.subSections.map((subSection, index) => (
+              <SortableSubSection
+                subSection={subSection}
+                key={subSection.id}
+                sectionId={section.id}
+                handleDeleteSubSection={handleDeleteSubSection}
+              />
+            ))}
+          </SortableContext>
+        </DndContext>
+      </div>
+      <div>
+        <button onClick={() => handleDeleteSection(section.id)}>Delete</button>
+      </div>
     </section>
   );
 }

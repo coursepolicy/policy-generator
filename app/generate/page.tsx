@@ -10,12 +10,7 @@ export default function Generate() {
   const onClick = () => {
     setGeneratedId(uuidv4());
   };
-  const retrieveSurveyId = () => {};
 
-  // const surveyData = await getSurveyData("12345ASDF");
-  // const surveyData = await getSurveyData("Allow_Under_Conditions_Case_2");
-
-  // console.log({ surveyData });
   return (
     <main>
       <div>
