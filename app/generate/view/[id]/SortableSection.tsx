@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   DndContext,
   DragEndEvent,
@@ -103,7 +104,14 @@ export default function SortableSection({
         </DndContext>
       </div>
       <div>
-        <button onClick={() => handleDeleteSection(section.id)}>Delete</button>
+        <button onClick={() => handleDeleteSection(section.id)}>
+          <Image
+            src="/images/trash.png"
+            width={20}
+            height={24}
+            alt="trash can image"
+          />
+        </button>
       </div>
     </section>
   );

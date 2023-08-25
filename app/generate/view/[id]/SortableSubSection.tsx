@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { SubSection } from "./PolicyResults";
@@ -50,7 +51,12 @@ export default function SortableSubSection({
         <button
           onClick={() => handleDeleteSubSection(sectionId, subSection.id)}
         >
-          Delete
+          <Image
+            src="/images/trash.png"
+            width={20}
+            height={24}
+            alt="trash can image"
+          />
         </button>
       </div>
     </div>
