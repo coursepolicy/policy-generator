@@ -40,29 +40,38 @@ export default function Droppable({
   );
 
   return (
-    <DndContext
-      onDragEnd={handleSectionDragEvent}
-      sensors={sensors}
-      collisionDetection={closestCenter}
-    >
-      <SortableContext
-        id="modify-sections"
-        items={surveyContents}
-        strategy={verticalListSortingStrategy}
+    <div className="rounded-[10px absolute top-[40px] z-[1] w-[387px] bg-zinc-100 shadow">
+      <DndContext
+        onDragEnd={handleSectionDragEvent}
+        sensors={sensors}
+        collisionDetection={closestCenter}
       >
-        <div className="rounded-[10px absolute z-[1] h-[497px] w-[387px] bg-zinc-100 shadow">
-          {surveyContents.map((section, index) => (
-            <SortableSection
-              section={section}
-              key={section.id}
-              handleSubSectionDragEvent={handleSubSectionDragEvent}
-              sectionIndex={index}
-              handleDeleteSection={handleDeleteSection}
-              handleDeleteSubSection={handleDeleteSubSection}
-            />
-          ))}
-        </div>
-      </SortableContext>
-    </DndContext>
+        <SortableContext
+          id="modify-sections"
+          items={surveyContents}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="h-[100%]">
+            <div className="pb-[40px] pl-[18px] pr-[15px] pt-[13px]">
+              <p className="text-sm font-normal leading-normal text-zinc-500">
+                Drag to rorder sections and subsections
+              </p>
+              <div className="mt-[12px]">
+                {surveyContents.map((section, index) => (
+                  <SortableSection
+                    section={section}
+                    key={section.id}
+                    handleSubSectionDragEvent={handleSubSectionDragEvent}
+                    sectionIndex={index}
+                    handleDeleteSection={handleDeleteSection}
+                    handleDeleteSubSection={handleDeleteSubSection}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </SortableContext>
+      </DndContext>
+    </div>
   );
 }

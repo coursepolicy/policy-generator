@@ -47,7 +47,7 @@ export default function SortableSection({
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    // transition,
+    transition,
   };
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -60,11 +60,24 @@ export default function SortableSection({
     <section
       ref={sectionSortRef}
       style={style}
-      className="flex justify-between border border-red-500"
+      className="flex items-baseline justify-between"
     >
+      <div className="text-sm font-normal leading-normal text-neutral-500">
+        <p>{sectionIndex}.</p>
+      </div>
       <div>
-        <div {...attributes} {...listeners}>
-          {section.sectionTitle}
+        <div
+          {...attributes}
+          {...listeners}
+          className="mb-[8px] ml-[20px] flex h-11 w-[287px] items-center border border-neutral-200 bg-white"
+        >
+          <p
+            className={`text-sm font-${
+              sectionIndex === 0 ? "normal" : "bold"
+            } pl-[12px] leading-normal text-black`}
+          >
+            {section.sectionTitle}
+          </p>
         </div>
         <DndContext
           onDragEnd={(e) => handleSubSectionDragEvent(sectionIndex, e)}
@@ -81,6 +94,8 @@ export default function SortableSection({
                 subSection={subSection}
                 key={subSection.id}
                 sectionId={section.id}
+                sectionIndex={sectionIndex}
+                subSectionIndex={index}
                 handleDeleteSubSection={handleDeleteSubSection}
               />
             ))}

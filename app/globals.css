@@ -53,19 +53,20 @@ body {
   margin-bottom: 24px;
 }
 
-.tiptap h2 + p {
+/* .tiptap h2 + p {
   margin-bottom: 48px;
-}
+} */
 
 
 .tiptap h3 {
   font-size: 18px;
   margin-bottom: 24px;
+  margin-top: 25px;
 }
 
-.tiptap h3 + p {
+/* .tiptap h3 + p {
   margin-bottom: 24px;
-}
+} */
 
 .tiptap h1 + p {
   color: #818181;
@@ -75,12 +76,23 @@ body {
   word-wrap: break-word;
 }
 
-.tiptap h1 + p span {
-  color: #818181;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 24px;
-  word-wrap: break-word;
-  margin-left: 24px;
-  border: 1px solid red;
+ul {
+  list-style-type: square; /* Default bullet points */
+  padding-left: 30px;     /* Give it some space on the left */
+}
+
+.use-cases {
+  margin-top: 40px;
+}
+
+.use-cases h3 {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  padding-bottom: 18px;
+  border-color: rgb(161 161 170 / var(--tw-border-opacity));
+}
+
+/* <div className="w-[394.45px]"><span style="text-neutral-700 text-sm font-bold leading-normal">Grammar Check<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI tools for grammar and spelling checks<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Concept Learning<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Chat with AI to gain a general understanding of topics of learning<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Argument Generation<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI to generate arguments for essays or presentations<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Outline Generation<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI to generate an outline for a paper or presentation<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Summary Generation<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI to generate summaries of papers or reading materials for faster understanding<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Additional examples</span><span style="text-neutral-700 text-sm font-normal leading-normal"> <br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">(Additional allowed use cases will be added as one paragraph here)</span></div> */
+.policy-links {
+  margin-top: 30px;
 }

@@ -39,7 +39,7 @@ export default function PolicySection({
           return (
             <div
               key={subSection.id}
-              className="flex flex-col-reverse md:relative md:justify-between"
+              className="flex flex-col-reverse transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none md:relative md:justify-between"
             >
               <Editor
                 content={subSection.content}
@@ -69,28 +69,63 @@ export default function PolicySection({
         }
 
         if (subSectionTitle === "Use Cases") {
+          const bgColorMapper: {
+            [key: number]: string;
+          } = {
+            0: "bg-stone-100",
+            1: "bg-red-50",
+          };
           return (
-            <div key={subSection.id} className="flex justify-between">
+            <div
+              key={subSection.id}
+              className="mb-[45px] flex flex-col items-center md:flex-row md:items-start md:justify-between"
+            >
               {Array.isArray(subSection.content) &&
-                subSection.content.map((useCase, index) => (
-                  <div key={`${subSection.id}${index}`}>
-                    <Editor
-                      content={useCase}
-                      sectionId={section.id}
-                      subSectionId={subSection.id}
-                      handleOnChanges={handleOnContentArrayChanges}
-                      state={surveyContents}
-                      sectionIndex={sectionIndex}
-                      subSectionIndex={subSectionIndex}
-                      contentIndex={index}
-                    />
-                  </div>
-                ))}
+                subSection.content.map((useCase, index) => {
+                  return (
+                    <div
+                      key={`${subSection.id}${index}`}
+                      className={`h-[100%] w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none`}
+                    >
+                      <Editor
+                        content={useCase}
+                        sectionId={section.id}
+                        subSectionId={subSection.id}
+                        handleOnChanges={handleOnContentArrayChanges}
+                        state={surveyContents}
+                        sectionIndex={sectionIndex}
+                        subSectionIndex={subSectionIndex}
+                        contentIndex={index}
+                      />
+                    </div>
+                  );
+                })}
+            </div>
+          );
+        }
+        if (subSection.subSectionTitle === "Policy Links") {
+          return (
+            <div
+              key={subSection.id}
+              className="policy-links transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none"
+            >
+              <Editor
+                content={subSection.content}
+                sectionId={section.id}
+                subSectionId={subSection.id}
+                handleOnChanges={handleOnChanges}
+                state={surveyContents}
+                sectionIndex={sectionIndex}
+                subSectionIndex={subSectionIndex}
+              />
             </div>
           );
         }
         return (
-          <div key={subSection.id}>
+          <div
+            key={subSection.id}
+            className="transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none"
+          >
             <Editor
               content={subSection.content}
               sectionId={section.id}

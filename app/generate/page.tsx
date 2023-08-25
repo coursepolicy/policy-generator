@@ -29,27 +29,43 @@ export default function Generate() {
       </div>
       <div>
         <div>
-          <button
-            onClick={() => {
-              router.push(`/generate/view/HELLOWORLD`);
-            }}
-          >
-            HELLOWORLD
-          </button>
-          <button
-            onClick={() => {
-              router.push(`/generate/view/Strictly_Prohibited`);
-            }}
-          >
-            Strictly_Prohibited
-          </button>
-          <button
-            onClick={() => {
-              router.push(`/generate/view/No_Restriction`);
-            }}
-          >
-            No_Restriction
-          </button>
+          <p>enter a uuid or click one from below</p>
+          <div className="border border-black">
+            <button
+              onClick={() => {
+                router.push(`/generate/view/HELLOWORLD`);
+              }}
+            >
+              HELLOWORLD
+            </button>
+          </div>
+          <div className="border border-black">
+            <button
+              onClick={() => {
+                router.push(`/generate/view/Allow_Under_Conditions_Case_1`);
+              }}
+            >
+              Allow Under Conditions Case 1
+            </button>
+          </div>
+          <div className="border border-black">
+            <button
+              onClick={() => {
+                router.push(`/generate/view/Strictly_Prohibited`);
+              }}
+            >
+              Strictly_Prohibited
+            </button>
+          </div>
+          <div className="border border-black">
+            <button
+              onClick={() => {
+                router.push(`/generate/view/No_Restriction`);
+              }}
+            >
+              No_Restriction
+            </button>
+          </div>
         </div>
       </div>
     </main>

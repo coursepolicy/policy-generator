@@ -7,6 +7,8 @@ export default function SortableSubSection({
   subSection,
   handleDeleteSubSection,
   sectionId,
+  subSectionIndex,
+  sectionIndex,
 }: {
   sectionId: string;
   subSection: SubSection;
@@ -14,6 +16,8 @@ export default function SortableSubSection({
     sectionIndex: string,
     subSectionIndex: string,
   ) => void;
+  subSectionIndex: number;
+  sectionIndex: number;
 }) {
   const { attributes, listeners, transform, transition, setNodeRef } =
     useSortable({
@@ -27,11 +31,20 @@ export default function SortableSubSection({
   return (
     <div
       ref={setNodeRef}
-      className="z-[1] ml-[20px] flex w-[100%] justify-between border border-red-500"
+      className="z-[1] ml-[20px] flex w-[100%] items-baseline justify-between"
       style={style}
     >
-      <div {...attributes} {...listeners}>
-        {subSection.subSectionTitle}
+      <div className="text-sm font-normal leading-normal text-neutral-500">
+        <p>{formatSubArrayIndex(sectionIndex, subSectionIndex)}.</p>
+      </div>
+      <div
+        {...attributes}
+        {...listeners}
+        className="mb-[8px] flex h-11 w-[258px] items-center  border border-neutral-200 bg-white"
+      >
+        <p className="pl-[12px] text-xs font-normal leading-normal text-black ">
+          {subSection.subSectionTitle}
+        </p>
       </div>
       <div>
         <button
@@ -42,4 +55,11 @@ export default function SortableSubSection({
       </div>
     </div>
   );
+}
+
+function formatSubArrayIndex(outerIndex: number, innerIndex: number) {
+  // Getting the letter part by mapping 0 -> a, 1 -> b, etc.
+  let letterPart = String.fromCharCode(97 + innerIndex);
+
+  return `${outerIndex}${letterPart}`;
 }

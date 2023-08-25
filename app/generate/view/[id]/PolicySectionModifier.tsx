@@ -1,7 +1,9 @@
-import SortableContainer from "./SortableContainer";
+import React, { useEffect, useRef } from "react";
+import autoAnimate from "@formkit/auto-animate";
 import { DragEndEvent } from "@dnd-kit/core";
+
+import SortableContainer from "./SortableContainer";
 import { CourseAiPolicy } from "./PolicyResults";
-import React from "react";
 
 export default function SectionModifier({
   surveyContents,
@@ -9,6 +11,8 @@ export default function SectionModifier({
   handleSubSectionDragEvent,
   handleDeleteSubSection,
   handleDeleteSection,
+  isReordering,
+  changeIsReorderingState,
 }: {
   handleDeleteSubSection: (
     sectionIndex: string,
@@ -18,18 +22,21 @@ export default function SectionModifier({
   handleSectionDragEvent: (event: DragEndEvent) => void;
   handleSubSectionDragEvent: (index: number, event: DragEndEvent) => void;
   surveyContents: CourseAiPolicy;
+  isReordering: boolean;
+  changeIsReorderingState: () => void;
 }) {
+  const parentRef = useRef(null);
+  useEffect(() => {
+    parentRef.current && autoAnimate(parentRef.current, { duration: 100 });
+  }, [parentRef]);
   return (
-    // <div className="inline-flex h-9 w-[140px] items-center justify-center gap-1.5 border border-black bg-gray-200 px-3 py-1.5">
-    //   <div className="text-center text-xs font-bold leading-normal text-black">
-    //     Modify Sections
-    //   </div>
-    //   <div className="text-center text-sm font-bold leading-normal text-neutral-500">
-    //     􀆇
-    //   </div>
-    // </div>
-    <div className="relative">
-      <div className="inline-flex h-9 w-[140px] cursor-pointer items-center justify-center gap-1.5 border border-black px-3 py-1.5">
+    <div className="relative flex justify-end" ref={parentRef}>
+      <div
+        className={`inline-flex h-9 w-[140px] cursor-pointer items-center justify-center gap-1.5 border ${
+          isReordering ? "bg-gray-200" : "bg-white"
+        } border-black px-3 py-1.5`}
+        onClick={changeIsReorderingState}
+      >
         <div className="text-center text-xs font-bold leading-normal text-black">
           Modify Sections
         </div>
@@ -37,13 +44,15 @@ export default function SectionModifier({
           􀆈
         </div>
       </div>
-      <SortableContainer
-        surveyContents={surveyContents}
-        handleSectionDragEvent={handleSectionDragEvent}
-        handleSubSectionDragEvent={handleSubSectionDragEvent}
-        handleDeleteSection={handleDeleteSection}
-        handleDeleteSubSection={handleDeleteSubSection}
-      />
+      {isReordering && (
+        <SortableContainer
+          surveyContents={surveyContents}
+          handleSectionDragEvent={handleSectionDragEvent}
+          handleSubSectionDragEvent={handleSubSectionDragEvent}
+          handleDeleteSection={handleDeleteSection}
+          handleDeleteSubSection={handleDeleteSubSection}
+        />
+      )}
     </div>
   );
 }

@@ -38,6 +38,7 @@ export default function Result({
   const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
     response.content,
   );
+  const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
@@ -177,29 +178,33 @@ export default function Result({
     setHeader(newContent);
   };
 
+  const changeIsReorderingState = () => {
+    setIsReordering(!isReordering);
+  };
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
 
   return (
     <>
-      <header className="mb-[84px] flex justify-between border-b border-black">
+      <header className="mb-[24px] flex justify-between border-b border-black transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none">
         <Editor
           content={header}
           handleOnChanges={handleHeaderChanges}
           state={header}
         />
-        <div className="flex">
-          {/* <PolicySectionModifier
-            surveyContents={surveyContents}
-            handleSectionDragEvent={handleSectionDragEvent}
-            handleSubSectionDragEvent={handleSubSectionDragEvent}
-            handleDeleteSection={handleDeleteSection}
-            handleDeleteSubSection={handleDeleteSubSection}
-          /> */}
-          <TextEditing />
-        </div>
+        <TextEditing />
       </header>
+      <PolicySectionModifier
+        surveyContents={surveyContents}
+        handleSectionDragEvent={handleSectionDragEvent}
+        handleSubSectionDragEvent={handleSubSectionDragEvent}
+        handleDeleteSection={handleDeleteSection}
+        handleDeleteSubSection={handleDeleteSubSection}
+        isReordering={isReordering}
+        changeIsReorderingState={changeIsReorderingState}
+      />
       <article ref={parentRef}>
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection
