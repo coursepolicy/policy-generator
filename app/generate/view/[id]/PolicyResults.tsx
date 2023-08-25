@@ -1,13 +1,12 @@
 "use client";
-import autoAnimate from "@formkit/auto-animate";
 import React, { useEffect, useRef, useState } from "react";
+import autoAnimate from "@formkit/auto-animate";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
-import { GenerativeAiPolicy } from "./types";
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { formatResult } from "./helpers";
+import Editor from "../../../_components/Editor";
 
 export interface Section {
   [key: string]: any;
@@ -19,17 +18,27 @@ export interface Section {
 export interface SubSection {
   id: string;
   subSectionTitle: string;
-  content: React.ReactElement;
+  miscData?: Record<string, any>;
+  content: string;
 }
 
 export type CourseAiPolicy = Section[];
 
-export default function Result({ response }: { response: GenerativeAiPolicy }) {
-  const parentRef = useRef(null);
+type CourseAiPolicyResponse = {
+  header: string;
+  content: CourseAiPolicy;
+};
 
+export default function Result({
+  response,
+}: {
+  response: CourseAiPolicyResponse;
+}) {
+  const [header, setHeader] = useState<string>(response.header);
   const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
-    formatResult(response),
+    response.content,
   );
+  const parentRef = useRef(null);
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
     if (!over) {
@@ -100,36 +109,72 @@ export default function Result({ response }: { response: GenerativeAiPolicy }) {
     });
   };
 
+  const handleOnChanges = ({
+    sectionId,
+    subSectionId,
+    newContent,
+  }: {
+    sectionId: string;
+    subSectionId: string;
+    newContent: string;
+  }): void => {
+    setSurveyContents((prevState: any) => {
+      return prevState.map((section: any) => {
+        if (section.id === sectionId) {
+          return {
+            ...section,
+            subSections: section.subSections.map((subSection: any) => {
+              if (subSection.id === subSectionId) {
+                return {
+                  ...subSection,
+                  content: newContent,
+                };
+              }
+              return subSection;
+            }),
+          };
+        }
+        return section;
+      });
+    });
+  };
+
+  const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
+    setHeader(newContent);
+  };
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
 
   return (
     <>
-      <header className="flex justify-between">
-        <div>
-          <h2>
-            {response.courseNumber}: {response.courseTitle}
-          </h2>
-          <p>
-            Course Instructor: {response.instructor}[{response.email}]{" "}
-            <span>Generated on {response.generatedAt}</span>
-          </p>
-        </div>
+      <header className="mb-[84px] flex justify-between border-b border-black">
+        <Editor
+          content={header}
+          handleOnChanges={handleHeaderChanges}
+          state={header}
+        />
         <div className="flex">
-          <PolicySectionModifier
+          {/* <PolicySectionModifier
             surveyContents={surveyContents}
             handleSectionDragEvent={handleSectionDragEvent}
             handleSubSectionDragEvent={handleSubSectionDragEvent}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}
-          />
+          /> */}
           <TextEditing />
         </div>
       </header>
       <article ref={parentRef}>
-        {surveyContents.map((section) => (
-          <PolicySection key={section.id} section={section} />
+        {surveyContents.map((section, sectionIndex) => (
+          <PolicySection
+            key={section.id}
+            section={section}
+            sectionIndex={sectionIndex}
+            handleOnChanges={handleOnChanges}
+            surveyContents={surveyContents}
+          />
         ))}
       </article>
     </>

@@ -1,4 +1,4 @@
-export async function getSurveyData(id: string, ttl?: number) {
+export default async function getSurveyData(id: string, ttl?: number) {
   const baseUrl = "https://qwmkqfgswe.execute-api.us-west-2.amazonaws.com";
 
   const response = await fetch(`${baseUrl}/responses?generatedId=${id}`, {

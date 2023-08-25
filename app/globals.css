@@ -36,3 +36,51 @@ body {
     height: calc(100vh - 85px);
   }
 }
+
+.tiptap h1, .tiptap h2, .tiptap h3 {
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.tiptap h1 {
+  font-size: 30px;
+}
+
+.tiptap h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.tiptap h2 + p {
+  margin-bottom: 48px;
+}
+
+
+.tiptap h3 {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.tiptap h3 + p {
+  margin-bottom: 24px;
+}
+
+.tiptap h1 + p {
+  color: #818181;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.tiptap h1 + p span {
+  color: #818181;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin-left: 24px;
+  border: 1px solid red;
+}
