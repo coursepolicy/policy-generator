@@ -19,7 +19,7 @@ export interface SubSection {
   id: string;
   subSectionTitle: string;
   miscData?: Record<string, any>;
-  content: string;
+  content: string | string[];
 }
 
 export type CourseAiPolicy = Section[];
@@ -139,6 +139,40 @@ export default function Result({
     });
   };
 
+  const handleOnContentArrayChanges = ({
+    sectionId,
+    subSectionId,
+    newContent,
+    contentIndex,
+  }: {
+    sectionId: string;
+    subSectionId: string;
+    newContent: string;
+    contentIndex: number;
+  }): void => {
+    setSurveyContents((prevState: any) => {
+      return prevState.map((section: any) => {
+        if (section.id === sectionId) {
+          return {
+            ...section,
+            subSections: section.subSections.map((subSection: any) => {
+              if (subSection.id === subSectionId) {
+                const newArray = [...subSection.content];
+                newArray[contentIndex] = newContent;
+                return {
+                  ...subSection,
+                  content: newArray,
+                };
+              }
+              return subSection;
+            }),
+          };
+        }
+        return section;
+      });
+    });
+  };
+
   const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
     setHeader(newContent);
   };
@@ -174,6 +208,7 @@ export default function Result({
             sectionIndex={sectionIndex}
             handleOnChanges={handleOnChanges}
             surveyContents={surveyContents}
+            handleOnContentArrayChanges={handleOnContentArrayChanges}
           />
         ))}
       </article>

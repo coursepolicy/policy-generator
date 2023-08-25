@@ -11,14 +11,16 @@ export default function Editor({
   state,
   sectionIndex,
   subSectionIndex,
+  contentIndex,
 }: {
-  content: string;
+  content: string | string[];
   handleOnChanges: (prop: any) => void;
   sectionId?: string;
   subSectionId?: string;
   state: any;
   sectionIndex?: number;
   subSectionIndex?: number;
+  contentIndex?: number;
 }) {
   const editor = useEditor({
     extensions: [StarterKit, Heading.configure({ levels: [1, 2, 3] })],
@@ -34,9 +36,29 @@ export default function Editor({
       handleOnChanges({ noContent: htmlString || "" });
       return;
     }
+
+    if (!sectionIndex || !subSectionIndex) return;
+
     if (
-      sectionIndex &&
-      subSectionIndex &&
+      Array.isArray(state) &&
+      contentIndex &&
+      htmlString !==
+        state[sectionIndex].subSections[subSectionIndex].content[
+          contentIndex
+        ].trim()
+    ) {
+      handleOnChanges({
+        sectionId,
+        subSectionId,
+        newContent: htmlString || "",
+        contentIndex,
+      });
+    }
+
+    if (
+      !Array.isArray(
+        state[sectionIndex].subSections[subSectionIndex].content,
+      ) &&
       htmlString !==
         state[sectionIndex].subSections[subSectionIndex].content.trim()
     ) {
@@ -47,6 +69,7 @@ export default function Editor({
       });
     }
   }, [
+    contentIndex,
     handleOnChanges,
     htmlString,
     sectionId,
