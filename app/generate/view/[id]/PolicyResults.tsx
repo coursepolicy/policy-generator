@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "next/navigation";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
-import savePolicy from "@/app/_utils/savePolicy";
+import savePolicy from "../../../_utils/savePolicy";
 import { DragEndEvent } from "@dnd-kit/core";
 import Editor from "../../../_components/Editor";
 import TextEditing from "./TextEditing";
@@ -197,6 +198,28 @@ export default function Result({
     };
 
     await savePolicy(JSON.stringify(payload), id as string);
+    // toast("Changes have been saved!");
+    toast.promise(
+      savePolicy(JSON.stringify(payload), id as string),
+      {
+        loading: "Saving...",
+        success: "Changes have been saved!",
+        error: "Something went wrong",
+      },
+      {
+        style: {
+          minWidth: "250px",
+        },
+        success: {
+          style: {
+            width: 228,
+            height: 59,
+            background: "#DEF9E2",
+            borderRadius: 0,
+          },
+        },
+      },
+    );
   };
 
   const changeIsReorderingState = () => {
@@ -209,6 +232,7 @@ export default function Result({
 
   return (
     <>
+      <Toaster />
       <header className="mb-[24px] flex justify-between border-b border-black">
         <Editor
           content={header}
@@ -219,17 +243,18 @@ export default function Result({
           handleDeleteSection={handleDeleteSection}
           handleDeleteSubSection={handleDeleteSubSection}
         />
+        <PolicySectionModifier
+          surveyContents={surveyContents}
+          handleSectionDragEvent={handleSectionDragEvent}
+          handleSubSectionDragEvent={handleSubSectionDragEvent}
+          handleDeleteSection={handleDeleteSection}
+          handleDeleteSubSection={handleDeleteSubSection}
+          isReordering={isReordering}
+          changeIsReorderingState={changeIsReorderingState}
+        />
         <TextEditing />
       </header>
-      <PolicySectionModifier
-        surveyContents={surveyContents}
-        handleSectionDragEvent={handleSectionDragEvent}
-        handleSubSectionDragEvent={handleSubSectionDragEvent}
-        handleDeleteSection={handleDeleteSection}
-        handleDeleteSubSection={handleDeleteSubSection}
-        isReordering={isReordering}
-        changeIsReorderingState={changeIsReorderingState}
-      />
+
       <article ref={parentRef}>
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection
