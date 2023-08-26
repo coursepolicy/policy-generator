@@ -14,6 +14,8 @@ interface Props {
   contentIndex?: number;
   hideDeleteButton?: boolean;
   handleUpdatePolicy: () => Promise<void>;
+  handleDeleteSection: (sectionId: string) => void;
+  handleDeleteSubSection: (sectionId: string, subSectionId: string) => void;
 }
 
 export default function Editor({
@@ -26,6 +28,8 @@ export default function Editor({
   subSectionIndex,
   contentIndex,
   handleUpdatePolicy,
+  handleDeleteSection,
+  handleDeleteSubSection,
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
@@ -55,23 +59,19 @@ export default function Editor({
     }
   };
 
-  const handleButtoneOnClick = (type: string) => {
-    if (type === "save") {
-      setIsEditorFocused(false);
-      return;
-    }
-    if (type === "delete") {
-      const isConfirmed = window.confirm(
-        "Are you sure you want to delete this?",
-      );
+  const handleDelete = () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this?");
+    if (!isConfirmed) return;
+    if (!sectionId) return;
 
-      if (isConfirmed) {
-        // Execute your delete logic here.
-        console.log("Item deleted!");
-      }
+    if (!subSectionId) {
+      handleDeleteSection(sectionId);
       setIsEditorFocused(false);
       return;
     }
+
+    handleDeleteSubSection(sectionId, subSectionId);
+    setIsEditorFocused(false);
   };
 
   const handleOnDiscard = () => {
@@ -197,7 +197,7 @@ export default function Editor({
           {!hideDeleteButton && (
             <div>
               <button
-                onClick={() => handleButtoneOnClick("delete")}
+                onClick={handleDelete}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 className="text-right text-xs font-normal leading-normal text-zinc-500 underline"

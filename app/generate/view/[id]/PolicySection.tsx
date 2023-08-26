@@ -10,6 +10,8 @@ export default function PolicySection({
   sectionIndex,
   handleOnContentArrayChanges,
   handleUpdatePolicy,
+  handleDeleteSection,
+  handleDeleteSubSection,
 }: {
   section: Section;
   handleOnChanges: (prop: any) => void;
@@ -17,6 +19,8 @@ export default function PolicySection({
   surveyContents: CourseAiPolicy;
   sectionIndex: number;
   handleUpdatePolicy: () => Promise<void>;
+  handleDeleteSection: (sectionId: string) => void;
+  handleDeleteSubSection: (sectionId: string, subSectionId: string) => void;
 }) {
   const parentRef = useRef(null);
   useEffect(() => {
@@ -52,6 +56,8 @@ export default function PolicySection({
                 sectionIndex={sectionIndex}
                 subSectionIndex={subSectionIndex}
                 handleUpdatePolicy={handleUpdatePolicy}
+                handleDeleteSection={handleDeleteSection}
+                handleDeleteSubSection={handleDeleteSubSection}
               />
               <div className="right-0 top-0 mb-[10px] flex items-center justify-between md:absolute md:mb-0">
                 <p className="text-xs font-bold leading-normal text-stone-500">
@@ -100,6 +106,8 @@ export default function PolicySection({
                         subSectionIndex={subSectionIndex}
                         contentIndex={index}
                         handleUpdatePolicy={handleUpdatePolicy}
+                        handleDeleteSection={handleDeleteSection}
+                        handleDeleteSubSection={handleDeleteSubSection}
                       />
                     </div>
                   );
@@ -119,6 +127,8 @@ export default function PolicySection({
               sectionIndex={sectionIndex}
               subSectionIndex={subSectionIndex}
               handleUpdatePolicy={handleUpdatePolicy}
+              handleDeleteSection={handleDeleteSection}
+              handleDeleteSubSection={handleDeleteSubSection}
             />
           </div>
         );

@@ -185,10 +185,7 @@ export default function Result({
     if (!newContent) return;
     setHeader(newContent);
   };
-  console.log({
-    header,
-    content: surveyContents,
-  });
+
   const handleUpdatePolicy = async () => {
     if (!header || !surveyContents) return;
 
@@ -219,6 +216,8 @@ export default function Result({
           state={header}
           hideDeleteButton={true}
           handleUpdatePolicy={handleUpdatePolicy}
+          handleDeleteSection={handleDeleteSection}
+          handleDeleteSubSection={handleDeleteSubSection}
         />
         <TextEditing />
       </header>
@@ -241,6 +240,8 @@ export default function Result({
             surveyContents={surveyContents}
             handleOnContentArrayChanges={handleOnContentArrayChanges}
             handleUpdatePolicy={handleUpdatePolicy}
+            handleDeleteSection={handleDeleteSection}
+            handleDeleteSubSection={handleDeleteSubSection}
           />
         ))}
       </article>
