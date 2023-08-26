@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
-
-import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
 
 interface Props {
   content: string | string[];
@@ -14,6 +13,7 @@ interface Props {
   subSectionIndex?: number;
   contentIndex?: number;
   hideDeleteButton?: boolean;
+  handleUpdatePolicy: () => Promise<void>;
 }
 
 export default function Editor({
@@ -25,6 +25,7 @@ export default function Editor({
   sectionIndex,
   subSectionIndex,
   contentIndex,
+  handleUpdatePolicy,
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
@@ -78,6 +79,14 @@ export default function Editor({
     setIsEditorFocused(false);
   };
 
+  const handleOnSave = async () => {
+    if (!htmlString) return;
+
+    await handleUpdatePolicy();
+    setSavedContent(htmlString);
+    setIsEditorFocused(false);
+  };
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current, { duration: 100 });
   }, [parentRef]);
@@ -86,7 +95,7 @@ export default function Editor({
     if (!htmlString) return;
 
     if (typeof state === "string" && htmlString !== state.trim()) {
-      handleOnChanges({ noContent: htmlString || "" });
+      handleOnChanges({ newContent: htmlString });
       return;
     }
 
@@ -103,7 +112,7 @@ export default function Editor({
       handleOnChanges({
         sectionId,
         subSectionId,
-        newContent: htmlString || "",
+        newContent: htmlString,
         contentIndex,
       });
     }
@@ -154,7 +163,7 @@ export default function Editor({
         <div className="mt-[15px] flex justify-between">
           <div className="flex">
             <button
-              onClick={() => handleButtoneOnClick("save")}
+              onClick={handleOnSave}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               style={{

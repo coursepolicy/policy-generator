@@ -1,12 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import autoAnimate from "@formkit/auto-animate";
+import { arrayMove } from "@dnd-kit/sortable";
+import savePolicy from "@/app/_utils/savePolicy";
+import { DragEndEvent } from "@dnd-kit/core";
+import Editor from "../../../_components/Editor";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
-import { DragEndEvent } from "@dnd-kit/core";
-import { arrayMove } from "@dnd-kit/sortable";
-import Editor from "../../../_components/Editor";
 
 export interface Section {
   [key: string]: any;
@@ -24,7 +26,7 @@ export interface SubSection {
 
 export type CourseAiPolicy = Section[];
 
-type CourseAiPolicyResponse = {
+export type CourseAiPolicyResponse = {
   header: string;
   content: CourseAiPolicy;
 };
@@ -34,10 +36,12 @@ export default function Result({
 }: {
   response: CourseAiPolicyResponse;
 }) {
+  const { id } = useParams();
   const [header, setHeader] = useState<string>(response.header);
   const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
     response.content,
   );
+
   const [isReordering, setIsReordering] = useState<boolean>(false);
 
   const parentRef = useRef(null);
@@ -120,6 +124,7 @@ export default function Result({
     subSectionId: string;
     newContent: string;
   }): void => {
+    if (!newContent) return;
     setSurveyContents((prevState: any) => {
       return prevState.map((section: any) => {
         if (section.id === sectionId) {
@@ -152,6 +157,7 @@ export default function Result({
     newContent: string;
     contentIndex: number;
   }): void => {
+    if (!newContent) return;
     setSurveyContents((prevState: any) => {
       return prevState.map((section: any) => {
         if (section.id === sectionId) {
@@ -176,7 +182,24 @@ export default function Result({
   };
 
   const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
+    if (!newContent) return;
     setHeader(newContent);
+  };
+  console.log({
+    header,
+    content: surveyContents,
+  });
+  const handleUpdatePolicy = async () => {
+    if (!header || !surveyContents) return;
+
+    const payload = {
+      policy: {
+        header,
+        content: surveyContents,
+      },
+    };
+
+    await savePolicy(JSON.stringify(payload), id as string);
   };
 
   const changeIsReorderingState = () => {
@@ -195,6 +218,7 @@ export default function Result({
           handleOnChanges={handleHeaderChanges}
           state={header}
           hideDeleteButton={true}
+          handleUpdatePolicy={handleUpdatePolicy}
         />
         <TextEditing />
       </header>
@@ -216,6 +240,7 @@ export default function Result({
             handleOnChanges={handleOnChanges}
             surveyContents={surveyContents}
             handleOnContentArrayChanges={handleOnContentArrayChanges}
+            handleUpdatePolicy={handleUpdatePolicy}
           />
         ))}
       </article>

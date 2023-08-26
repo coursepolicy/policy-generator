@@ -9,12 +9,14 @@ export default function PolicySection({
   surveyContents,
   sectionIndex,
   handleOnContentArrayChanges,
+  handleUpdatePolicy,
 }: {
   section: Section;
   handleOnChanges: (prop: any) => void;
   handleOnContentArrayChanges: (prop: any) => void;
   surveyContents: CourseAiPolicy;
   sectionIndex: number;
+  handleUpdatePolicy: () => Promise<void>;
 }) {
   const parentRef = useRef(null);
   useEffect(() => {
@@ -49,6 +51,7 @@ export default function PolicySection({
                 state={surveyContents}
                 sectionIndex={sectionIndex}
                 subSectionIndex={subSectionIndex}
+                handleUpdatePolicy={handleUpdatePolicy}
               />
               <div className="right-0 top-0 mb-[10px] flex items-center justify-between md:absolute md:mb-0">
                 <p className="text-xs font-bold leading-normal text-stone-500">
@@ -68,41 +71,42 @@ export default function PolicySection({
           );
         }
 
-        // if (subSectionTitle === "Use Cases") {
-        //   const bgColorMapper: {
-        //     [key: number]: string;
-        //   } = {
-        //     0: "bg-stone-100",
-        //     1: "bg-red-50",
-        //   };
-        //   return (
-        //     <div
-        //       key={subSection.id}
-        //       className="flex w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-start md:justify-between"
-        //     >
-        //       {Array.isArray(subSection.content) &&
-        //         subSection.content.map((useCase, index) => {
-        //           return (
-        //             <div
-        //               key={`${subSection.id}${index}`}
-        //               className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] `}
-        //             >
-        //               <Editor
-        //                 content={useCase}
-        //                 sectionId={section.id}
-        //                 subSectionId={subSection.id}
-        //                 handleOnChanges={handleOnContentArrayChanges}
-        //                 state={surveyContents}
-        //                 sectionIndex={sectionIndex}
-        //                 subSectionIndex={subSectionIndex}
-        //                 contentIndex={index}
-        //               />
-        //             </div>
-        //           );
-        //         })}
-        //     </div>
-        //   );
-        // }
+        if (subSectionTitle === "Use Cases") {
+          const bgColorMapper: {
+            [key: number]: string;
+          } = {
+            0: "bg-stone-100",
+            1: "bg-red-50",
+          };
+          return (
+            <div
+              key={subSection.id}
+              className="flex w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-start md:justify-between"
+            >
+              {Array.isArray(subSection.content) &&
+                subSection.content.map((useCase, index) => {
+                  return (
+                    <div
+                      key={`${subSection.id}${index}`}
+                      className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] `}
+                    >
+                      <Editor
+                        content={useCase}
+                        sectionId={section.id}
+                        subSectionId={subSection.id}
+                        handleOnChanges={handleOnContentArrayChanges}
+                        state={surveyContents}
+                        sectionIndex={sectionIndex}
+                        subSectionIndex={subSectionIndex}
+                        contentIndex={index}
+                        handleUpdatePolicy={handleUpdatePolicy}
+                      />
+                    </div>
+                  );
+                })}
+            </div>
+          );
+        }
 
         return (
           <div key={subSection.id}>
@@ -114,6 +118,7 @@ export default function PolicySection({
               state={surveyContents}
               sectionIndex={sectionIndex}
               subSectionIndex={subSectionIndex}
+              handleUpdatePolicy={handleUpdatePolicy}
             />
           </div>
         );
