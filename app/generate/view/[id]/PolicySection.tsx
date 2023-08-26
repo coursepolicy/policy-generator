@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import Editor from "../../../_components/Editor";
-import EditorContainer from "../../../_components/EditorContainer";
 import { CourseAiPolicy, Section } from "./PolicyResults";
 
 export default function PolicySection({
@@ -42,7 +41,7 @@ export default function PolicySection({
               key={subSection.id}
               className="flex flex-col-reverse md:relative  md:justify-between"
             >
-              <EditorContainer
+              <Editor
                 content={subSection.content}
                 sectionId={section.id}
                 subSectionId={subSection.id}
@@ -69,45 +68,45 @@ export default function PolicySection({
           );
         }
 
-        if (subSectionTitle === "Use Cases") {
-          const bgColorMapper: {
-            [key: number]: string;
-          } = {
-            0: "bg-stone-100",
-            1: "bg-red-50",
-          };
-          return (
-            <div
-              key={subSection.id}
-              className="flex w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-start md:justify-between"
-            >
-              {Array.isArray(subSection.content) &&
-                subSection.content.map((useCase, index) => {
-                  return (
-                    <div
-                      key={`${subSection.id}${index}`}
-                      className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] `}
-                    >
-                      <Editor
-                        content={useCase}
-                        sectionId={section.id}
-                        subSectionId={subSection.id}
-                        handleOnChanges={handleOnContentArrayChanges}
-                        state={surveyContents}
-                        sectionIndex={sectionIndex}
-                        subSectionIndex={subSectionIndex}
-                        contentIndex={index}
-                      />
-                    </div>
-                  );
-                })}
-            </div>
-          );
-        }
+        // if (subSectionTitle === "Use Cases") {
+        //   const bgColorMapper: {
+        //     [key: number]: string;
+        //   } = {
+        //     0: "bg-stone-100",
+        //     1: "bg-red-50",
+        //   };
+        //   return (
+        //     <div
+        //       key={subSection.id}
+        //       className="flex w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-start md:justify-between"
+        //     >
+        //       {Array.isArray(subSection.content) &&
+        //         subSection.content.map((useCase, index) => {
+        //           return (
+        //             <div
+        //               key={`${subSection.id}${index}`}
+        //               className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] `}
+        //             >
+        //               <Editor
+        //                 content={useCase}
+        //                 sectionId={section.id}
+        //                 subSectionId={subSection.id}
+        //                 handleOnChanges={handleOnContentArrayChanges}
+        //                 state={surveyContents}
+        //                 sectionIndex={sectionIndex}
+        //                 subSectionIndex={subSectionIndex}
+        //                 contentIndex={index}
+        //               />
+        //             </div>
+        //           );
+        //         })}
+        //     </div>
+        //   );
+        // }
 
         return (
           <div key={subSection.id}>
-            <EditorContainer
+            <Editor
               content={subSection.content}
               sectionId={section.id}
               subSectionId={subSection.id}

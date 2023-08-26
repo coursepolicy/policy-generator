@@ -6,7 +6,6 @@ import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import EditorContainer from "../../../_components/EditorContainer";
 import Editor from "../../../_components/Editor";
 
 export interface Section {
@@ -191,10 +190,11 @@ export default function Result({
   return (
     <>
       <header className="mb-[24px] flex justify-between border-b border-black">
-        <EditorContainer
+        <Editor
           content={header}
           handleOnChanges={handleHeaderChanges}
           state={header}
+          hideDeleteButton={true}
         />
         <TextEditing />
       </header>
