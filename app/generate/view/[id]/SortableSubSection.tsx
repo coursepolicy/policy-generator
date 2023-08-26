@@ -29,6 +29,7 @@ export default function SortableSubSection({
     transform: CSS.Transform.toString(transform),
     // transition,
   };
+
   return (
     <div
       ref={setNodeRef}

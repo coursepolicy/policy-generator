@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import Heading from "@tiptap/extension-heading";
+import React, { useEffect, useRef } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
@@ -23,7 +22,7 @@ export default function Editor({
   contentIndex?: number;
 }) {
   const editor = useEditor({
-    extensions: [StarterKit, Heading.configure({ levels: [1, 2, 3] })],
+    extensions: [StarterKit],
     content,
   });
 

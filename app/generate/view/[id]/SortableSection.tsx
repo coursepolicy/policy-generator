@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {
   DndContext,
+  DragOverlay,
   DragEndEvent,
   KeyboardSensor,
   PointerSensor,
@@ -101,6 +102,7 @@ export default function SortableSection({
               />
             ))}
           </SortableContext>
+          <DragOverlay></DragOverlay>
         </DndContext>
       </div>
       <div>

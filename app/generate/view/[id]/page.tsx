@@ -10,7 +10,7 @@ export default async function View({
   const { data } = await getSurveyData(id);
 
   return (
-    <main className=" mx-auto my-0 mt-[64px] flex w-[100%] max-w-[1000px] flex-col bg-white p-[39px]">
+    <main className="mx-auto my-0 mt-[64px] flex w-[100%] max-w-[1000px] flex-col bg-white p-[39px] px-[20px]">
       <PolicyResults response={data} />
     </main>
   );

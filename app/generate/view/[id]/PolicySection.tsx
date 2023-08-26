@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import Editor from "../../../_components/Editor";
+import EditorContainer from "../../../_components/EditorContainer";
 import { CourseAiPolicy, Section } from "./PolicyResults";
 
 export default function PolicySection({
@@ -24,7 +25,7 @@ export default function PolicySection({
   return (
     <section
       ref={parentRef}
-      className="mb-[48px] border-b border-zinc-400 pb-[48px]"
+      className="mb-[24px] border-b border-zinc-400 pb-[24px]"
     >
       {section.subSections.map((subSection, subSectionIndex) => {
         const { miscData, subSectionTitle } = subSection || {};
@@ -39,9 +40,9 @@ export default function PolicySection({
           return (
             <div
               key={subSection.id}
-              className="flex flex-col-reverse transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none md:relative md:justify-between"
+              className="flex flex-col-reverse md:relative  md:justify-between"
             >
-              <Editor
+              <EditorContainer
                 content={subSection.content}
                 sectionId={section.id}
                 subSectionId={subSection.id}
@@ -78,14 +79,14 @@ export default function PolicySection({
           return (
             <div
               key={subSection.id}
-              className="mb-[45px] flex flex-col items-center md:flex-row md:items-start md:justify-between"
+              className="flex w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-start md:justify-between"
             >
               {Array.isArray(subSection.content) &&
                 subSection.content.map((useCase, index) => {
                   return (
                     <div
                       key={`${subSection.id}${index}`}
-                      className={`h-[100%] w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none`}
+                      className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] `}
                     >
                       <Editor
                         content={useCase}
@@ -103,30 +104,10 @@ export default function PolicySection({
             </div>
           );
         }
-        if (subSection.subSectionTitle === "Policy Links") {
-          return (
-            <div
-              key={subSection.id}
-              className="policy-links transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none"
-            >
-              <Editor
-                content={subSection.content}
-                sectionId={section.id}
-                subSectionId={subSection.id}
-                handleOnChanges={handleOnChanges}
-                state={surveyContents}
-                sectionIndex={sectionIndex}
-                subSectionIndex={subSectionIndex}
-              />
-            </div>
-          );
-        }
+
         return (
-          <div
-            key={subSection.id}
-            className="transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none"
-          >
-            <Editor
+          <div key={subSection.id}>
+            <EditorContainer
               content={subSection.content}
               sectionId={section.id}
               subSectionId={subSection.id}

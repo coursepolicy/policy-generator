@@ -6,6 +6,7 @@ import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
+import EditorContainer from "../../../_components/EditorContainer";
 import Editor from "../../../_components/Editor";
 
 export interface Section {
@@ -39,6 +40,7 @@ export default function Result({
     response.content,
   );
   const [isReordering, setIsReordering] = useState<boolean>(false);
+
   const parentRef = useRef(null);
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
@@ -188,8 +190,8 @@ export default function Result({
 
   return (
     <>
-      <header className="mb-[24px] flex justify-between border-b border-black transition-shadow hover:shadow-md hover:focus:shadow-none hover:active:shadow-none">
-        <Editor
+      <header className="mb-[24px] flex justify-between border-b border-black">
+        <EditorContainer
           content={header}
           handleOnChanges={handleHeaderChanges}
           state={header}
@@ -220,12 +222,3 @@ export default function Result({
     </>
   );
 }
-
-/**
- * TODO:
- * - [] Persist state to db by storing in new column
- * - [] Send mapper to db hook
- * - [] Text editing lmao good luck
- * - [] sample policies
- *     - if samplePolicy is true, don't persist until user saves?
- */

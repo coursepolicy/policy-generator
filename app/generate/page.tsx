@@ -42,6 +42,15 @@ export default function Generate() {
           <div className="border border-black">
             <button
               onClick={() => {
+                router.push(`/generate/view/Allow_Under_Conditions_Case_2`);
+              }}
+            >
+              Allow_Under_Conditions_Case_2
+            </button>
+          </div>
+          <div className="border border-black">
+            <button
+              onClick={() => {
                 router.push(`/generate/view/Allow_Under_Conditions_Case_1`);
               }}
             >
