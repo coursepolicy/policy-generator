@@ -88,7 +88,7 @@ export default function Editor({
   };
 
   useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current, { duration: 100 });
+    parentRef.current && autoAnimate(parentRef.current, { duration: 175 });
   }, [parentRef]);
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function Editor({
       return;
     }
 
-    if (!sectionIndex || !subSectionIndex) return;
+    if (sectionIndex === undefined || subSectionIndex === undefined) return;
 
     if (
       Array.isArray(state) &&
@@ -127,7 +127,7 @@ export default function Editor({
       handleOnChanges({
         sectionId,
         subSectionId,
-        newContent: htmlString || "",
+        newContent: htmlString,
       });
     }
   }, [
