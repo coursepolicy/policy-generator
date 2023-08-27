@@ -48,11 +48,7 @@ export default function Droppable({
   );
 
   return (
-    <div
-      className={`z-[1] ${
-        !isWayTooSmall ? " w-[387px]" : "w-[250px]"
-      } bg-zinc-100 shadow md:absolute md:right-[0] md:top-[40px] md:rounded-[10px]`}
-    >
+    <div className="bg-zinc-100 shadow sm:w-[387px] md:absolute md:right-0 md:top-[40px]">
       <DndContext
         onDragEnd={handleSectionDragEvent}
         sensors={sensors}
@@ -64,13 +60,7 @@ export default function Droppable({
           strategy={verticalListSortingStrategy}
         >
           <div className="h-[100%]">
-            <div
-              className={`${
-                !isWayTooSmall
-                  ? "pb-[40px] pl-[18px] pr-[15px] pt-[13px]"
-                  : "pb-[10px] pl-[3px] pr-[3px] pt-[3px]"
-              }`}
-            >
+            <div className="pb-[10px] pl-[5px] pr-[5px] pt-[10px] sm:pb-[40px] sm:pl-[18px] sm:pr-[15px] sm:pt-[13px]">
               <p className="text-sm font-normal leading-normal text-zinc-500">
                 <i>Drag to reorder sections and subsections</i>
               </p>

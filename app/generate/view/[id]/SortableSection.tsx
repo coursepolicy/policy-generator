@@ -74,11 +74,11 @@ export default function SortableSection({
     <section
       ref={sectionSortRef}
       style={style}
-      className="relative z-[1] flex justify-between"
+      className="z-1 relative flex justify-between"
     >
       <div className="flex">
         <div className="mt-[10px]">
-          <p className="text-sm font-normal leading-normal text-neutral-500">
+          <p className="text-sm font-normal leading-normal text-neutral-500 ">
             {sectionIndex}.
           </p>
         </div>
@@ -86,11 +86,7 @@ export default function SortableSection({
           <div
             {...attributes}
             {...listeners}
-            className={`${
-              !isWayTooSmall ? "w-[290px]" : "w-[190px]"
-            } mb-[8px] ${
-              !isWayTooSmall ? "ml-[18px]" : "ml-[5px]"
-            } flex h-11 items-center border border-neutral-200 bg-white`}
+            className="mb-[5px] ml-[5px] flex h-11 w-[200px] items-center border border-neutral-200 bg-white sm:ml-[18px] sm:w-[290px]"
           >
             <div className="relative h-11 w-3">
               <div className="absolute left-0 top-0 h-11 w-3 bg-zinc-300" />
@@ -131,11 +127,7 @@ export default function SortableSection({
           </DndContext>
         </div>
       </div>
-      <div
-        className={`absolute ${
-          !isWayTooSmall ? "right-0" : "right-[8px]"
-        } mt-[10px]`}
-      >
+      <div className="absolute right-[2%] mt-[10px] sm:right-0">
         <button onClick={handleDelete}>
           <Image
             src="/images/trash.png"
