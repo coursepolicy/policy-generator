@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import greenPointer from "../../public/images/green-pointer.svg";
 import { navItems } from "../_utils/constants";
+import React from "react";
 
 interface NavigationAltProps {
   toggleMenu: (pref: boolean) => void;

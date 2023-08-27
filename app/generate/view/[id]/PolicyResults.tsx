@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
 
@@ -15,6 +16,7 @@ import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "./SortableContainer";
 import tooltip from "../../../../public/images/tooltip.svg";
+import addPolicy from "../../../../public/images/add-policy.svg";
 export interface Section {
   [key: string]: any;
   id: string;
@@ -229,6 +231,32 @@ export default function Result({
     setIsReordering(!isReordering);
   };
 
+  const handleNewSection = () => {
+    // fist section is section number 0
+    const currentNumber = surveyContents.length;
+    const newSectionNumber = currentNumber - 2;
+    const newSection = {
+      id: uuid4(),
+      sectionTitle: `New Section - ${newSectionNumber}`,
+      subSections: [
+        {
+          id: uuid4(),
+          subSectionTitle: "New Sub Section",
+          content: `
+            <div>
+              <h2>${currentNumber}. New Section</h2>
+              <p>Enter your content here</p>
+            </div>
+          `,
+        },
+      ],
+    };
+
+    setSurveyContents((prevState) => {
+      return [...prevState, newSection];
+    });
+  };
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
@@ -261,7 +289,7 @@ export default function Result({
             isReordering={isReordering}
             changeIsReorderingState={changeIsReorderingState}
           />
-          <TextEditing />
+          <TextEditing handleUpdatePolicy={handleUpdatePolicy} />
         </div>
         {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">
@@ -278,7 +306,7 @@ export default function Result({
       <article ref={parentRef}>
         <div className="flex w-[100%] justify-center">
           <div className="flex h-[34px] w-[96%] items-center rounded-[3px] bg-indigo-50">
-            <Image alt="Green right pointed arrow" src={tooltip} />
+            <Image alt="tooltip image" src={tooltip} className="ml-[7px]" />
           </div>
         </div>
         {surveyContents.map((section, sectionIndex) => (
@@ -295,6 +323,21 @@ export default function Result({
           />
         ))}
       </article>
+      <section>
+        <div
+          onClick={handleNewSection}
+          className="flex h-[104px] cursor-pointer items-center justify-center border border-dashed border-neutral-400"
+        >
+          <p>I want to add additional sections of information</p>
+          <button>
+            <Image
+              alt="plus sign image"
+              src={addPolicy}
+              className="ml-[10px]"
+            />
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
