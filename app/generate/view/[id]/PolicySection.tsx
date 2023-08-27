@@ -1,7 +1,9 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import Editor from "../../../_components/Editor";
 import { CourseAiPolicy, Section } from "./PolicyResults";
+import useWindowSize from "../../../_utils/useWindowSize";
 
 export default function PolicySection({
   section,
@@ -22,6 +24,8 @@ export default function PolicySection({
   handleDeleteSection: (sectionId: string) => void;
   handleDeleteSubSection: (sectionId: string, subSectionId: string) => void;
 }) {
+  const { width } = useWindowSize();
+  const isWayTooSmall = width < 450;
   const parentRef = useRef(null);
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
@@ -94,7 +98,11 @@ export default function PolicySection({
                   return (
                     <div
                       key={`${subSection.id}${index}`}
-                      className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px] `}
+                      className={`h-[100%] w-[100%] max-w-[445px] ${
+                        bgColorMapper[index]
+                      } use-cases ${
+                        !isWayTooSmall ? "px-[25px] py-[30px]" : ""
+                      }`}
                     >
                       <Editor
                         content={useCase}

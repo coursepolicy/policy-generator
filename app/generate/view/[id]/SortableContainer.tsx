@@ -1,3 +1,7 @@
+"use client";
+
+import React from "react";
+
 import {
   DndContext,
   DragEndEvent,
@@ -14,15 +18,9 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CourseAiPolicy } from "./PolicyResults";
-import React from "react";
+import useWindowSize from "../../../_utils/useWindowSize";
 
-export default function Droppable({
-  surveyContents,
-  handleSectionDragEvent,
-  handleSubSectionDragEvent,
-  handleDeleteSubSection,
-  handleDeleteSection,
-}: {
+interface Props {
   handleDeleteSubSection: (
     sectionIndex: string,
     subSectionIndex: string,
@@ -31,7 +29,17 @@ export default function Droppable({
   handleSectionDragEvent: (e: DragEndEvent) => void;
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
   surveyContents: CourseAiPolicy;
-}) {
+}
+
+export default function Droppable({
+  surveyContents,
+  handleSectionDragEvent,
+  handleSubSectionDragEvent,
+  handleDeleteSubSection,
+  handleDeleteSection,
+}: Props) {
+  const { width } = useWindowSize();
+  const isWayTooSmall = width < 450;
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -40,7 +48,11 @@ export default function Droppable({
   );
 
   return (
-    <div className="z-[1] w-[100%] max-w-[387px] rounded-[10px] bg-zinc-100 shadow md:absolute md:top-[40px]">
+    <div
+      className={`z-[1] ${
+        !isWayTooSmall ? " w-[387px]" : "w-[250px]"
+      } bg-zinc-100 shadow md:absolute md:right-[0] md:top-[40px] md:rounded-[10px]`}
+    >
       <DndContext
         onDragEnd={handleSectionDragEvent}
         sensors={sensors}
@@ -52,11 +64,17 @@ export default function Droppable({
           strategy={verticalListSortingStrategy}
         >
           <div className="h-[100%]">
-            <div className="pb-[40px] pl-[18px] pr-[15px] pt-[13px]">
+            <div
+              className={`${
+                !isWayTooSmall
+                  ? "pb-[40px] pl-[18px] pr-[15px] pt-[13px]"
+                  : "pb-[10px] pl-[3px] pr-[3px] pt-[3px]"
+              }`}
+            >
               <p className="text-sm font-normal leading-normal text-zinc-500">
-                Drag to rorder sections and subsections
+                <i>Drag to reorder sections and subsections</i>
               </p>
-              <div className="mt-[12px]">
+              <div className="mt-[10px]">
                 {surveyContents.map((section, index) => (
                   <SortableSection
                     section={section}
@@ -73,5 +91,6 @@ export default function Droppable({
         </SortableContext>
       </DndContext>
     </div>
+    // </div>
   );
 }

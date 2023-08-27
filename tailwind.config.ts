@@ -17,6 +17,13 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-poppins)", "inter", "sans-serif"],
       },
+      backgroundColor: {
+        coursePolicyGreen: "#0AA680",
+        coursePolicyHoverGreen: "#078A6A",
+      },
+      textColor: {
+        coursePolicyGreen: "#0AA680",
+      },
     },
   },
   plugins: [],

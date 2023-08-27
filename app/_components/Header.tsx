@@ -7,6 +7,7 @@ import Navigation from "./Navigation";
 import BurgerMenu from "./BurgerMenu";
 
 import NavigationAlt from "./NavigationAlt";
+import React from "react";
 
 interface Props {}
 
@@ -17,7 +18,8 @@ export default function Header(props: Props) {
 
   return (
     <header
-      className=" sticky top-0 z-10 flex h-[50px] items-center justify-between bg-blue-950 md:h-[85px]"
+      style={{ background: "#252D54" }}
+      className=" sticky top-0 z-10 flex h-[50px] items-center justify-between md:h-[85px]"
       {...props}
     >
       <Logo toggleMenu={toggleMenu} />

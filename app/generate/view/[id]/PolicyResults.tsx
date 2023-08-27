@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useParams } from "next/navigation";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -10,6 +10,8 @@ import Editor from "../../../_components/Editor";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
+import SortableContainer from "./SortableContainer";
+import useWindowSize from "../../../_utils/useWindowSize";
 
 export interface Section {
   [key: string]: any;
@@ -42,10 +44,12 @@ export default function Result({
   const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
     response.content,
   );
-
   const [isReordering, setIsReordering] = useState<boolean>(false);
-
   const parentRef = useRef(null);
+  const headerRef = useRef(null);
+  const { width } = useWindowSize();
+
+  const isWayTooSmall = width < 450;
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
     if (!over) {
@@ -229,10 +233,20 @@ export default function Result({
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
+  useEffect(() => {
+    headerRef.current && autoAnimate(headerRef.current);
+  }, [headerRef]);
 
   return (
-    <div className="p-[39px] px-[20px]">
-      <header className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row">
+    <div
+      className={`${
+        !isWayTooSmall ? "p-[39px] px-[20px]" : "p-[10px] px-[5px]"
+      }`}
+    >
+      <header
+        ref={headerRef}
+        className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
+      >
         <Editor
           content={header}
           handleOnChanges={handleHeaderChanges}
@@ -254,8 +268,18 @@ export default function Result({
           />
           <TextEditing />
         </div>
+        {true && (
+          <div className="my-[20px] flex justify-center md:m-0">
+            <SortableContainer
+              surveyContents={surveyContents}
+              handleSectionDragEvent={handleSectionDragEvent}
+              handleSubSectionDragEvent={handleSubSectionDragEvent}
+              handleDeleteSection={handleDeleteSection}
+              handleDeleteSubSection={handleDeleteSubSection}
+            />
+          </div>
+        )}
       </header>
-
       <article ref={parentRef}>
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection

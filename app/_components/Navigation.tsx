@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { navItems } from "../_utils/constants";
+import React from "react";
 
 export default function Navigation() {
   return (
@@ -12,7 +13,7 @@ export default function Navigation() {
         </Link>
       ))}
       <Link href="/generate">
-        <div className="flex items-start justify-start gap-2.5 rounded-[100px] bg-teal-600 px-6 py-2 hover:bg-emerald-600">
+        <div className="flex items-center justify-center gap-2.5 rounded-[100px] bg-coursePolicyGreen px-6 py-2 hover:bg-coursePolicyHoverGreen">
           <div className="GenerateAPolicy text-right text-sm font-semibold leading-[25px] text-white">
             Generate a Policy
           </div>

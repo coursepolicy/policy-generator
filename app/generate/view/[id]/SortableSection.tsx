@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   DndContext,
@@ -20,6 +22,7 @@ import {
 } from "@dnd-kit/sortable";
 import { Section } from "./PolicyResults";
 import React from "react";
+import useWindowSize from "../../../_utils/useWindowSize";
 
 export default function SortableSection({
   section,
@@ -37,6 +40,8 @@ export default function SortableSection({
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
   section: Section;
 }) {
+  const { width } = useWindowSize();
+  const isWayTooSmall = width < 450;
   const {
     attributes,
     listeners,
@@ -58,55 +63,80 @@ export default function SortableSection({
     }),
   );
 
+  const handleDelete = () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this?");
+    if (!isConfirmed) return;
+
+    handleDeleteSection(section.id);
+  };
+
   return (
     <section
       ref={sectionSortRef}
       style={style}
-      className="flex items-baseline justify-between"
+      className="relative z-[1] flex justify-between"
     >
-      <div className="text-sm font-normal leading-normal text-neutral-500">
-        <p>{sectionIndex}.</p>
-      </div>
-      <div>
-        <div
-          {...attributes}
-          {...listeners}
-          className="mb-[8px] ml-[20px] flex h-11 w-[100%] max-w-[287px] items-center border border-neutral-200 bg-white"
-        >
-          <p
-            className={`text-sm font-${
-              sectionIndex === 0 ? "normal" : "bold"
-            } pl-[12px] leading-normal text-black`}
-          >
-            {section.sectionTitle}
+      <div className="flex">
+        <div className="mt-[10px]">
+          <p className="text-sm font-normal leading-normal text-neutral-500">
+            {sectionIndex}.
           </p>
         </div>
-        <DndContext
-          onDragEnd={(e) => handleSubSectionDragEvent(sectionIndex, e)}
-          sensors={sensors}
-          collisionDetection={closestCenter}
-        >
-          <SortableContext
-            id="modify-sub-sections"
-            items={section.subSections}
-            strategy={verticalListSortingStrategy}
+        <div>
+          <div
+            {...attributes}
+            {...listeners}
+            className={`${
+              !isWayTooSmall ? "w-[290px]" : "w-[190px]"
+            } mb-[8px] ${
+              !isWayTooSmall ? "ml-[18px]" : "ml-[5px]"
+            } flex h-11 items-center border border-neutral-200 bg-white`}
           >
-            {section.subSections.map((subSection, index) => (
-              <SortableSubSection
-                subSection={subSection}
-                key={subSection.id}
-                sectionId={section.id}
-                sectionIndex={sectionIndex}
-                subSectionIndex={index}
-                handleDeleteSubSection={handleDeleteSubSection}
-              />
-            ))}
-          </SortableContext>
-          <DragOverlay></DragOverlay>
-        </DndContext>
+            <div className="relative h-11 w-3">
+              <div className="absolute left-0 top-0 h-11 w-3 bg-zinc-300" />
+              <div className="absolute left-[5px] top-[21px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
+              <div className="absolute left-[5px] top-[17px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
+              <div className="absolute left-[5px] top-[25px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
+            </div>
+            <p
+              className={`text-sm font-${
+                sectionIndex === 0 ? "normal" : "bold"
+              } pl-[12px] leading-normal text-black`}
+            >
+              {section.sectionTitle}
+            </p>
+          </div>
+          <DndContext
+            onDragEnd={(e) => handleSubSectionDragEvent(sectionIndex, e)}
+            sensors={sensors}
+            collisionDetection={closestCenter}
+          >
+            <SortableContext
+              id="modify-sub-sections"
+              items={section.subSections}
+              strategy={verticalListSortingStrategy}
+            >
+              {section.subSections.map((subSection, index) => (
+                <SortableSubSection
+                  subSection={subSection}
+                  key={subSection.id}
+                  sectionId={section.id}
+                  sectionIndex={sectionIndex}
+                  subSectionIndex={index}
+                  handleDeleteSubSection={handleDeleteSubSection}
+                />
+              ))}
+            </SortableContext>
+            <DragOverlay></DragOverlay>
+          </DndContext>
+        </div>
       </div>
-      <div>
-        <button onClick={() => handleDeleteSection(section.id)}>
+      <div
+        className={`absolute ${
+          !isWayTooSmall ? "right-0" : "right-[8px]"
+        } mt-[10px]`}
+      >
+        <button onClick={handleDelete}>
           <Image
             src="/images/trash.png"
             width={20}

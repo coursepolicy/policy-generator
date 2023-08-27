@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 interface LogoProps {
   toggleMenu: (pref: boolean) => void;
@@ -11,7 +12,7 @@ export default function Logo({ toggleMenu }: LogoProps) {
         <span className="text-xl font-bold leading-[35px] text-white md:text-2xl md:leading-9">
           CoursePolicy.
         </span>
-        <span className="text-xl font-bold leading-[35px] text-emerald-300 md:text-2xl md:leading-9">
+        <span className="text-xl font-bold leading-[35px] text-coursePolicyGreen md:text-2xl md:leading-9">
           AI
         </span>
       </div>

@@ -2,15 +2,10 @@ import React, { useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { DragEndEvent } from "@dnd-kit/core";
 
-import SortableContainer from "./SortableContainer";
 import { CourseAiPolicy } from "./PolicyResults";
+import Image from "next/image";
 
 export default function SectionModifier({
-  surveyContents,
-  handleSectionDragEvent,
-  handleSubSectionDragEvent,
-  handleDeleteSubSection,
-  handleDeleteSection,
   isReordering,
   changeIsReorderingState,
 }: {
@@ -34,28 +29,24 @@ export default function SectionModifier({
       className="relative flex flex-col md:flex-row md:justify-end"
       ref={parentRef}
     >
-      <div
-        className={`inline-flex h-9 w-[140px] cursor-pointer items-center justify-center gap-1.5 border ${
+      <button
+        className={`inline-flex h-9 w-[150px] items-center justify-center gap-1.5 rounded-[3px] border border-indigo-900 px-3 py-1.5 ${
           isReordering ? "bg-gray-200" : "bg-white"
         } border-black px-3 py-1.5`}
         onClick={changeIsReorderingState}
       >
-        <div className="text-center text-xs font-bold leading-normal text-black">
-          Modify Sections
-        </div>
+        <p className="text-center text-xs font-bold leading-normal text-indigo-900">
+          Reorder Sections
+        </p>
         <div className="text-center text-sm font-bold leading-normal text-neutral-500">
-          􀆈
+          <Image
+            src={`/images/${isReordering ? "up" : "down"}-arrow.png`}
+            width={17}
+            height={24}
+            alt="down arrow image"
+          />
         </div>
-      </div>
-      {isReordering && (
-        <SortableContainer
-          surveyContents={surveyContents}
-          handleSectionDragEvent={handleSectionDragEvent}
-          handleSubSectionDragEvent={handleSubSectionDragEvent}
-          handleDeleteSection={handleDeleteSection}
-          handleDeleteSubSection={handleDeleteSubSection}
-        />
-      )}
+      </button>
     </div>
   );
 }
