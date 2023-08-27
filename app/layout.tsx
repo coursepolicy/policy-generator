@@ -1,7 +1,11 @@
 import "./globals.css";
+import React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
+
 import Header from "./_components/Header";
+import ProgressBar from "./_components/ProgressBar";
 
 const messinaSans = localFont({
   src: [
@@ -65,6 +69,8 @@ export default function RootLayout({
       className={`${messinaSans.variable} bg-neutral-50 font-sans`}
     >
       <body>
+        <ProgressBar />
+        <Toaster />
         <Header />
         {children}
       </body>

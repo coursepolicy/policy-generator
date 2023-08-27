@@ -5,7 +5,9 @@ export default async function savePolicy(
   id: string,
   ttl?: number,
 ) {
-  const response = await fetch(`${process.env.BASE_URL}/policy?id=${id}`, {
+  const baseUrl = "https://qwmkqfgswe.execute-api.us-west-2.amazonaws.com";
+
+  const response = await fetch(`${baseUrl}/policy?id=${id}`, {
     cache: "no-cache",
     // next: { revalidate: ttl || 3600 },
     method: "put",

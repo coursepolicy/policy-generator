@@ -71,7 +71,7 @@ export default function SortableSection({
         <div
           {...attributes}
           {...listeners}
-          className="mb-[8px] ml-[20px] flex h-11 w-[287px] items-center border border-neutral-200 bg-white"
+          className="mb-[8px] ml-[20px] flex h-11 w-[100%] max-w-[287px] items-center border border-neutral-200 bg-white"
         >
           <p
             className={`text-sm font-${

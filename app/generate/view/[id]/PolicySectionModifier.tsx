@@ -30,7 +30,10 @@ export default function SectionModifier({
     parentRef.current && autoAnimate(parentRef.current, { duration: 100 });
   }, [parentRef]);
   return (
-    <div className="relative flex justify-end" ref={parentRef}>
+    <div
+      className="relative flex flex-col md:flex-row md:justify-end"
+      ref={parentRef}
+    >
       <div
         className={`inline-flex h-9 w-[140px] cursor-pointer items-center justify-center gap-1.5 border ${
           isReordering ? "bg-gray-200" : "bg-white"

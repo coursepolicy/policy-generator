@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Highlight from "@tiptap/extension-highlight";
 import autoAnimate from "@formkit/auto-animate";
 import StarterKit from "@tiptap/starter-kit";
 import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
@@ -33,7 +34,7 @@ export default function Editor({
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, Highlight],
     content,
   });
 

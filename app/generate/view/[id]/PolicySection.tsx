@@ -59,7 +59,7 @@ export default function PolicySection({
                 handleDeleteSection={handleDeleteSection}
                 handleDeleteSubSection={handleDeleteSubSection}
               />
-              <div className="right-0 top-0 mb-[10px] flex items-center justify-between md:absolute md:mb-0">
+              <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between md:absolute md:mb-0 md:flex-row">
                 <p className="text-xs font-bold leading-normal text-stone-500">
                   Overall Generative AI Policy:
                 </p>

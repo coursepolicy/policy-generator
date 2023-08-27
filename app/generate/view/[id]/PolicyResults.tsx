@@ -231,9 +231,8 @@ export default function Result({
   }, [parentRef]);
 
   return (
-    <>
-      <Toaster />
-      <header className="mb-[24px] flex justify-between border-b border-black">
+    <div className="p-[39px] px-[20px]">
+      <header className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row">
         <Editor
           content={header}
           handleOnChanges={handleHeaderChanges}
@@ -243,16 +242,18 @@ export default function Result({
           handleDeleteSection={handleDeleteSection}
           handleDeleteSubSection={handleDeleteSubSection}
         />
-        <PolicySectionModifier
-          surveyContents={surveyContents}
-          handleSectionDragEvent={handleSectionDragEvent}
-          handleSubSectionDragEvent={handleSubSectionDragEvent}
-          handleDeleteSection={handleDeleteSection}
-          handleDeleteSubSection={handleDeleteSubSection}
-          isReordering={isReordering}
-          changeIsReorderingState={changeIsReorderingState}
-        />
-        <TextEditing />
+        <div className="flex items-baseline justify-between">
+          <PolicySectionModifier
+            surveyContents={surveyContents}
+            handleSectionDragEvent={handleSectionDragEvent}
+            handleSubSectionDragEvent={handleSubSectionDragEvent}
+            handleDeleteSection={handleDeleteSection}
+            handleDeleteSubSection={handleDeleteSubSection}
+            isReordering={isReordering}
+            changeIsReorderingState={changeIsReorderingState}
+          />
+          <TextEditing />
+        </div>
       </header>
 
       <article ref={parentRef}>
@@ -270,6 +271,6 @@ export default function Result({
           />
         ))}
       </article>
-    </>
+    </div>
   );
 }

@@ -40,7 +40,7 @@ export default function Droppable({
   );
 
   return (
-    <div className="rounded-[10px absolute top-[40px] z-[1] w-[387px] bg-zinc-100 shadow">
+    <div className="z-[1] w-[100%] max-w-[387px] rounded-[10px] bg-zinc-100 shadow md:absolute md:top-[40px]">
       <DndContext
         onDragEnd={handleSectionDragEvent}
         sensors={sensors}
