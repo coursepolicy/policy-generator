@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 import {
@@ -18,7 +16,6 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CourseAiPolicy } from "./PolicyResults";
-import useWindowSize from "../../../_utils/useWindowSize";
 
 interface Props {
   handleDeleteSubSection: (
@@ -38,8 +35,6 @@ export default function Droppable({
   handleDeleteSubSection,
   handleDeleteSection,
 }: Props) {
-  const { width } = useWindowSize();
-  const isWayTooSmall = width < 450;
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

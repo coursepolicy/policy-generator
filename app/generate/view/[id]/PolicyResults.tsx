@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "next/navigation";
@@ -11,7 +12,6 @@ import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "./SortableContainer";
-import useWindowSize from "../../../_utils/useWindowSize";
 
 export interface Section {
   [key: string]: any;
@@ -47,9 +47,6 @@ export default function Result({
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
   const headerRef = useRef(null);
-  const { width } = useWindowSize();
-
-  const isWayTooSmall = width < 450;
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
     if (!over) {
@@ -238,11 +235,7 @@ export default function Result({
   }, [headerRef]);
 
   return (
-    <div
-      className={`${
-        !isWayTooSmall ? "p-[39px] px-[20px]" : "p-[10px] px-[5px]"
-      }`}
-    >
+    <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
         ref={headerRef}
         className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"

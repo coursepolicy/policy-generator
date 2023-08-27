@@ -40,12 +40,11 @@ body {
 .tiptap h1, .tiptap h2, .tiptap h3 {
   font-weight: 700;
   line-height: 24px;
-  word-wrap: break-word;
   margin: 0;
 }
 
 .tiptap h1 {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .tiptap h2 {
@@ -53,49 +52,52 @@ body {
   /* margin-bottom: 24px; */
 }
 
-/* .tiptap h2 + p {
-  margin-bottom: 48px;
-} */
-
-
 .tiptap h3 {
   font-size: 18px;
-  /* margin-bottom: 24px; */
-  /* margin-top: 25px; */
 }
-
-/* .tiptap h3 + p {
-  margin-bottom: 24px;
-} */
 
 .tiptap h1 + p {
   color: #818181;
-  font-size: 14px;
+  font-size: 12px;
+  font-style: normal;
   font-weight: 700;
   line-height: 24px;
   word-wrap: break-word;
+  margin: 0;
 }
 
 ul {
-  list-style-type: square; /* Default bullet points */
-  padding-left: 30px;     /* Give it some space on the left */
+  list-style-type: square;
+ 
 }
 
-/* .use-cases {
-  margin-top: 40px;
-} */
+.use-cases strong {
+  color: #414141;
+  font-size: 14px;
+  line-height: 24px;
+}
+.use-cases p {
+  color: #414141;
+}
+
+.use-cases li {
+  margin-left: 7px;
+}
 
 .use-cases h3 {
   border-bottom-width: 1px;
   --tw-border-opacity: 1;
   padding-bottom: 18px;
-  border-color: rgb(161 161 170 / var(--tw-border-opacity));
+  border-color: #D8D8D8;
 }
 
-/* <div className="w-[394.45px]"><span style="text-neutral-700 text-sm font-bold leading-normal">Grammar Check<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI tools for grammar and spelling checks<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Concept Learning<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Chat with AI to gain a general understanding of topics of learning<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Argument Generation<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI to generate arguments for essays or presentations<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Outline Generation<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI to generate an outline for a paper or presentation<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Summary Generation<br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">Use AI to generate summaries of papers or reading materials for faster understanding<br/></span><span style="text-neutral-700 text-sm font-bold leading-normal">Additional examples</span><span style="text-neutral-700 text-sm font-normal leading-normal"> <br/></span><span style="text-neutral-700 text-sm font-normal leading-normal">(Additional allowed use cases will be added as one paragraph here)</span></div> */
-/* .policy-links {
-  margin-top: 30px;
-} */
+.editor-container button p {
+  color: white;
+}
+
+.tiptap li {
+  margin-left: 10px;
+}
 
 .editor-container {
   width: 100%;
@@ -122,7 +124,6 @@ ul {
   margin-top: 0.75em;
 }
 
-
 .tiptap ul,
 ol {
   padding: 0 1rem;
@@ -135,6 +136,14 @@ h4,
 h5,
 h6 {
   line-height: 1.1;
+}
+
+p {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
 }
 
 .tiptap code {
@@ -169,4 +178,18 @@ h6 {
 .tiptap blockquote {
   padding-left: 1rem;
   border-left: 2px solid rgba(#0D0D0D, 0.1);
+}
+
+.editor-links {
+  color: var(--color-action-action-blue, #3284FF);
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+text-decoration-line: underline;
+
+}
+
+.editor-links::after {
+  content: "\1F517";
 }

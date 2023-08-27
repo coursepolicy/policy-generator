@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Highlight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
 import autoAnimate from "@formkit/auto-animate";
+import Document from "@tiptap/extension-document";
+import Paragraph from "@tiptap/extension-paragraph";
+import Text from "@tiptap/extension-text";
 import StarterKit from "@tiptap/starter-kit";
 import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
 
@@ -34,7 +38,20 @@ export default function Editor({
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
-    extensions: [StarterKit, Highlight],
+    extensions: [
+      StarterKit,
+      Document,
+      Paragraph,
+      Highlight,
+      Text,
+      Link.configure({
+        HTMLAttributes: {
+          class: "editor-links",
+        },
+        openOnClick: false,
+        protocols: ["mailto"],
+      }),
+    ],
     content,
   });
 

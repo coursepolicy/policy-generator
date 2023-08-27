@@ -1,11 +1,8 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { SubSection } from "./PolicyResults";
-import useWindowSize from "@/app/_utils/useWindowSize";
 
 export default function SortableSubSection({
   subSection,
@@ -23,8 +20,6 @@ export default function SortableSubSection({
   subSectionIndex: number;
   sectionIndex: number;
 }) {
-  const { width } = useWindowSize();
-  const isWayTooSmall = width < 450;
   const { attributes, listeners, transform, transition, setNodeRef } =
     useSortable({
       id: subSection.id,

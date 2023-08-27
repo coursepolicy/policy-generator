@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import {
   DndContext,
@@ -22,7 +20,6 @@ import {
 } from "@dnd-kit/sortable";
 import { Section } from "./PolicyResults";
 import React from "react";
-import useWindowSize from "../../../_utils/useWindowSize";
 
 export default function SortableSection({
   section,
@@ -40,8 +37,6 @@ export default function SortableSection({
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
   section: Section;
 }) {
-  const { width } = useWindowSize();
-  const isWayTooSmall = width < 450;
   const {
     attributes,
     listeners,
