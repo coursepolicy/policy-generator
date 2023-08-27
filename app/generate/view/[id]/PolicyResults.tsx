@@ -3,8 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
+
 import savePolicy from "../../../_utils/savePolicy";
 import { DragEndEvent } from "@dnd-kit/core";
 import Editor from "../../../_components/Editor";
@@ -12,7 +14,7 @@ import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "./SortableContainer";
-
+import tooltip from "../../../../public/images/tooltip.svg";
 export interface Section {
   [key: string]: any;
   id: string;
@@ -274,6 +276,11 @@ export default function Result({
         )}
       </header>
       <article ref={parentRef}>
+        <div className="flex w-[100%] justify-center">
+          <div className="flex h-[34px] w-[96%] items-center rounded-[3px] bg-indigo-50">
+            <Image alt="Green right pointed arrow" src={tooltip} />
+          </div>
+        </div>
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection
             key={section.id}
