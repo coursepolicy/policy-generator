@@ -2509,6 +2509,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-heading/-/extension-heading-2.1.7.tgz#26d16227eab95b1f381e977f7aa1685f493c6fb5"
   integrity sha512-jMeTqtq3kbMFtMvUb3SeIt4FFM3W+b6TAw5H4Qd6z3gYsAU3GahRK67MtbJfPmznUkZfimrqW9VCaBezScfrsQ==
 
+"@tiptap/extension-highlight@^2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-highlight/-/extension-highlight-2.1.7.tgz#0f9434eedfdcb95a22ca5b6f601d13f4343a7e5c"
+  integrity sha512-3EXrnf1BQSdOe/iqzcTIr5Tf0NOhPQ+y1B9nMi/40v3MD8WzRBLaqj0lvpwO7xMAdgxm6IiL/XFYU41n9yFl/Q==
+
 "@tiptap/extension-history@^2.1.7":
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-history/-/extension-history-2.1.7.tgz#baa566875ef1278c5dd8821970362d85348b266c"
@@ -6445,6 +6450,11 @@ react-reconciler@^0.29.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-top-loading-bar@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-top-loading-bar/-/react-top-loading-bar-2.3.1.tgz#d727eb6aaa412eae52a990e5de9f33e9136ac714"
+  integrity sha512-rQk2Nm+TOBrM1C4E3e6KwT65iXyRSgBHjCkr2FNja1S51WaPulRA5nKj/xazuQ3x89wDDdGsrqkqy0RBIfd0xg==
 
 react-universal-interface@^0.6.2:
   version "0.6.2"
