@@ -268,7 +268,7 @@ export default function Result({
           />
           <TextEditing />
         </div>
-        {true && (
+        {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">
             <SortableContainer
               surveyContents={surveyContents}

@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import burgerMenuOpen from "../../public/images/burger-open.svg";
 import burgerMenuClose from "../../public/images/burger-close.svg";
