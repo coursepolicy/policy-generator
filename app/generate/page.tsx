@@ -33,7 +33,7 @@ export default function Generate() {
           <div className="border border-black">
             <button
               onClick={() => {
-                router.push(`/generate/view/HELLOWORLD`);
+                router.push(`/generate/policy/HELLOWORLD`);
               }}
             >
               HELLOWORLD
@@ -42,7 +42,7 @@ export default function Generate() {
           <div className="border border-black">
             <button
               onClick={() => {
-                router.push(`/generate/view/Allow_Under_Conditions_Case_2`);
+                router.push(`/generate/policy/Allow_Under_Conditions_Case_2`);
               }}
             >
               Allow_Under_Conditions_Case_2
@@ -51,7 +51,7 @@ export default function Generate() {
           <div className="border border-black">
             <button
               onClick={() => {
-                router.push(`/generate/view/Allow_Under_Conditions_Case_1`);
+                router.push(`/generate/policy/Allow_Under_Conditions_Case_1`);
               }}
             >
               Allow Under Conditions Case 1
@@ -60,7 +60,7 @@ export default function Generate() {
           <div className="border border-black">
             <button
               onClick={() => {
-                router.push(`/generate/view/Strictly_Prohibited`);
+                router.push(`/generate/policy/Strictly_Prohibited`);
               }}
             >
               Strictly_Prohibited
@@ -69,7 +69,7 @@ export default function Generate() {
           <div className="border border-black">
             <button
               onClick={() => {
-                router.push(`/generate/view/No_Restriction`);
+                router.push(`/generate/policy/No_Restriction`);
               }}
             >
               No_Restriction

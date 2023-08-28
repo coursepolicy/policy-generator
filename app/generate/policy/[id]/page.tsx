@@ -1,13 +1,13 @@
 import React from "react";
 import PolicyResults from "./PolicyResults";
-import getSurveyData from "../../../_utils/getServeyData";
+import getPolicyData from "../../../_utils/getPolicyData";
 
-export default async function View({
+export default async function Policy({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const { data } = await getSurveyData(id);
+  const { data } = await getPolicyData(id);
 
   return (
     <>

@@ -202,9 +202,7 @@ export default function Result({
       },
     };
 
-    await savePolicy(JSON.stringify(payload), id as string);
-    // toast("Changes have been saved!");
-    toast.promise(
+    const { data: updatedPolicy } = await toast.promise(
       savePolicy(JSON.stringify(payload), id as string),
       {
         loading: "Saving...",
@@ -225,6 +223,9 @@ export default function Result({
         },
       },
     );
+
+    setSurveyContents(updatedPolicy.content);
+    setHeader(updatedPolicy.header);
   };
 
   const changeIsReorderingState = () => {
