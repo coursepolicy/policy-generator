@@ -8,7 +8,6 @@ import {
   KeyboardSensor,
   MeasuringStrategy,
   MouseSensor,
-  PointerSensor,
   TouchSensor,
   UniqueIdentifier,
   closestCenter,
@@ -21,7 +20,6 @@ import {
 import SortableSection from "./SortableSection";
 import {
   SortableContext,
-  sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
