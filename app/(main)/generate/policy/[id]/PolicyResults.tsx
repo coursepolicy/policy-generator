@@ -254,16 +254,6 @@ export default function Result({
     headerRef.current && autoAnimate(headerRef.current);
   }, [headerRef]);
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await getPolicy(id as string);
-      setHeader(data.header);
-      setSurveyContents(data.content);
-      router.push(`/generate/policy/${id}`);
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header

@@ -8,6 +8,7 @@ import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
+import { isEqual } from "lodash";
 
 import Editor from "@/app/_components/Editor";
 import tooltip from "@/public/images/tooltip.svg";
@@ -30,6 +31,7 @@ export default function Result({
   samplePolicyId: string;
 }) {
   const router = useRouter();
+  const [noChanges, setNoChanges] = useState<boolean>(true);
   const [header, setHeader] = useState<string>(response.header);
   const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
     response.content,
@@ -250,6 +252,17 @@ export default function Result({
     headerRef.current && autoAnimate(headerRef.current);
   }, [headerRef]);
 
+  useEffect(() => {
+    if (
+      isEqual(header, response.header) &&
+      isEqual(surveyContents, response.content)
+    ) {
+      setNoChanges(true);
+    } else {
+      setNoChanges(false);
+    }
+  }, [header, response.content, response.header, surveyContents]);
+
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
@@ -275,7 +288,7 @@ export default function Result({
             isReordering={isReordering}
             changeIsReorderingState={changeIsReorderingState}
           />
-          <SampleTextEditing handleUpdatePolicy={handleUpdatePolicy} />
+          <SampleTextEditing noChanges={noChanges} />
         </div>
         {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">
