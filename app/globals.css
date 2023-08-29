@@ -213,3 +213,10 @@ text-decoration-line: underline;
 .editor-links::after {
   content: "\1F517";
 }
+
+@media print {
+  body {
+    font-size: "16px";
+    color: "lightgrey";
+  }
+}

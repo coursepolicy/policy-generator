@@ -87,14 +87,14 @@ export default function PolicySection({
           return (
             <div
               key={subSection.id}
-              className="flex w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-start md:justify-between"
+              className="flex h-[100%] w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-stretch md:justify-between"
             >
               {Array.isArray(subSection.content) &&
                 subSection.content.map((useCase, index) => {
                   return (
                     <div
                       key={`${subSection.id}${index}`}
-                      className={`h-[100%] w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
+                      className={`w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
                     >
                       <Editor
                         content={useCase}
