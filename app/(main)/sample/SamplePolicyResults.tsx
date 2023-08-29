@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { v4 as uuid4 } from "uuid";
@@ -15,20 +15,20 @@ import addPolicy from "@/public/images/add-policy.svg";
 import {
   CourseAiPolicy,
   CourseAiPolicyResponse,
-  getPolicy,
   savePolicy,
 } from "@/app/_utils/";
-import TextEditing from "./TextEditing";
-import PolicySectionModifier from "./PolicySectionModifier";
-import PolicySection from "./PolicySection";
-import SortableContainer from "./SortableContainer";
+import PolicySectionModifier from "../generate/policy/[id]/PolicySectionModifier";
+import SortableContainer from "../generate/policy/[id]/SortableContainer";
+import PolicySection from "../generate/policy/[id]/PolicySection";
+import SampleTextEditing from "./SampleTextEditing";
 
 export default function Result({
   response,
+  samplePolicyId,
 }: {
   response: CourseAiPolicyResponse;
+  samplePolicyId: string;
 }) {
-  const { id } = useParams();
   const router = useRouter();
   const [header, setHeader] = useState<string>(response.header);
   const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
@@ -188,32 +188,28 @@ export default function Result({
       },
     };
 
+    let policyId;
+
     try {
-      await toast.promise(
-        savePolicy(JSON.stringify(payload), id as string),
-        {
-          loading: "Saving...",
-          success: "Changes have been saved!",
-          error: "Something went wrong",
-        },
-        {
-          style: {
-            minWidth: "250px",
-          },
-          success: {
-            style: {
-              width: 228,
-              height: 59,
-              background: "#DEF9E2",
-              borderRadius: 0,
-            },
-          },
-        },
+      let generatedPolicyId = uuid4();
+
+      const { data } = await savePolicy(
+        JSON.stringify(payload),
+        samplePolicyId,
+        generatedPolicyId,
       );
+
+      toast.success("A new policy was created");
+
+      policyId = data.id;
     } catch (error) {
+      toast.error("Something went wrong");
       console.error(JSON.stringify(error));
       throw new Error(JSON.stringify(error));
     }
+    if (!policyId) return;
+
+    router.push(`/generate/policy/${policyId}`);
   };
 
   const changeIsReorderingState = () => {
@@ -254,16 +250,6 @@ export default function Result({
     headerRef.current && autoAnimate(headerRef.current);
   }, [headerRef]);
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await getPolicy(id as string);
-      setHeader(data.header);
-      setSurveyContents(data.content);
-      router.push(`/generate/policy/${id}`);
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
@@ -289,10 +275,7 @@ export default function Result({
             isReordering={isReordering}
             changeIsReorderingState={changeIsReorderingState}
           />
-          <TextEditing
-            handleUpdatePolicy={handleUpdatePolicy}
-            id={id as string}
-          />
+          <SampleTextEditing handleUpdatePolicy={handleUpdatePolicy} />
         </div>
         {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">
