@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
