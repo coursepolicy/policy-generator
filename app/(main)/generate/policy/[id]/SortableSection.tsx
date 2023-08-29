@@ -18,8 +18,8 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Section } from "./PolicyResults";
 import React from "react";
+import { Section } from "@/app/_utils/types";
 
 export default function SortableSection({
   section,

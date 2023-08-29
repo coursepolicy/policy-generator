@@ -37,6 +37,26 @@ body {
   }
 }
 
+.preview-container {
+  width: 100%;
+  max-width: 985px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  background-color: #fff; 
+}
+/* Content within the preview page */
+.preview-content {
+  margin: 20px 40px; 
+}
+
+.preview-header {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
+}
+
 .tiptap h1, .tiptap h2, .tiptap h3 {
   font-weight: 700;
   line-height: 24px;

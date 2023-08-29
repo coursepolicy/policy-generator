@@ -8,35 +8,16 @@ import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
 
-import savePolicy from "../../../_utils/savePolicy";
+import savePolicy from "../../../../_utils/savePolicy";
 import { DragEndEvent } from "@dnd-kit/core";
-import Editor from "../../../_components/Editor";
+import Editor from "../../../../_components/Editor";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "./SortableContainer";
-import tooltip from "../../../../public/images/tooltip.svg";
-import addPolicy from "../../../../public/images/add-policy.svg";
-export interface Section {
-  [key: string]: any;
-  id: string;
-  sectionTitle: string;
-  subSections: SubSection[];
-}
-
-export interface SubSection {
-  id: string;
-  subSectionTitle: string;
-  miscData?: Record<string, any>;
-  content: string | string[];
-}
-
-export type CourseAiPolicy = Section[];
-
-export type CourseAiPolicyResponse = {
-  header: string;
-  content: CourseAiPolicy;
-};
+import tooltip from "../../../../../public/images/tooltip.svg";
+import addPolicy from "../../../../../public/images/add-policy.svg";
+import { CourseAiPolicy, CourseAiPolicyResponse } from "@/app/_utils/types";
 
 export default function Result({
   response,
@@ -290,7 +271,10 @@ export default function Result({
             isReordering={isReordering}
             changeIsReorderingState={changeIsReorderingState}
           />
-          <TextEditing handleUpdatePolicy={handleUpdatePolicy} />
+          <TextEditing
+            handleUpdatePolicy={handleUpdatePolicy}
+            id={id as string}
+          />
         </div>
         {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">

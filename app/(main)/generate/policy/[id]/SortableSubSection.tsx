@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { SubSection } from "./PolicyResults";
+import { SubSection } from "@/app/_utils/types";
 
 export default function SortableSubSection({
   subSection,

@@ -1,6 +1,6 @@
 import React from "react";
 import PolicyResults from "./PolicyResults";
-import getPolicyData from "../../../_utils/getPolicyData";
+import getPolicyData from "../../../../_utils/getPolicyData";
 
 export default async function Policy({
   params: { id },
