@@ -3,7 +3,7 @@ import autoAnimate from "@formkit/auto-animate";
 import { DragEndEvent } from "@dnd-kit/core";
 
 import Image from "next/image";
-import { CourseAiPolicy } from "@/app/_utils/types";
+import { CourseAiPolicy } from "@/app/_utils/";
 
 export default function SectionModifier({
   isReordering,

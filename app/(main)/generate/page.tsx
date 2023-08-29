@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 export default function Generate() {
   const [generatedId, setGeneratedId] = useState("12345ASDF");

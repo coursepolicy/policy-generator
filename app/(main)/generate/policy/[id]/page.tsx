@@ -1,13 +1,13 @@
 import React from "react";
 import PolicyResults from "./PolicyResults";
-import getPolicyData from "../../../../_utils/getPolicyData";
+import { getPolicy } from "@/app/_utils";
 
 export default async function Policy({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const { data } = await getPolicyData(id);
+  const { data } = await getPolicy(id);
 
   return (
     <>

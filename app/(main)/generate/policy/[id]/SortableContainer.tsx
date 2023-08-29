@@ -15,7 +15,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { CourseAiPolicy } from "@/app/_utils/types";
+import { CourseAiPolicy } from "@/app/_utils/";
 
 interface Props {
   handleDeleteSubSection: (

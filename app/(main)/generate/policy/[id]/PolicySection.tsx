@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
-import Editor from "../../../../_components/Editor";
-import { CourseAiPolicy, Section } from "@/app/_utils/types";
+import Editor from "@/app/_components/Editor";
+import { CourseAiPolicy, Section } from "@/app/_utils/";
 
 export default function PolicySection({
   section,
