@@ -24,6 +24,22 @@ const config: Config = {
       textColor: {
         coursePolicyGreen: "#0AA680",
       },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        pop: {
+          "0%": {
+            transform: "scale(1)",
+            "box-shadow": "var(--box-shadow)",
+          },
+          "100%": {
+            transform: "scale(var(--scale))",
+            "box-shadow": "var(--box-shadow-picked-up)",
+          },
+        },
+      },
     },
   },
   plugins: [],

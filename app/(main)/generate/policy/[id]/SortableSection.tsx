@@ -4,22 +4,27 @@ import {
   DragOverlay,
   DragEndEvent,
   KeyboardSensor,
-  PointerSensor,
   closestCenter,
   useSensor,
   useSensors,
+  MouseSensor,
+  UniqueIdentifier,
+  TouchSensor,
+  MeasuringStrategy,
 } from "@dnd-kit/core";
-import { CSS } from "@dnd-kit/utilities";
 
 import SortableSubSection from "./SortableSubSection";
 import {
   SortableContext,
-  sortableKeyboardCoordinates,
+  defaultAnimateLayoutChanges,
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Section } from "@/app/_utils/";
+import { createPortal } from "react-dom";
+import { screenReaderInstructions } from "./utilities/constants";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 export default function SortableSection({
   section,
@@ -27,6 +32,7 @@ export default function SortableSection({
   sectionIndex,
   handleDeleteSubSection,
   handleDeleteSection,
+  dragOverlay,
 }: {
   handleDeleteSubSection: (
     sectionIndex: string,
@@ -36,26 +42,29 @@ export default function SortableSection({
   sectionIndex: number;
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
   section: Section;
+  dragOverlay?: boolean;
+  handle?: boolean;
 }) {
   const {
     attributes,
     listeners,
     transform,
     transition,
+    isDragging,
     setNodeRef: sectionSortRef,
   } = useSortable({
     id: section.id,
+    animateLayoutChanges: (args) =>
+      defaultAnimateLayoutChanges({ ...args, wasDragging: true }),
   });
+  const draggingRef = useRef(null);
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor),
   );
 
   const handleDelete = () => {
@@ -65,11 +74,35 @@ export default function SortableSection({
     handleDeleteSection(section.id);
   };
 
+  useEffect(() => {
+    if (!dragOverlay) return;
+    document.body.style.cursor = "grabbing";
+
+    return () => {
+      document.body.style.cursor = "";
+    };
+  }, [dragOverlay]);
+
   return (
     <section
       ref={sectionSortRef}
-      style={style}
-      className="z-1 relative flex justify-between"
+      className={`z-1 dragging-container fadeIn relative flex justify-between ${
+        dragOverlay && "dragOverlay"
+      } `}
+      style={
+        {
+          transition: transition,
+          "--translate-x": transform
+            ? `${Math.round(transform.x)}px`
+            : undefined,
+          "--translate-y": transform
+            ? `${Math.round(transform.y)}px`
+            : undefined,
+          "--scale-x": transform?.scaleX ? `${transform.scaleX}` : undefined,
+          "--scale-y": transform?.scaleY ? `${transform.scaleY}` : undefined,
+          "--index": sectionIndex,
+        } as React.CSSProperties
+      }
     >
       <div className="flex">
         <div className="mt-[10px]">
@@ -78,13 +111,15 @@ export default function SortableSection({
           </p>
         </div>
         <div>
-          <div
-            {...attributes}
-            {...listeners}
-            className="mb-[5px] ml-[5px] flex h-11 w-[200px] items-center border border-neutral-200 bg-white sm:ml-[18px] sm:w-[290px]"
-          >
-            <div className="relative h-11 w-3">
-              <div className="absolute left-0 top-0 h-11 w-3 bg-zinc-300" />
+          <div className="mb-[5px] ml-[5px] flex h-11 w-[200px] items-center border border-neutral-200 bg-white sm:ml-[18px] sm:w-[290px]">
+            <div
+              className="relative h-11 w-3 cursor-grab"
+              {...attributes}
+              {...listeners}
+              tabIndex={0}
+              ref={draggingRef}
+            >
+              <div className="absolute left-0 top-0 h-11 w-3  bg-zinc-300" />
               <div className="absolute left-[5px] top-[21px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
               <div className="absolute left-[5px] top-[17px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
               <div className="absolute left-[5px] top-[25px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
@@ -98,9 +133,29 @@ export default function SortableSection({
             </p>
           </div>
           <DndContext
-            onDragEnd={(e) => handleSubSectionDragEvent(sectionIndex, e)}
+            onDragStart={(e) => {
+              if (!e.active) {
+                return;
+              }
+              setActiveId(e.active.id);
+              setActiveIndex(e?.active?.data?.current?.sortable.index);
+            }}
+            onDragEnd={(e) => {
+              setActiveId(null);
+              setActiveIndex(null);
+              handleSubSectionDragEvent(sectionIndex, e);
+            }}
+            onDragCancel={() => {
+              setActiveId(null);
+              setActiveIndex(null);
+            }}
+            measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
             sensors={sensors}
             collisionDetection={closestCenter}
+            accessibility={{
+              screenReaderInstructions,
+            }}
+            modifiers={[restrictToVerticalAxis]}
           >
             <SortableContext
               id="modify-sub-sections"
@@ -108,17 +163,42 @@ export default function SortableSection({
               strategy={verticalListSortingStrategy}
             >
               {section.subSections.map((subSection, index) => (
-                <SortableSubSection
-                  subSection={subSection}
+                <div
                   key={subSection.id}
-                  sectionId={section.id}
-                  sectionIndex={sectionIndex}
-                  subSectionIndex={index}
-                  handleDeleteSubSection={handleDeleteSubSection}
-                />
+                  className={`${
+                    activeId !== null && activeIndex === index && "opacity-30"
+                  }`}
+                >
+                  <SortableSubSection
+                    subSection={subSection}
+                    sectionId={section.id}
+                    sectionIndex={sectionIndex}
+                    subSectionIndex={index}
+                    handleDeleteSubSection={handleDeleteSubSection}
+                  />
+                </div>
               ))}
             </SortableContext>
-            <DragOverlay></DragOverlay>
+            {createPortal(
+              <DragOverlay>
+                {activeId ? (
+                  <div>
+                    <SortableSubSection
+                      subSection={section.subSections[activeIndex as number]}
+                      key={section.subSections[activeIndex as number].id}
+                      sectionId={section.id}
+                      sectionIndex={sectionIndex}
+                      subSectionIndex={section.subSections.findIndex(
+                        (subSection) => subSection.id === activeId,
+                      )}
+                      handleDeleteSubSection={handleDeleteSubSection}
+                      dragOverlay={true}
+                    />
+                  </div>
+                ) : null}
+              </DragOverlay>,
+              document.body,
+            )}
           </DndContext>
         </div>
       </div>

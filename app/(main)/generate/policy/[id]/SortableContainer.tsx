@@ -1,13 +1,22 @@
 import React from "react";
 
 import {
+  Announcements,
   DndContext,
   DragEndEvent,
+  KeyboardCoordinateGetter,
   KeyboardSensor,
+  MeasuringStrategy,
+  MouseSensor,
   PointerSensor,
+  TouchSensor,
+  UniqueIdentifier,
   closestCenter,
   useSensor,
   useSensors,
+  DragOverlay,
+  DropAnimation,
+  defaultDropAnimationSideEffects,
 } from "@dnd-kit/core";
 import SortableSection from "./SortableSection";
 import {
@@ -15,7 +24,10 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { CourseAiPolicy } from "@/app/_utils/";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { CourseAiPolicy, Section } from "@/app/_utils/";
+import { screenReaderInstructions } from "./utilities/constants";
+import { createPortal } from "react-dom";
 
 interface Props {
   handleDeleteSubSection: (
@@ -28,26 +40,57 @@ interface Props {
   surveyContents: CourseAiPolicy;
 }
 
-export default function Droppable({
+export default function SortableContainer({
   surveyContents,
   handleSectionDragEvent,
   handleSubSectionDragEvent,
   handleDeleteSubSection,
   handleDeleteSection,
 }: Props) {
+  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor),
   );
+
+  const dropAnimationConfig: DropAnimation = {
+    sideEffects: defaultDropAnimationSideEffects({
+      styles: {
+        active: {
+          opacity: "0.5",
+        },
+      },
+    }),
+  };
 
   return (
     <div className="bg-zinc-100 shadow sm:w-[387px] md:absolute md:right-0 md:top-[40px]">
       <DndContext
-        onDragEnd={handleSectionDragEvent}
+        onDragStart={(e) => {
+          if (!e.active) {
+            return;
+          }
+          setActiveId(e.active.id);
+          setActiveIndex(e?.active?.data?.current?.sortable.index);
+        }}
+        onDragEnd={(e) => {
+          setActiveId(null);
+          setActiveIndex(null);
+          handleSectionDragEvent(e);
+        }}
+        onDragCancel={() => {
+          setActiveId(null);
+          setActiveIndex(null);
+        }}
+        measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
         sensors={sensors}
         collisionDetection={closestCenter}
+        accessibility={{
+          screenReaderInstructions,
+        }}
+        modifiers={[restrictToVerticalAxis]}
       >
         <SortableContext
           id="modify-sections"
@@ -61,21 +104,47 @@ export default function Droppable({
               </p>
               <div className="mt-[10px]">
                 {surveyContents.map((section, index) => (
-                  <SortableSection
-                    section={section}
+                  <div
                     key={section.id}
-                    handleSubSectionDragEvent={handleSubSectionDragEvent}
-                    sectionIndex={index}
-                    handleDeleteSection={handleDeleteSection}
-                    handleDeleteSubSection={handleDeleteSubSection}
-                  />
+                    className={`${
+                      activeId !== null && activeIndex === index && "opacity-30"
+                    }`}
+                  >
+                    <SortableSection
+                      section={section}
+                      handleSubSectionDragEvent={handleSubSectionDragEvent}
+                      sectionIndex={index}
+                      handleDeleteSection={handleDeleteSection}
+                      handleDeleteSubSection={handleDeleteSubSection}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
           </div>
         </SortableContext>
+        {createPortal(
+          <DragOverlay adjustScale={false} dropAnimation={dropAnimationConfig}>
+            {activeId ? (
+              <SortableSection
+                section={surveyContents[activeIndex as number]}
+                key={surveyContents[activeIndex as number].id}
+                handleSubSectionDragEvent={handleSubSectionDragEvent}
+                sectionIndex={surveyContents.findIndex(
+                  (section) => section.id === activeId,
+                )}
+                handleDeleteSection={handleDeleteSection}
+                handleDeleteSubSection={handleDeleteSubSection}
+                dragOverlay={true}
+                dragging={true}
+                handle={true}
+                sorting={activeId !== null}
+              />
+            ) : null}
+          </DragOverlay>,
+          document.body,
+        )}
       </DndContext>
     </div>
-    // </div>
   );
 }

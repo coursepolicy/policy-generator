@@ -6,6 +6,7 @@ export interface Section {
 }
 
 export interface SubSection {
+  [key: string]: any;
   id: string;
   subSectionTitle: string;
   miscData?: Record<string, any>;

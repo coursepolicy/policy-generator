@@ -10,6 +10,7 @@ export default function SortableSubSection({
   sectionId,
   subSectionIndex,
   sectionIndex,
+  dragOverlay,
 }: {
   sectionId: string;
   subSection: SubSection;
@@ -19,6 +20,7 @@ export default function SortableSubSection({
   ) => void;
   subSectionIndex: number;
   sectionIndex: number;
+  dragOverlay?: boolean;
 }) {
   const { attributes, listeners, transform, transition, setNodeRef } =
     useSortable({
@@ -27,9 +29,8 @@ export default function SortableSubSection({
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    // transition,
+    transition,
   };
-
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this?");
     if (!isConfirmed) return;
@@ -41,19 +42,21 @@ export default function SortableSubSection({
   return (
     <div
       ref={setNodeRef}
-      className="relative z-[1] ml-[5px] flex justify-between sm:ml-[20px]"
+      className={`fadeIn relative z-[1] ml-[5px] flex justify-between sm:ml-[20px] ${
+        dragOverlay && "dragOverlay"
+      }`}
       style={style}
     >
       <div className="flex">
         <div className="mt-[10px] text-sm font-normal leading-normal text-neutral-500">
           <p>{formatSubArrayIndex(sectionIndex, subSectionIndex)}.</p>
         </div>
-        <div
-          {...attributes}
-          {...listeners}
-          className="mb-[5px] ml-[5px] flex h-11  w-[175px] items-center border border-neutral-200 bg-white sm:w-[263px]"
-        >
-          <div className="relative h-11 w-3">
+        <div className="mb-[5px] ml-[5px] flex h-11  w-[175px] items-center border border-neutral-200 bg-white sm:w-[263px]">
+          <div
+            className="relative h-11 w-3  cursor-grab"
+            {...attributes}
+            {...listeners}
+          >
             <div className="absolute left-0 top-0 h-11 w-3 bg-zinc-300" />
             <div className="absolute left-[5px] top-[21px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
             <div className="absolute left-[5px] top-[17px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
