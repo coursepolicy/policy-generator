@@ -3,20 +3,21 @@ import autoAnimate from "@formkit/auto-animate";
 import { DragEndEvent } from "@dnd-kit/core";
 
 import Image from "next/image";
-import { CourseAiPolicy } from "@/app/_utils/";
+import { PolicySections } from "@/app/_utils/";
 
 export default function SectionModifier({
   isReordering,
   changeIsReorderingState,
 }: {
   handleDeleteSubSection: (
-    sectionIndex: string,
-    subSectionIndex: string,
+    sectionId: string,
+    subSectionId: string,
+    sectionIndex: number,
   ) => void;
   handleDeleteSection: (sectionIndex: string) => void;
   handleSectionDragEvent: (event: DragEndEvent) => void;
   handleSubSectionDragEvent: (index: number, event: DragEndEvent) => void;
-  surveyContents: CourseAiPolicy;
+  surveyContents: PolicySections;
   isReordering: boolean;
   changeIsReorderingState: () => void;
 }) {

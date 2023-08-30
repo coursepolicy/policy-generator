@@ -1,29 +1,26 @@
 import React from "react";
-import { CourseAiPolicyResponse } from "../_utils/types";
+import { AiPolicy } from "../_utils/types";
 
 interface Props {
-  data: CourseAiPolicyResponse;
+  data: AiPolicy;
 }
-export default async function Preview({ data: { content, header } }: Props) {
+export default async function Preview({ data: { sections, heading } }: Props) {
   return (
     <main className="preview-container">
       <div className="preview">
         <header
           className="tiptap preview-header"
-          dangerouslySetInnerHTML={{ __html: header }}
+          dangerouslySetInnerHTML={{ __html: heading }}
         />
         <article>
-          {content.map((section: any) => (
+          {sections.map((section: any) => (
             <section
               key={section.id}
               className="mb-[24px] border-b border-zinc-400 pb-[24px]"
             >
-              {section.subSections.map((subSection: any) => {
-                const { miscData, subSectionTitle } = subSection || {};
-                if (
-                  miscData?.overallPolicy &&
-                  subSectionTitle === "Introduction"
-                ) {
+              {section.children.map((subSection: any) => {
+                const { miscData, title } = subSection || {};
+                if (miscData?.overallPolicy && title === "Introduction") {
                   const colorMapper: {
                     [key: string]: string;
                   } = {
@@ -38,7 +35,9 @@ export default async function Preview({ data: { content, header } }: Props) {
                     >
                       <div
                         className="tiptap"
-                        dangerouslySetInnerHTML={{ __html: subSection.content }}
+                        dangerouslySetInnerHTML={{
+                          __html: subSection.htmlContent,
+                        }}
                       />
                       <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between md:absolute md:mb-0 md:flex-row">
                         <p className="text-xs font-bold leading-normal text-stone-500">
@@ -58,7 +57,7 @@ export default async function Preview({ data: { content, header } }: Props) {
                   );
                 }
 
-                if (subSectionTitle === "Use Cases") {
+                if (title === "Use Cases") {
                   const bgColorMapper: {
                     [key: number]: string;
                   } = {
@@ -96,7 +95,7 @@ export default async function Preview({ data: { content, header } }: Props) {
                     <div
                       className="tiptap"
                       dangerouslySetInnerHTML={{
-                        __html: subSection.content,
+                        __html: subSection.htmlContent,
                       }}
                     />
                   </section>
@@ -108,11 +107,4 @@ export default async function Preview({ data: { content, header } }: Props) {
       </div>
     </main>
   );
-}
-function getPolicyData(
-  id: string,
-):
-  | { data: CourseAiPolicyResponse }
-  | PromiseLike<{ data: CourseAiPolicyResponse }> {
-  throw new Error("Function not implemented.");
 }

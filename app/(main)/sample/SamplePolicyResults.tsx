@@ -13,28 +13,24 @@ import { isEqual } from "lodash";
 import Editor from "@/app/_components/Editor";
 import tooltip from "@/public/images/tooltip.svg";
 import addPolicy from "@/public/images/add-policy.svg";
-import {
-  CourseAiPolicy,
-  CourseAiPolicyResponse,
-  savePolicy,
-} from "@/app/_utils/";
+import { PolicySections, AiPolicy, savePolicy } from "@/app/_utils/";
 import PolicySectionModifier from "../generate/policy/[id]/PolicySectionModifier";
 import SortableContainer from "../generate/policy/[id]/SortableContainer";
 import PolicySection from "../generate/policy/[id]/PolicySection";
 import SampleTextEditing from "./SampleTextEditing";
 
 export default function Result({
-  response,
+  aiPolicy,
   samplePolicyId,
 }: {
-  response: CourseAiPolicyResponse;
+  aiPolicy: AiPolicy;
   samplePolicyId: string;
 }) {
   const router = useRouter();
   const [noChanges, setNoChanges] = useState<boolean>(true);
-  const [header, setHeader] = useState<string>(response.header);
-  const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
-    response.content,
+  const [heading, setHeading] = useState<string>(aiPolicy.heading);
+  const [surveyContents, setSurveyContents] = useState<PolicySections>(
+    aiPolicy.sections,
   );
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
@@ -64,19 +60,21 @@ export default function Result({
       return;
     }
 
+    const { children } = surveyContents[index];
+    if (!children) return;
+
     if (active.id !== over.id) {
-      const oldIndex = surveyContents[index].subSections.findIndex(
+      const oldIndex = children.findIndex(
         (section) => section.id === active.id,
       );
-      const newIndex = surveyContents[index].subSections.findIndex(
-        (section) => section.id === over.id,
-      );
+
+      const newIndex = children.findIndex((section) => section.id === over.id);
       setSurveyContents((prevState) => {
         return prevState.map((section, sectionIndex) => {
-          if (index === sectionIndex) {
+          if (index === sectionIndex && section.children) {
             return {
               ...section,
-              subSections: arrayMove(section.subSections, oldIndex, newIndex),
+              children: arrayMove(section.children, oldIndex, newIndex),
             };
           }
           return section;
@@ -96,10 +94,10 @@ export default function Result({
   const handleDeleteSubSection = (sectionId: string, subSectionId: string) => {
     setSurveyContents((prevState) => {
       return prevState.map((section) => {
-        if (sectionId === section.id) {
+        if (sectionId === section.id && section.children) {
           return {
             ...section,
-            subSections: section.subSections.filter((subSection) => {
+            children: section.children.filter((subSection) => {
               return subSection.id !== subSectionId;
             }),
           };
@@ -124,7 +122,7 @@ export default function Result({
         if (section.id === sectionId) {
           return {
             ...section,
-            subSections: section.subSections.map((subSection: any) => {
+            children: section.children.map((subSection: any) => {
               if (subSection.id === subSectionId) {
                 return {
                   ...subSection,
@@ -157,13 +155,13 @@ export default function Result({
         if (section.id === sectionId) {
           return {
             ...section,
-            subSections: section.subSections.map((subSection: any) => {
+            children: section.children.map((subSection: any) => {
               if (subSection.id === subSectionId) {
-                const newArray = [...subSection.content];
+                const newArray = [...subSection.htmlContent];
                 newArray[contentIndex] = newContent;
                 return {
                   ...subSection,
-                  content: newArray,
+                  htmlContent: newArray,
                 };
               }
               return subSection;
@@ -177,16 +175,16 @@ export default function Result({
 
   const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
     if (!newContent) return;
-    setHeader(newContent);
+    setHeading(newContent);
   };
 
   const handleUpdatePolicy = async () => {
-    if (!header || !surveyContents) return;
+    if (!heading || !surveyContents) return;
 
     const payload = {
       policy: {
-        header,
-        content: surveyContents,
+        heading,
+        sections: surveyContents,
       },
     };
 
@@ -201,7 +199,7 @@ export default function Result({
         generatedPolicyId,
       );
 
-      toast.success("A new policy was created");
+      toast.loading("Creating a new course policy...");
 
       policyId = data.id;
     } catch (error) {
@@ -211,6 +209,7 @@ export default function Result({
     }
     if (!policyId) return;
 
+    toast.success("A new policy has been created!");
     router.push(`/generate/policy/${policyId}`);
   };
 
@@ -224,11 +223,11 @@ export default function Result({
     const newSectionNumber = currentNumber - 2;
     const newSection = {
       id: uuid4(),
-      sectionTitle: `New Section - ${newSectionNumber}`,
-      subSections: [
+      title: `New Section - ${newSectionNumber}`,
+      children: [
         {
           id: uuid4(),
-          subSectionTitle: "New Sub Section",
+          title: "New Sub Section",
           content: `
             <div>
               <h2>${currentNumber}. New Section</h2>
@@ -254,14 +253,14 @@ export default function Result({
 
   useEffect(() => {
     if (
-      isEqual(header, response.header) &&
-      isEqual(surveyContents, response.content)
+      isEqual(heading, aiPolicy.heading) &&
+      isEqual(surveyContents, aiPolicy.sections)
     ) {
-      setNoChanges(true);
+      setNoChanges(() => true);
     } else {
-      setNoChanges(false);
+      setNoChanges(() => false);
     }
-  }, [header, response.content, response.header, surveyContents]);
+  }, [heading, aiPolicy.sections, aiPolicy.heading, surveyContents]);
 
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
@@ -270,9 +269,9 @@ export default function Result({
         className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
       >
         <Editor
-          content={header}
+          content={heading}
           handleOnChanges={handleHeaderChanges}
-          state={header}
+          heading={heading}
           hideDeleteButton={true}
           handleUpdatePolicy={handleUpdatePolicy}
           handleDeleteSection={handleDeleteSection}
@@ -288,7 +287,10 @@ export default function Result({
             isReordering={isReordering}
             changeIsReorderingState={changeIsReorderingState}
           />
-          <SampleTextEditing noChanges={noChanges} />
+          <SampleTextEditing
+            noChanges={noChanges}
+            handleUpdatePolicy={handleUpdatePolicy}
+          />
         </div>
         {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">

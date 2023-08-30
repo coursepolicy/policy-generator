@@ -12,27 +12,17 @@ import { DragEndEvent } from "@dnd-kit/core";
 import Editor from "@/app/_components/Editor";
 import tooltip from "@/public/images/tooltip.svg";
 import addPolicy from "@/public/images/add-policy.svg";
-import {
-  CourseAiPolicy,
-  CourseAiPolicyResponse,
-  getPolicy,
-  savePolicy,
-} from "@/app/_utils/";
+import { PolicySections, AiPolicy, savePolicy } from "@/app/_utils/";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "./SortableContainer";
 
-export default function Result({
-  response,
-}: {
-  response: CourseAiPolicyResponse;
-}) {
+export default function Result({ response }: { response: AiPolicy }) {
   const { id } = useParams();
-  const router = useRouter();
-  const [header, setHeader] = useState<string>(response.header);
-  const [surveyContents, setSurveyContents] = useState<CourseAiPolicy>(
-    response.content,
+  const [heading, setHeading] = useState<string>(response.heading);
+  const [surveyContents, setSurveyContents] = useState<PolicySections>(
+    response.sections,
   );
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
@@ -62,19 +52,20 @@ export default function Result({
       return;
     }
 
+    const { children } = surveyContents[index];
+    if (!children) return;
+
     if (active.id !== over.id) {
-      const oldIndex = surveyContents[index].subSections.findIndex(
+      const oldIndex = children.findIndex(
         (section) => section.id === active.id,
       );
-      const newIndex = surveyContents[index].subSections.findIndex(
-        (section) => section.id === over.id,
-      );
+      const newIndex = children.findIndex((section) => section.id === over.id);
       setSurveyContents((prevState) => {
         return prevState.map((section, sectionIndex) => {
-          if (index === sectionIndex) {
+          if (index === sectionIndex && section.children) {
             return {
               ...section,
-              subSections: arrayMove(section.subSections, oldIndex, newIndex),
+              children: arrayMove(section.children, oldIndex, newIndex),
             };
           }
           return section;
@@ -91,14 +82,24 @@ export default function Result({
     });
   };
 
-  const handleDeleteSubSection = (sectionId: string, subSectionId: string) => {
+  const handleDeleteSubSection = (
+    sectionId: string,
+    childSectionId: string,
+    sectionIndex: number,
+  ) => {
+    const { children } = surveyContents[sectionIndex];
+    if (children && children.length === 1) {
+      handleDeleteSection(sectionId);
+      return;
+    }
+
     setSurveyContents((prevState) => {
       return prevState.map((section) => {
-        if (sectionId === section.id) {
+        if (sectionId === section.id && section.children) {
           return {
             ...section,
-            subSections: section.subSections.filter((subSection) => {
-              return subSection.id !== subSectionId;
+            children: section.children.filter((subSection) => {
+              return subSection.id !== childSectionId;
             }),
           };
         }
@@ -109,11 +110,11 @@ export default function Result({
 
   const handleOnChanges = ({
     sectionId,
-    subSectionId,
+    childSectionId,
     newContent,
   }: {
     sectionId: string;
-    subSectionId: string;
+    childSectionId: string;
     newContent: string;
   }): void => {
     if (!newContent) return;
@@ -122,8 +123,8 @@ export default function Result({
         if (section.id === sectionId) {
           return {
             ...section,
-            subSections: section.subSections.map((subSection: any) => {
-              if (subSection.id === subSectionId) {
+            children: section.children.map((subSection: any) => {
+              if (subSection.id === childSectionId) {
                 return {
                   ...subSection,
                   content: newContent,
@@ -140,12 +141,12 @@ export default function Result({
 
   const handleOnContentArrayChanges = ({
     sectionId,
-    subSectionId,
+    childSectionId,
     newContent,
     contentIndex,
   }: {
     sectionId: string;
-    subSectionId: string;
+    childSectionId: string;
     newContent: string;
     contentIndex: number;
   }): void => {
@@ -155,8 +156,8 @@ export default function Result({
         if (section.id === sectionId) {
           return {
             ...section,
-            subSections: section.subSections.map((subSection: any) => {
-              if (subSection.id === subSectionId) {
+            children: section.children.map((subSection: any) => {
+              if (subSection.id === childSectionId) {
                 const newArray = [...subSection.content];
                 newArray[contentIndex] = newContent;
                 return {
@@ -175,16 +176,16 @@ export default function Result({
 
   const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
     if (!newContent) return;
-    setHeader(newContent);
+    setHeading(newContent);
   };
 
   const handleUpdatePolicy = async () => {
-    if (!header || !surveyContents) return;
+    if (!heading || !surveyContents) return;
 
     const payload = {
       policy: {
-        header,
-        content: surveyContents,
+        heading,
+        sections: surveyContents,
       },
     };
 
@@ -226,11 +227,11 @@ export default function Result({
     const newSectionNumber = currentNumber - 2;
     const newSection = {
       id: uuid4(),
-      sectionTitle: `New Section - ${newSectionNumber}`,
-      subSections: [
+      title: `New Section - ${newSectionNumber}`,
+      children: [
         {
           id: uuid4(),
-          subSectionTitle: "New Sub Section",
+          title: "New Sub Section",
           content: `
             <div>
               <h2>${currentNumber}. New Section</h2>
@@ -258,18 +259,18 @@ export default function Result({
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
         ref={headerRef}
-        className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
+        className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row md:items-center"
       >
         <Editor
-          content={header}
+          content={heading}
           handleOnChanges={handleHeaderChanges}
-          state={header}
+          heading={heading}
           hideDeleteButton={true}
           handleUpdatePolicy={handleUpdatePolicy}
           handleDeleteSection={handleDeleteSection}
           handleDeleteSubSection={handleDeleteSubSection}
         />
-        <div className="flex items-baseline justify-between">
+        <div className="flex items-baseline justify-between md:pb-[35px]">
           <PolicySectionModifier
             surveyContents={surveyContents}
             handleSectionDragEvent={handleSectionDragEvent}
@@ -319,7 +320,7 @@ export default function Result({
       <section>
         <div
           onClick={handleNewSection}
-          className="flex h-[104px] cursor-pointer items-center justify-center border border-dashed border-neutral-400"
+          className="flex h-[104px] cursor-pointer items-center justify-center border border-dashed border-neutral-400 hover:bg-neutral-100"
         >
           <p>I want to add additional sections of information</p>
           <button>

@@ -5,7 +5,7 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overscroll-y-contain">
       Home
       <div>
         <Link href="/sample">

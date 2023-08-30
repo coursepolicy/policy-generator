@@ -6,20 +6,26 @@ import Link from "@tiptap/extension-link";
 import autoAnimate from "@formkit/auto-animate";
 import StarterKit from "@tiptap/starter-kit";
 import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
+import { AiPolicy } from "../_utils";
 
 interface Props {
   content: string | string[];
   handleOnChanges: (prop: any) => void;
   sectionId?: string;
   subSectionId?: string;
-  state: any;
+  heading?: AiPolicy["heading"];
+  sections?: AiPolicy["sections"];
   sectionIndex?: number;
   subSectionIndex?: number;
   contentIndex?: number;
   hideDeleteButton?: boolean;
   handleUpdatePolicy: () => Promise<void>;
   handleDeleteSection: (sectionId: string) => void;
-  handleDeleteSubSection: (sectionId: string, subSectionId: string) => void;
+  handleDeleteSubSection: (
+    sectionId: string,
+    subSectionId: string,
+    sectionIndex: number,
+  ) => void;
 }
 
 export default function Editor({
@@ -27,7 +33,8 @@ export default function Editor({
   handleOnChanges,
   sectionId,
   subSectionId,
-  state,
+  heading,
+  sections,
   sectionIndex,
   subSectionIndex,
   contentIndex,
@@ -78,7 +85,7 @@ export default function Editor({
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this?");
     if (!isConfirmed) return;
-    if (!sectionId) return;
+    if (!sectionId || !sectionIndex) return;
 
     if (!subSectionId) {
       handleDeleteSection(sectionId);
@@ -86,7 +93,7 @@ export default function Editor({
       return;
     }
 
-    handleDeleteSubSection(sectionId, subSectionId);
+    handleDeleteSubSection(sectionId, subSectionId, sectionIndex);
     setIsEditorFocused(false);
   };
 
@@ -110,36 +117,34 @@ export default function Editor({
   useEffect(() => {
     if (!htmlString) return;
 
-    if (typeof state === "string" && htmlString !== state.trim()) {
+    if (heading && htmlString !== heading.trim()) {
       handleOnChanges({ newContent: htmlString });
       return;
     }
 
-    if (sectionIndex === undefined || subSectionIndex === undefined) return;
-
     if (
-      Array.isArray(state) &&
-      contentIndex &&
-      htmlString !==
-        state[sectionIndex].subSections[subSectionIndex].content[
-          contentIndex
-        ].trim()
-    ) {
+      !sections ||
+      sectionIndex === undefined ||
+      subSectionIndex === undefined ||
+      contentIndex === undefined
+    )
+      return;
+
+    const { children } = sections[sectionIndex];
+    if (!children) return;
+    const { htmlContent } = children[subSectionIndex];
+    if (!htmlContent) return;
+
+    if (htmlString !== htmlContent[contentIndex].trim()) {
       handleOnChanges({
         sectionId,
         subSectionId,
         newContent: htmlString,
         contentIndex,
       });
-    }
+    } // TODO - use memo is prob good here
 
-    if (
-      !Array.isArray(
-        state[sectionIndex].subSections[subSectionIndex].content,
-      ) &&
-      htmlString !==
-        state[sectionIndex].subSections[subSectionIndex].content.trim()
-    ) {
+    if (!Array.isArray(htmlContent) && htmlString !== htmlContent.trim()) {
       handleOnChanges({
         sectionId,
         subSectionId,
@@ -149,17 +154,18 @@ export default function Editor({
   }, [
     contentIndex,
     handleOnChanges,
+    heading,
     htmlString,
     sectionId,
     sectionIndex,
-    state,
+    sections,
     subSectionId,
     subSectionIndex,
   ]);
 
   useEffect(() => {
     if (!htmlString) return;
-    setSavedContent(htmlString);
+    setSavedContent(() => htmlString);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [htmlString ? null : htmlString]); // lmao what a pattern
 

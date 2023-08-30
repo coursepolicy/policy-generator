@@ -23,19 +23,20 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { CourseAiPolicy, Section } from "@/app/_utils/";
+import { PolicySections } from "@/app/_utils/";
 import { screenReaderInstructions } from "./utilities/constants";
 import { createPortal } from "react-dom";
 
 interface Props {
   handleDeleteSubSection: (
-    sectionIndex: string,
-    subSectionIndex: string,
+    sectionId: string,
+    subSectionId: string,
+    sectopmIndex: number,
   ) => void;
   handleDeleteSection: (sectionIndex: string) => void;
   handleSectionDragEvent: (e: DragEndEvent) => void;
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
-  surveyContents: CourseAiPolicy;
+  surveyContents: PolicySections;
 }
 
 export default function SortableContainer({
@@ -64,7 +65,7 @@ export default function SortableContainer({
   };
 
   return (
-    <div className="bg-zinc-100 shadow sm:w-[387px] md:absolute md:right-0 md:top-[40px]">
+    <div className="overflow-y-auto bg-zinc-100 shadow sm:max-h-[450px] sm:w-[403px] sm:max-w-[100%] md:absolute md:right-0 md:top-[40px]">
       <DndContext
         onDragStart={(e) => {
           if (!e.active) {
@@ -134,9 +135,7 @@ export default function SortableContainer({
                 handleDeleteSection={handleDeleteSection}
                 handleDeleteSubSection={handleDeleteSubSection}
                 dragOverlay={true}
-                dragging={true}
                 handle={true}
-                sorting={activeId !== null}
               />
             ) : null}
           </DragOverlay>,

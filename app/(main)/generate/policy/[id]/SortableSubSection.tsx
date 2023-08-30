@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { SubSection } from "@/app/_utils/types";
+import { PolicySection } from "@/app/_utils/types";
 
 export default function SortableSubSection({
   subSection,
@@ -13,10 +13,11 @@ export default function SortableSubSection({
   dragOverlay,
 }: {
   sectionId: string;
-  subSection: SubSection;
+  subSection: PolicySection;
   handleDeleteSubSection: (
-    sectionIndex: string,
-    subSectionIndex: string,
+    sectionId: string,
+    subSectionId: string,
+    sectionIndex: number,
   ) => void;
   subSectionIndex: number;
   sectionIndex: number;
@@ -34,9 +35,9 @@ export default function SortableSubSection({
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this?");
     if (!isConfirmed) return;
-    if (!sectionId) return;
+    if (!sectionId || !sectionIndex) return;
 
-    handleDeleteSubSection(sectionId, subSection.id);
+    handleDeleteSubSection(sectionId, String(subSection.id), sectionIndex);
   };
 
   return (
@@ -63,7 +64,7 @@ export default function SortableSubSection({
             <div className="absolute left-[5px] top-[25px] h-0.5 w-0.5 rounded-full bg-zinc-500" />
           </div>
           <p className="pl-[12px] text-xs font-normal leading-normal text-black">
-            {subSection.subSectionTitle}
+            {subSection.title}
           </p>
         </div>
       </div>

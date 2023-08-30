@@ -1,13 +1,11 @@
-import { CourseAiPolicyResponse, getPolicy } from "@/app/_utils/";
+import { AiPolicy, getPolicy } from "@/app/_utils/";
 import PolicyPreview from "@/app/_components/PolicyPreview";
 
 import React from "react";
 import { SAMPLE_POLICY_ID } from "../types";
 
 export default async function SamplePolicyPreview() {
-  const { data }: { data: CourseAiPolicyResponse } = await getPolicy(
-    SAMPLE_POLICY_ID,
-  );
+  const { data }: { data: AiPolicy } = await getPolicy(SAMPLE_POLICY_ID);
 
   return (
     <div className="mt-[40px]">

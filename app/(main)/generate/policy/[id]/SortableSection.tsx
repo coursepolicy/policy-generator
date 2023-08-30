@@ -21,7 +21,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import React, { useEffect, useRef } from "react";
-import { Section } from "@/app/_utils/";
+import { PolicySection } from "@/app/_utils/";
 import { createPortal } from "react-dom";
 import { screenReaderInstructions } from "./utilities/constants";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
@@ -35,13 +35,14 @@ export default function SortableSection({
   dragOverlay,
 }: {
   handleDeleteSubSection: (
-    sectionIndex: string,
-    subSectionIndex: string,
+    sectionId: string,
+    subSectionId: string,
+    sectionIndex: number,
   ) => void;
   handleDeleteSection: (sectionIndex: string) => void;
   sectionIndex: number;
   handleSubSectionDragEvent: (index: number, e: DragEndEvent) => void;
-  section: Section;
+  section: PolicySection;
   dragOverlay?: boolean;
   handle?: boolean;
 }) {
@@ -66,12 +67,13 @@ export default function SortableSection({
     useSensor(TouchSensor),
     useSensor(KeyboardSensor),
   );
+  const activeChild = section.children && section.children[Number(activeIndex)];
 
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this?");
     if (!isConfirmed) return;
 
-    handleDeleteSection(section.id);
+    handleDeleteSection(String(section.id));
   };
 
   useEffect(() => {
@@ -129,7 +131,7 @@ export default function SortableSection({
                 sectionIndex === 0 ? "normal" : "bold"
               } pl-[12px] leading-normal text-black`}
             >
-              {section.sectionTitle}
+              {section.title}
             </p>
           </div>
           <DndContext
@@ -159,38 +161,37 @@ export default function SortableSection({
           >
             <SortableContext
               id="modify-sub-sections"
-              items={section.subSections}
+              items={section.children || []}
               strategy={verticalListSortingStrategy}
             >
-              {section.subSections.map((subSection, index) => (
-                <div
-                  key={subSection.id}
-                  className={`${
-                    activeId !== null && activeIndex === index && "opacity-30"
-                  }`}
-                >
-                  <SortableSubSection
-                    subSection={subSection}
-                    sectionId={section.id}
-                    sectionIndex={sectionIndex}
-                    subSectionIndex={index}
-                    handleDeleteSubSection={handleDeleteSubSection}
-                  />
-                </div>
-              ))}
+              {section.children &&
+                section.children.map((subSection, index) => (
+                  <div
+                    key={subSection.id}
+                    className={`${
+                      activeId !== null && activeIndex === index && "opacity-30"
+                    }`}
+                  >
+                    <SortableSubSection
+                      subSection={subSection}
+                      sectionId={String(section.id)}
+                      sectionIndex={sectionIndex}
+                      subSectionIndex={index}
+                      handleDeleteSubSection={handleDeleteSubSection}
+                    />
+                  </div>
+                ))}
             </SortableContext>
             {createPortal(
               <DragOverlay>
-                {activeId ? (
+                {activeId && activeChild ? (
                   <div>
                     <SortableSubSection
-                      subSection={section.subSections[activeIndex as number]}
-                      key={section.subSections[activeIndex as number].id}
-                      sectionId={section.id}
+                      subSection={activeChild}
+                      key={activeChild.id}
+                      sectionId={String(section.id)}
                       sectionIndex={sectionIndex}
-                      subSectionIndex={section.subSections.findIndex(
-                        (subSection) => subSection.id === activeId,
-                      )}
+                      subSectionIndex={Number(activeIndex)}
                       handleDeleteSubSection={handleDeleteSubSection}
                       dragOverlay={true}
                     />
