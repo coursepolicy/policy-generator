@@ -47,15 +47,7 @@ export default function Generate() {
               Allow_Under_Conditions_Case_2
             </button>
           </div>
-          <div className="border border-black">
-            <button
-              onClick={() => {
-                router.push(`/generate/policy/Allow_Under_Conditions_Case_1`);
-              }}
-            >
-              Allow Under Conditions Case 1
-            </button>
-          </div>
+          <div className="border border-black"></div>
           <div className="border border-black">
             <button
               onClick={() => {

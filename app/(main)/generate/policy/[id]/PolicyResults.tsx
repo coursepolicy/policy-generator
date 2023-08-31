@@ -20,8 +20,8 @@ import SortableContainer from "./SortableContainer";
 
 export default function Result({ response }: { response: AiPolicy }) {
   const { id } = useParams();
-  const [heading, setHeading] = useState<string>(response.heading);
-  const [surveyContents, setSurveyContents] = useState<PolicySections>(
+  const [heading, setHeading] = useState<AiPolicy["heading"]>(response.heading);
+  const [surveyContents, setSurveyContents] = useState<AiPolicy["sections"]>(
     response.sections,
   );
   const [isReordering, setIsReordering] = useState<boolean>(false);
@@ -108,75 +108,12 @@ export default function Result({ response }: { response: AiPolicy }) {
     });
   };
 
-  const handleOnChanges = ({
-    sectionId,
-    childSectionId,
-    newContent,
-  }: {
-    sectionId: string;
-    childSectionId: string;
-    newContent: string;
-  }): void => {
-    if (!newContent) return;
-    setSurveyContents((prevState: any) => {
-      return prevState.map((section: any) => {
-        if (section.id === sectionId) {
-          return {
-            ...section,
-            children: section.children.map((subSection: any) => {
-              if (subSection.id === childSectionId) {
-                return {
-                  ...subSection,
-                  content: newContent,
-                };
-              }
-              return subSection;
-            }),
-          };
-        }
-        return section;
-      });
-    });
+  const handleHeadingOnChanges = (heading: AiPolicy["heading"]): void => {
+    setHeading(heading);
   };
 
-  const handleOnContentArrayChanges = ({
-    sectionId,
-    childSectionId,
-    newContent,
-    contentIndex,
-  }: {
-    sectionId: string;
-    childSectionId: string;
-    newContent: string;
-    contentIndex: number;
-  }): void => {
-    if (!newContent) return;
-    setSurveyContents((prevState: any) => {
-      return prevState.map((section: any) => {
-        if (section.id === sectionId) {
-          return {
-            ...section,
-            children: section.children.map((subSection: any) => {
-              if (subSection.id === childSectionId) {
-                const newArray = [...subSection.content];
-                newArray[contentIndex] = newContent;
-                return {
-                  ...subSection,
-                  content: newArray,
-                };
-              }
-              return subSection;
-            }),
-          };
-        }
-        return section;
-      });
-    });
-  };
-
-  const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
-    if (!newContent) return;
-    setHeading(newContent);
+  const handleSectionsOnChanges = (sections: AiPolicy["sections"]): void => {
+    setSurveyContents(sections);
   };
 
   const handleUpdatePolicy = async () => {
@@ -263,7 +200,7 @@ export default function Result({ response }: { response: AiPolicy }) {
       >
         <Editor
           content={heading}
-          handleOnChanges={handleHeaderChanges}
+          handleHeadingOnChanges={handleHeadingOnChanges}
           heading={heading}
           hideDeleteButton={true}
           handleUpdatePolicy={handleUpdatePolicy}
@@ -308,9 +245,8 @@ export default function Result({ response }: { response: AiPolicy }) {
             key={section.id}
             section={section}
             sectionIndex={sectionIndex}
-            handleOnChanges={handleOnChanges}
+            handleSectionsOnChanges={handleSectionsOnChanges}
             surveyContents={surveyContents}
-            handleOnContentArrayChanges={handleOnContentArrayChanges}
             handleUpdatePolicy={handleUpdatePolicy}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}

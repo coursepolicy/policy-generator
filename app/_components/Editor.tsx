@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import autoAnimate from "@formkit/auto-animate";
 import StarterKit from "@tiptap/starter-kit";
 import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
-import { AiPolicy } from "../_utils";
+import { AiPolicy, PolicySection, PolicySections } from "../_utils";
+import { isString } from "lodash";
 
 interface Props {
   content: string | string[];
-  handleOnChanges: (prop: any) => void;
+
   sectionId?: string;
   subSectionId?: string;
   heading?: AiPolicy["heading"];
@@ -19,6 +20,8 @@ interface Props {
   subSectionIndex?: number;
   contentIndex?: number;
   hideDeleteButton?: boolean;
+  handleHeadingOnChanges?: (heading: AiPolicy["heading"]) => void;
+  handleSectionsOnChanges?: (heading: AiPolicy["sections"]) => void;
   handleUpdatePolicy: () => Promise<void>;
   handleDeleteSection: (sectionId: string) => void;
   handleDeleteSubSection: (
@@ -30,7 +33,8 @@ interface Props {
 
 export default function Editor({
   content,
-  handleOnChanges,
+  handleHeadingOnChanges,
+  handleSectionsOnChanges,
   sectionId,
   subSectionId,
   heading,
@@ -110,58 +114,112 @@ export default function Editor({
     setIsEditorFocused(false);
   };
 
+  const handleArraySectionChanges = useCallback(() => {
+    if (
+      !handleSectionsOnChanges ||
+      !sections ||
+      contentIndex === undefined ||
+      !htmlString
+    )
+      return;
+    const newSections: AiPolicy["sections"] = sections.map(
+      (section: PolicySection) => {
+        if (section.id === sectionId) {
+          return {
+            ...section,
+            children: section.children
+              ? section.children.map((subSection: PolicySection) => {
+                  const { id, htmlContent } = subSection;
+                  if (
+                    id === subSectionId &&
+                    htmlContent &&
+                    Array.isArray(htmlContent)
+                  ) {
+                    const newHtmlContent: string[] = htmlContent.map(
+                      (content, idx) => {
+                        if (idx === contentIndex) {
+                          return htmlString;
+                        }
+                        return content;
+                      },
+                    );
+
+                    return {
+                      ...subSection,
+                      htmlContent: newHtmlContent,
+                    };
+                  }
+                  return subSection;
+                })
+              : [],
+          };
+        }
+        return section;
+      },
+    );
+    handleSectionsOnChanges(newSections);
+  }, [
+    contentIndex,
+    handleSectionsOnChanges,
+    htmlString,
+    sectionId,
+    sections,
+    subSectionId,
+  ]);
+
+  const handleStringSectionChanges = useCallback(() => {
+    if (!handleSectionsOnChanges || !sections) return;
+    if (!sections) return;
+    const newSections: AiPolicy["sections"] = sections.map(
+      (section: PolicySection) => {
+        if (section.id === sectionId) {
+          return {
+            ...section,
+            children: section.children
+              ? section.children.map((subSection: PolicySection) => {
+                  const { id, htmlContent } = subSection;
+                  if (
+                    id === subSectionId &&
+                    htmlContent &&
+                    Array.isArray(htmlContent)
+                  ) {
+                    return {
+                      ...subSection,
+                      htmlContent: htmlString,
+                    };
+                  }
+                  return subSection;
+                })
+              : [],
+          };
+        }
+        return section;
+      },
+    );
+    handleSectionsOnChanges(newSections);
+  }, [handleSectionsOnChanges, htmlString, sectionId, sections, subSectionId]);
+
+  const handleStringHeadingChanges = useCallback(() => {
+    if (
+      !htmlString ||
+      !handleHeadingOnChanges ||
+      !heading ||
+      htmlString === heading
+    )
+      return;
+    handleHeadingOnChanges(htmlString);
+  }, [handleHeadingOnChanges, heading, htmlString]);
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current, { duration: 175 });
   }, [parentRef]);
 
   useEffect(() => {
-    if (!htmlString) return;
-
-    if (heading && htmlString !== heading.trim()) {
-      handleOnChanges({ newContent: htmlString });
-      return;
-    }
-
-    if (
-      !sections ||
-      sectionIndex === undefined ||
-      subSectionIndex === undefined ||
-      contentIndex === undefined
-    )
-      return;
-
-    const { children } = sections[sectionIndex];
-    if (!children) return;
-    const { htmlContent } = children[subSectionIndex];
-    if (!htmlContent) return;
-
-    if (htmlString !== htmlContent[contentIndex].trim()) {
-      handleOnChanges({
-        sectionId,
-        subSectionId,
-        newContent: htmlString,
-        contentIndex,
-      });
-    } // TODO - use memo is prob good here
-
-    if (!Array.isArray(htmlContent) && htmlString !== htmlContent.trim()) {
-      handleOnChanges({
-        sectionId,
-        subSectionId,
-        newContent: htmlString,
-      });
-    }
-  }, [
-    contentIndex,
-    handleOnChanges,
-    heading,
-    htmlString,
-    sectionId,
-    sectionIndex,
-    sections,
-    subSectionId,
-    subSectionIndex,
-  ]);
+    handleStringHeadingChanges();
+    handleStringSectionChanges();
+    handleArraySectionChanges();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [htmlString]);
 
   useEffect(() => {
     if (!htmlString) return;

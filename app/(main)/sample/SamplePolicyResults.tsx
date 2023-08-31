@@ -107,77 +107,6 @@ export default function Result({
     });
   };
 
-  const handleOnChanges = ({
-    sectionId,
-    subSectionId,
-    newContent,
-  }: {
-    sectionId: string;
-    subSectionId: string;
-    newContent: string;
-  }): void => {
-    if (!newContent) return;
-    setSurveyContents((prevState: any) => {
-      return prevState.map((section: any) => {
-        if (section.id === sectionId) {
-          return {
-            ...section,
-            children: section.children.map((subSection: any) => {
-              if (subSection.id === subSectionId) {
-                return {
-                  ...subSection,
-                  content: newContent,
-                };
-              }
-              return subSection;
-            }),
-          };
-        }
-        return section;
-      });
-    });
-  };
-
-  const handleOnContentArrayChanges = ({
-    sectionId,
-    subSectionId,
-    newContent,
-    contentIndex,
-  }: {
-    sectionId: string;
-    subSectionId: string;
-    newContent: string;
-    contentIndex: number;
-  }): void => {
-    if (!newContent) return;
-    setSurveyContents((prevState: any) => {
-      return prevState.map((section: any) => {
-        if (section.id === sectionId) {
-          return {
-            ...section,
-            children: section.children.map((subSection: any) => {
-              if (subSection.id === subSectionId) {
-                const newArray = [...subSection.htmlContent];
-                newArray[contentIndex] = newContent;
-                return {
-                  ...subSection,
-                  htmlContent: newArray,
-                };
-              }
-              return subSection;
-            }),
-          };
-        }
-        return section;
-      });
-    });
-  };
-
-  const handleHeaderChanges = ({ newContent }: { newContent: string }) => {
-    if (!newContent) return;
-    setHeading(newContent);
-  };
-
   const handleUpdatePolicy = async () => {
     if (!heading || !surveyContents) return;
 
@@ -198,8 +127,6 @@ export default function Result({
         samplePolicyId,
         generatedPolicyId,
       );
-
-      toast.loading("Creating a new course policy...");
 
       policyId = data.id;
     } catch (error) {
@@ -243,6 +170,14 @@ export default function Result({
     });
   };
 
+  const handleHeadingOnChanges = (heading: AiPolicy["heading"]): void => {
+    setHeading(heading);
+  };
+
+  const handleSectionsOnChanges = (sections: AiPolicy["sections"]): void => {
+    setSurveyContents(sections);
+  };
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
@@ -253,15 +188,14 @@ export default function Result({
 
   useEffect(() => {
     if (
-      isEqual(heading, aiPolicy.heading) &&
-      isEqual(surveyContents, aiPolicy.sections)
+      isEqual(JSON.stringify(heading), JSON.stringify(aiPolicy.heading)) &&
+      isEqual(JSON.stringify(surveyContents), JSON.stringify(aiPolicy.sections))
     ) {
       setNoChanges(() => true);
     } else {
       setNoChanges(() => false);
     }
   }, [heading, aiPolicy.sections, aiPolicy.heading, surveyContents]);
-
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
@@ -270,7 +204,7 @@ export default function Result({
       >
         <Editor
           content={heading}
-          handleOnChanges={handleHeaderChanges}
+          handleHeadingOnChanges={handleHeadingOnChanges}
           heading={heading}
           hideDeleteButton={true}
           handleUpdatePolicy={handleUpdatePolicy}
@@ -315,9 +249,8 @@ export default function Result({
             key={section.id}
             section={section}
             sectionIndex={sectionIndex}
-            handleOnChanges={handleOnChanges}
+            handleSectionsOnChanges={handleSectionsOnChanges}
             surveyContents={surveyContents}
-            handleOnContentArrayChanges={handleOnContentArrayChanges}
             handleUpdatePolicy={handleUpdatePolicy}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}

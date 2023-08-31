@@ -69,8 +69,8 @@ export default async function Preview({ data: { sections, heading } }: Props) {
                       key={subSection.id}
                       className="flex w-[100%] break-inside-avoid flex-col items-center px-[20px] pb-[10px] md:break-after-page md:flex-row md:items-stretch md:justify-between"
                     >
-                      {Array.isArray(subSection.content) &&
-                        subSection.content.map(
+                      {Array.isArray(subSection.htmlContent) &&
+                        subSection.htmlContent.map(
                           (useCase: any, index: number) => {
                             return (
                               <div

@@ -8,8 +8,6 @@ export default async function Policy({
   params: { id: string };
 }) {
   const { data } = await getPolicy(id);
-
-  console.log({ data });
   return (
     <>
       <div className="z-10 hidden h-[125px] w-[100%] max-w-[inherit] bg-neutral-50 md:fixed md:block" />

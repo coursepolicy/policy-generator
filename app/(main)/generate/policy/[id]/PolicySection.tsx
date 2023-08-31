@@ -1,21 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import Editor from "@/app/_components/Editor";
-import { PolicySections, PolicySection } from "@/app/_utils/";
+import { PolicySections, PolicySection, AiPolicy } from "@/app/_utils/";
 
 export default function PolicySection({
   section,
-  handleOnChanges,
+  handleSectionsOnChanges,
   surveyContents,
   sectionIndex,
-  handleOnContentArrayChanges,
   handleUpdatePolicy,
   handleDeleteSection,
   handleDeleteSubSection,
 }: {
   section: PolicySection;
-  handleOnChanges: (prop: any) => void;
-  handleOnContentArrayChanges: (prop: any) => void;
+  handleSectionsOnChanges: (heading: AiPolicy["sections"]) => void;
   surveyContents: PolicySections;
   sectionIndex: number;
   handleUpdatePolicy: () => Promise<void>;
@@ -49,7 +47,7 @@ export default function PolicySection({
               "No restrictions": "bg-green-200",
             };
             return (
-              <div
+              <header
                 key={subSection.id}
                 className="flex flex-col-reverse md:relative  md:justify-between"
               >
@@ -57,7 +55,7 @@ export default function PolicySection({
                   content={String(subSection.htmlContent)}
                   sectionId={String(section.id)}
                   subSectionId={String(subSection.id)}
-                  handleOnChanges={handleOnChanges}
+                  handleSectionsOnChanges={handleSectionsOnChanges}
                   sections={surveyContents}
                   sectionIndex={sectionIndex}
                   subSectionIndex={subSectionIndex}
@@ -79,7 +77,7 @@ export default function PolicySection({
                     </p>
                   </div>
                 </div>
-              </div>
+              </header>
             );
           }
 
@@ -91,7 +89,7 @@ export default function PolicySection({
               1: "bg-red-50",
             };
             return (
-              <div
+              <section
                 key={subSection.id}
                 className="flex h-[100%] w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-stretch md:justify-between"
               >
@@ -107,7 +105,7 @@ export default function PolicySection({
                           content={useCase}
                           sectionId={String(section.id)}
                           subSectionId={String(subSection.id)}
-                          handleOnChanges={handleOnContentArrayChanges}
+                          handleSectionsOnChanges={handleSectionsOnChanges}
                           sections={surveyContents}
                           sectionIndex={sectionIndex}
                           subSectionIndex={subSectionIndex}
@@ -119,17 +117,17 @@ export default function PolicySection({
                       </div>
                     );
                   })}
-              </div>
+              </section>
             );
           }
 
           return (
-            <div key={subSection.id}>
+            <section key={subSection.id}>
               <Editor
                 content={String(subSection.htmlContent)}
                 sectionId={String(section.id)}
                 subSectionId={String(subSection.id)}
-                handleOnChanges={handleOnChanges}
+                handleSectionsOnChanges={handleSectionsOnChanges}
                 sections={surveyContents}
                 sectionIndex={sectionIndex}
                 subSectionIndex={subSectionIndex}
@@ -137,9 +135,14 @@ export default function PolicySection({
                 handleDeleteSection={handleDeleteSection}
                 handleDeleteSubSection={handleDeleteSubSection}
               />
-            </div>
+            </section>
           );
         })}
     </section>
   );
 }
+`
+s:
+<h2>1. CS999 Generative AI Policy</h2><p>We recognize the potential benefits of incorporating generative AI in the learning process. As such, we embrace the use of generative AI tools by our students. In this policy, we employ a "reasonable/not reasonable" system rather than a strict "allowed/not allowed" one (inspired by CS50 at Harvard). This approach fosters proactive thinking among students by encouraging them to understand context, evaluate implications, and make thoughtful decisions.</p>
+<h2>1. CS999 Generative AI Policy</h2><p>We recognize the potential benefits of incorporating generative AI in the learning process. As such, we embrace the use of generative AI tools by our students. In this policy, we employ a "reasonable/not reasonable" system rather than a strict "allowed/not allowed" one (inspired by CS50 at Harvard). This approach fosters proactive thinking among students by encouraging them to understand context, evaluate implications, and make thoughtful decisions.</p>
+`;
