@@ -153,6 +153,10 @@ $focused-outline-color: #4c9ffe;
   display: flex;
   align-items: center;
   margin-right: 21px;
+
+  @media screen and (max-width: 640px) {
+    visibility: hidden;
+  }
 }
 
 .NumberedInvisible {
@@ -161,7 +165,11 @@ $focused-outline-color: #4c9ffe;
 
 .TrashCan {
   visibility: visible;
-  margin-left: 5px
+  margin-left: 5px;
+
+  @media screen and (max-width: 640px) {
+    visibility: hidden;
+  }
 }
 
 .TrashCanInvisible {

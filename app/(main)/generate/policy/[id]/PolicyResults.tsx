@@ -6,26 +6,17 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
-import {
-  AnimateLayoutChanges,
-  arrayMove,
-  defaultAnimateLayoutChanges,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { DragEndEvent, MeasuringStrategy } from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
+import { DragEndEvent } from "@dnd-kit/core";
 
 import Editor from "@/app/_components/Editor";
 import tooltip from "@/public/images/tooltip.svg";
-import addPolicy from "@/public/images/add-policy.svg";
 import { AiPolicy, savePolicy } from "@/app/_utils/";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
-import {
-  restrictToVerticalAxis,
-  restrictToWindowEdges,
-} from "@dnd-kit/modifiers";
-import { SortableSection } from "@/app/_components/Vertical";
+import SortableContainer from "@/app/_components/SortableContainer";
+import PolicyAddNewSections from "./PolicyAddNewSections";
 
 export default function Result({ response }: { response: AiPolicy }) {
   const { id } = useParams();
@@ -96,7 +87,7 @@ export default function Result({ response }: { response: AiPolicy }) {
     childSectionId: string,
     sectionIndex: number,
   ) => {
-    const { children } = surveyContents[sectionIndex];
+    const { children } = surveyContents[sectionIndex] || {};
     if (children && children.length === 1) {
       handleDeleteSection(sectionId);
       return;
@@ -193,9 +184,6 @@ export default function Result({ response }: { response: AiPolicy }) {
     });
   };
 
-  const animateLayoutChanges: AnimateLayoutChanges = (args) => {
-    return defaultAnimateLayoutChanges({ ...args, wasDragging: false });
-  };
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
@@ -235,45 +223,43 @@ export default function Result({ response }: { response: AiPolicy }) {
           />
         </div>
         {isReordering && (
-          <div className="my-[20px] flex justify-center md:m-0">
-            <div className="overflow-y-auto bg-zinc-100 shadow sm:max-h-[600px] sm:w-[440px] sm:max-w-[100%] md:absolute md:right-0 md:top-[55px]">
-              <div className="h-[100%]">
-                <div className="pb-[10px] pl-[5px] pr-[5px] pt-[10px] sm:pb-[40px] sm:pl-[18px] sm:pr-[15px] sm:pt-[13px]">
-                  <p className="text-sm font-normal leading-normal text-zinc-500">
-                    <i>Drag to reorder sections and subsections</i>
-                  </p>
-                  <div className="mt-[10px]">
-                    <SortableSection
-                      modifiers={[
-                        restrictToVerticalAxis,
-                        restrictToWindowEdges,
-                      ]}
-                      animateLayoutChanges={animateLayoutChanges}
-                      strategy={verticalListSortingStrategy}
-                      measuring={{
-                        droppable: { strategy: MeasuringStrategy.Always },
-                      }}
-                      removable
-                      items={surveyContents}
-                      handle
-                      handleSectionDragEvent={handleSectionDragEvent}
-                      handleSubSectionDragEvent={handleSubSectionDragEvent}
-                      handleDeleteSection={handleDeleteSection}
-                      handleDeleteSubSection={handleDeleteSubSection}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <SortableContainer
+            surveyContents={surveyContents}
+            handleSectionDragEvent={handleSectionDragEvent}
+            handleSubSectionDragEvent={handleSubSectionDragEvent}
+            handleDeleteSection={handleDeleteSection}
+            handleDeleteSubSection={handleDeleteSubSection}
+          />
         )}
       </header>
       <article ref={parentRef}>
-        <div className="flex w-[100%] justify-center">
-          <div className="flex h-[34px] w-[96%] items-center rounded-[3px] bg-indigo-50">
-            <Image alt="tooltip image" src={tooltip} className="ml-[7px]" />
-          </div>
+        <div className="ml-[20px] flex h-[34px]  w-[96%] max-w-[904px] items-center justify-start rounded-[3px] bg-indigo-50 pl-[20px]">
+          <p>
+            <span className="text-xs font-normal leading-normal text-blue-500">
+              <Image
+                alt="tooltip lightbulb"
+                src="/images/lightbulb.png"
+                width="12"
+                height="13"
+                className="inline-block"
+              />
+            </span>
+            <span className="text-xs font-bold leading-normal text-neutral-900">
+              {" "}
+            </span>
+            <span className="text-xs font-bold leading-normal text-neutral-900">
+              TIP:{" "}
+            </span>
+            <span className="text-xs font-normal leading-normal text-neutral-900">
+              <i>
+                To make modifications to your AI policy, try clicking on a
+                section to start editing the content. Bold and italic shortcuts
+                are supported.
+              </i>
+            </span>
+          </p>
         </div>
+
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection
             key={section.id}
@@ -287,21 +273,7 @@ export default function Result({ response }: { response: AiPolicy }) {
           />
         ))}
       </article>
-      <section>
-        <div
-          onClick={handleNewSection}
-          className="flex h-[104px] cursor-pointer items-center justify-center border border-dashed border-neutral-400 hover:bg-neutral-100"
-        >
-          <p>I want to add additional sections of information</p>
-          <button>
-            <Image
-              alt="plus sign image"
-              src={addPolicy}
-              className="ml-[10px]"
-            />
-          </button>
-        </div>
-      </section>
+      <PolicyAddNewSections handleNewSection={handleNewSection} />
     </div>
   );
 }

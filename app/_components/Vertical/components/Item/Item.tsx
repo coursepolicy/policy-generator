@@ -166,15 +166,14 @@ export const Item = React.memo(
             </span>
             {value}
           </div>
-          <span>
-            <Remove
-              className={classNames(
-                styles.TrashCan,
-                dragOverlay && styles.TrashCanInvisible,
-                dragging && styles.TrashCanInvisible,
-              )}
-              onClick={onRemove}
-            />
+          <span
+            className={classNames(
+              styles.TrashCan,
+              dragOverlay && styles.TrashCanInvisible,
+              dragging && styles.TrashCanInvisible,
+            )}
+          >
+            <Remove onClick={onRemove} />
           </span>
         </li>
       );

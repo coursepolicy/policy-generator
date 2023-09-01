@@ -201,12 +201,6 @@ export function SortableSection({
     },
   };
 
-  useEffect(() => {
-    if (!activeId) {
-      isFirstAnnouncement.current = true;
-    }
-  }, [activeId]);
-
   const collisionDetectionStrategy: CollisionDetection = useCallback(
     (args) => {
       if (activeId && activeId in items) {
@@ -258,6 +252,19 @@ export function SortableSection({
     [activeId, items],
   );
 
+  const handleDelete = (sectionId: UniqueIdentifier) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this?");
+    if (!isConfirmed) return;
+
+    handleDeleteSection(String(sectionId));
+  };
+
+  useEffect(() => {
+    if (!activeId) {
+      isFirstAnnouncement.current = true;
+    }
+  }, [activeId]);
+
   return (
     <DndContext
       accessibility={{
@@ -305,7 +312,7 @@ export function SortableSection({
                     wrapperStyle={wrapperStyle}
                     disabled={isDisabled(value.title)}
                     renderItem={renderItem}
-                    onRemove={handleDeleteSection}
+                    onRemove={() => handleDelete(value.id)}
                     animateLayoutChanges={animateLayoutChanges}
                     useDragOverlay={useDragOverlay}
                     getNewIndex={getNewIndex}
@@ -321,6 +328,7 @@ export function SortableSection({
                   removable
                   handle
                   sectionIndex={index}
+                  sectionId={value.id}
                   handleSubSectionDragEvent={handleSubSectionDragEvent}
                   handleDeleteSubSection={handleDeleteSubSection}
                   sectionGettingDraged={activeId === value.id}

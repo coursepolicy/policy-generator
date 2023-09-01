@@ -15,9 +15,9 @@ import tooltip from "@/public/images/tooltip.svg";
 import addPolicy from "@/public/images/add-policy.svg";
 import { PolicySections, AiPolicy, savePolicy } from "@/app/_utils/";
 import PolicySectionModifier from "../generate/policy/[id]/PolicySectionModifier";
-import SortableContainer from "../generate/policy/[id]/SortableContainer";
 import PolicySection from "../generate/policy/[id]/PolicySection";
 import SampleTextEditing from "./SampleTextEditing";
+import SortableContainer from "@/app/_components/SortableContainer";
 
 export default function Result({
   aiPolicy,
@@ -227,15 +227,13 @@ export default function Result({
           />
         </div>
         {isReordering && (
-          <div className="my-[20px] flex justify-center md:m-0">
-            <SortableContainer
-              surveyContents={surveyContents}
-              handleSectionDragEvent={handleSectionDragEvent}
-              handleSubSectionDragEvent={handleSubSectionDragEvent}
-              handleDeleteSection={handleDeleteSection}
-              handleDeleteSubSection={handleDeleteSubSection}
-            />
-          </div>
+          <SortableContainer
+            surveyContents={surveyContents}
+            handleSectionDragEvent={handleSectionDragEvent}
+            handleSubSectionDragEvent={handleSubSectionDragEvent}
+            handleDeleteSection={handleDeleteSection}
+            handleDeleteSubSection={handleDeleteSubSection}
+          />
         )}
       </header>
       <article ref={parentRef}>

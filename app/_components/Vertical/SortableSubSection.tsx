@@ -71,6 +71,7 @@ export interface SortableProps {
   strategy?: SortingStrategy;
   style?: React.CSSProperties;
   sectionIndex: number;
+  sectionId: UniqueIdentifier;
   useDragOverlay?: boolean;
   getItemStyles?(args: {
     id: UniqueIdentifier;
@@ -135,6 +136,7 @@ export function SortableSubSection({
   strategy = verticalListSortingStrategy,
   style,
   sectionIndex,
+  sectionId,
   sectionGettingDraged,
   useDragOverlay = true,
   wrapperStyle = () => ({}),
@@ -199,6 +201,20 @@ export function SortableSubSection({
     },
   };
 
+  const handleDelete = (
+    subSectionId: UniqueIdentifier,
+    sectionIndex: number,
+  ) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this?");
+    if (!isConfirmed) return;
+
+    handleDeleteSubSection(
+      String(sectionId),
+      String(subSectionId),
+      sectionIndex,
+    );
+  };
+
   useEffect(() => {
     if (!activeId) {
       isFirstAnnouncement.current = true;
@@ -249,7 +265,7 @@ export function SortableSubSection({
                   wrapperStyle={wrapperStyle}
                   disabled={isDisabled(value.title)}
                   renderItem={renderItem}
-                  onRemove={handleDeleteSubSection}
+                  onRemove={() => handleDelete(value.id, index)}
                   sectionIndex={sectionIndex}
                   subSectionIndex={index}
                   animateLayoutChanges={animateLayoutChanges}
