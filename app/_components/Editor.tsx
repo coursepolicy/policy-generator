@@ -57,7 +57,6 @@ export default function Editor({
         HTMLAttributes: {
           class: "editor-links",
         },
-        openOnClick: false,
         protocols: ["mailto"],
       }),
     ],
@@ -66,6 +65,9 @@ export default function Editor({
 
   const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [addingLink, setAddingLink] = useState(false);
+  const [editingLink, setEditingLink] = useState(true);
+  const [linked, setLinked] = useState(true);
   const parentRef = useRef(null);
 
   const htmlString = editor?.getHTML();
@@ -239,6 +241,106 @@ export default function Editor({
       ref={parentRef}
     >
       <EditorContent editor={editor} />
+      {linked && (
+        <div
+          className={`bubble relative flex ${
+            editingLink ? "w-[165px]" : "w-[125px]"
+          } rounded-[3px]`}
+        >
+          <div className=" border-r border-zinc-500">
+            <button
+              onClick={() => {
+                setEditingLink(true);
+              }}
+              className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
+            >
+              Edit link
+            </button>
+          </div>
+          {editingLink ? (
+            <div className="flex ">
+              <div
+                className=" ml-[5px] flex w-[100px] items-center"
+                tabIndex={0}
+              >
+                <input className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline" />
+                <button
+                  onClick={() => {
+                    setEditingLink(false);
+                    setLinked(true);
+                  }}
+                  className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                >
+                  ✅
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center">
+              <button
+                onClick={() => {
+                  setLinked(false);
+                }}
+                className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
+              >
+                Delete link
+              </button>
+            </div>
+          )}
+
+          <div
+            className={`triangle-down absolute bottom-[-8px] ${
+              editingLink ? "right-[55px]" : "right-[4px]"
+            } h-0 w-0`}
+          />
+        </div>
+      )}
+      {!linked && (
+        <div
+          className={`bubble relative flex ${
+            addingLink ? "w-[165px]" : "w-[60px]"
+          } rounded-[3px]`}
+        >
+          <div
+            className={`flex items-center justify-center ${
+              addingLink ? "border-r border-zinc-500" : ""
+            }`}
+          >
+            <button
+              onClick={() => {
+                setAddingLink(true);
+              }}
+              className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
+            >
+              Add link
+            </button>
+          </div>
+          {addingLink && (
+            <div className="flex ">
+              <div
+                className=" ml-[5px] flex w-[100px] items-center"
+                tabIndex={0}
+              >
+                <input className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline" />
+                <button
+                  onClick={() => {
+                    setAddingLink(false);
+                    setLinked(true);
+                  }}
+                  className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                >
+                  ✅
+                </button>
+              </div>
+            </div>
+          )}
+          <div
+            className={`triangle-down absolute bottom-[-8px] ${
+              addingLink ? "right-[55px]" : "right-[4px]"
+            } h-0 w-0`}
+          />
+        </div>
+      )}
       {isEditorFocused && (
         <div className="mt-[15px] flex justify-between">
           <div className="flex">

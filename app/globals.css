@@ -248,3 +248,27 @@ text-decoration-line: underline;
     0px 15px 15px 0 rgba(34, 33, 81, 0.25);
   z-index: 999;
 }
+
+.bubble {
+  background-color: #333333
+}
+
+.triangle-down {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #333333; 
+}
+
+.link-input {
+  /* padding-bottom: 20px;
+  height: calc(100% + 20px); */
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.link-input::-webkit-scrollbar {
+  display: none;
+}
+
+/* 55px */
