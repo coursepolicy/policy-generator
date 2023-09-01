@@ -1,22 +1,31 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
-import { arrayMove } from "@dnd-kit/sortable";
-import { DragEndEvent } from "@dnd-kit/core";
+import {
+  AnimateLayoutChanges,
+  arrayMove,
+  defaultAnimateLayoutChanges,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { DragEndEvent, MeasuringStrategy } from "@dnd-kit/core";
 
 import Editor from "@/app/_components/Editor";
 import tooltip from "@/public/images/tooltip.svg";
 import addPolicy from "@/public/images/add-policy.svg";
-import { PolicySections, AiPolicy, savePolicy } from "@/app/_utils/";
+import { AiPolicy, savePolicy } from "@/app/_utils/";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
-import SortableContainer from "./SortableContainer";
+import {
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+} from "@dnd-kit/modifiers";
+import { SortableSection } from "@/app/_components/Vertical";
 
 export default function Result({ response }: { response: AiPolicy }) {
   const { id } = useParams();
@@ -184,6 +193,9 @@ export default function Result({ response }: { response: AiPolicy }) {
     });
   };
 
+  const animateLayoutChanges: AnimateLayoutChanges = (args) => {
+    return defaultAnimateLayoutChanges({ ...args, wasDragging: false });
+  };
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
@@ -224,13 +236,35 @@ export default function Result({ response }: { response: AiPolicy }) {
         </div>
         {isReordering && (
           <div className="my-[20px] flex justify-center md:m-0">
-            <SortableContainer
-              surveyContents={surveyContents}
-              handleSectionDragEvent={handleSectionDragEvent}
-              handleSubSectionDragEvent={handleSubSectionDragEvent}
-              handleDeleteSection={handleDeleteSection}
-              handleDeleteSubSection={handleDeleteSubSection}
-            />
+            <div className="overflow-y-auto bg-zinc-100 shadow sm:max-h-[600px] sm:w-[440px] sm:max-w-[100%] md:absolute md:right-0 md:top-[55px]">
+              <div className="h-[100%]">
+                <div className="pb-[10px] pl-[5px] pr-[5px] pt-[10px] sm:pb-[40px] sm:pl-[18px] sm:pr-[15px] sm:pt-[13px]">
+                  <p className="text-sm font-normal leading-normal text-zinc-500">
+                    <i>Drag to reorder sections and subsections</i>
+                  </p>
+                  <div className="mt-[10px]">
+                    <SortableSection
+                      modifiers={[
+                        restrictToVerticalAxis,
+                        restrictToWindowEdges,
+                      ]}
+                      animateLayoutChanges={animateLayoutChanges}
+                      strategy={verticalListSortingStrategy}
+                      measuring={{
+                        droppable: { strategy: MeasuringStrategy.Always },
+                      }}
+                      removable
+                      items={surveyContents}
+                      handle
+                      handleSectionDragEvent={handleSectionDragEvent}
+                      handleSubSectionDragEvent={handleSubSectionDragEvent}
+                      handleDeleteSection={handleDeleteSection}
+                      handleDeleteSubSection={handleDeleteSubSection}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </header>

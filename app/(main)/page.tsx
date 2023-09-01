@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import { SortableSubSection } from "../_components/Vertical";
 
 export default function Home() {
   return (
