@@ -5,12 +5,16 @@ import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import autoAnimate from "@formkit/auto-animate";
 import StarterKit from "@tiptap/starter-kit";
-import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
-import { AiPolicy, PolicySection, PolicySections } from "../_utils";
-import { isString } from "lodash";
+import {
+  EditorContent,
+  HTMLContent,
+  useEditor,
+  BubbleMenu,
+} from "@tiptap/react";
+import { AiPolicy, PolicySection } from "../_utils";
 
 interface Props {
-  content: string | string[];
+  content: string;
 
   sectionId?: string;
   subSectionId?: string;
@@ -40,7 +44,6 @@ export default function Editor({
   heading,
   sections,
   sectionIndex,
-  subSectionIndex,
   contentIndex,
   handleUpdatePolicy,
   handleDeleteSection,
@@ -50,9 +53,7 @@ export default function Editor({
   const editor = useEditor({
     extensions: [
       StarterKit,
-
       Highlight,
-
       Link.configure({
         HTMLAttributes: {
           class: "editor-links",
@@ -66,15 +67,16 @@ export default function Editor({
   const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState(false);
   const [addingLink, setAddingLink] = useState(false);
-  const [editingLink, setEditingLink] = useState(true);
-  const [linked, setLinked] = useState(true);
+  const [editingLink, setEditingLink] = useState(false);
+  const [linkInput, setLinkInput] = useState("");
+  const [linked, setLinked] = useState(false);
+  const [highlighted, setHighlighted] = useState(true);
+  const [hoveringLinkMenu, setHoveringLinkMenu] = useState(false);
   const parentRef = useRef(null);
 
   const htmlString = editor?.getHTML();
 
-  const [savedContent, setSavedContent] = useState<HTMLContent>(
-    htmlString as HTMLContent,
-  );
+  const [savedContent, setSavedContent] = useState<HTMLContent>(content);
 
   const handleEditorOnFocus = ({ target }: React.FocusEvent<HTMLElement>) => {
     if (target.closest(".tiptap")) {
@@ -212,22 +214,45 @@ export default function Editor({
     handleHeadingOnChanges(htmlString);
   }, [handleHeadingOnChanges, heading, htmlString]);
 
+  const setLink = useCallback(
+    (str: string) => {
+      if (!editor) return;
+
+      if (str === null) {
+        return;
+      }
+
+      if (str === "") {
+        editor.chain().focus().extendMarkRange("link").unsetLink().run();
+        return;
+      }
+
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange("link")
+        .setLink({ href: str })
+        .run();
+    },
+    [editor],
+  );
+
+  const hangleLinkInputChange = ({ target: { value } }: any) => {
+    console.log(value);
+    setLinkInput(value);
+  };
+
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current, { duration: 175 });
   }, [parentRef]);
 
   useEffect(() => {
+    if (!editor || !htmlString) return;
     handleStringHeadingChanges();
     handleStringSectionChanges();
     handleArraySectionChanges();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [htmlString]);
-
-  useEffect(() => {
-    if (!htmlString) return;
-    setSavedContent(() => htmlString);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [htmlString ? null : htmlString]); // lmao what a pattern
 
   if (!editor) {
     return null;
@@ -240,107 +265,135 @@ export default function Editor({
       onFocus={handleEditorOnFocus}
       ref={parentRef}
     >
-      <EditorContent editor={editor} />
-      {linked && (
+      <BubbleMenu className="menu" editor={editor}>
         <div
-          className={`bubble relative flex ${
-            editingLink ? "w-[165px]" : "w-[125px]"
-          } rounded-[3px]`}
+          onMouseLeave={() => setIsHovering(false)}
+          onMouseEnter={() => setIsHovering(true)}
+          onBlur={() => {
+            if (!hoveringLinkMenu) {
+              setAddingLink(false);
+              setLinkInput("");
+            }
+          }}
         >
-          <div className=" border-r border-zinc-500">
-            <button
-              onClick={() => {
-                setEditingLink(true);
-              }}
-              className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
+          {editor.isActive("link") ? (
+            <div
+              className={`bubble  flex ${
+                editingLink ? "w-[165px]" : "w-[125px]"
+              } rounded-[3px]`}
             >
-              Edit link
-            </button>
-          </div>
-          {editingLink ? (
-            <div className="flex ">
-              <div
-                className=" ml-[5px] flex w-[100px] items-center"
-                tabIndex={0}
-              >
-                <input className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline" />
+              <div className="relative border-r border-zinc-500">
                 <button
                   onClick={() => {
-                    setEditingLink(false);
-                    setLinked(true);
+                    setLinkInput(() => editor?.getAttributes("link").href);
+                    setEditingLink(() => true);
                   }}
-                  className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                  className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
                 >
-                  ✅
+                  Edit link
                 </button>
+                <div className="triangle-down absolute bottom-[-8px] right-[4px] h-0 w-0" />
               </div>
+              {editingLink ? (
+                <div className="flex ">
+                  <form
+                    className=" ml-[5px] flex w-[100px] items-center"
+                    tabIndex={0}
+                    onMouseEnter={() => setHoveringLinkMenu(true)}
+                    onMouseLeave={() => setHoveringLinkMenu(false)}
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setLink(linkInput);
+                      setLinkInput(() => "");
+                      setEditingLink(() => false);
+                    }}
+                  >
+                    <input
+                      onChange={hangleLinkInputChange}
+                      value={linkInput}
+                      className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline"
+                    />
+                    <button
+                      type="submit"
+                      className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                    >
+                      ✅
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center">
+                  <button
+                    onClick={() => {
+                      editor.chain().focus().unsetLink().run();
+                      setLinkInput("");
+                      setEditingLink(false);
+                    }}
+                    className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
+                  >
+                    Delete link
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
-            <div className="flex items-center justify-center">
-              <button
-                onClick={() => {
-                  setLinked(false);
-                }}
-                className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
-              >
-                Delete link
-              </button>
-            </div>
-          )}
-
-          <div
-            className={`triangle-down absolute bottom-[-8px] ${
-              editingLink ? "right-[55px]" : "right-[4px]"
-            } h-0 w-0`}
-          />
-        </div>
-      )}
-      {!linked && (
-        <div
-          className={`bubble relative flex ${
-            addingLink ? "w-[165px]" : "w-[60px]"
-          } rounded-[3px]`}
-        >
-          <div
-            className={`flex items-center justify-center ${
-              addingLink ? "border-r border-zinc-500" : ""
-            }`}
-          >
-            <button
-              onClick={() => {
-                setAddingLink(true);
-              }}
-              className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
+            <div
+              className={`bubble flex ${
+                addingLink ? "w-[165px]" : "w-[60px]"
+              } rounded-[3px]`}
             >
-              Add link
-            </button>
-          </div>
-          {addingLink && (
-            <div className="flex ">
               <div
-                className=" ml-[5px] flex w-[100px] items-center"
-                tabIndex={0}
+                className={`flex items-center justify-center ${
+                  addingLink ? "border-r border-zinc-500" : ""
+                } relative`}
               >
-                <input className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline" />
                 <button
                   onClick={() => {
-                    setAddingLink(false);
-                    setLinked(true);
+                    setAddingLink(true);
                   }}
-                  className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                  className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
                 >
-                  ✅
+                  Add link
                 </button>
+                <div className="triangle-down absolute bottom-[-8px] right-[4px] h-0 w-0" />
               </div>
+              {addingLink && (
+                <div className="flex ">
+                  <form
+                    className=" ml-[5px] flex w-[100px] items-center"
+                    tabIndex={0}
+                    onMouseEnter={() => setHoveringLinkMenu(true)}
+                    onMouseLeave={() => setHoveringLinkMenu(false)}
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setLink(linkInput);
+                      setLinkInput(() => "");
+                      setAddingLink(() => false);
+                    }}
+                  >
+                    <input
+                      onChange={({ target }) => {
+                        const { value } = target;
+                        setLinkInput(value);
+                      }}
+                      value={linkInput}
+                      className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline"
+                    />
+                    <button
+                      type="submit"
+                      className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                    >
+                      ✅
+                    </button>
+                  </form>
+                </div>
+              )}
             </div>
           )}
-          <div
-            className={`triangle-down absolute bottom-[-8px] ${
-              addingLink ? "right-[55px]" : "right-[4px]"
-            } h-0 w-0`}
-          />
         </div>
-      )}
+      </BubbleMenu>
+      <EditorContent editor={editor} />
+
       {isEditorFocused && (
         <div className="mt-[15px] flex justify-between">
           <div className="flex">

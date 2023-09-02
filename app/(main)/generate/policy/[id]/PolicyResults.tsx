@@ -10,13 +10,12 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
 
 import Editor from "@/app/_components/Editor";
-import tooltip from "@/public/images/tooltip.svg";
 import { AiPolicy, savePolicy } from "@/app/_utils/";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "@/app/_components/SortableContainer";
-import PolicyAddNewSections from "./PolicyAddNewSections";
+import PolicyAddNewSections from "./PolicyNewSections";
 
 export default function Result({ response }: { response: AiPolicy }) {
   const { id } = useParams();
@@ -233,7 +232,7 @@ export default function Result({ response }: { response: AiPolicy }) {
         )}
       </header>
       <article ref={parentRef}>
-        <div className="ml-[20px] flex h-[34px]  w-[96%] max-w-[904px] items-center justify-start rounded-[3px] bg-indigo-50 pl-[20px]">
+        <div className="ml-[20px] flex min-h-[34px]  w-[96%] max-w-[904px] items-center justify-start rounded-[3px] bg-indigo-50 pl-[20px]">
           <p>
             <span className="text-xs font-normal leading-normal text-blue-500">
               <Image

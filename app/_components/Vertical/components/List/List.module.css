@@ -2,8 +2,8 @@
   display: grid;
   grid-auto-rows: max-content;
   box-sizing: border-box;
-  /* min-width: 350px; */
-  max-width: 350px;
+  min-width: 350px;
+  /* max-width: 350px; */
   width: 100%;
   grid-gap: 10px;
   padding-bottom: 0;
