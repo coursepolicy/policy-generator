@@ -50,7 +50,7 @@ export default async function Preview({
                     return (
                       <section
                         key={subSection.id}
-                        className="flex break-inside-avoid flex-col-reverse  md:relative md:justify-between"
+                        className="relative flex break-inside-avoid justify-between"
                       >
                         <div
                           className="tiptap"
@@ -58,7 +58,7 @@ export default async function Preview({
                             __html: subSection.htmlContent || "",
                           }}
                         />
-                        <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between md:absolute md:mb-0 md:flex-row">
+                        <div className="absolute right-0 top-0 mb-0 flex flex-col items-center">
                           <p className="text-xs font-bold leading-normal text-stone-500">
                             Overall Generative AI Policy:
                           </p>
@@ -86,7 +86,7 @@ export default async function Preview({
                     return (
                       <section
                         key={subSection.id}
-                        className="flex w-[100%] break-inside-avoid flex-col items-center px-[20px] pb-[10px] md:break-after-page md:flex-row md:items-stretch md:justify-between"
+                        className="flex w-[100%] break-inside-avoid break-after-page flex-row items-stretch justify-between px-[20px] pb-[10px]"
                       >
                         {Array.isArray(subSection.htmlContent) &&
                           subSection.htmlContent.map(
@@ -94,7 +94,7 @@ export default async function Preview({
                               return (
                                 <div
                                   key={`${subSection.id}${index}`}
-                                  className={`w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
+                                  className={`w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases break-inside-avoid sm:px-[25px] sm:py-[30px]`}
                                 >
                                   <div
                                     className="tiptap"
