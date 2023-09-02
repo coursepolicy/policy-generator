@@ -86,7 +86,7 @@ export default async function Preview({
                     return (
                       <section
                         key={subSection.id}
-                        className="flex w-[100%] break-inside-avoid break-after-page flex-row items-stretch justify-between px-[20px] pb-[10px]"
+                        className="use-cases-container flex w-[100%] break-inside-avoid break-after-page flex-row items-stretch justify-between px-[20px] pb-[10px]"
                       >
                         {Array.isArray(subSection.htmlContent) &&
                           subSection.htmlContent.map(

@@ -171,7 +171,7 @@ export default function Result({
     setIsReordering(!isReordering);
   };
 
-  const handleNewSection = () => {
+  const AddNewSection = () => {
     // fist section is section number 0
     const currentNumber = surveyContents.length;
     const newSectionNumber = currentNumber - 2;
@@ -182,12 +182,7 @@ export default function Result({
         {
           id: uuid4(),
           title: "New Sub Section",
-          content: `
-            <div>
-              <h2>${currentNumber}. New Section</h2>
-              <p>Enter your content here</p>
-            </div>
-          `,
+          htmlContent: "<h2>New Section</h2><p>Enter your content here</p>",
         },
       ],
     };
@@ -196,7 +191,6 @@ export default function Result({
       return [...prevState, newSection];
     });
   };
-
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
@@ -276,7 +270,7 @@ export default function Result({
           />
         ))}
       </article>
-      <PolicyNewSections handleNewSection={handleNewSection} />
+      <PolicyNewSections AddNewSection={AddNewSection} />
     </div>
   );
 }

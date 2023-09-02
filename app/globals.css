@@ -107,6 +107,12 @@ ul {
  
 }
 
+.use-cases-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 .use-cases strong {
   color: #414141;
   font-size: 14px;
