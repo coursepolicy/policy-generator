@@ -1,8 +1,9 @@
-import { AiPolicy } from ".";
+import { AiPolicyResponse } from ".";
 
-export const samplePolicy: AiPolicy = {
+export const samplePolicy: AiPolicyResponse = {
+  id: "Sample_Policy_for_all",
   heading:
-    "<h1>CS 101: Introduction to Computer Science</h1><p>Course Instructor: John Doe[sample@email.com] Generated on August 24th, 2023</p>",
+    '<h1>AI Policy for CS 101: Introduction to Computer Science</h1><p>Course Instructor: John Doe <a target="_blank" rel="noopener noreferrer nofollow" class="editor-links" href="mailto:sample@email.com">sample@email.com</a></p>',
   sections: [
     {
       id: "fdb3044f-3550-4fdd-9399-aaabd6537324",
@@ -31,7 +32,7 @@ export const samplePolicy: AiPolicy = {
         {
           id: "12df2dae-ee8e-433c-8f43-a469f503de21",
           htmlContent: [
-            "<div>\n          <h3>Reasonable Use Cases ✅</h3>\n          \n            \n                <strong>Grammar Check</strong>\n                <ul>\n                  <li>\n                    \n                    <p>Use AI tools for grammar and spelling checks</p>\n                  </li>\n                </ul>\n              \n                <strong>Concept Learning</strong>\n                <ul>\n                  <li>\n                    \n                    <p>Chat with AI to gain a general understanding of topics of learning</p>\n                  </li>\n                </ul>\n              \n                <strong>Literature Discovery</strong>\n                <ul>\n                  <li>\n                    \n                    <p>Use AI to discover new papers or articles</p>\n                  </li>\n                </ul>\n              \n                <strong>Summary Generation</strong>\n                <ul>\n                  <li>\n                    \n                    <p>Use AI to generate summaries of papers or reading materials for faster understanding</p>\n                  </li>\n                </ul>\n              \n                <strong>Coding Assistant</strong>\n                <ul>\n                  <li>\n                    \n                    <p>Use AI to assist code-writing processes</p>\n                  </li>\n                </ul>\n              \n          \n        </div>",
+            "<div><h3>Reasonable Use Cases ✅</h3><strong>Grammar Check</strong><ul><li><p>Use AI tools for grammar and spelling checks</p></li></ul><strong>Concept Learning</strong><ul><li><p>Chat with AI to gain a general understanding of topics of learning</p></li></ul><strong>Literature Discovery</strong><ul><li><p>Use AI to discover new papers or articles</p></li></ul><strong>Summary Generation</strong><ul><li><p>Use AI to generate summaries of papers or reading materials for faster understanding</p></li></ul><strong>Coding Assistant</strong><ul><li><p>Use AI to assist code-writing processes</p></li></ul></div>",
             "<h3>Unreasonable Use Cases ❌</h3><p><strong>Outline Generation</strong></p><ul><li><p>Use AI to generate an outline for a paper or presentation</p></li></ul><p><strong>Essay Generation</strong></p><ul><li><p>Use AI to generate an entire essay or paper</p></li></ul><p><strong>Test-taking</strong></p><ul><li><p>Use AI during tests and exams</p></li></ul><p><strong>Data Fabrication</strong></p><ul><li><p>Use AI to generate or alter data for use in assignments or projects</p></li></ul>",
           ],
           title: "Use Cases",
@@ -76,4 +77,5 @@ export const samplePolicy: AiPolicy = {
       title: "Additional Policies",
     },
   ],
+  createdAt: "2021-08-24T18:00:00.000Z",
 };

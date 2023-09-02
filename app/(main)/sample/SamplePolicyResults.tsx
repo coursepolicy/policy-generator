@@ -11,27 +11,36 @@ import { DragEndEvent } from "@dnd-kit/core";
 import { isEqual } from "lodash";
 
 import Editor from "@/app/_components/Editor";
-import tooltip from "@/public/images/tooltip.svg";
-import addPolicy from "@/public/images/add-policy.svg";
-import { PolicySections, AiPolicy, savePolicy } from "@/app/_utils/";
+import {
+  PolicySections,
+  AiPolicy,
+  savePolicy,
+  AiPolicyResponse,
+} from "@/app/_utils/";
 import PolicySectionModifier from "../generate/policy/[id]/PolicySectionModifier";
 import PolicySection from "../generate/policy/[id]/PolicySection";
 import SampleTextEditing from "./SampleTextEditing";
 import SortableContainer from "@/app/_components/SortableContainer";
+import PolicyNewSections from "../generate/policy/[id]/PolicyNewSections";
+import { Tooltip, UpdatedAt } from "../_components";
 
 export default function Result({
-  aiPolicy,
+  aiPolicy: {
+    createdAt,
+    updatedAt,
+    sections: initialSections,
+    heading: initialHeading,
+  },
   samplePolicyId,
 }: {
-  aiPolicy: AiPolicy;
+  aiPolicy: AiPolicyResponse;
   samplePolicyId: string;
 }) {
   const router = useRouter();
   const [noChanges, setNoChanges] = useState<boolean>(true);
-  const [heading, setHeading] = useState<string>(aiPolicy.heading);
-  const [surveyContents, setSurveyContents] = useState<PolicySections>(
-    aiPolicy.sections,
-  );
+  const [heading, setHeading] = useState<string>(initialHeading);
+  const [surveyContents, setSurveyContents] =
+    useState<PolicySections>(initialSections);
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
   const headerRef = useRef(null);
@@ -91,20 +100,38 @@ export default function Result({
     });
   };
 
-  const handleDeleteSubSection = (sectionId: string, subSectionId: string) => {
+  const handleDeleteSubSection = (
+    sectionId: string,
+    childSectionId: string,
+    sectionIndex: number,
+  ) => {
+    const { children } = surveyContents[sectionIndex] || {};
+    if (children && children.length === 1) {
+      handleDeleteSection(sectionId);
+      return;
+    }
+
     setSurveyContents((prevState) => {
       return prevState.map((section) => {
         if (sectionId === section.id && section.children) {
           return {
             ...section,
             children: section.children.filter((subSection) => {
-              return subSection.id !== subSectionId;
+              return subSection.id !== childSectionId;
             }),
           };
         }
         return section;
       });
     });
+  };
+
+  const handleHeadingOnChanges = (heading: AiPolicy["heading"]): void => {
+    setHeading(heading);
+  };
+
+  const handleSectionsOnChanges = (sections: AiPolicy["sections"]): void => {
+    setSurveyContents(sections);
   };
 
   const handleUpdatePolicy = async () => {
@@ -170,14 +197,6 @@ export default function Result({
     });
   };
 
-  const handleHeadingOnChanges = (heading: AiPolicy["heading"]): void => {
-    setHeading(heading);
-  };
-
-  const handleSectionsOnChanges = (sections: AiPolicy["sections"]): void => {
-    setSurveyContents(sections);
-  };
-
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, [parentRef]);
@@ -188,29 +207,35 @@ export default function Result({
 
   useEffect(() => {
     if (
-      isEqual(JSON.stringify(heading), JSON.stringify(aiPolicy.heading)) &&
-      isEqual(JSON.stringify(surveyContents), JSON.stringify(aiPolicy.sections))
+      isEqual(JSON.stringify(heading), JSON.stringify(initialHeading)) &&
+      isEqual(JSON.stringify(surveyContents), JSON.stringify(initialSections))
     ) {
       setNoChanges(() => true);
     } else {
       setNoChanges(() => false);
     }
-  }, [heading, aiPolicy.sections, aiPolicy.heading, surveyContents]);
+  }, [heading, initialSections, initialHeading, surveyContents]);
+
+  console.log("heading", heading);
+  console.log("surveyContents", surveyContents);
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
         ref={headerRef}
         className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
       >
-        <Editor
-          content={heading}
-          handleHeadingOnChanges={handleHeadingOnChanges}
-          heading={heading}
-          hideDeleteButton={true}
-          handleUpdatePolicy={handleUpdatePolicy}
-          handleDeleteSection={handleDeleteSection}
-          handleDeleteSubSection={handleDeleteSubSection}
-        />
+        <div className="flex flex-col">
+          <Editor
+            content={heading}
+            handleHeadingOnChanges={handleHeadingOnChanges}
+            heading={heading}
+            hideDeleteButton={true}
+            handleUpdatePolicy={handleUpdatePolicy}
+            handleDeleteSection={handleDeleteSection}
+            handleDeleteSubSection={handleDeleteSubSection}
+          />
+          <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
+        </div>
         <div className="flex items-baseline justify-between">
           <PolicySectionModifier
             surveyContents={surveyContents}
@@ -237,11 +262,7 @@ export default function Result({
         )}
       </header>
       <article ref={parentRef}>
-        <div className="flex w-[100%] justify-center">
-          <div className="flex h-[34px] w-[96%] items-center rounded-[3px] bg-indigo-50">
-            <Image alt="tooltip image" src={tooltip} className="ml-[7px]" />
-          </div>
-        </div>
+        <Tooltip />
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection
             key={section.id}
@@ -255,21 +276,7 @@ export default function Result({
           />
         ))}
       </article>
-      <section>
-        <div
-          onClick={handleNewSection}
-          className="flex h-[104px] cursor-pointer items-center justify-center border border-dashed border-neutral-400"
-        >
-          <p>I want to add additional sections of information</p>
-          <button>
-            <Image
-              alt="plus sign image"
-              src={addPolicy}
-              className="ml-[10px]"
-            />
-          </button>
-        </div>
-      </section>
+      <PolicyNewSections handleNewSection={handleNewSection} />
     </div>
   );
 }

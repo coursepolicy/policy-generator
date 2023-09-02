@@ -1,13 +1,15 @@
 import React from "react";
 import PolicyResults from "./PolicyResults";
-import { getPolicy } from "@/app/_utils";
+import { AiPolicyResponse, getPolicy } from "@/app/_utils";
 
 export default async function Policy({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const { data } = await getPolicy(id);
+  const response = await getPolicy(id);
+  const { data }: { data: AiPolicyResponse } = response;
+
   return (
     <>
       <div className="z-10 hidden h-[125px] w-[100%] max-w-[inherit] bg-neutral-50 md:fixed md:block" />

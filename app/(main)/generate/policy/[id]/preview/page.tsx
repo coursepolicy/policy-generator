@@ -1,13 +1,14 @@
-import { AiPolicy, getPolicy } from "@/app/_utils/";
+import { AiPolicyResponse, getPolicy } from "@/app/_utils/";
 import PolicyPreview from "@/app/_components/PolicyPreview";
 
 import React from "react";
+import Goback from "./Goback";
 
 interface Props {
   params: { id: string };
 }
 export default async function GeneratePolicyPreview({ params: { id } }: Props) {
-  const { data }: { data: AiPolicy } = await getPolicy(id);
+  const { data }: { data: AiPolicyResponse } = await getPolicy(id);
 
   return (
     <div className="mt-[40px]">
@@ -17,9 +18,10 @@ export default async function GeneratePolicyPreview({ params: { id } }: Props) {
           href={`https://qwmkqfgswe.execute-api.us-west-2.amazonaws.com/generated-pdf?generatedId=${id}`}
           target="_blank"
         >
-          <strong>Download</strong>
+          <strong>Download PDF</strong>
         </a>
       </div>
+      <Goback policyId={id} />
       <PolicyPreview data={data} />
     </div>
   );

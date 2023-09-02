@@ -39,12 +39,27 @@ body {
   }
 }
 
+.preview-goback {
+  width: 100%;
+  max-width: 985px; 
+  margin: 0 auto; 
+  padding: 20px; 
+}
+
 .preview-container {
   width: 100%;
   max-width: 985px; 
   margin: 0 auto; 
   padding: 20px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  background-color: #fff; 
+}
+
+.preview-container-no-shadow {
+  width: 100%;
+  max-width: 985px; 
+  margin: 0 auto; 
+  padding: 20px; 
   background-color: #fff; 
 }
 /* Content within the preview page */
@@ -71,7 +86,7 @@ body {
 
 .tiptap h2 {
   font-size: 24px;
-  /* margin-bottom: 24px; */
+  margin-bottom: 20px;
 }
 
 .tiptap h3 {
@@ -124,6 +139,11 @@ ul {
 .editor-container {
   width: 100%;
   padding: 14px 10px;
+  padding-bottom: 0px;
+}
+
+.editor-container:first {
+  padding-bottom: 0px;
 }
 
 .editor-container:hover {

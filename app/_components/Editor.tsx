@@ -172,6 +172,7 @@ export default function Editor({
   ]);
 
   const handleStringSectionChanges = useCallback(() => {
+    console.log();
     if (!handleSectionsOnChanges || !sections) return;
     if (!sections) return;
     const newSections: AiPolicy["sections"] = sections.map(
@@ -185,7 +186,7 @@ export default function Editor({
                   if (
                     id === subSectionId &&
                     htmlContent &&
-                    Array.isArray(htmlContent)
+                    !Array.isArray(htmlContent)
                   ) {
                     return {
                       ...subSection,
@@ -395,7 +396,7 @@ export default function Editor({
       <EditorContent editor={editor} />
 
       {isEditorFocused && (
-        <div className="mt-[15px] flex justify-between">
+        <div className="mt-[15px] flex justify-between pb-[10px]">
           <div className="flex">
             <button
               onClick={handleOnSave}

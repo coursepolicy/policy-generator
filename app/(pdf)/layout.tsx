@@ -62,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${messinaSans.variable} overscroll-y-contain bg-neutral-50 font-sans`}
+      className={`${messinaSans.variable} overscroll-y-contain font-sans`}
     >
       <body className="overscroll-y-contain">{children}</body>
     </html>

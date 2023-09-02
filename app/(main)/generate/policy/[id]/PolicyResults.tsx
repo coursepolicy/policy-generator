@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
 import toast from "react-hot-toast";
 import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
@@ -10,19 +9,28 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
 
 import Editor from "@/app/_components/Editor";
-import { AiPolicy, savePolicy } from "@/app/_utils/";
+import { AiPolicy, AiPolicyResponse, savePolicy } from "@/app/_utils/";
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
 import SortableContainer from "@/app/_components/SortableContainer";
-import PolicyAddNewSections from "./PolicyNewSections";
+import PolicyNewSections from "./PolicyNewSections";
+import { Tooltip, UpdatedAt } from "@/app/(main)/_components";
 
-export default function Result({ response }: { response: AiPolicy }) {
+export default function Result({
+  response: {
+    createdAt,
+    updatedAt,
+    sections: initialSections,
+    heading: initialHeading,
+  },
+}: {
+  response: AiPolicyResponse;
+}) {
   const { id } = useParams();
-  const [heading, setHeading] = useState<AiPolicy["heading"]>(response.heading);
-  const [surveyContents, setSurveyContents] = useState<AiPolicy["sections"]>(
-    response.sections,
-  );
+  const [heading, setHeading] = useState<AiPolicy["heading"]>(initialHeading);
+  const [surveyContents, setSurveyContents] =
+    useState<AiPolicy["sections"]>(initialSections);
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
   const headerRef = useRef(null);
@@ -151,6 +159,9 @@ export default function Result({ response }: { response: AiPolicy }) {
       console.error(JSON.stringify(error));
       throw new Error(JSON.stringify(error));
     }
+
+    setSurveyContents(() => surveyContents);
+    setHeading(() => heading);
   };
 
   const changeIsReorderingState = () => {
@@ -192,20 +203,23 @@ export default function Result({ response }: { response: AiPolicy }) {
   }, [headerRef]);
 
   return (
-    <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
+    <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px]">
       <header
         ref={headerRef}
         className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row md:items-center"
       >
-        <Editor
-          content={heading}
-          handleHeadingOnChanges={handleHeadingOnChanges}
-          heading={heading}
-          hideDeleteButton={true}
-          handleUpdatePolicy={handleUpdatePolicy}
-          handleDeleteSection={handleDeleteSection}
-          handleDeleteSubSection={handleDeleteSubSection}
-        />
+        <div className="flex flex-col">
+          <Editor
+            content={heading}
+            handleHeadingOnChanges={handleHeadingOnChanges}
+            heading={heading}
+            hideDeleteButton={true}
+            handleUpdatePolicy={handleUpdatePolicy}
+            handleDeleteSection={handleDeleteSection}
+            handleDeleteSubSection={handleDeleteSubSection}
+          />
+          <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
+        </div>
         <div className="flex items-baseline justify-between md:pb-[35px]">
           <PolicySectionModifier
             surveyContents={surveyContents}
@@ -232,33 +246,7 @@ export default function Result({ response }: { response: AiPolicy }) {
         )}
       </header>
       <article ref={parentRef}>
-        <div className="ml-[20px] flex min-h-[34px]  w-[96%] max-w-[904px] items-center justify-start rounded-[3px] bg-indigo-50 pl-[20px]">
-          <p>
-            <span className="text-xs font-normal leading-normal text-blue-500">
-              <Image
-                alt="tooltip lightbulb"
-                src="/images/lightbulb.png"
-                width="12"
-                height="13"
-                className="inline-block"
-              />
-            </span>
-            <span className="text-xs font-bold leading-normal text-neutral-900">
-              {" "}
-            </span>
-            <span className="text-xs font-bold leading-normal text-neutral-900">
-              TIP:{" "}
-            </span>
-            <span className="text-xs font-normal leading-normal text-neutral-900">
-              <i>
-                To make modifications to your AI policy, try clicking on a
-                section to start editing the content. Bold and italic shortcuts
-                are supported.
-              </i>
-            </span>
-          </p>
-        </div>
-
+        <Tooltip />
         {surveyContents.map((section, sectionIndex) => (
           <PolicySection
             key={section.id}
@@ -272,7 +260,7 @@ export default function Result({ response }: { response: AiPolicy }) {
           />
         ))}
       </article>
-      <PolicyAddNewSections handleNewSection={handleNewSection} />
+      <PolicyNewSections handleNewSection={handleNewSection} />
     </div>
   );
 }

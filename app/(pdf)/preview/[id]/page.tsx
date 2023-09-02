@@ -1,12 +1,12 @@
 import PolicyPreview from "@/app/_components/PolicyPreview";
-import { AiPolicy, getPolicy } from "@/app/_utils";
+import { AiPolicyResponse, getPolicy } from "@/app/_utils";
 import React from "react";
 
 interface Props {
   params: { id: string };
 }
 export default async function Preview({ params: { id } }: Props) {
-  const { data }: { data: AiPolicy } = await getPolicy(id);
+  const { data }: { data: AiPolicyResponse } = await getPolicy(id);
 
-  return <PolicyPreview data={data} />;
+  return <PolicyPreview data={data} pdf />;
 }
