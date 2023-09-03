@@ -301,23 +301,22 @@ export function SortableSection({
           <Container>
             {items.map((value, index) => (
               <>
-                <>
-                  <SortableItem
-                    key={value.id}
-                    id={value.id}
-                    value={value.title}
-                    handle={handle}
-                    index={index}
-                    style={getItemStyles}
-                    wrapperStyle={wrapperStyle}
-                    disabled={isDisabled(value.title)}
-                    renderItem={renderItem}
-                    onRemove={() => handleDelete(value.id)}
-                    animateLayoutChanges={animateLayoutChanges}
-                    useDragOverlay={useDragOverlay}
-                    getNewIndex={getNewIndex}
-                  />
-                </>
+                <SortableItem
+                  key={value.id}
+                  id={value.id}
+                  value={value.title}
+                  handle={handle}
+                  index={index}
+                  style={getItemStyles}
+                  wrapperStyle={wrapperStyle}
+                  disabled={isDisabled(value.title)}
+                  renderItem={renderItem}
+                  onRemove={() => handleDelete(value.id)}
+                  animateLayoutChanges={animateLayoutChanges}
+                  useDragOverlay={useDragOverlay}
+                  getNewIndex={getNewIndex}
+                />
+
                 <SortableSubSection
                   items={value.children || []}
                   modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}

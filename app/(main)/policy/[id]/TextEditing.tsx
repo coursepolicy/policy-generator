@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -11,7 +12,7 @@ export default function TextEditing({
   const router = useRouter();
   return (
     <div className="ml-[8px]">
-      <button
+      <Button
         onClick={() => {
           handleUpdatePolicy().then(() =>
             router.push(`/generate/policy/${id}/preview`),
@@ -22,7 +23,7 @@ export default function TextEditing({
         <p className="text-center text-xs font-bold leading-normal text-white">
           Finish Edits
         </p>
-      </button>
+      </Button>
     </div>
   );
 }

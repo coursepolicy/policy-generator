@@ -12,6 +12,8 @@ import {
   BubbleMenu,
 } from "@tiptap/react";
 import { AiPolicy, PolicySection } from "../_utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface Props {
   content: string;
@@ -238,7 +240,7 @@ export default function Editor({
     [editor],
   );
 
-  const hangleLinkInputChange = ({ target: { value } }: any) => {
+  const handleLinkInputChange = ({ target: { value } }: any) => {
     console.log(value);
     setLinkInput(value);
   };
@@ -284,7 +286,7 @@ export default function Editor({
               } rounded-[3px]`}
             >
               <div className="relative border-r border-zinc-500">
-                <button
+                <Button
                   onClick={() => {
                     setLinkInput(() => editor?.getAttributes("link").href);
                     setEditingLink(() => true);
@@ -292,7 +294,7 @@ export default function Editor({
                   className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
                 >
                   Edit link
-                </button>
+                </Button>
                 <div className="triangle-down absolute bottom-[-8px] right-[4px] h-0 w-0" />
               </div>
               {editingLink ? (
@@ -309,22 +311,23 @@ export default function Editor({
                       setEditingLink(() => false);
                     }}
                   >
-                    <input
-                      onChange={hangleLinkInputChange}
+                    <Input
+                      onChange={handleLinkInputChange}
                       value={linkInput}
                       className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline"
                     />
-                    <button
+                    <Button
+                      size={"icon"}
                       type="submit"
-                      className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                      className="relative right-[-3px] flex items-center justify-end bg-transparent pr-[4px]"
                     >
                       ✅
-                    </button>
+                    </Button>
                   </form>
                 </div>
               ) : (
                 <div className="flex items-center justify-center">
-                  <button
+                  <Button
                     onClick={() => {
                       editor.chain().focus().unsetLink().run();
                       setLinkInput("");
@@ -333,7 +336,7 @@ export default function Editor({
                     className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
                   >
                     Delete link
-                  </button>
+                  </Button>
                 </div>
               )}
             </div>
@@ -348,14 +351,14 @@ export default function Editor({
                   addingLink ? "border-r border-zinc-500" : ""
                 } relative`}
               >
-                <button
+                <Button
                   onClick={() => {
                     setAddingLink(true);
                   }}
                   className="w-[100%] px-[10px] py-[8px] text-[10px] font-normal leading-normal text-white "
                 >
                   Add link
-                </button>
+                </Button>
                 <div className="triangle-down absolute bottom-[-8px] right-[4px] h-0 w-0" />
               </div>
               {addingLink && (
@@ -372,20 +375,18 @@ export default function Editor({
                       setAddingLink(() => false);
                     }}
                   >
-                    <input
-                      onChange={({ target }) => {
-                        const { value } = target;
-                        setLinkInput(value);
-                      }}
+                    <Input
+                      onChange={handleLinkInputChange}
                       value={linkInput}
                       className=" link-input h-[20px] overflow-x-auto bg-neutral-900 pl-[5px] text-[10px] font-normal leading-normal text-white underline"
                     />
-                    <button
+                    <Button
+                      size={"icon"}
                       type="submit"
-                      className="flex items-center justify-end pl-[3px] text-xs font-normal leading-normal text-white"
+                      className="relative right-[-3px] flex items-center justify-end bg-transparent pr-[4px]"
                     >
                       ✅
-                    </button>
+                    </Button>
                   </form>
                 </div>
               )}
@@ -398,7 +399,7 @@ export default function Editor({
       {isEditorFocused && (
         <div className="mt-[15px] flex justify-between pb-[10px]">
           <div className="flex">
-            <button
+            <Button
               onClick={handleOnSave}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -406,15 +407,16 @@ export default function Editor({
                 background: "#4A558E",
                 border: "0.50px #252D54 solid",
               }}
-              className="mr-[8px] inline-flex h-[30px] w-[105px] items-center justify-center gap-1 rounded-[3px] px-2.5 py-[3px]"
+              className=" mr-[8px] inline-flex h-[30px] w-[105px] items-center justify-center gap-1 rounded-[3px] px-2.5 py-[3px] hover:bg-hoverBlue"
             >
               <p className="text-xs font-bold leading-normal text-white">
                 Save changes
               </p>
-            </button>
+            </Button>
 
             <div>
-              <button
+              <Button
+                variant={"outline"}
                 onClick={handleOnDiscard}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
@@ -427,19 +429,20 @@ export default function Editor({
                 >
                   Discard
                 </p>
-              </button>
+              </Button>
             </div>
           </div>
           {!hideDeleteButton && (
             <div>
-              <button
+              <Button
+                variant={"link"}
                 onClick={handleDelete}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 className="text-right text-xs font-normal leading-normal text-zinc-500 underline"
               >
                 delete section
-              </button>
+              </Button>
             </div>
           )}
         </div>

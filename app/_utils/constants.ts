@@ -1,6 +1,6 @@
 export const navItems = [
   {
-    title: "Findings + Insights",
+    title: "Survey Insights",
     href: "/blog",
   },
   {
@@ -8,7 +8,7 @@ export const navItems = [
     href: "/about",
   },
   {
-    title: "Contact",
-    href: "/contact",
+    title: "Retrieve existing policy",
+    href: "/existing",
   },
 ];

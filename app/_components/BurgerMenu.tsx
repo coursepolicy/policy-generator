@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import burgerMenuOpen from "@/public/images/burger-open.svg";
 import burgerMenuClose from "@/public/images/burger-close.svg";
+import { Button } from "@/components/ui/button";
 
 interface BurgerMenuProps {
   toggleMenu: (pref: boolean) => void;
@@ -15,19 +16,22 @@ export default function BurgerMenu({
   return (
     <>
       {isMenuOpen ? (
-        <Image
-          className="cursor-pointer md:hidden"
-          alt="Opened burger menu"
-          src={burgerMenuOpen}
+        <Button
+          variant={"ghost"}
+          className="m-0 h-[100%] bg-hoverBlue p-0 md:hidden"
+          asChild
           onClick={() => toggleMenu(!isMenuOpen)}
-        />
+        >
+          <Image alt="Opened burger menu" src={burgerMenuOpen} />
+        </Button>
       ) : (
-        <div
-          className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center md:hidden"
+        <Button
+          variant={"ghost"}
+          className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center hover:bg-hoverBlue md:hidden"
           onClick={() => toggleMenu(!isMenuOpen)}
         >
           <Image alt="Closed burger menu" src={burgerMenuClose} />
-        </div>
+        </Button>
       )}
     </>
   );

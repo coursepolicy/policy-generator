@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import greenPointer from "../../public/images/green-pointer.svg";
 import { navItems } from "../_utils/constants";
+import { Button } from "@/components/ui/button";
 
 interface NavigationAltProps {
   toggleMenu: (pref: boolean) => void;
@@ -14,32 +15,52 @@ export default function NavigationAlt({
   toggleMenu,
 }: NavigationAltProps) {
   return (
-    <nav className="absolute top-[50px] z-10 w-[100%] bg-indigo-900 md:hidden">
+    <>
       {isMenuOpen && (
-        <>
-          {navItems.map((item, i) => (
-            <Link href={item.href} onClick={() => toggleMenu(false)} key={i}>
-              <div className="h-[49px] border-t-[1px] border-slate-700">
-                <div className="ml-[26px] mt-[15px] text-sm font-bold leading-normal text-white">
-                  {item.title}
-                </div>
-              </div>
-            </Link>
-          ))}
-          <Link href="/generate" onClick={() => toggleMenu(false)}>
-            <div className="h-[49px] border-t-[1px] border-slate-700">
-              <div className="ml-[26px] mt-[11px] flex items-center text-sm font-bold leading-normal text-white">
-                <div className="text-sm font-bold leading-normal text-emerald-300">
-                  Generate a Policy
-                </div>
-                <div className="ml-[4px]">
-                  <Image alt="Green right pointed arrow" src={greenPointer} />
-                </div>
-              </div>
-            </div>
-          </Link>
-        </>
+        <nav
+          className="absolute top-[50px] z-10 w-[100%] md:hidden"
+          style={{ backgroundColor: "#364071" }}
+        >
+          <ul className="list-none">
+            {navItems.map((item, i) => (
+              <li
+                key={i}
+                className="h-[49px]"
+                style={{ borderBottom: "0.50px #2D3665 solid" }}
+              >
+                <Button
+                  asChild
+                  variant={"link"}
+                  onClick={() => toggleMenu(false)}
+                  className="ml-[26px] text-sm font-bold leading-normal text-white"
+                >
+                  <Link href={item.href}>{item.title}</Link>
+                </Button>
+              </li>
+            ))}
+            <li
+              className="h-[49px]"
+              style={{ borderBottom: "0.50px #2D3665 solid" }}
+            >
+              <Button
+                asChild
+                variant={"link"}
+                className="ml-[26px] text-sm font-bold leading-normal"
+                onClick={() => toggleMenu(false)}
+              >
+                <Link href="/generate">
+                  <div className="text-sm font-bold leading-normal text-coursePolicyLightGreen">
+                    Generate a Policy
+                  </div>
+                  <div className="ml-[4px]">
+                    <Image alt="Green right pointed arrow" src={greenPointer} />
+                  </div>
+                </Link>
+              </Button>
+            </li>
+          </ul>
+        </nav>
       )}
-    </nav>
+    </>
   );
 }

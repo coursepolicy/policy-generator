@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
@@ -7,15 +8,19 @@ interface LogoProps {
 
 export default function Logo({ toggleMenu }: LogoProps) {
   return (
-    <Link href="/" onClick={() => toggleMenu(false)}>
-      <div className="ml-[16px] md:ml-[32px]">
+    <Button
+      asChild
+      variant={"link"}
+      className="ml-[16px] no-underline hover:no-underline md:ml-[32px]"
+    >
+      <Link href="/" onClick={() => toggleMenu(false)}>
         <span className="text-xl font-bold leading-[35px] text-white md:text-2xl md:leading-9">
           CoursePolicy.
         </span>
-        <span className="text-xl font-bold leading-[35px] text-coursePolicyGreen md:text-2xl md:leading-9">
+        <span className="text-xl font-bold leading-[35px] text-coursePolicyLightGreen md:text-2xl md:leading-9">
           AI
         </span>
-      </div>
-    </Link>
+      </Link>
+    </Button>
   );
 }

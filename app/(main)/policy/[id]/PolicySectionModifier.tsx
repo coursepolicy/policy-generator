@@ -4,6 +4,7 @@ import { DragEndEvent } from "@dnd-kit/core";
 
 import Image from "next/image";
 import { PolicySections } from "@/app/_utils/";
+import { Button } from "@/components/ui/button";
 
 export default function SectionModifier({
   isReordering,
@@ -30,7 +31,8 @@ export default function SectionModifier({
       className="relative flex flex-col md:flex-row md:justify-end"
       ref={parentRef}
     >
-      <button
+      <Button
+        variant={"outline"}
         className={`inline-flex h-9 w-[150px] items-center justify-center gap-1.5 rounded-[3px] border border-indigo-900 px-3 py-1.5 ${
           isReordering ? "bg-gray-200" : "bg-white"
         } border-black px-3 py-1.5`}
@@ -47,7 +49,7 @@ export default function SectionModifier({
             alt="down arrow image"
           />
         </div>
-      </button>
+      </Button>
     </div>
   );
 }

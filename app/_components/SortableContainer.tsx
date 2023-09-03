@@ -10,6 +10,7 @@ import {
 } from "@dnd-kit/sortable";
 import { MeasuringStrategy } from "@dnd-kit/core";
 import { PolicySections } from "../_utils";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 type Props = {
   surveyContents: PolicySections;
