@@ -263,7 +263,11 @@ export default function Editor({
 
   return (
     <div
-      className="editor-container"
+      className={`editor-container  hover:shadow-editing-shawow ${
+        isEditorFocused
+          ? "shadow-editing-shawow"
+          : "hover:shadow-editing-shawow"
+      }`}
       onBlur={handleEditorOnBlur}
       onFocus={handleEditorOnFocus}
       ref={parentRef}

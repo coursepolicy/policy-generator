@@ -213,8 +213,8 @@ ul {
 .editor-container:hover {
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
 }
+
 
 .editor-container:hover:focus-within {
   cursor: text;

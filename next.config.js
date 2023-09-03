@@ -8,6 +8,7 @@ const nextConfig = {
   env: {
     SURVEY_URL: process.env.SURVEY_URL,
     BASE_URL: process.env.BASE_URL,
+    SAMPLE_PDF_URL: process.env.SAMPLE_PDF_URL,
   },
 };
 

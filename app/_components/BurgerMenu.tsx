@@ -21,6 +21,8 @@ export default function BurgerMenu({
           className="m-0 h-[100%] bg-hoverBlue p-0 md:hidden"
           asChild
           onClick={() => toggleMenu(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
         >
           <Image alt="Opened burger menu" src={burgerMenuOpen} />
         </Button>
@@ -29,6 +31,8 @@ export default function BurgerMenu({
           variant={"ghost"}
           className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center hover:bg-hoverBlue md:hidden"
           onClick={() => toggleMenu(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
         >
           <Image alt="Closed burger menu" src={burgerMenuClose} />
         </Button>

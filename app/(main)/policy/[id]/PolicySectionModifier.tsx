@@ -36,6 +36,8 @@ export default function SectionModifier({
         className={`inline-flex h-9 w-[150px] items-center justify-center gap-1.5 rounded-[3px] border border-indigo-900 px-3 py-1.5 ${
           isReordering ? "bg-gray-200" : "bg-white"
         } border-black px-3 py-1.5`}
+        aria-expanded={isReordering}
+        aria-controls="reorder-sections"
         onClick={changeIsReorderingState}
       >
         <p className="text-center text-xs font-bold leading-normal text-indigo-900">

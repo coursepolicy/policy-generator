@@ -17,11 +17,11 @@ import {
   savePolicy,
   AiPolicyResponse,
 } from "@/app/_utils/";
-import PolicySectionModifier from "../generate/policy/[id]/PolicySectionModifier";
-import PolicySection from "../generate/policy/[id]/PolicySection";
+import PolicySectionModifier from "../policy/[id]/PolicySectionModifier";
+import PolicySection from "../policy/[id]/PolicySection";
 import SampleTextEditing from "./SampleTextEditing";
 import SortableContainer from "@/app/_components/SortableContainer";
-import PolicyNewSections from "../generate/policy/[id]/PolicyNewSections";
+import PolicyNewSections from "../policy/[id]/PolicyNewSections";
 import { Tooltip, UpdatedAt } from "../_components";
 
 export default function Result({

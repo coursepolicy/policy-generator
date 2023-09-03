@@ -15,7 +15,7 @@ export default async function GeneratePolicyPreview({ params: { id } }: Props) {
       <div className="mb-[40px] flex flex-col items-center">
         <h1>Preview Page</h1>
         <a
-          href={`https://qwmkqfgswe.execute-api.us-west-2.amazonaws.com/generated-pdf?generatedId=${id}`}
+          href={`${process.env.BASE_URL}/generated-pdf?generatedId=${id}`}
           target="_blank"
         >
           <strong>Download PDF</strong>
