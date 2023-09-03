@@ -62,6 +62,10 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundImage: {
+        'bg-mobile': "url('/images/bg-mobile.svg')",
+        'bg-desktop': "url('/images/bg-desktop.svg')",
+      },
       fontFamily: {
         sans: ["var(--font-poppins)", "inter", "sans-serif"],
       },

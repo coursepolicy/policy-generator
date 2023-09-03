@@ -24,7 +24,11 @@ export default function BurgerMenu({
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
-          <Image alt="Opened burger menu" src={burgerMenuOpen} />
+          <Image
+            alt="Opened burger menu"
+            src={burgerMenuOpen}
+            className="cursor-pointer"
+          />
         </Button>
       ) : (
         <Button

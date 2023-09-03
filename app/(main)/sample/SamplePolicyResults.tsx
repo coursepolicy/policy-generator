@@ -210,8 +210,6 @@ export default function Result({
     }
   }, [heading, initialSections, initialHeading, surveyContents]);
 
-  console.log("heading", heading);
-  console.log("surveyContents", surveyContents);
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
