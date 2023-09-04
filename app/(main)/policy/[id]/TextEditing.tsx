@@ -10,13 +10,15 @@ export default function TextEditing({
   id: string;
 }) {
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
   return (
     <div className="ml-[8px]">
       <Button
-        onClick={() => {
-          handleUpdatePolicy().then(() =>
-            router.push(`/generate/policy/${id}/preview`),
-          );
+        loading={loading}
+        onClick={async () => {
+          setLoading(() => true);
+          await handleUpdatePolicy();
+          router.push(`/policy/${id}/preview`);
         }}
         className="inline-flex h-9 w-[92px] items-center justify-center gap-1.5 rounded-[3px] bg-coursePolicyGreen px-3 py-1.5 hover:bg-coursePolicyHoverGreen"
       >

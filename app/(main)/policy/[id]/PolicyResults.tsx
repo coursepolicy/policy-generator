@@ -134,34 +134,12 @@ export default function Result({
     };
 
     try {
-      await toast.promise(
-        savePolicy(JSON.stringify(payload), id as string),
-        {
-          loading: "Saving...",
-          success: "Changes have been saved!",
-          error: "Something went wrong",
-        },
-        {
-          style: {
-            minWidth: "250px",
-          },
-          success: {
-            style: {
-              width: 228,
-              height: 59,
-              background: "#DEF9E2",
-              borderRadius: 0,
-            },
-          },
-        },
-      );
+      await savePolicy(JSON.stringify(payload), id as string);
+      toast.success("Changes have been saved!");
     } catch (error) {
-      console.error(JSON.stringify(error));
+      toast.error("Something went wrong");
       throw new Error(JSON.stringify(error));
     }
-
-    setSurveyContents(() => surveyContents);
-    setHeading(() => heading);
   };
 
   const changeIsReorderingState = () => {

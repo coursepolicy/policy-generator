@@ -71,9 +71,8 @@ export default function Editor({
   const [addingLink, setAddingLink] = useState(false);
   const [editingLink, setEditingLink] = useState(false);
   const [linkInput, setLinkInput] = useState("");
-  const [linked, setLinked] = useState(false);
-  const [highlighted, setHighlighted] = useState(true);
   const [hoveringLinkMenu, setHoveringLinkMenu] = useState(false);
+  const [loading, setLoading] = useState(false);
   const parentRef = useRef(null);
 
   const htmlString = editor?.getHTML();
@@ -99,25 +98,28 @@ export default function Editor({
 
     if (!subSectionId) {
       handleDeleteSection(sectionId);
-      setIsEditorFocused(false);
+      setIsEditorFocused(() => false);
       return;
     }
 
     handleDeleteSubSection(sectionId, subSectionId, sectionIndex);
-    setIsEditorFocused(false);
+    setIsEditorFocused(() => false);
   };
 
   const handleOnDiscard = () => {
     editor?.commands.setContent(savedContent);
-    setIsEditorFocused(false);
+    setIsEditorFocused(() => false);
   };
 
   const handleOnSave = async () => {
     if (!htmlString) return;
 
+    setLoading(() => true);
     await handleUpdatePolicy();
-    setSavedContent(htmlString);
-    setIsEditorFocused(false);
+
+    setLoading(() => false);
+    setSavedContent(() => htmlString);
+    setIsEditorFocused(() => false);
   };
 
   const handleArraySectionChanges = useCallback(() => {
@@ -217,7 +219,7 @@ export default function Editor({
     handleHeadingOnChanges(htmlString);
   }, [handleHeadingOnChanges, heading, htmlString]);
 
-  const setLink = useCallback(
+  const handleSetLink = useCallback(
     (str: string) => {
       if (!editor) return;
 
@@ -241,8 +243,7 @@ export default function Editor({
   );
 
   const handleLinkInputChange = ({ target: { value } }: any) => {
-    console.log(value);
-    setLinkInput(value);
+    setLinkInput(() => value);
   };
 
   useEffect(() => {
@@ -278,8 +279,8 @@ export default function Editor({
           onMouseEnter={() => setIsHovering(true)}
           onBlur={() => {
             if (!hoveringLinkMenu) {
-              setAddingLink(false);
-              setLinkInput("");
+              setAddingLink(() => false);
+              setLinkInput(() => "");
             }
           }}
         >
@@ -310,7 +311,7 @@ export default function Editor({
                     onMouseLeave={() => setHoveringLinkMenu(false)}
                     onSubmit={(e) => {
                       e.preventDefault();
-                      setLink(linkInput);
+                      handleSetLink(linkInput);
                       setLinkInput(() => "");
                       setEditingLink(() => false);
                     }}
@@ -374,7 +375,7 @@ export default function Editor({
                     onMouseLeave={() => setHoveringLinkMenu(false)}
                     onSubmit={(e) => {
                       e.preventDefault();
-                      setLink(linkInput);
+                      handleSetLink(linkInput);
                       setLinkInput(() => "");
                       setAddingLink(() => false);
                     }}
@@ -405,6 +406,7 @@ export default function Editor({
           <div className="flex">
             <Button
               onClick={handleOnSave}
+              loading={loading}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               style={{

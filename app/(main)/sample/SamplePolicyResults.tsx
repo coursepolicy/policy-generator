@@ -144,27 +144,36 @@ export default function Result({
       },
     };
 
-    let policyId;
-
     try {
       let generatedPolicyId = uuid4();
 
-      const { data } = await savePolicy(
-        JSON.stringify(payload),
-        samplePolicyId,
-        generatedPolicyId,
+      const savedPolicyResponse = await toast.promise(
+        savePolicy(JSON.stringify(payload), samplePolicyId, generatedPolicyId),
+        {
+          loading: "Creating a new policy...",
+          success: "A new policy has been created!",
+          error: "Something went wrong",
+        },
+        {
+          style: {
+            minWidth: "250px",
+          },
+          success: {
+            style: {
+              width: 228,
+              height: 59,
+              background: "#DEF9E2",
+              borderRadius: 0,
+            },
+          },
+        },
       );
 
-      policyId = data.id;
+      router.push(`/policy/${savedPolicyResponse.data.id}`);
     } catch (error) {
-      toast.error("Something went wrong");
       console.error(JSON.stringify(error));
       throw new Error(JSON.stringify(error));
     }
-    if (!policyId) return;
-
-    toast.success("A new policy has been created!");
-    router.push(`/generate/policy/${policyId}`);
   };
 
   const changeIsReorderingState = () => {

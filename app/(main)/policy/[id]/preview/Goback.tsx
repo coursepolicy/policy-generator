@@ -8,7 +8,7 @@ export default function Goback({ policyId }: { policyId: string }) {
     <div className="preview-goback hover:underline ">
       <Button
         onClick={() => {
-          window.location.href = `/generate/policy/${policyId}`;
+          window.location.href = `/policy/${policyId}`;
         }}
       >
         <strong>Go back</strong>
