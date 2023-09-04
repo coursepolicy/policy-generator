@@ -13,7 +13,7 @@ const components = [CarouselSlide, CarouselSlide, CarouselSlide];
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center">
+    <main className="mb-[150px] flex flex-col items-center justify-center">
       <h1 className="max-w-[1018px] self-center p-8 text-center text-[50px] font-bold leading-[70px] text-neutral-900 md:pt-14">
         The step-by-step AI policy generator for university course instructor
       </h1>
@@ -28,18 +28,22 @@ export default function Home() {
       </p>
       <div className="my-[60px] grid grid-flow-col gap-6">
         <Button
+          asChild
           className="inline-flex h-[41px] w-[199px] items-center justify-start gap-2.5 rounded-[100px] 
          bg-coursePolicyGreen px-6 py-2"
         >
-          Generate AI Policy
-          <Image alt="right pointed arrow" src={rightArrowWhite} />
+          <Link href="/generate">
+            Generate AI Policy{" "}
+            <Image alt="right pointed arrow" src={rightArrowWhite} />
+          </Link>
         </Button>
         <Button
+          asChild
           variant={"outline"}
           className="inline-flex h-[41px] w-[210px] items-start justify-start gap-2.5 rounded-[100px] border border-slate-600
           bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-slate-600"
         >
-          Retrieve existing policy
+          <Link href="/existing">Retrieve existing policy</Link>
         </Button>
       </div>
       <div
@@ -66,12 +70,15 @@ export default function Home() {
           <div className="flex justify-evenly">
             <div>
               <Button
+                asChild
                 className=" flex h-[41px] w-[220px] items-center justify-start gap-2.5 rounded-[100px] border border-[#4A558E]
               px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] sm:mt-[10px] lg:mt-[45px]"
                 variant={"outline"}
               >
-                Read survey insights
-                <Image alt="right pointed arrow" src={rightArrow} />
+                <Link href="/blog">
+                  Read survey insights{" "}
+                  <Image alt="right pointed arrow" src={rightArrow} />
+                </Link>
               </Button>
             </div>
             <div>
