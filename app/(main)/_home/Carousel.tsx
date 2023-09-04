@@ -1,15 +1,17 @@
+"use client";
+
 import React, { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel, {
-  EmblaCarouselType,
-  EmblaOptionsType,
-} from "embla-carousel-react";
+import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
+import CarouselSlide from "./CarouselSlide";
 
-type Props = {
-  components: React.FC<React.HTMLProps<HTMLDivElement>>[];
-};
+const components: React.FC<React.HTMLProps<HTMLDivElement>>[] = [
+  CarouselSlide,
+  CarouselSlide,
+  CarouselSlide,
+];
 
-export default function Carousel({ components }: Props) {
+export default function Carousel() {
   const [viewportRef, embla] = useEmblaCarousel({});
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
