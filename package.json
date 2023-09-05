@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "deploy:local": "AWS_PROFILE=staging && sst deploy --stage ctantay",
-    "deploy:staging": "AWS_PROFILE=staging && sst deploy --stage staging"
+    "deploy:staging": "AWS_PROFILE=staging && sst deploy --stage staging",
+    "deploy:prod": "AWS_PROFILE=production && sst deploy --stage production"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

@@ -14,7 +14,9 @@ const components: React.FC<React.HTMLProps<HTMLDivElement>>[] = [
 export default function Carousel() {
   const [viewportRef, embla] = useEmblaCarousel({});
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>(
+    components.map((_, index) => index),
+  );
 
   const scrollTo = useCallback(
     (index: number) => embla && embla.scrollTo(index),
@@ -36,6 +38,7 @@ export default function Carousel() {
     embla.on("select", onSelect);
   }, [embla, onInit, onSelect]);
 
+  console.log(scrollSnaps);
   return (
     <section aria-label="hero carousel">
       <div

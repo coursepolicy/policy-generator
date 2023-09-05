@@ -1,12 +1,12 @@
-import CTA from "./CTA";
+import CTAButtonSection from "./CTAButtonSection";
 import CarouselContainer from "./CarouselContainer";
-import HomeHeading from "./HomeHeading";
+import HomeHeadingCopyText from "./HomeHeadingCopyText";
 
 export default function HomeContainer() {
   return (
     <main className="mb-[150px] flex flex-col items-center justify-center">
-      <HomeHeading />
-      <CTA />
+      <HomeHeadingCopyText />
+      <CTAButtonSection />
       <CarouselContainer />
     </main>
   );

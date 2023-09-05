@@ -18,6 +18,7 @@ const config: Config = {
       center: true,
       padding: "2rem",
       screens: {
+        xl: "1100px",
         "2xl": "1400px",
       },
     },
@@ -63,8 +64,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'bg-mobile': "url('/images/bg-mobile.svg')",
-        'bg-desktop': "url('/images/bg-desktop.svg')",
+        "bg-mobile": "url('/images/bg-mobile.svg')",
+        "bg-desktop": "url('/images/bg-desktop.svg')",
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "inter", "sans-serif"],
@@ -72,7 +73,7 @@ const config: Config = {
       backgroundColor: {
         coursePolicyGreen: "#0AA680",
         coursePolicyHoverGreen: "#078A6A",
-        hoverBlue: "#1C2344"
+        hoverBlue: "#1C2344",
       },
       textColor: {
         coursePolicyLightGreen: "#62DABD",
@@ -106,8 +107,8 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       boxShadow: {
-        'editing-shawow': '0px 4px 15px 0px rgba(0, 0, 0, 0.3)'
-      }
+        "editing-shawow": "0px 4px 15px 0px rgba(0, 0, 0, 0.3)",
+      },
     },
   },
   plugins: [],

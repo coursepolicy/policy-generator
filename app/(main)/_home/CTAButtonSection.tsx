@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 
-export default function CTA() {
+export default function CTAButtonSection() {
   return (
-    <div className="my-[60px] grid grid-flow-col gap-6">
+    <div className="my-[30px] grid grid-flow-row justify-center gap-6 md:mb-[90px] md:mt-[30px] md:grid-flow-col md:gap-4">
       <Button
         asChild
-        className="inline-flex h-[41px] w-[199px] items-center justify-start gap-2.5 rounded-[100px] 
+        className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] 
          bg-coursePolicyGreen px-6 py-2"
       >
         <Link href="/generate">
@@ -19,7 +19,7 @@ export default function CTA() {
       <Button
         asChild
         variant={"outline"}
-        className="inline-flex h-[41px] w-[210px] items-start justify-start gap-2.5 rounded-[100px] border border-slate-600
+        className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-slate-600
           bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-slate-600"
       >
         <Link href="/existing">Retrieve existing policy</Link>
