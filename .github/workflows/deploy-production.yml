@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 18
 
-      - run: npm ci
+      - run: yarn install
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -40,4 +40,4 @@ jobs:
 
       - name: Deploy app to production
         run: |
-          run sst deploy --stage production
+          yarn sst deploy --stage production
