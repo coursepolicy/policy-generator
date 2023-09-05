@@ -14,6 +14,8 @@ on:
     # workflow_input:
     #   description: 'The input to pass to the workflow run'
     #   required: false
+env:
+  AWS_REGION: us-west-1
 
 concurrency: merge-${{ github.ref }}
 
@@ -39,7 +41,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID_STAGING }}:role/${{ secrets.AWS_ROLE_NAME }}
-          aws-region: us-west-2
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy app to staging
         run: |
