@@ -2,15 +2,10 @@ name: "Deploy to Production"
 
 on:
   workflow_dispatch:
-  workflow_call:
-    # inputs: TODO input should be branch/tag
-    # workflow_id:
-    #   description: 'The ID of the workflow to run'
-    #   required: true
-    #   default: 'deploy.yml'
-    # workflow_input:
-    #   description: 'The input to pass to the workflow run'
-    #   required: false
+    inputs:
+      environment:
+        description: 'Deployment environment (enter "production" to deploy)'
+        required: true
 env:
   AWS_REGION: us-west-1
 
@@ -23,6 +18,7 @@ permissions:
 jobs:
   production_deploy:
     runs-on: ubuntu-latest
+    if: github.event.inputs.environment == 'production'
     steps:
       - name: Checkout
         uses: actions/checkout@v3

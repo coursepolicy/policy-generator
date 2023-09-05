@@ -5,15 +5,7 @@ on:
     branches:
       - master
   workflow_dispatch:
-  workflow_call:
-    # inputs: TODO input should be branch/tag
-    # workflow_id:
-    #   description: 'The ID of the workflow to run'
-    #   required: true
-    #   default: 'deploy.yml'
-    # workflow_input:
-    #   description: 'The input to pass to the workflow run'
-    #   required: false
+
 env:
   AWS_REGION: us-west-1
 
