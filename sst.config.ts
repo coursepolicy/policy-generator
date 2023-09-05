@@ -1,5 +1,6 @@
 import { SSTConfig } from "sst";
 import { NextjsSite } from "sst/constructs";
+import { IAM } from "./lib/sst/stacks/oid-connect-github";
 
 export default {
   config(input) {
@@ -17,5 +18,6 @@ export default {
         SiteUrl: site.url,
       });
     });
+    app.stack(IAM);
   },
 } satisfies SSTConfig;

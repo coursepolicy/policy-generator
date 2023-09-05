@@ -1,0 +1,39 @@
+name: "Deploy to Staging"
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  workflow_call:
+    # inputs: TODO input should be branch/tag
+    # workflow_id:
+    #   description: 'The ID of the workflow to run'
+    #   required: true
+    #   default: 'deploy.yml'
+    # workflow_input:
+    #   description: 'The input to pass to the workflow run'
+    #   required: false
+
+concurrency: merge-${{ github.ref }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  staging_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID_STAGING }}:role/${{ secrets.AWS_ROLE_NAME }}
+          aws-region: us-west-2
+
+      - name: Deploy app to staging
+        run: |
+          run sst deploy --stage staging
