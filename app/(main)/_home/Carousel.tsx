@@ -38,12 +38,16 @@ export default function Carousel() {
     embla.on("select", onSelect);
   }, [embla, onInit, onSelect]);
 
-  console.log(scrollSnaps);
   return (
-    <section aria-label="hero carousel">
+    <section
+      aria-label="hero carousel"
+      className="grid items-center justify-center xl:justify-start"
+    >
       <div
         ref={viewportRef}
-        className="relative min-h-[356px] w-screen max-w-[573px] overflow-hidden sm:w-[573px]"
+        className="relative min-h-[356px] w-screen max-w-[573px] overflow-hidden sm:min-h-[284px] lg:w-[573px] lg:max-w-[458px]
+        xl:min-h-[356px] xl:max-w-[573px]
+        "
       >
         <div className=" flex touch-pan-x">
           {components.map((Component, index) => (

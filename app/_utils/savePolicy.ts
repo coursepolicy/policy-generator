@@ -11,7 +11,7 @@ export async function savePolicy(
   generatedId?: string,
 ): Promise<{ data: { id: string; status: PolicyStatus } }> {
   const response = await fetch(
-    `${process.env.BASE_URL}/policy?id=${id}${
+    `${process.env.LAMBDAS_API_BASE_URL}/policy?id=${id}${
       generatedId ? `&generatedId=${generatedId}` : ""
     }`,
     {

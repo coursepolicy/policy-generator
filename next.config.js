@@ -7,7 +7,7 @@ const nextConfig = {
   },
   env: {
     SURVEY_URL: process.env.SURVEY_URL,
-    BASE_URL: process.env.BASE_URL,
+    LAMBDAS_API_BASE_URL: process.env.LAMBDAS_API_BASE_URL,
     SAMPLE_PDF_URL: process.env.SAMPLE_PDF_URL,
   },
 };

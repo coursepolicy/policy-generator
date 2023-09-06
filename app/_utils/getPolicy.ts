@@ -5,7 +5,7 @@ import "dotenv/config";
 
 export const getPolicy = async (id: string) => {
   const response = await fetch(
-    `${process.env.BASE_URL}/policy?generatedId=${id}`,
+    `${process.env.LAMBDAS_API_BASE_URL}/policy?generatedId=${id}`,
     {
       cache: "no-store",
       method: "get",

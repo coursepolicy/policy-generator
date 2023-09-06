@@ -220,7 +220,6 @@ export function SortableSection({
             pointerIntersections
           : rectIntersection(args);
       let overId = getFirstCollision(intersections, "id");
-      console.log(overId);
 
       if (overId != null) {
         if (overId in items) {

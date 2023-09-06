@@ -15,7 +15,7 @@ export default function SubmitForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
-  console.log(loading);
+
   return (
     <form
       onSubmit={async (e) => {

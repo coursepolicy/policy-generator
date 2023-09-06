@@ -176,7 +176,6 @@ export default function Editor({
   ]);
 
   const handleStringSectionChanges = useCallback(() => {
-    console.log();
     if (!handleSectionsOnChanges || !sections) return;
     if (!sections) return;
     const newSections: AiPolicy["sections"] = sections.map(
