@@ -18,11 +18,12 @@ export default function BurgerMenu({
       {isMenuOpen ? (
         <Button
           variant={"ghost"}
-          className="m-0 h-[100%] bg-hoverBlue p-0 md:hidden"
+          className="m-0 h-[100%] rounded-none bg-hoverBlue p-0 md:hidden"
           asChild
           onClick={() => toggleMenu(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
+          aria-label="Navigation menu"
         >
           <Image
             alt="Opened burger menu"
@@ -33,10 +34,11 @@ export default function BurgerMenu({
       ) : (
         <Button
           variant={"ghost"}
-          className="flex h-[50px] w-[50px] cursor-pointer items-center justify-center hover:bg-hoverBlue md:hidden"
+          className="flex min-h-[50px] min-w-[50px] cursor-pointer items-center justify-center hover:bg-hoverBlue md:hidden"
           onClick={() => toggleMenu(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
+          aria-label="Navigation menu"
         >
           <Image alt="Closed burger menu" src={burgerMenuClose} />
         </Button>

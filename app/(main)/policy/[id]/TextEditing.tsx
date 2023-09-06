@@ -12,7 +12,7 @@ export default function TextEditing({
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   return (
-    <div className="ml-[8px]">
+    <div className={`ml-[8px] ${loading ? "relative top-[4px]" : ""}`}>
       <Button
         loading={loading}
         onClick={async () => {

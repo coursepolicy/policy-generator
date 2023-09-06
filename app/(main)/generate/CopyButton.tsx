@@ -18,26 +18,44 @@ export default function CopyButton({ text, ...rest }: { text: string }) {
   };
 
   return (
-    <Button
-      {...rest}
-      variant={"ghost"}
-      size={"icon"}
-      className="h-[30px] hover:bg-red-100"
-      onClick={async () => {
-        try {
-          await copyTextToClipboard(text);
-          setCopied(() => true);
-          setTimeout(() => setCopied(() => false), 1000);
-        } catch (error) {
-          throw new Error("Failed to copy text: " + error);
-        }
-      }}
-    >
+    <>
       {copied ? (
-        <Image alt="done copying" src={doneImage} />
+        <Button
+          {...rest}
+          variant={"ghost"}
+          size={"icon"}
+          className="h-[30px] hover:bg-red-100"
+          onClick={async () => {
+            try {
+              await copyTextToClipboard(text);
+              setCopied(() => true);
+              setTimeout(() => setCopied(() => false), 1000);
+            } catch (error) {
+              throw new Error("Failed to copy text: " + error);
+            }
+          }}
+        >
+          <Image alt="done copying" src={doneImage} />
+        </Button>
       ) : (
-        <Image alt="copy image" src={copyImage} />
+        <Button
+          {...rest}
+          variant={"ghost"}
+          size={"icon"}
+          className="h-[30px] hover:bg-red-100"
+          onClick={async () => {
+            try {
+              await copyTextToClipboard(text);
+              setCopied(() => true);
+              setTimeout(() => setCopied(() => false), 1000);
+            } catch (error) {
+              throw new Error("Failed to copy text: " + error);
+            }
+          }}
+        >
+          <Image alt="copy image" src={copyImage} />
+        </Button>
       )}
-    </Button>
+    </>
   );
 }

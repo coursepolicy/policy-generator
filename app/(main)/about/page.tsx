@@ -3,6 +3,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
+import websiteIcon from "@/public/images/socials/website-icon.svg";
+import githubIcon from "@/public/images/socials/linkedin-icon.svg";
+import linkedinIcon from "@/public/images/socials/github-icon.svg";
 
 const staff = [
   {
@@ -11,45 +14,64 @@ const staff = [
     title: "Product",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
+    picture: "",
     socials: [
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/maxhaolu/",
+      },
     ],
   },
   {
     id: 1,
     name: "Genesia Ting",
-    title: "PhD Student, University of Washington",
+    title: "Design",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
+    picture: "",
     socials: [
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
+      { id: 1, name: "Website", url: "www.github.com" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/genesiating/",
+      },
     ],
   },
   {
     id: 1,
     name: "Cecil John Tantay",
-    title: "PhD Student, University of Washington",
+    title: "Engineering",
     description:
-      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
+      "Outgoing employee at home in Vegas, Nevada and formerly a software engineer at Hotel Engine and L.A. Times",
+    picture: "/images/display/cj.png",
     socials: [
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
+      { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
+      { id: 1, name: "Website", url: "https://www.cjtantay.com/" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/cjtantay/",
+      },
     ],
   },
   {
     id: 1,
     name: "Kevin Zhang",
-    title: "PhD Student, University of Washington",
+    title: "Data",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-    socials: [
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
-      { id: 1, name: "Github", url: "ww.github.com", icon: "" },
-    ],
+    picture: "",
+    socials: [{ id: 1, name: "LinkedIn", url: "www.github.com" }],
   },
 ];
+
+const socialIconMapper: { [key: string]: React.JSX.Element } = {
+  github: <Image alt="github icon" src={githubIcon} />,
+  linkedin: <Image alt="linkedin icon" src={linkedinIcon} />,
+  website: <Image alt="website icon" src={websiteIcon} />,
+};
 
 export default function About() {
   return (
@@ -98,7 +120,10 @@ export default function About() {
           </Button>
         </div>
       </section>
-      <section className="my-[30px] border-y border-[#B4B4B4] py-[30px] md:my-[60px] md:py-[60px]">
+      <section
+        className="my-[30px] grid grid-flow-row gap-9 border-y border-[#B4B4B4] pb-[60px]
+       pt-[60px] md:my-[60px] md:gap-[60px]"
+      >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
           About the team
         </h2>
@@ -106,9 +131,17 @@ export default function About() {
           {staff.map((member) => (
             <article key={member.id}>
               <div className="grid grid-flow-row justify-center gap-3">
-                <div className="h-[242px] w-[100%] max-w-[242px] bg-zinc-300"></div>
+                <div className="relative h-[242px] w-[100%] max-w-[242px] overflow-hidden bg-zinc-300">
+                  <Image
+                    src={member.picture}
+                    width={242}
+                    height={242}
+                    alt={`${member.name} profile picture`}
+                    className=" max-h-[100%] max-w-[100%] object-cover object-center"
+                  />
+                </div>
                 <div className="grid grid-flow-row gap-3">
-                  <div>
+                  <div className="grid grid-flow-row gap-1">
                     <h3 className="w-[100%] max-w-[180px] text-xl font-bold leading-normal text-slate-500">
                       {member.name}
                     </h3>
@@ -122,10 +155,20 @@ export default function About() {
                 </div>
                 <div className="flex flex-col items-start">
                   {member.socials.map((social) => (
-                    <div key={social.id} className="flex">
-                      <div className="mr-[5px]">icon</div>
-                      <p>{social.name}</p>
-                    </div>
+                    <Button
+                      asChild
+                      variant={"ghost"}
+                      key={social.id}
+                      className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
+                      no-underline hover:bg-transparent"
+                    >
+                      <Link href={social.url}>
+                        <span className="mr-[5px] ">
+                          {socialIconMapper[social.name.toLowerCase()]}
+                        </span>
+                        <span className="hover:underline">{social.name}</span>
+                      </Link>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -140,9 +183,19 @@ export default function About() {
         </h3>
         <p className="text-sm font-normal leading-normal text-black">
           Are you a course instructor, student, university admin, or a
-          technologist? We would love to hear from you. Drop us an email at
-          <Button asChild variant={"link"} className="cursor-pointer">
-            <a>here@coursepolicy.ai</a>
+          technologist? We would love to hear from you. Drop us an email at{" "}
+          <Button
+            asChild
+            variant={"link"}
+            className="cursor-pointer p-0 text-blue-500"
+          >
+            <a
+              className="text-sm font-normal leading-normal text-blue-500"
+              href="mailto:here@coursepolicy.ai"
+              target="_blank"
+            >
+              here@coursepolicy.ai
+            </a>
           </Button>
         </p>
       </section>

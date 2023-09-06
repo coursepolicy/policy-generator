@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import greenPointer from "../../public/images/green-pointer.svg";
@@ -14,6 +16,42 @@ export default function NavigationAlt({
   isMenuOpen,
   toggleMenu,
 }: NavigationAltProps) {
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        toggleMenu(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    // allow users to open the meny with enter and space
+    const handleEnter = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        toggleMenu(true);
+      }
+    };
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      window.removeEventListener("keydown", handleEnter);
+    };
+  }, [toggleMenu]);
+
+  useEffect(() => {
+    // focus on the first link in the menu when it's opened
+    if (isMenuOpen) {
+      const firstLink = document.querySelector("nav a");
+      (firstLink as HTMLAnchorElement)?.focus();
+    }
+
+    // focus on the burger menu when it's closed
+    if (!isMenuOpen) {
+      const burgerMenu = document.querySelector(
+        "button[aria-label='Navigation menu']",
+      );
+      (burgerMenu as HTMLAnchorElement)?.focus();
+    }
+  }, [isMenuOpen]);
+
   return (
     <>
       {isMenuOpen && (
@@ -21,11 +59,11 @@ export default function NavigationAlt({
           className="absolute top-[50px] z-10 w-[100%] md:hidden"
           style={{ backgroundColor: "#364071" }}
         >
-          <ul className="list-none">
+          <ul className="borde list-none">
             {navItems.map((item, i) => (
               <li
                 key={i}
-                className="h-[49px]"
+                className="flex h-[49px] items-center"
                 style={{ borderBottom: "0.50px #2D3665 solid" }}
               >
                 <Button
@@ -39,22 +77,20 @@ export default function NavigationAlt({
               </li>
             ))}
             <li
-              className="h-[49px]"
+              className="flex h-[49px] items-center"
               style={{ borderBottom: "0.50px #2D3665 solid" }}
             >
               <Button
                 asChild
                 variant={"link"}
-                className="ml-[26px] text-sm font-bold leading-normal"
+                className="ml-[26px] text-sm font-bold leading-normal text-coursePolicyLightGreen"
                 onClick={() => toggleMenu(false)}
               >
                 <Link href="/generate">
-                  <div className="text-sm font-bold leading-normal text-coursePolicyLightGreen">
-                    Generate a Policy
-                  </div>
-                  <div className="ml-[4px]">
+                  Generate a Policy
+                  <span className="ml-[4px]">
                     <Image alt="Green right pointed arrow" src={greenPointer} />
-                  </div>
+                  </span>
                 </Link>
               </Button>
             </li>

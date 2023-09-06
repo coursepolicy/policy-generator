@@ -9,7 +9,7 @@ export default function CTAButtonSection() {
       <Button
         asChild
         className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] 
-         bg-coursePolicyGreen px-6 py-2"
+         bg-coursePolicyGreen px-6 py-2 text-sm font-semibold leading-[25px] text-white"
       >
         <Link href="/generate">
           Generate AI Policy{" "}
