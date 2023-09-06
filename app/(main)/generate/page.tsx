@@ -8,13 +8,13 @@ export default function Generate() {
   const uniqueId = uuidv4();
 
   return (
-    <main className="flex flex-col">
+    <>
       <NoticeMessage uniqueId={uniqueId} />
       <Iframe
         url={process.env.SURVEY_URL as string}
         className="h-[65vh] w-[100%] overflow-hidden border-none"
       />
       <CompletedSurveyButton uniqueId={uniqueId} />
-    </main>
+    </>
   );
 }

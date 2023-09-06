@@ -9,6 +9,6 @@ export const navItems = [
   },
   {
     title: "Retrieve existing policy",
-    href: "/existing",
+    href: "/retrieve",
   },
 ];

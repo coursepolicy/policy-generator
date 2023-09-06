@@ -1,13 +1,13 @@
 import Footer from "@/app/_components/Footer";
 
-export default function GenerateLayout({
+export default function PageLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <>
-      <main className="flex flex-col">{children}</main>
+      <main className="bg-white md:flex md:h-screen">{children}</main>
       <Footer />
     </>
   );

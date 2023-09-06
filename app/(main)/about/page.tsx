@@ -75,8 +75,8 @@ const socialIconMapper: { [key: string]: React.JSX.Element } = {
 
 export default function About() {
   return (
-    <main className="mx-auto my-0 w-[100%] max-w-[1040px] px-[20px] py-[30px] md:mt-[60px]">
-      <section className="grid grid-flow-row gap-5 md:gap-9">
+    <>
+      <section className="grid grid-flow-row gap-5 md:gap-6">
         <h1 className="w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           About this Project
         </h1>
@@ -121,8 +121,8 @@ export default function About() {
         </div>
       </section>
       <section
-        className="my-[30px] grid grid-flow-row gap-9 border-y border-[#B4B4B4] pb-[60px]
-       pt-[60px] md:my-[60px] md:gap-[60px]"
+        className="my-[30px] grid grid-flow-row gap-5 border-y border-[#B4B4B4] pb-[60px]
+       pt-[60px] md:my-[60px] md:gap-6"
       >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
           About the team
@@ -131,18 +131,18 @@ export default function About() {
           {staff.map((member) => (
             <article key={member.id}>
               <div className="grid grid-flow-row justify-center gap-3">
-                <div className="relative h-[242px] w-[100%] max-w-[242px] overflow-hidden bg-zinc-300">
+                <div className="relative h-60 w-60 overflow-hidden bg-zinc-300">
                   <Image
                     src={member.picture}
                     width={242}
                     height={242}
                     alt={`${member.name} profile picture`}
-                    className=" max-h-[100%] max-w-[100%] object-cover object-center"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
                   />
                 </div>
                 <div className="grid grid-flow-row gap-3">
                   <div className="grid grid-flow-row gap-1">
-                    <h3 className="w-[100%] max-w-[180px] text-xl font-bold leading-normal text-slate-500">
+                    <h3 className="w-[100%] max-w-[180px] text-xl font-bold leading-normal text-[#606DAB]">
                       {member.name}
                     </h3>
                     <p className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500">
@@ -177,8 +177,8 @@ export default function About() {
         </div>
       </section>
 
-      <section>
-        <h3 className="w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
+      <section className="grid grid-flow-row gap-5 md:gap-6">
+        <h3 className=" w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           Contact Us
         </h3>
         <p className="text-sm font-normal leading-normal text-black">
@@ -199,6 +199,6 @@ export default function About() {
           </Button>
         </p>
       </section>
-    </main>
+    </>
   );
 }
