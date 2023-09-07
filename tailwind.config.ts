@@ -107,7 +107,7 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       boxShadow: {
-        "editing-shawow": "0px 4px 15px 0px rgba(0, 0, 0, 0.3)",
+        "shadow-on-edit": "0px 4px 15px 0px rgba(0, 0, 0, 0.15)",
       },
     },
   },

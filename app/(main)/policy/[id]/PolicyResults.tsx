@@ -179,7 +179,7 @@ export default function Result({
     <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px]">
       <header
         ref={headerRef}
-        className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row md:items-center"
+        className="mb-[24px] flex flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[174px] md:z-10 md:flex-row md:items-center"
       >
         <div className="flex flex-col">
           <Editor

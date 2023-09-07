@@ -223,7 +223,7 @@ export default function Result({
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
         ref={headerRef}
-        className="mb-[24px] flex flex-col justify-between border-b border-black bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
+        className="mb-[24px] flex flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
       >
         <div className="flex flex-col">
           <Editor

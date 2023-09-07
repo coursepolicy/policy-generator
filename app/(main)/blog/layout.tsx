@@ -7,10 +7,9 @@ export default function PageLayout({
 }) {
   return (
     <>
-      <main className="mx-auto my-0 w-[100%] max-w-[1040px] bg-white px-[20px] py-[30px] md:mt-[60px]">
+      <main className="mx-auto my-0 w-[100%] max-w-[1040px] bg-white md:mt-[60px] md:px-[20px] md:py-[30px]">
         {children}
       </main>
-      <Footer stickied />
     </>
   );
 }

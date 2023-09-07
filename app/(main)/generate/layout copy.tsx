@@ -8,7 +8,7 @@ export default function PageLayout({
   return (
     <main>
       {children}
-      <Footer stickied />
+      <Footer />
     </main>
   );
 }

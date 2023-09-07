@@ -9,7 +9,7 @@ export default function CTAButtonSection() {
       <Button
         asChild
         className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] 
-         bg-coursePolicyGreen px-6 py-2 text-sm font-semibold leading-[25px] text-white"
+         bg-coursePolicyGreen px-6 py-2 text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen"
       >
         <Link href="/generate">
           Generate AI Policy{" "}
@@ -19,8 +19,8 @@ export default function CTAButtonSection() {
       <Button
         asChild
         variant={"outline"}
-        className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-slate-600
-          bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-slate-600"
+        className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E]
+          bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E]"
       >
         <Link href="/existing">Retrieve existing policy</Link>
       </Button>

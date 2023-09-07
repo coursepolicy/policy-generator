@@ -5,6 +5,7 @@ import { DragEndEvent } from "@dnd-kit/core";
 import Image from "next/image";
 import { PolicySections } from "@/app/_utils/";
 import { Button } from "@/components/ui/button";
+import arrow from "@/public/images/arrow.svg";
 
 export default function SectionModifier({
   isReordering,
@@ -33,23 +34,22 @@ export default function SectionModifier({
     >
       <Button
         variant={"outline"}
-        className={`inline-flex h-9 w-[150px] items-center justify-center gap-1.5 rounded-[3px] border border-indigo-900 px-3 py-1.5 ${
+        className={`inline-flex h-9 w-[150px] items-center justify-center gap-1.5 rounded-[3px] border border-[#364071] px-3 py-1.5 ${
           isReordering ? "bg-gray-200" : "bg-white"
-        } border-black px-3 py-1.5`}
+        } border-[#364071] px-3 py-1.5`}
         aria-expanded={isReordering}
         aria-controls="reorder-sections"
         onClick={changeIsReorderingState}
       >
-        <p className="text-center text-xs font-bold leading-normal text-indigo-900">
+        <p className="text-center text-xs font-bold leading-normal text-[#364071]">
           Reorder Sections
         </p>
         <div className="text-center text-sm font-bold leading-normal text-neutral-500">
-          <Image
-            src={`/images/${isReordering ? "up" : "down"}-arrow.png`}
-            width={17}
-            height={24}
-            alt="down arrow image"
-          />
+          {isReordering ? (
+            <Image src={arrow} alt="up arrow image" className=" rotate-180" />
+          ) : (
+            <Image src={arrow} alt="down arrow image" className="" />
+          )}
         </div>
       </Button>
     </div>

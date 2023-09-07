@@ -8,7 +8,7 @@ type Props = {
 
 export default function AddNewSections({ AddNewSection }: Props) {
   return (
-    <section>
+    <section className="mt-[48px]">
       <Button
         variant={"ghost"}
         onClick={AddNewSection}

@@ -14,7 +14,7 @@ const staff = [
     title: "Product",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-    picture: "",
+    picture: "/images/staff/max.jpeg",
     socials: [
       {
         id: 1,
@@ -24,12 +24,12 @@ const staff = [
     ],
   },
   {
-    id: 1,
+    id: 2,
     name: "Genesia Ting",
     title: "Design",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-    picture: "",
+    picture: "/images/staff/genetia.png",
     socials: [
       { id: 1, name: "Website", url: "www.github.com" },
       {
@@ -40,12 +40,12 @@ const staff = [
     ],
   },
   {
-    id: 1,
+    id: 3,
     name: "Cecil John Tantay",
     title: "Engineering",
     description:
-      "Outgoing employee at home in Vegas, Nevada and formerly a software engineer at Hotel Engine and L.A. Times",
-    picture: "/images/display/cj.png",
+      "Software engineer in Las Vegas, Nevada. Formerly at Hotel Engine and L.A. Times",
+    picture: "/images/staff/cj.jpeg",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
       { id: 1, name: "Website", url: "https://www.cjtantay.com/" },
@@ -56,15 +56,15 @@ const staff = [
       },
     ],
   },
-  {
-    id: 1,
-    name: "Kevin Zhang",
-    title: "Data",
-    description:
-      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-    picture: "",
-    socials: [{ id: 1, name: "LinkedIn", url: "www.github.com" }],
-  },
+  // {
+  //   id: 4,
+  //   name: "Kevin Zhang",
+  //   title: "Data",
+  //   description:
+  //     "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
+  //   picture: "",
+  //   socials: [{ id: 1, name: "LinkedIn", url: "www.github.com" }],
+  // },
 ];
 
 const socialIconMapper: { [key: string]: React.JSX.Element } = {
@@ -105,10 +105,9 @@ export default function About() {
         <div>
           <Button
             asChild
-            variant={"outline"}
-            className=" h-9 w-[163.30px]  gap-1.5 rounded-[3px]
-            border border-indigo-900 px-3 py-1.5 text-center text-xs font-bold leading-normal
-            text-indigo-900"
+            variant={"ghost"}
+            className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E]
+            bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E]"
           >
             <Link
               href="/generate"
@@ -127,13 +126,13 @@ export default function About() {
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
           About the team
         </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center">
           {staff.map((member) => (
             <article key={member.id}>
               <div className="grid grid-flow-row justify-center gap-3">
                 <div className="relative h-60 w-60 overflow-hidden bg-zinc-300">
                   <Image
-                    src={member.picture}
+                    src={`${member.picture}`}
                     width={242}
                     height={242}
                     alt={`${member.name} profile picture`}

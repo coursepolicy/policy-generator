@@ -263,10 +263,10 @@ export default function Editor({
 
   return (
     <div
-      className={`editor-container  hover:shadow-editing-shawow ${
+      className={`editor-container  hover:shadow-shadow-on-edit ${
         isEditorFocused
-          ? "shadow-editing-shawow"
-          : "hover:shadow-editing-shawow"
+          ? "shadow-shadow-on-edit"
+          : "hover:shadow-shadow-on-edit"
       }`}
       onBlur={handleEditorOnBlur}
       onFocus={handleEditorOnFocus}
@@ -409,10 +409,10 @@ export default function Editor({
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               style={{
-                background: "#4A558E",
                 border: "0.50px #252D54 solid",
               }}
-              className=" mr-[8px] inline-flex h-[30px] w-[105px] items-center justify-center gap-1 rounded-[3px] px-2.5 py-[3px] hover:bg-hoverBlue"
+              className=" mr-[8px] inline-flex h-[30px] w-[105px] items-center justify-center gap-1 rounded-[3px]
+              bg-[#4A558E] px-2.5 py-[3px] hover:bg-[#364071]"
             >
               <p className="text-xs font-bold leading-normal text-white">
                 Save changes
@@ -426,11 +426,11 @@ export default function Editor({
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 style={{ border: "0.50px #4A558E solid" }}
-                className="inline-flex h-[30px] w-[65px] items-center justify-center gap-1 rounded-[3px] px-2.5 py-[3px]"
+                className="inline-flex h-[30px] w-[65px] items-center justify-center gap-1 rounded-[3px] px-2.5 py-[3px] text-[#4A558E] hover:text-[#4A558E]"
               >
                 <p
-                  style={{ color: "#364071" }}
-                  className="text-xs font-bold leading-normal text-indigo-900"
+                  style={{ color: "#4A558E" }}
+                  className="hove text-xs font-bold leading-normal text-[#4A558E] hover:text-[#4A558E]"
                 >
                   Discard
                 </p>

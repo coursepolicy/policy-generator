@@ -13,7 +13,7 @@ export default function CarouselButtonSection() {
         <Button
           asChild
           className=" flex h-[41px] w-[220px] items-center justify-start gap-2.5 rounded-[100px] border border-[#4A558E]
-              px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] sm:mt-[10px]"
+              px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E] sm:mt-[10px]"
           variant={"outline"}
         >
           <Link href="/blog">
@@ -25,8 +25,8 @@ export default function CarouselButtonSection() {
       <div>
         <Button
           asChild
-          className=" flex h-[41px] w-[220px] items-center justify-start gap-2.5 rounded-[100px] bg-[#4A558E]
-              px-6 py-2 text-right text-sm font-semibold leading-[25px] text-white sm:mt-[10px]"
+          className=" flex h-[41px] w-[220px] items-center justify-start gap-2.5 rounded-[100px] bg-[#4A558E] px-6
+              py-2 text-right text-sm font-semibold leading-[25px] text-white hover:bg-[#364071] sm:mt-[10px]"
           variant={"default"}
         >
           <Link href="/sample">View a sample policy</Link>

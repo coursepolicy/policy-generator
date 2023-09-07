@@ -10,7 +10,6 @@ import {
 } from "@dnd-kit/sortable";
 import { MeasuringStrategy } from "@dnd-kit/core";
 import { PolicySections } from "../_utils";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 type Props = {
   surveyContents: PolicySections;
@@ -31,10 +30,13 @@ export default function SortableContainer({
     return defaultAnimateLayoutChanges({ ...args, wasDragging: false });
   };
   return (
-    <div className="my-[20px] flex max-h-[500px] w-[300px] justify-center self-center overflow-y-auto bg-zinc-100 shadow sm:w-[450px] sm:max-w-[100%] md:absolute md:right-0 md:top-[65px] md:m-0">
+    <div className="my-[20px] flex max-h-[500px] w-[300px] justify-center self-center overflow-y-auto bg-zinc-100 shadow sm:w-[451px] sm:max-w-[100%] md:absolute md:right-0 md:top-[65px] md:m-0">
       <div className="pb-[10px] pl-[5px] pr-[5px] pt-[10px] sm:pb-[40px] sm:pl-[18px] sm:pr-[15px] sm:pt-[13px]">
         <p className="flex justify-center text-sm font-normal leading-normal text-zinc-500 sm:justify-start">
-          <i>Drag to reorder sections and subsections</i>
+          <i>
+            To reorder sections and subsections, hover over the handles on the
+            left and and start dragging
+          </i>
         </p>
         <div className="mt-[10px]">
           <SortableSection

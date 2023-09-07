@@ -32,7 +32,7 @@ export default function PolicySection({
   return (
     <section
       ref={parentRef}
-      className="mb-[24px] border-b border-zinc-400 pb-[24px]"
+      className="mb-[48px] border-b border-[#CCCCCC] pb-[48px]"
     >
       {section.children &&
         section.children.map((subSection, subSectionIndex) => {

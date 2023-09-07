@@ -10,10 +10,13 @@ export default function Generate() {
   return (
     <>
       <NoticeMessage uniqueId={uniqueId} />
-      <Iframe
-        url={process.env.SURVEY_URL as string}
-        className="h-[65vh] w-[100%] overflow-hidden border-none"
-      />
+      <div className="flex justify-center">
+        <Iframe
+          url={process.env.SURVEY_URL as string}
+          className="grid
+        h-screen w-[100%] max-w-[1000px] overflow-hidden border-none"
+        />
+      </div>
       <CompletedSurveyButton uniqueId={uniqueId} />
     </>
   );
