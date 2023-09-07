@@ -1,4 +1,4 @@
-import Footer from "@/app/_components/Footer";
+import { Footer } from "@/components/Footer";
 
 export default function PageLayout({
   children,
@@ -13,7 +13,7 @@ export default function PageLayout({
           {children}
         </div>
       </main>
-      <Footer />s
+      <Footer />
     </>
   );
 }

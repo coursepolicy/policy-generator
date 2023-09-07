@@ -1,5 +1,3 @@
-import Footer from "@/app/_components/Footer";
-
 export default function PageLayout({
   children,
 }: {

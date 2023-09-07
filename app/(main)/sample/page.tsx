@@ -1,7 +1,7 @@
 import React from "react";
-import { samplePolicy } from "@/app/_utils";
 import SamplePolicyResults from "./SamplePolicyResults";
 import { SAMPLE_POLICY_ID } from "./types";
+import { samplePolicy } from "@/lib";
 
 export default async function SamplePolicy() {
   return (

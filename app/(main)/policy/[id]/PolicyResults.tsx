@@ -9,16 +9,17 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { AiPolicy, savePolicy } from "@/app/_utils/";
-import Editor from "@/app/_components/Editor";
-import SortableContainer from "@/app/_components/SortableContainer";
-import { Tooltip, UpdatedAt } from "@/app/(main)/_components";
-
-import TextEditing from "./TextEditing";
-import PolicySectionModifier from "./PolicySectionModifier";
-import PolicySection from "./PolicySection";
-import PolicyNewSections from "./PolicyNewSections";
-import { useAiPolicy } from "@/lib/hooks";
+import { type AiPolicy, savePolicy, useAiPolicy } from "@/lib";
+import { Editor } from "@/components/Editor";
+import { SortableContainer } from "@/components/Sortable";
+import Tooltip from "@/components/Tooltip";
+import UpdatedAt from "@/components/UpdatedAt";
+import {
+  PolicyNewSections,
+  PolicySection,
+  PolicySectionModifier,
+  TextEditing,
+} from "@/components/PolicyEditableVIew";
 
 export default function Result({ policyId }: { policyId: string }) {
   const queryClient = useQueryClient();

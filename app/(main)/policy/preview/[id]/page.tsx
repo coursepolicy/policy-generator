@@ -2,8 +2,8 @@
 
 import React from "react";
 
-import PolicyPreview from "@/app/_components/PolicyPreview";
-import { useAiPolicy } from "@/lib/hooks";
+import { useAiPolicy } from "@/lib";
+import { PolicyPreview } from "@/components/PolicyPreview";
 
 interface Props {
   params: { id: string };

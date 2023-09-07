@@ -1,7 +1,7 @@
 "use client";
 
-import { AiPolicyResponse, getPolicy } from "@/app/_utils";
 import { Button } from "@/components/ui/button";
+import { getPolicy } from "@/lib";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import React from "react";

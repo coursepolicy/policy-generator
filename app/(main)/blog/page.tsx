@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Iframe from "react-iframe";
 
 export default function Blog() {

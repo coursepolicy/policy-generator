@@ -1,4 +1,3 @@
-import Footer from "@/app/_components/Footer";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {

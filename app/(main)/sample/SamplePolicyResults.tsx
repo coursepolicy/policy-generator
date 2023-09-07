@@ -4,25 +4,28 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { v4 as uuid4 } from "uuid";
+import { isEqual } from "lodash";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
-import { isEqual } from "lodash";
 
-import Editor from "@/app/_components/Editor";
-import {
-  PolicySections,
-  AiPolicy,
-  savePolicy,
-  AiPolicyResponse,
-} from "@/app/_utils/";
-import PolicySectionModifier from "../policy/[id]/PolicySectionModifier";
-import PolicySection from "../policy/[id]/PolicySection";
-import SampleTextEditing from "./SampleTextEditing";
-import SortableContainer from "@/app/_components/SortableContainer";
-import PolicyNewSections from "../policy/[id]/PolicyNewSections";
-import { Tooltip, UpdatedAt } from "../_components";
 import { useMutation } from "@tanstack/react-query";
+import {
+  type PolicySections,
+  type AiPolicyResponse,
+  type AiPolicy,
+  savePolicy,
+} from "@/lib";
+import { SortableContainer } from "@/components/Sortable";
+import { Editor } from "@/components/Editor";
+import UpdatedAt from "@/components/UpdatedAt";
+import Tooltip from "@/components/Tooltip";
+import {
+  PolicyNewSections,
+  PolicySection,
+  PolicySectionModifier,
+} from "@/components/PolicyEditableVIew";
+import SampleTextEditing from "./SampleTextEditing";
 
 export default function Result({
   aiPolicy: {

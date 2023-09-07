@@ -1,5 +1,5 @@
-import PolicyPreview from "@/app/_components/PolicyPreview";
-import { AiPolicyResponse, getPolicy } from "@/app/_utils";
+import { PolicyPreview } from "@/components/PolicyPreview";
+import { getPolicy, type AiPolicyResponse } from "@/lib";
 import React from "react";
 
 interface Props {
