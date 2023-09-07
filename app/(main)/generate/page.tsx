@@ -12,8 +12,6 @@ import {
 
 export default function Generate() {
   const uniqueId = uuidv4();
-
-  console.log(uniqueId);
   return (
     <>
       <Accordion type="single" collapsible>

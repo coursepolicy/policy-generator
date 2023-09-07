@@ -42,14 +42,6 @@ export default function NavigationAlt({
       const firstLink = document.querySelector("nav a");
       (firstLink as HTMLAnchorElement)?.focus();
     }
-
-    // focus on the burger menu when it's closed
-    if (!isMenuOpen) {
-      const burgerMenu = document.querySelector(
-        "button[aria-label='Navigation menu']",
-      );
-      (burgerMenu as HTMLAnchorElement)?.focus();
-    }
   }, [isMenuOpen]);
 
   return (

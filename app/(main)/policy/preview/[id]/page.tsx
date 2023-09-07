@@ -1,21 +1,15 @@
 "use client";
 
-import { AiPolicyResponse, getPolicy } from "@/app/_utils/";
-import PolicyPreview from "@/app/_components/PolicyPreview";
-
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+
+import PolicyPreview from "@/app/_components/PolicyPreview";
+import { useAiPolicy } from "@/lib/hooks";
 
 interface Props {
   params: { id: string };
 }
 export default function GeneratePolicyPreview({ params: { id } }: Props) {
-  const { data } = useQuery<AiPolicyResponse>({
-    queryKey: [id],
-    queryFn: () => getPolicy(id),
-    suspense: true,
-    staleTime: 5_000,
-  });
+  const { data } = useAiPolicy(id);
 
   const { createdAt, updatedAt, sections, heading } = data || {};
 

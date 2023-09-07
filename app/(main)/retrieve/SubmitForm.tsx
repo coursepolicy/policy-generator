@@ -4,11 +4,12 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import { AiPolicyResponse, getPolicy } from "@/app/_utils";
+import { getPolicy } from "@/app/_utils";
 import toast from "react-hot-toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function SubmitForm() {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const [input, setInput] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -16,27 +17,22 @@ export default function SubmitForm() {
     setInput(e.target.value);
   };
 
-  const mutation = useMutation((id: string) => getPolicy(id), {
-    onSuccess: (data) => {
-      router.push(`/policy/${data.id}`);
-    },
-    onError: (error) => {
-      setLoading(false);
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something went wrong");
-      }
-    },
-  });
-
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-
-        setLoading(true);
-        mutation.mutate(input);
+        try {
+          setLoading(true);
+          await queryClient.fetchQuery([input], () => getPolicy(input));
+          router.push(`/policy/${input}`);
+        } catch (error) {
+          setLoading(false);
+          if (error instanceof Error) {
+            toast.error(error.message);
+          } else {
+            toast.error("Something went wrong");
+          }
+        }
       }}
       className="mt-[10px] flex md:w-[425px]"
     >
