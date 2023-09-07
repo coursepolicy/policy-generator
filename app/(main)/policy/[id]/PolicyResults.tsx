@@ -7,33 +7,69 @@ import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import {
+  AiPolicy,
+  AiPolicyResponse,
+  getPolicy,
+  savePolicy,
+} from "@/app/_utils/";
 import Editor from "@/app/_components/Editor";
-import { AiPolicy, AiPolicyResponse, savePolicy } from "@/app/_utils/";
+import SortableContainer from "@/app/_components/SortableContainer";
+import { Tooltip, UpdatedAt } from "@/app/(main)/_components";
+
 import TextEditing from "./TextEditing";
 import PolicySectionModifier from "./PolicySectionModifier";
 import PolicySection from "./PolicySection";
-import SortableContainer from "@/app/_components/SortableContainer";
 import PolicyNewSections from "./PolicyNewSections";
-import { Tooltip, UpdatedAt } from "@/app/(main)/_components";
 
-export default function Result({
-  response: {
+export default function Result({ policyId }: { policyId: string }) {
+  const queryClient = useQueryClient();
+  const { data } = useQuery<AiPolicyResponse>({
+    queryKey: [policyId],
+    queryFn: () => getPolicy(policyId),
+    suspense: true,
+    staleTime: 5_000,
+  });
+
+  const {
     createdAt,
     updatedAt,
     sections: initialSections,
     heading: initialHeading,
-  },
-}: {
-  response: AiPolicyResponse;
-}) {
+  } = data || {};
+
   const { id } = useParams();
-  const [heading, setHeading] = useState<AiPolicy["heading"]>(initialHeading);
-  const [surveyContents, setSurveyContents] =
-    useState<AiPolicy["sections"]>(initialSections);
+  const [heading, setHeading] = useState<AiPolicy["heading"]>(
+    initialHeading || "",
+  );
+  const [surveyContents, setSurveyContents] = useState<AiPolicy["sections"]>(
+    initialSections || [],
+  );
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
   const headerRef = useRef(null);
+
+  const mutation = useMutation(
+    ({
+      serializedPayload,
+      policyId,
+    }: {
+      serializedPayload: string;
+      policyId: string;
+    }) => savePolicy(serializedPayload, policyId),
+    {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries([policyId]);
+        toast.success("Changes have been saved!");
+      },
+      onError: (error) => {
+        toast.error("Something went wrong");
+        throw new Error(JSON.stringify(error));
+      },
+    },
+  );
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
     if (!over) {
@@ -133,13 +169,10 @@ export default function Result({
       },
     };
 
-    try {
-      await savePolicy(JSON.stringify(payload), id as string);
-      toast.success("Changes have been saved!");
-    } catch (error) {
-      toast.error("Something went wrong");
-      throw new Error(JSON.stringify(error));
-    }
+    mutation.mutate({
+      serializedPayload: JSON.stringify(payload),
+      policyId,
+    });
   };
 
   const changeIsReorderingState = () => {
@@ -191,7 +224,10 @@ export default function Result({
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}
           />
-          <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
+          <UpdatedAt
+            updatedAt={updatedAt || String(Date.now())}
+            createdAt={createdAt || String(Date.now())}
+          />
         </div>
         <div className="flex items-baseline justify-between md:pb-[35px]">
           <PolicySectionModifier

@@ -6,7 +6,7 @@ interface Props {
   data: AiPolicyResponse;
   pdf?: boolean;
 }
-export default async function Preview({
+export default function Preview({
   data: { sections, heading, createdAt, updatedAt },
   pdf,
 }: Props) {

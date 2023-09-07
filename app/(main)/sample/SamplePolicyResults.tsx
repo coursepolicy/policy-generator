@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import toast from "react-hot-toast";
 import { v4 as uuid4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
@@ -23,6 +22,7 @@ import SampleTextEditing from "./SampleTextEditing";
 import SortableContainer from "@/app/_components/SortableContainer";
 import PolicyNewSections from "../policy/[id]/PolicyNewSections";
 import { Tooltip, UpdatedAt } from "../_components";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Result({
   aiPolicy: {
@@ -44,6 +44,28 @@ export default function Result({
   const [isReordering, setIsReordering] = useState<boolean>(false);
   const parentRef = useRef(null);
   const headerRef = useRef(null);
+
+  const mutation = useMutation(
+    ({
+      serializedPayload,
+      policyId,
+      generatedId,
+    }: {
+      serializedPayload: string;
+      policyId: string;
+      generatedId: string;
+    }) => savePolicy(serializedPayload, policyId, generatedId),
+    {
+      onSuccess: (savedPolicyResponse) => {
+        toast.success("A new policy has been created!");
+        router.push(`/policy/${savedPolicyResponse.data.id}`);
+      },
+      onError: (error) => {
+        toast.error("Something went wrong");
+        throw new Error(JSON.stringify(error));
+      },
+    },
+  );
 
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
     if (!over) {
@@ -144,36 +166,11 @@ export default function Result({
       },
     };
 
-    try {
-      let generatedPolicyId = uuid4();
-
-      const savedPolicyResponse = await toast.promise(
-        savePolicy(JSON.stringify(payload), samplePolicyId, generatedPolicyId),
-        {
-          loading: "Creating a new policy...",
-          success: "A new policy has been created!",
-          error: "Something went wrong",
-        },
-        {
-          style: {
-            minWidth: "250px",
-          },
-          success: {
-            style: {
-              width: 228,
-              height: 59,
-              background: "#DEF9E2",
-              borderRadius: 0,
-            },
-          },
-        },
-      );
-
-      router.push(`/policy/${savedPolicyResponse.data.id}`);
-    } catch (error) {
-      console.error(JSON.stringify(error));
-      throw new Error(JSON.stringify(error));
-    }
+    mutation.mutate({
+      serializedPayload: JSON.stringify(payload),
+      policyId: samplePolicyId,
+      generatedId: uuid4(),
+    });
   };
 
   const changeIsReorderingState = () => {
@@ -219,6 +216,8 @@ export default function Result({
     }
   }, [heading, initialSections, initialHeading, surveyContents]);
 
+  console.log(noChanges);
+
   return (
     <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
       <header
@@ -234,6 +233,7 @@ export default function Result({
             handleUpdatePolicy={handleUpdatePolicy}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}
+            noChanges={noChanges}
           />
           <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
         </div>

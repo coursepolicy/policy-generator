@@ -35,6 +35,7 @@ interface Props {
     subSectionId: string,
     sectionIndex: number,
   ) => void;
+  noChanges?: boolean;
 }
 
 export default function Editor({
@@ -50,6 +51,7 @@ export default function Editor({
   handleUpdatePolicy,
   handleDeleteSection,
   handleDeleteSubSection,
+  noChanges,
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
@@ -405,6 +407,7 @@ export default function Editor({
           <div className="flex">
             <Button
               onClick={handleOnSave}
+              disabled={noChanges ? true : false}
               loading={loading}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}

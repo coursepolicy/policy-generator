@@ -1,6 +1,3 @@
-import { cache } from "react";
-// import "server-only";
-
 import "dotenv/config";
 
 export const getPolicy = async (id: string) => {
@@ -23,5 +20,7 @@ export const getPolicy = async (id: string) => {
     throw new Error("Error fetching survey data");
   }
 
-  return response.json();
+  const { data } = await response.json();
+
+  return data;
 };

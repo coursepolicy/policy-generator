@@ -16,8 +16,8 @@ export default function PreviewLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mt-[40px]">
+    <main className="mx-auto my-0 mt-[30px] flex w-[100%] max-w-[1000px] flex-col md:mt-[50px] ">
       <div className="mb-[40px] flex flex-col items-center">{children}</div>
-    </div>
+    </main>
   );
 }

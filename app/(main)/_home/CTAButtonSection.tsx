@@ -22,7 +22,7 @@ export default function CTAButtonSection() {
         className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E]
           bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E]"
       >
-        <Link href="/existing">Retrieve existing policy</Link>
+        <Link href="/retrieve">Retrieve existing policy</Link>
       </Button>
     </div>
   );

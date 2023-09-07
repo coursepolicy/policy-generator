@@ -18,7 +18,7 @@ export default function TextEditing({
         onClick={async () => {
           setLoading(() => true);
           await handleUpdatePolicy();
-          router.push(`/policy/${id}/preview`);
+          router.push(`/policy/preview/${id}`);
         }}
         className="inline-flex h-9 w-[92px] items-center justify-center gap-1.5 rounded-[3px] bg-coursePolicyGreen px-3 py-1.5 hover:bg-coursePolicyHoverGreen"
       >

@@ -4,9 +4,9 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import { getPolicy } from "@/app/_utils";
+import { AiPolicyResponse, getPolicy } from "@/app/_utils";
 import toast from "react-hot-toast";
-import { set } from "lodash";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export default function SubmitForm() {
   const router = useRouter();
@@ -16,24 +16,27 @@ export default function SubmitForm() {
     setInput(e.target.value);
   };
 
+  const mutation = useMutation((id: string) => getPolicy(id), {
+    onSuccess: (data) => {
+      router.push(`/policy/${data.id}`);
+    },
+    onError: (error) => {
+      setLoading(false);
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong");
+      }
+    },
+  });
+
   return (
     <form
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
-        try {
-          setLoading(true);
-          const { data } = await getPolicy(input);
 
-          if (!data) return;
-          router.push(`/policy/${data.id}`);
-        } catch (error) {
-          setLoading(false);
-          if (error instanceof Error) {
-            toast.error(error.message);
-          } else {
-            toast.error("Something went wrong");
-          }
-        }
+        setLoading(true);
+        mutation.mutate(input);
       }}
       className="mt-[10px] flex md:w-[425px]"
     >
@@ -42,7 +45,7 @@ export default function SubmitForm() {
         loading={loading}
         disabled={input.length === 0 || loading}
         type="submit"
-        className="ml-[10px] inline-flex h-10 w-[100%] max-w-[84px] items-center justify-center gap-2.5 rounded-none bg-teal-600 py-2 text-base font-bold leading-normal text-white"
+        className="ml-[10px] inline-flex h-10 w-[100%] max-w-[84px] items-center justify-center gap-2.5 rounded-none bg-coursePolicyGreen py-2 text-base font-bold leading-normal text-white hover:bg-coursePolicyHoverGreen"
       >
         Submit
       </Button>
