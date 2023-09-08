@@ -8,6 +8,9 @@ on:
 
 env:
   AWS_REGION: us-west-1
+  SURVEY_URL: ${{ secrets.STAGING_SURVEY_URL }}
+  LAMBDAS_API_BASE_URL: ${{ secrets.STAGING_LAMBDAS_API_BASE_URL }}
+  SAMPLE_PDF_URL: ${{ secrets.STAGING_SAMPLE_PDF_URL }}
 
 concurrency: merge-${{ github.ref }}
 

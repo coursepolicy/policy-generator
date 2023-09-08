@@ -246,7 +246,7 @@ export default function Result({
           />
           <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
         </div>
-        <div className="grid grid-flow-col items-start gap-2 md:mt-[27px]">
+        <div className="grid grid-flow-col items-start justify-between gap-2 md:mt-[27px] md:justify-start">
           <PolicySectionModifier
             surveyContents={surveyContents}
             handleSectionDragEvent={handleSectionDragEvent}

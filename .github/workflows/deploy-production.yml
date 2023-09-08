@@ -8,6 +8,9 @@ on:
         required: true
 env:
   AWS_REGION: us-west-1
+  SURVEY_URL: ${{ secrets.PROD_SURVEY_URL }}
+  LAMBDAS_API_BASE_URL: ${{ secrets.PROD_LAMBDAS_API_BASE_URL }}
+  SAMPLE_PDF_URL: ${{ secrets.PROD_SAMPLE_PDF_URL }}
 
 concurrency: merge-${{ github.ref }}
 
