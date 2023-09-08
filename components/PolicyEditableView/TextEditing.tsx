@@ -8,20 +8,20 @@ import toast from "react-hot-toast";
 export default function TextEditing({
   handleUpdatePolicy,
   id,
+  isLoading,
 }: {
   handleUpdatePolicy: () => Promise<void>;
   id: string;
+  isLoading: boolean;
 }) {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const [loading, setLoading] = React.useState(false);
 
   return (
     <div>
       <Button
-        loading={loading}
+        loading={isLoading}
         onClick={async () => {
-          setLoading(() => true);
           await handleUpdatePolicy();
           await queryClient.prefetchQuery(["policy", id], () => getPolicy(id));
           router.push(`/policy/preview/${id}`);

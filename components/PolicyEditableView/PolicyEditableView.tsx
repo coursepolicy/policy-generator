@@ -51,7 +51,7 @@ export default function Result({
   const parentRef = useRef(null);
   const headerRef = useRef(null);
 
-  const mutation = useMutation(
+  const { isLoading, mutate } = useMutation(
     ({
       serializedPayload,
       policyId,
@@ -175,7 +175,7 @@ export default function Result({
       },
     };
 
-    mutation.mutate({
+    mutate({
       serializedPayload: JSON.stringify(payload),
       policyId,
       generatedId: isSample ? uuid4() : undefined,
@@ -228,10 +228,10 @@ export default function Result({
   }, [heading, initialSections, initialHeading, surveyContents, isSample]);
 
   return (
-    <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px]">
+    <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px] ">
       <header
         ref={headerRef}
-        className="mb-[24px] flex flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[174px] md:z-20 md:flex-row"
+        className="mb-[24px] flex w-[100%] max-w-[inherit] flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[174px] md:z-20 md:flex-row"
       >
         <div className="flex flex-col">
           <Editor
@@ -242,10 +242,11 @@ export default function Result({
             handleUpdatePolicy={handleUpdatePolicy}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}
+            isLoading={isLoading}
           />
           <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
         </div>
-        <div className="grid grid-flow-col items-start gap-2">
+        <div className="grid grid-flow-col items-start gap-2 md:mt-[27px]">
           <PolicySectionModifier
             surveyContents={surveyContents}
             handleSectionDragEvent={handleSectionDragEvent}
@@ -259,11 +260,13 @@ export default function Result({
             <SampleTextEditing
               noChanges={noChanges}
               handleUpdatePolicy={handleUpdatePolicy}
+              isLoading={isLoading}
             />
           ) : (
             <TextEditing
               handleUpdatePolicy={handleUpdatePolicy}
               id={policyId}
+              isLoading={isLoading}
             />
           )}
         </div>
@@ -289,6 +292,7 @@ export default function Result({
             handleUpdatePolicy={handleUpdatePolicy}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}
+            isLoading={isLoading}
           />
         ))}
       </article>

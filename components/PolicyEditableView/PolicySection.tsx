@@ -10,6 +10,7 @@ export default function PolicySection({
   handleUpdatePolicy,
   handleDeleteSection,
   handleDeleteSubSection,
+  isLoading,
 }: {
   section: PolicySection;
   handleSectionsOnChanges: (heading: AiPolicy["sections"]) => void;
@@ -22,6 +23,7 @@ export default function PolicySection({
     subSectionId: string,
     sectionIndex: number,
   ) => void;
+  isLoading: boolean;
 }) {
   return (
     <section className="mb-[48px] border-b border-[#CCCCCC] pb-[48px]">
@@ -53,6 +55,7 @@ export default function PolicySection({
                   handleUpdatePolicy={handleUpdatePolicy}
                   handleDeleteSection={handleDeleteSection}
                   handleDeleteSubSection={handleDeleteSubSection}
+                  isLoading={isLoading}
                 />
                 <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between md:absolute md:mb-0 md:flex-row">
                   <p className="text-xs font-bold leading-normal text-stone-500">
@@ -104,6 +107,8 @@ export default function PolicySection({
                           handleUpdatePolicy={handleUpdatePolicy}
                           handleDeleteSection={handleDeleteSection}
                           handleDeleteSubSection={handleDeleteSubSection}
+                          isLoading={isLoading}
+                          useCaseBgColor={bgColorMapper[index]}
                         />
                       </div>
                     );
@@ -125,6 +130,7 @@ export default function PolicySection({
                 handleUpdatePolicy={handleUpdatePolicy}
                 handleDeleteSection={handleDeleteSection}
                 handleDeleteSubSection={handleDeleteSubSection}
+                isLoading={isLoading}
               />
             </section>
           );

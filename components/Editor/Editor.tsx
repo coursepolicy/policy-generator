@@ -37,6 +37,8 @@ interface Props {
     sectionIndex: number,
   ) => void;
   noChanges?: boolean;
+  isLoading: boolean;
+  useCaseBgColor?: string;
 }
 
 export function Editor({
@@ -52,6 +54,8 @@ export function Editor({
   handleUpdatePolicy,
   handleDeleteSection,
   handleDeleteSubSection,
+  isLoading,
+  useCaseBgColor,
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
@@ -74,7 +78,6 @@ export function Editor({
   const [editingLink, setEditingLink] = useState(false);
   const [linkInput, setLinkInput] = useState("");
   const [hoveringLinkMenu, setHoveringLinkMenu] = useState(false);
-  const [loading, setLoading] = useState(false);
   const parentRef = useRef(null);
 
   const htmlString = editor?.getHTML();
@@ -116,10 +119,7 @@ export function Editor({
   const handleOnSave = async () => {
     if (!htmlString) return;
 
-    setLoading(() => true);
     await handleUpdatePolicy();
-
-    setLoading(() => false);
     setSavedContent(() => htmlString);
     setIsEditorFocused(() => false);
   };
@@ -405,11 +405,12 @@ export function Editor({
       {isEditorFocused && (
         <BottomBar
           handleOnSave={handleOnSave}
-          loading={loading}
+          loading={isLoading}
           setIsHovering={setIsHovering}
           handleOnDiscard={handleOnDiscard}
           hideDeleteButton={hideDeleteButton}
           handleDelete={handleDelete}
+          useCaseBgColor={useCaseBgColor}
         />
       )}
     </div>
