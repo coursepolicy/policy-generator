@@ -51,7 +51,6 @@ export function Editor({
   handleUpdatePolicy,
   handleDeleteSection,
   handleDeleteSubSection,
-  noChanges,
   hideDeleteButton = false,
 }: Props) {
   const editor = useEditor({
@@ -96,7 +95,7 @@ export function Editor({
   const handleDelete = () => {
     const isConfirmed = window.confirm("Are you sure you want to delete this?");
     if (!isConfirmed) return;
-    if (!sectionId || !sectionIndex) return;
+    if (!sectionId || sectionIndex === undefined) return;
 
     if (!subSectionId) {
       handleDeleteSection(sectionId);
@@ -407,7 +406,6 @@ export function Editor({
           <div className="flex">
             <Button
               onClick={handleOnSave}
-              disabled={noChanges ? true : false}
               loading={loading}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}

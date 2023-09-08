@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import autoAnimate from "@formkit/auto-animate";
+import React from "react";
 import type { AiPolicy, PolicySections, PolicySection } from "@/lib";
 import { Editor } from "@/components/Editor";
 
@@ -11,7 +10,6 @@ export default function PolicySection({
   handleUpdatePolicy,
   handleDeleteSection,
   handleDeleteSubSection,
-  noChanges,
 }: {
   section: PolicySection;
   handleSectionsOnChanges: (heading: AiPolicy["sections"]) => void;
@@ -24,18 +22,9 @@ export default function PolicySection({
     subSectionId: string,
     sectionIndex: number,
   ) => void;
-  noChanges?: boolean;
 }) {
-  const parentRef = useRef(null);
-  useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current);
-  }, [parentRef]);
-
   return (
-    <section
-      ref={parentRef}
-      className="mb-[48px] border-b border-[#CCCCCC] pb-[48px]"
-    >
+    <section className="mb-[48px] border-b border-[#CCCCCC] pb-[48px]">
       {section.children &&
         section.children.map((subSection, subSectionIndex) => {
           const { miscData, title } = subSection || {};
@@ -64,7 +53,6 @@ export default function PolicySection({
                   handleUpdatePolicy={handleUpdatePolicy}
                   handleDeleteSection={handleDeleteSection}
                   handleDeleteSubSection={handleDeleteSubSection}
-                  noChanges={noChanges}
                 />
                 <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between md:absolute md:mb-0 md:flex-row">
                   <p className="text-xs font-bold leading-normal text-stone-500">
@@ -116,7 +104,6 @@ export default function PolicySection({
                           handleUpdatePolicy={handleUpdatePolicy}
                           handleDeleteSection={handleDeleteSection}
                           handleDeleteSubSection={handleDeleteSubSection}
-                          noChanges={noChanges}
                         />
                       </div>
                     );
@@ -138,7 +125,6 @@ export default function PolicySection({
                 handleUpdatePolicy={handleUpdatePolicy}
                 handleDeleteSection={handleDeleteSection}
                 handleDeleteSubSection={handleDeleteSubSection}
-                noChanges={noChanges}
               />
             </section>
           );

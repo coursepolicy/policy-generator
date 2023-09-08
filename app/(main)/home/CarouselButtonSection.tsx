@@ -29,7 +29,7 @@ export default function CarouselButtonSection() {
               py-2 text-right text-sm font-semibold leading-[25px] text-white hover:bg-[#364071] sm:mt-[10px]"
           variant={"default"}
         >
-          <Link href="/sample">View a sample policy</Link>
+          <Link href="/policy/sample">View a sample policy</Link>
         </Button>
       </div>
     </div>

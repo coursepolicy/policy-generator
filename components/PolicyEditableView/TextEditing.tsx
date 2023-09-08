@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { savePolicy } from "@/lib";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 export default function TextEditing({
   handleUpdatePolicy,
@@ -9,8 +12,10 @@ export default function TextEditing({
   handleUpdatePolicy: () => Promise<void>;
   id: string;
 }) {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
+
   return (
     <div className={`ml-[8px] ${loading ? "relative top-[4px]" : ""}`}>
       <Button

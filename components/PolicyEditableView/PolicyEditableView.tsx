@@ -9,23 +9,23 @@ import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   type PolicySections,
   type AiPolicyResponse,
   type AiPolicy,
   savePolicy,
 } from "@/lib";
-import { SortableContainer } from "@/components/Sortable";
-import { Editor } from "@/components/Editor";
-import UpdatedAt from "@/components/UpdatedAt";
-import Tooltip from "@/components/Tooltip";
-import {
-  PolicyNewSections,
-  PolicySection,
-  PolicySectionModifier,
-} from "@/components/PolicyEditableVIew";
+import { Editor } from "../Editor";
+import UpdatedAt from "../UpdatedAt";
+
 import SampleTextEditing from "./SampleTextEditing";
+import { SortableContainer } from "../Sortable";
+import Tooltip from "../Tooltip";
+import PolicySectionModifier from "./PolicySectionModifier";
+import TextEditing from "./TextEditing";
+import PolicySection from "./PolicySection";
+import PolicyNewSections from "./PolicyNewSections";
 
 export default function Result({
   aiPolicy: {
@@ -34,11 +34,14 @@ export default function Result({
     sections: initialSections,
     heading: initialHeading,
   },
-  samplePolicyId,
+  policyId,
+  isSample,
 }: {
   aiPolicy: AiPolicyResponse;
-  samplePolicyId: string;
+  policyId: string;
+  isSample?: boolean;
 }) {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const [noChanges, setNoChanges] = useState<boolean>(true);
   const [heading, setHeading] = useState<string>(initialHeading);
@@ -56,12 +59,15 @@ export default function Result({
     }: {
       serializedPayload: string;
       policyId: string;
-      generatedId: string;
+      generatedId?: string;
     }) => savePolicy(serializedPayload, policyId, generatedId),
     {
-      onSuccess: (savedPolicyResponse) => {
+      onSuccess: async (savedPolicyResponse) => {
+        await queryClient.invalidateQueries([policyId]);
         toast.success("A new policy has been created!");
-        router.push(`/policy/${savedPolicyResponse.data.id}`);
+        if (isSample) {
+          router.push(`/policy/${savedPolicyResponse.data.id}`);
+        }
       },
       onError: (error) => {
         toast.error("Something went wrong");
@@ -171,8 +177,8 @@ export default function Result({
 
     mutation.mutate({
       serializedPayload: JSON.stringify(payload),
-      policyId: samplePolicyId,
-      generatedId: uuid4(),
+      policyId,
+      generatedId: isSample ? uuid4() : undefined,
     });
   };
 
@@ -209,6 +215,8 @@ export default function Result({
   }, [headerRef]);
 
   useEffect(() => {
+    if (!isSample) return;
+
     if (
       isEqual(JSON.stringify(heading), JSON.stringify(initialHeading)) &&
       isEqual(JSON.stringify(surveyContents), JSON.stringify(initialSections))
@@ -217,10 +225,10 @@ export default function Result({
     } else {
       setNoChanges(() => false);
     }
-  }, [heading, initialSections, initialHeading, surveyContents]);
+  }, [heading, initialSections, initialHeading, surveyContents, isSample]);
 
   return (
-    <div className="p-[10px] px-[5px] md:p-[39px] md:px-[20px]">
+    <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px]">
       <header
         ref={headerRef}
         className="mb-[24px] flex flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[174px] md:z-10 md:flex-row"
@@ -234,7 +242,6 @@ export default function Result({
             handleUpdatePolicy={handleUpdatePolicy}
             handleDeleteSection={handleDeleteSection}
             handleDeleteSubSection={handleDeleteSubSection}
-            noChanges={noChanges}
           />
           <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
         </div>
@@ -248,10 +255,17 @@ export default function Result({
             isReordering={isReordering}
             changeIsReorderingState={changeIsReorderingState}
           />
-          <SampleTextEditing
-            noChanges={noChanges}
-            handleUpdatePolicy={handleUpdatePolicy}
-          />
+          {isSample ? (
+            <SampleTextEditing
+              noChanges={noChanges}
+              handleUpdatePolicy={handleUpdatePolicy}
+            />
+          ) : (
+            <TextEditing
+              handleUpdatePolicy={handleUpdatePolicy}
+              id={policyId}
+            />
+          )}
         </div>
         {isReordering && (
           <SortableContainer

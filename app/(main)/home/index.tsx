@@ -3,7 +3,7 @@ import CTAButtonSection from "./CTAButtonSection";
 import CarouselContainer from "./CarouselContainer";
 import HomeHeadingCopyText from "./HomeHeadingCopyText";
 
-export default function HomeContainer() {
+export default function HomePage() {
   return (
     <>
       <main className="mb-[150px] flex flex-col items-center justify-center">

@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import autoAnimate from "@formkit/auto-animate";
-import { DragEndEvent } from "@dnd-kit/core";
+import React from "react";
 
+import { DragEndEvent } from "@dnd-kit/core";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import arrow from "@/public/images/arrow.svg";
@@ -23,15 +22,8 @@ export default function SectionModifier({
   isReordering: boolean;
   changeIsReorderingState: () => void;
 }) {
-  const parentRef = useRef(null);
-  useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current, { duration: 100 });
-  }, [parentRef]);
   return (
-    <div
-      className="relative flex flex-col md:flex-row md:justify-end"
-      ref={parentRef}
-    >
+    <div className="relative flex flex-col md:flex-row md:justify-end">
       <Button
         variant={"outline"}
         className={`inline-flex h-9 w-[150px] items-center justify-center gap-1.5 rounded-[3px] border border-[#364071] px-3 py-1.5 ${
