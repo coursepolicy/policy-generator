@@ -8,9 +8,6 @@ on:
 
 env:
   AWS_REGION: us-west-1
-  SURVEY_URL: ${{ secrets.STAGING_SURVEY_URL }}
-  LAMBDAS_API_BASE_URL: ${{ secrets.STAGING_LAMBDAS_API_BASE_URL }}
-  SAMPLE_PDF_URL: ${{ secrets.STAGING_SAMPLE_PDF_URL }}
 
 concurrency: merge-${{ github.ref }}
 
@@ -37,6 +34,12 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID_STAGING }}:role/${{ secrets.AWS_ROLE_NAME }}
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Fetch env var values from aws
+        run: |
+          export SURVEY_URL=$(aws ssm get-parameter --name survey-url --query Parameter.Value --output text)
+          export LAMBDAS_API_BASE_URL=$(aws ssm get-parameter --name lambdas-base-url --query Parameter.Value --output text)
+          export SAMPLE_PDF_URL=$(aws ssm get-parameter --name sample-pdf-url --query Parameter.Value --output text)
 
       - name: Deploy app to staging
         run: |
