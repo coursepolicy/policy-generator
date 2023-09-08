@@ -4,9 +4,6 @@ This is the frontend app that generates survey responses into a document that us
 
 ## Installation
 
-### prerequisite
-
-Make sure you have aws cli installed and have authenticated using: `https://coursepolicy.awsapps.com/start/`
 
 ```bash
 git clone policy-gen
@@ -21,4 +18,5 @@ yarn dev
 This repository uses SST for deployment and that's it. We directly manage the rest of our distributed systems in AWS using the serverless framework.
 
 Staging: Must have a PR and be merged to `main`. That will trigger a staging deployment.
+
 Production: Triggered via github actions.
