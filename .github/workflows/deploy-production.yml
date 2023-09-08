@@ -7,7 +7,7 @@ on:
         description: 'Deployment environment (enter "production" to deploy)'
         required: true
 env:
-  AWS_REGION: us-west-1
+  AWS_REGION: us-west-2
 
 concurrency: merge-${{ github.ref }}
 
