@@ -54,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading ? (
-          <ReloadIcon className="h-4 w-4 animate-spin" />
+          <ReloadIcon className="aspect-auto animate-spin" />
         ) : (
           props.children
         )}

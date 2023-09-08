@@ -8,13 +8,7 @@ export default async function Policy({
   return (
     <>
       <div className="z-10 hidden h-[75px] w-[100%] max-w-[inherit] bg-white md:fixed md:block" />
-      <Suspense
-        fallback={
-          <p style={{ textAlign: "center" }}>loading... on initial request</p>
-        }
-      >
-        <PolicyResults policyId={id} />
-      </Suspense>
+      <PolicyResults policyId={id} />
     </>
   );
 }

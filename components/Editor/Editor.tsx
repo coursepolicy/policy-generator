@@ -14,6 +14,7 @@ import {
 import { AiPolicy, PolicySection } from "../../lib";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import BottomBar from "./BottomBar";
 
 interface Props {
   content: string;
@@ -247,7 +248,7 @@ export function Editor({
   };
 
   useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current, { duration: 175 });
+    parentRef.current && autoAnimate(parentRef.current, { duration: 0 });
   }, [parentRef]);
 
   useEffect(() => {
@@ -264,7 +265,7 @@ export function Editor({
 
   return (
     <div
-      className={`editor-container  hover:shadow-shadow-on-edit ${
+      className={`editor-container relative hover:shadow-shadow-on-edit ${
         isEditorFocused
           ? "shadow-shadow-on-edit"
           : "hover:shadow-shadow-on-edit"
@@ -402,56 +403,14 @@ export function Editor({
       <EditorContent editor={editor} />
 
       {isEditorFocused && (
-        <div className="mt-[15px] flex justify-between pb-[10px]">
-          <div className="flex">
-            <Button
-              onClick={handleOnSave}
-              loading={loading}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-              style={{
-                border: "0.50px #252D54 solid",
-              }}
-              className=" mr-[8px] inline-flex h-[30px] w-[105px] items-center justify-center gap-1 rounded-[3px]
-              bg-[#4A558E] px-2.5 py-[3px] hover:bg-[#364071]"
-            >
-              <p className="text-xs font-bold leading-normal text-white">
-                Save changes
-              </p>
-            </Button>
-
-            <div>
-              <Button
-                variant={"outline"}
-                onClick={handleOnDiscard}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-                style={{ border: "0.50px #4A558E solid" }}
-                className="inline-flex h-[30px] w-[65px] items-center justify-center gap-1 rounded-[3px] px-2.5 py-[3px] text-[#4A558E] hover:text-[#4A558E]"
-              >
-                <p
-                  style={{ color: "#4A558E" }}
-                  className="hove text-xs font-bold leading-normal text-[#4A558E] hover:text-[#4A558E]"
-                >
-                  Discard
-                </p>
-              </Button>
-            </div>
-          </div>
-          {!hideDeleteButton && (
-            <div>
-              <Button
-                variant={"link"}
-                onClick={handleDelete}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-                className="text-right text-xs font-normal leading-normal text-zinc-500 underline"
-              >
-                delete section
-              </Button>
-            </div>
-          )}
-        </div>
+        <BottomBar
+          handleOnSave={handleOnSave}
+          loading={loading}
+          setIsHovering={setIsHovering}
+          handleOnDiscard={handleOnDiscard}
+          hideDeleteButton={hideDeleteButton}
+          handleDelete={handleDelete}
+        />
       )}
     </div>
   );

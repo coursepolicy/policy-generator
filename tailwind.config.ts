@@ -108,6 +108,7 @@ const config: Config = {
       },
       boxShadow: {
         "shadow-on-edit": "0px 4px 15px 0px rgba(0, 0, 0, 0.15)",
+        "bottom-shadow-on-edit": "0 4px 2px -2p rgba(0, 0, 0, 0.15)",
       },
     },
   },

@@ -14,7 +14,7 @@ const staff = [
     title: "Product",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-    picture: "/images/staff/max.jpeg",
+    picture: "/images/staff/max.jfif",
     socials: [
       {
         id: 1,
@@ -29,7 +29,7 @@ const staff = [
     title: "Design",
     description:
       "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-    picture: "/images/staff/genetia.png",
+    picture: "/images/staff/genetia.jfif",
     socials: [
       { id: 1, name: "Website", url: "www.github.com" },
       {
@@ -45,7 +45,7 @@ const staff = [
     title: "Engineering",
     description:
       "Software engineer in Las Vegas, Nevada. Formerly at Hotel Engine and L.A. Times",
-    picture: "/images/staff/cj.jpeg",
+    picture: "/images/staff/cj.jfif",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
       { id: 1, name: "Website", url: "https://www.cjtantay.com/" },
