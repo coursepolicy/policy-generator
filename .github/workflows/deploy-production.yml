@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 18
 
-      - run: yarn install --frozen-lockfile
+      - run: bun install --frozen-lockfile
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -44,4 +44,4 @@ jobs:
 
       - name: Deploy app to production
         run: |
-          yarn sst deploy --stage production
+          bun sst deploy --stage production
