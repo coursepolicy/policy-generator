@@ -11,11 +11,7 @@ const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
-    ref={ref}
-    className={cn("border-b", className)}
-    {...props}
-  />
+  <AccordionPrimitive.Item ref={ref} {...props} />
 ));
 AccordionItem.displayName = "AccordionItem";
 
@@ -27,13 +23,41 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+        "flex w-full flex-1 items-center gap-2 py-4 pl-3 font-medium transition-all [&[data-state=open]>svg.lucide-minus]:block [&[data-state=open]>svg.lucide-plus]:hidden",
         className,
       )}
       {...props}
     >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#7986C8"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        className="lucide lucide-plus h-4 w-4 shrink-0 transition-transform duration-200"
+      >
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#DFE4FF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        className="lucide lucide-minus hidden h-4 w-4 shrink-0 transition-transform duration-200"
+      >
+        <path d="M5 12h14" />
+      </svg>
       {children}
-      <div className="h-4 w-4 shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

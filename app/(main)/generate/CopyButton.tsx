@@ -1,10 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import React from "react";
-import copyImage from "@/public/images/copy.svg";
-import doneImage from "@/public/images/done.svg";
 
 export default function CopyButton({ text, ...rest }: { text: string }) {
   const [copied, setCopied] = React.useState(false);
@@ -24,7 +21,7 @@ export default function CopyButton({ text, ...rest }: { text: string }) {
           {...rest}
           variant={"ghost"}
           size={"icon"}
-          className="h-[30px] hover:bg-red-100"
+          className="h-[30px] hover:bg-[#EEDDCB]"
           onClick={async () => {
             try {
               await copyTextToClipboard(text);
@@ -35,14 +32,27 @@ export default function CopyButton({ text, ...rest }: { text: string }) {
             }
           }}
         >
-          <Image alt="done copying" src={doneImage} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-check"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
         </Button>
       ) : (
         <Button
           {...rest}
           variant={"ghost"}
           size={"icon"}
-          className="h-[30px] hover:bg-red-100"
+          className="h-[30px] hover:bg-[#EEDDCB]"
           onClick={async () => {
             try {
               await copyTextToClipboard(text);
@@ -53,7 +63,21 @@ export default function CopyButton({ text, ...rest }: { text: string }) {
             }
           }}
         >
-          <Image alt="copy image" src={copyImage} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-copy"
+          >
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+          </svg>
         </Button>
       )}
     </>

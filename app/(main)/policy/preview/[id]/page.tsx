@@ -4,6 +4,7 @@ import React from "react";
 
 import { useAiPolicy } from "@/lib";
 import { PolicyPreview } from "@/components/PolicyPreview";
+import DownloadPdfSection from "./DownloadPdfSection";
 
 interface Props {
   params: { id: string };
@@ -23,15 +24,7 @@ export default function GeneratePolicyPreview({ params: { id } }: Props) {
 
   return (
     <div>
-      <div className="mb-[40px] flex flex-col items-center">
-        <h1>Preview Page</h1>
-        <a
-          href={`${process.env.LAMBDAS_API_BASE_URL}/generated-pdf?generatedId=${id}`}
-          target="_blank"
-        >
-          <strong>Download PDF</strong>
-        </a>
-      </div>
+      <DownloadPdfSection id={id} />
       <PolicyPreview data={dataWithFallback} />
     </div>
   );

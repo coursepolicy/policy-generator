@@ -1,6 +1,5 @@
 import Carousel from "./Carousel";
-import CarouselButtonSection from "./CarouselButtonSection";
-import CarouselCopyText from "./CarouselCopyText";
+import CarouselContentSection from "./CarouselContentSection";
 
 export default function CarouselContainer() {
   return (
@@ -9,10 +8,7 @@ export default function CarouselContainer() {
       py-[20px] md:gap-[40px] lg:min-h-[400px] lg:grid-flow-col lg:justify-between lg:gap-0 lg:px-0 xl:px-[20px] 2xl:gap-[30px]"
     >
       <Carousel />
-      <div className="mx-[40px] grid grid-flow-row gap-6 md:mx-[125px] lg:mx-[15px] xl:mx-[40px] xl:p-0">
-        <CarouselCopyText />
-        <CarouselButtonSection />
-      </div>
+      <CarouselContentSection />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { AiPolicyResponse, PolicySection } from "../../lib/types";
+import { AiPolicyResponse, PolicySection, UseCaseEntry } from "../../lib/types";
 import { format } from "date-fns";
 
 interface Props {
@@ -90,7 +90,7 @@ export function Preview({
                       >
                         {Array.isArray(subSection.htmlContent) &&
                           subSection.htmlContent.map(
-                            (useCase: any, index: number) => {
+                            (useCase: string, index: number) => {
                               return (
                                 <div
                                   key={`${subSection.id}${index}`}
