@@ -8,16 +8,14 @@ import AccordionGenerateButtonContainer from "./AccordionGenerateButtonContainer
 export default function Generate() {
   const uniqueId = uuidv4();
   return (
-    <>
-      <Accordion
-        type="single"
-        collapsible
-        className="grid max-w-[821px] grid-flow-row gap-4"
-      >
-        <AccordionCopyCodeContainer uniqueId={uniqueId} />
-        <AccordionSurveyContainer />
-        <AccordionGenerateButtonContainer uniqueId={uniqueId} />
-      </Accordion>
-    </>
+    <Accordion
+      type="single"
+      collapsible
+      className="grid max-w-[821px] grid-flow-row gap-4"
+    >
+      <AccordionCopyCodeContainer uniqueId={uniqueId} />
+      <AccordionSurveyContainer />
+      <AccordionGenerateButtonContainer uniqueId={uniqueId} />
+    </Accordion>
   );
 }

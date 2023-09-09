@@ -22,11 +22,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: oven-sh/setup-bun@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          bun-version: latest
+          node-version: 18
 
-      - run: bun install
+      - run: yarn install --frozen-lockfile
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -42,4 +43,4 @@ jobs:
 
       - name: Deploy app to staging
         run: |
-          bun sst deploy --stage staging
+          yarn sst deploy --stage staging
