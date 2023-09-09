@@ -2,7 +2,7 @@ import {
   restrictToVerticalAxis,
   restrictToWindowEdges,
 } from "@dnd-kit/modifiers";
-import { SortableSection } from "./Vertical";
+import { SortableSection } from "./DnDKit";
 import {
   AnimateLayoutChanges,
   defaultAnimateLayoutChanges,
