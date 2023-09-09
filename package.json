@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "deploy:local": "AWS_PROFILE=staging && sst deploy --stage ctantay",
-    "dev:sst": "yarn sst dev"
+    "dev:sst": "bun sst dev"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
