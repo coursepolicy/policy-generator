@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 18
 
-      - run: bun install --frozen-lockfile
+      - run: bun install
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
