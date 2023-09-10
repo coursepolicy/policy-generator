@@ -8,6 +8,7 @@ on:
 
 env:
   AWS_REGION: us-west-2
+  AWS_ACCOUNT_ID_STAGING: ${{ secrets.AWS_ACCOUNT_ID_STAGING }}
 
 concurrency: merge-${{ github.ref }}
 

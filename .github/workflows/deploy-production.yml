@@ -8,6 +8,7 @@ on:
         required: true
 env:
   AWS_REGION: us-west-2
+  AWS_ACCOUNT_ID_PRODUCTION: ${{ secrets.AWS_ACCOUNT_ID_PRODUCTION }}
 
 concurrency: merge-${{ github.ref }}
 
