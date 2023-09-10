@@ -7,9 +7,15 @@ import { PolicyEditableView } from "@/components/PolicyEditableView";
 export default function Result({ policyId }: { policyId: string }) {
   const { data } = useAiPolicy(policyId);
 
-  if (!data) {
-    return <></>;
-  }
+  const { createdAt, updatedAt, sections, heading } = data || {};
 
-  return <PolicyEditableView aiPolicy={data} policyId={policyId} />;
+  const dataWithFallback = {
+    id: String(policyId),
+    createdAt: createdAt || String(Date.now()),
+    updatedAt: updatedAt || String(Date.now()),
+    sections: sections || [],
+    heading: heading || "",
+  };
+
+  return <PolicyEditableView aiPolicy={dataWithFallback} policyId={policyId} />;
 }

@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 import { useAiPolicy } from "@/lib";
 import { PolicyPreview } from "@/components/PolicyPreview";
 import DownloadPdfSection from "./DownloadPdfSection";
+import SuspensePolicyEditableView from "@/components/PolicyEditableView/SuspensePolicyEditableView";
 
 interface Props {
   params: { id: string };
@@ -25,7 +26,9 @@ export default function GeneratePolicyPreview({ params: { id } }: Props) {
   return (
     <div>
       <DownloadPdfSection id={id} />
-      <PolicyPreview data={dataWithFallback} />
+      <Suspense fallback={<SuspensePolicyEditableView />}>
+        <PolicyPreview data={dataWithFallback} />
+      </Suspense>
     </div>
   );
 }

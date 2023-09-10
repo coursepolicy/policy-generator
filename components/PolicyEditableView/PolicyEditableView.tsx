@@ -81,6 +81,8 @@ export default function Result({
     },
   );
 
+  console.log("dataWithFallback", initialSections);
+
   const handleSectionDragEvent = ({ active, over }: DragEndEvent) => {
     if (!over) {
       return;
