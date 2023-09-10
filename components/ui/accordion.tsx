@@ -18,49 +18,58 @@ AccordionItem.displayName = "AccordionItem";
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        "flex w-full flex-1 items-center gap-2 py-4 pl-3 font-medium transition-all [&[data-state=open]>svg.lucide-minus]:block [&[data-state=open]>svg.lucide-plus]:hidden",
-        className,
-      )}
-      {...props}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#7986C8"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        className="lucide lucide-plus h-4 w-4 shrink-0 transition-transform duration-200"
+>(({ className, children, onClick, ...props }, ref) => {
+  const [hasClicked, setHasClicked] = React.useState(false);
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn(
+          "flex w-full flex-1 items-center gap-2 py-4 pl-3 font-medium transition-all [&[data-state=open]>svg.lucide-minus]:block [&[data-state=open]>svg.lucide-plus]:hidden",
+          className,
+        )}
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+          setHasClicked(true);
+          if (onClick) {
+            onClick(event);
+          }
+        }}
+        {...props}
       >
-        <path d="M5 12h14" />
-        <path d="M12 5v14" />
-      </svg>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#DFE4FF"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        className="lucide lucide-minus hidden h-4 w-4 shrink-0 transition-transform duration-200"
-      >
-        <path d="M5 12h14" />
-      </svg>
-      {children}
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#7986C8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          className="lucide lucide-plus h-4 w-4 shrink-0 transition-transform duration-200"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#DFE4FF"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          className="lucide lucide-minus hidden h-4 w-4 shrink-0 transition-transform duration-200"
+        >
+          <path d="M5 12h14" />
+        </svg>
+        {children} {hasClicked && <span>✅</span>}
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  );
+});
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef<

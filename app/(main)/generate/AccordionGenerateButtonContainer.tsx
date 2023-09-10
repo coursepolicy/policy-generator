@@ -12,7 +12,7 @@ type Props = {
 export default function AccordionGenerateButtonContainer({ uniqueId }: Props) {
   return (
     <AccordionItem value="step-3">
-      <AccordionTrigger className="bg-[#EEF0FD] text-sm font-bold leading-normal text-[#364071] data-[state=open]:bg-[#4A558E] data-[state=open]:text-[#F7F8FF]">
+      <AccordionTrigger className="bg-[#EEF0FD] text-sm font-bold leading-normal text-[#364071] hover:bg-[#DFE4FF] data-[state=open]:bg-[#4A558E] data-[state=open]:text-[#F7F8FF]">
         Step 3: Generate your AI policy!
       </AccordionTrigger>
       <AccordionContent>
