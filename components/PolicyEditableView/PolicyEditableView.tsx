@@ -15,6 +15,7 @@ import {
   type AiPolicyResponse,
   type AiPolicy,
   savePolicy,
+  SAMPLE_POLICY_ID,
 } from "@/lib";
 import { Editor } from "../Editor";
 import UpdatedAt from "../UpdatedAt";
@@ -64,7 +65,11 @@ export default function Result({
     {
       onSuccess: async (savedPolicyResponse) => {
         await queryClient.invalidateQueries([policyId]);
-        toast.success("A new policy has been created!");
+        toast.success(
+          SAMPLE_POLICY_ID === policyId
+            ? "A new policy has been created!"
+            : "Changes have been saved!",
+        );
         if (isSample) {
           router.push(`/policy/${savedPolicyResponse.data.id}`);
         }

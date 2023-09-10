@@ -1,6 +1,5 @@
 import React from "react";
-import { SAMPLE_POLICY_ID } from "./types";
-import { samplePolicy } from "@/lib";
+import { SAMPLE_POLICY_ID, samplePolicy } from "@/lib";
 import { PolicyEditableView } from "@/components/PolicyEditableView/";
 
 export default async function SamplePolicy() {
