@@ -3,6 +3,7 @@ import React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Providers from "@/lib/providers";
+import GoogleAnalytics from "@/lib/googleAnalytics";
 
 const messinaSans = localFont({
   src: [
@@ -65,6 +66,9 @@ export default function RootLayout({
       lang="en"
       className={`${messinaSans.variable} bg-neutral-50 font-sans`}
     >
+      {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+        <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+      ) : null}
       <Providers>{children}</Providers>
     </html>
   );
