@@ -27,11 +27,5 @@ jobs:
       - name: Build
         run: yarn build
 
-<<<<<<< HEAD
       - name: Test
         run: yarn test
-=======
-      - run: yarn install
-      - run: yarn test
-        working-directory: ./apps/lambdas
->>>>>>> main
