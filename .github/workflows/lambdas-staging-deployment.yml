@@ -21,14 +21,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
 
-      - run: yarn install
-      - run: yarn build
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
 
       - name: serverless deploy
         uses: serverless/github-action@v3.2

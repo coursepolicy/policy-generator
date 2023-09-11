@@ -12822,9 +12822,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lambdas@workspace:apps/lambdas":
+"lambdas@workspace:services/lambdas":
   version: 0.0.0-use.local
-  resolution: "lambdas@workspace:apps/lambdas"
+  resolution: "lambdas@workspace:services/lambdas"
   dependencies:
     "@middy/core": ^4.5.5
     "@middy/error-logger": ^4.5.5
