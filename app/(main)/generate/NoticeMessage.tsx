@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
 import notice from "@/public/images/notice.svg";
 import { Input } from "@/components/ui/input";
 import CopyButton from "./CopyButton";
