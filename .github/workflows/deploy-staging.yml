@@ -1,0 +1,67 @@
+name: "Deploy to Staging"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-west-2
+  AWS_ACCOUNT_ID_STAGING: ${{ secrets.AWS_ACCOUNT_ID_STAGING }}
+
+concurrency: merge-${{ github.ref }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  staging_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID_STAGING }}:role/${{ secrets.AWS_ROLE_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Fetch env var values from aws
+        run: |
+          echo "SURVEY_URL=$(aws ssm get-parameter --name survey-url --query Parameter.Value --output text)" >> $GITHUB_ENV
+          echo "LAMBDAS_API_BASE_URL=$(aws ssm get-parameter --name lambdas-base-url --query Parameter.Value --output text)" >> $GITHUB_ENV
+          echo "SAMPLE_PDF_URL=$(aws ssm get-parameter --name sample-pdf-url --query Parameter.Value --output text)" >> $GITHUB_ENV
+
+      - name: Deploy app to staging
+        run: |
+          pnpm sst deploy --stage staging
