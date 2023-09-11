@@ -1,0 +1,357 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+ 
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+ 
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+ 
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+ 
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+ 
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  font-family: 'MessinaSans', sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  margin: 0 auto;
+  /* max-width: 1600px; */
+  width: 100%;
+  position: relative;
+  font-variant-ligatures: none;
+  box-sizing: border-box;
+}
+
+@layer components {
+  .main-height {
+    height: calc(100vh - 85px);
+  }
+}
+
+.preview-goback {
+  width: 100%;
+  max-width: 985px; 
+  margin: 0 auto; 
+  padding: 20px; 
+}
+
+.preview-container {
+  width: 100%;
+  max-width: 985px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  background-color: #fff; 
+}
+
+.preview-container-no-shadow {
+  width: 100%;
+  max-width: 985px; 
+  margin: 0 auto; 
+  background-color: #fff; 
+}
+/* Content within the preview page */
+.preview-content {
+  margin: 20px 40px; 
+}
+
+.preview-header {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
+}
+
+.tiptap h1, .tiptap h2, .tiptap h3 {
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+}
+
+.tiptap h1 {
+  font-size: 24px;
+}
+
+.tiptap h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tiptap h3 {
+  font-size: 18px;
+}
+
+.tiptap h1 + p {
+  color: #818181;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+ul {
+  list-style-type: square;
+ 
+}
+
+.use-cases-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.use-cases strong {
+  color: #414141;
+  font-size: 14px;
+  line-height: 24px;
+}
+.use-cases p {
+  color: #414141;
+}
+
+.use-cases li {
+  margin-left: 7px;
+}
+
+.use-cases h3 {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  padding-bottom: 18px;
+  border-color: #D8D8D8;
+}
+
+.editor-container button p {
+  color: white;
+}
+
+.tiptap li {
+  margin-left: 10px;
+}
+
+.editor-container {
+  width: 100%;
+  padding: 14px 10px;
+}
+
+.editor-container:first {
+  padding-bottom: 0px;
+}
+
+.editor-container:hover {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.editor-container:hover:focus-within {
+  cursor: text;
+}
+
+
+.tiptap {
+  padding: 10px
+}
+
+.tiptap > * + * {
+  margin-top: 0.75em;
+}
+
+.tiptap ul,
+ol {
+  padding: 0 1rem;
+}
+
+.tiptap h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+}
+
+p {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+}
+
+.tiptap code {
+  background-color: rgba(#616161, 0.1);
+  color: #616161;
+}
+
+.tiptap pre {
+  background: #0D0D0D;
+  color: #FFF;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.tiptap pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.tiptap img {
+  max-width: 100%;
+  height: auto;
+}
+
+.tiptap hr {
+  margin: 1rem 0;
+}
+
+.tiptap blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid rgba(#0D0D0D, 0.1);
+}
+
+.editor-links {
+  color: var(--color-action-action-blue, #3284FF);
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+text-decoration-line: underline;
+
+}
+
+.editor-links::after {
+  content: "\1F517";
+}
+
+@media print {
+  body {
+    font-size: "16px";
+    color: "lightgrey";
+  }
+}
+
+.dragging-container {
+  transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)
+  scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1));
+  transform-origin: 0 0;
+  touch-action: manipulation;
+}
+
+.dragging-container-sub {
+  transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)
+  scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1));
+  transform-origin: 0 0;
+  touch-action: manipulation;
+}
+
+.fadeIn {
+  animation: fadeIn 500ms ease;
+}
+
+.dragOverlay {
+  --scale: 1.05;
+  --box-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05), 0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15)
+  --box-shadow-picked-up: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
+    -1px 0 15px 0 rgba(34, 33, 81, 0.01),
+    0px 15px 15px 0 rgba(34, 33, 81, 0.25);
+  z-index: 999;
+}
+
+.bubble {
+  background-color: #333333
+}
+
+.triangle-down {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #333333; 
+}
+
+.link-input {
+  /* padding-bottom: 20px;
+  height: calc(100% + 20px); */
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.link-input::-webkit-scrollbar {
+  display: none;
+}
+
+/* 55px */
