@@ -1,6 +1,6 @@
 import { db } from '../../../../data/knex';
 import { AiPolicy } from '../../../shared';
-import { createNewPolicy } from '.'; // Update the path appropriately
+import { createNewPolicy } from './'; // Update the path appropriately
 import mockKnex from 'mock-knex';
 
 // Mock the database
