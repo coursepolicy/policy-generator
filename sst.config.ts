@@ -19,6 +19,7 @@ export default {
       const awsStagingAccount = process.env.AWS_ACCOUNT_ID_STAGING;
       const region = "us-east-1";
 
+      // @ts-ignore
       const site = new NextjsSite(stack, "site", {
         customDomain: {
           domainName:
