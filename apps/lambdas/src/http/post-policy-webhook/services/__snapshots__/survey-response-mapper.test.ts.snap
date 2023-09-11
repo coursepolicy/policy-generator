@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`surveyResponseMapper should match the snapshot for a given response 1`] = `
+{
+  "academicIntegrityPolicy": "SomeIntegrityPolicy",
+  "additionalGenerativeAiToolsDeclarations": [
+    "SomeGenerativeAiTools1",
+    "SomeGenerativeAiTools2",
+  ],
+  "additionalGuidelines": "SomeAdditionalGuidelines",
+  "additionalNotes": "SomeNotes",
+  "additionalPolicyText": "This policy document aims to provide clarity and transparency for the use of generative AI in our course. However, it's paramount to remember that students are also expected to adhere to all other policies specified in the course syllabus and those established by the school administration. The following represents a non-exhaustive list of institution-wide policies which all students must observe, some of which may touch on the use of generative AI. These policies are subject to modification at any point in time. It's incumbent upon the students to keep themselves updated and well-informed about these policies.",
+  "campusWidePolicy": "SomeCampusPolicy",
+  "courseDescription": "SomeCourseDescription",
+  "courseNumber": "CourseNumber123",
+  "courseTitle": "CourseTitleABC",
+  "createdAt": "2023-09-08",
+  "departmentWidePolicy": "SomeDepartmentPolicy",
+  "email": "email@example.com",
+  "ethicalGuidelines": [
+    "Guideline1",
+    "Guideline2",
+  ],
+  "generativeAiToolDeclarations": [
+    "ToolDeclaration1",
+  ],
+  "id": "SomeID",
+  "instructor": "InstructorXYZ",
+  "otherPolicies": "SomeOtherPolicies",
+  "overallPolicy": "Allowed under conditions",
+  "overallPolicyText": "We recognize the potential benefits of incorporating generative AI in the learning process. As such, we embrace the use of generative AI tools by our students. In this policy, we employ a "reasonable/not reasonable" system rather than a strict "allowed/not allowed" one (inspired by CS50 at Harvard). This approach fosters proactive thinking among students by encouraging them to understand context, evaluate implications, and make thoughtful decisions. ",
+  "specificPoliciesForAssignments": "SomeSpecificPolicies",
+  "useCases": undefined,
+}
+`;

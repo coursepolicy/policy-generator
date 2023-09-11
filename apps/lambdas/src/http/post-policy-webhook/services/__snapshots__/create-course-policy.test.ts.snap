@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createCoursePolicy should return consistent output 1`] = `
+{
+  "heading": "<div><h1>          AI Policy for 101: Test Course        </h1><p>          Course Instructor: Test Instructor <a target="_blank" rel="noopener noreferrer nofollow" class="editor-links" href="mailto:test@email.com">test@email.com</a></p></div>",
+  "sections": [
+    {
+      "children": [
+        {
+          "htmlContent": "<h3>Course Description</h3><p>This is a test course.</p>",
+          "id": "mockId",
+          "title": "Introduction",
+        },
+      ],
+      "id": "mockId",
+      "title": "Course Description",
+    },
+    {
+      "children": [
+        {
+          "htmlContent": "<h2>1. 101 Generative AI Policy</h2><p>Some policy text.</p>",
+          "id": "mockId",
+          "miscData": {
+            "overallPolicy": "Some Policy",
+          },
+          "title": "Introduction",
+        },
+        {
+          "htmlContent": [
+            "<h3>Reasonable Use Cases ✅</h3><p><strong>Test Reasonable Use Case</strong></p><ul><li><p>Description for a reasonable use case.</p></li></ul>",
+            "<h3>Unreasonable Use Cases ❌</h3><p><strong>Test Unreasonable Use Case</strong></p><ul><li><p>Description for an unreasonable use case.</p></li></ul>",
+          ],
+          "id": "mockId",
+          "title": "Use Cases",
+        },
+        {
+          "htmlContent": "<h3>Assignment/Project Specific AI Policies</h3><p>Specific policies related to assignments for the test course.</p>",
+          "id": "mockId",
+          "title": "Assignment Specific AI Policies",
+        },
+        {
+          "htmlContent": "<h3>Ethical guidelines for using generative AI for this course:</h3><ul><li>First ethical guideline.</li><li>Second ethical guideline.</li><li>Additional ethical guidelines for the test course.</li></ul>",
+          "id": "mockId",
+          "title": "Ethical Guidelines",
+        },
+        {
+          "htmlContent": "<h3>How to declare the use of generative tools:</h3><ul><li>First declaration regarding generative tools.</li><li>Second declaration regarding generative tools.</li><li>Additional declarations regarding generative AI tools for the test course.</li></ul>",
+          "id": "mockId",
+          "title": "Declaration",
+        },
+        {
+          "htmlContent": "<h3>Additional Notes</h3><ul><li>Some additional notes regarding the test course.</li></ul>",
+          "id": "mockId",
+          "title": "Additional Notes",
+        },
+      ],
+      "id": "mockId",
+      "title": "Generative AI Policy",
+    },
+    {
+      "children": [
+        {
+          "htmlContent": "<h2>2. Additional Policies</h2><p>Additional policies text for the test course.</p>",
+          "id": "mockId",
+          "title": "Introduction",
+        },
+        {
+          "htmlContent": "<ul><li><p><a target="_blank" rel="noopener noreferrer nofollow" class="editor-links" href="https://example.com/campus-wide-policy">Campus-wide generative AI policy</a></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" class="editor-links" href="https://example.com/department-wide-policy">Department-wide generative AI policy</a></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" class="editor-links" href="https://example.com/academic-integrity-policy">Academic Integrity policy</a></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" class="editor-links" href="https://example.com/other-policies">Other policies</a></p></li></ul>",
+          "id": "mockId",
+          "title": "Policy Links",
+        },
+      ],
+      "id": "mockId",
+      "title": "Additional Policies",
+    },
+  ],
+}
+`;
