@@ -21,7 +21,7 @@
     "deploy:pdf": "yarn build && sls deploy -f getGeneratedPdf",
     "debug:pdf": "yarn deploy:pdf && sls dev -f getGeneratedPdf --verbose",
     "dev": "yarn build && sls offline",
-    "deploy": "yarn build && sls deploy",
+    "deploy": "sls deploy",
     "test": "jest"
   },
   "devDependencies": {
