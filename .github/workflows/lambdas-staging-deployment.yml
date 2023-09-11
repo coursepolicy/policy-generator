@@ -33,7 +33,7 @@ jobs:
       - name: serverless deploy
         uses: serverless/github-action@v3.2
         with:
-          working-directory: ./apps/lambdas
-          args: deploy -s staging
+          args: -c "cd ./apps/lambdas yarn deploy -s staging"
+          entrypoint: /bin/sh
         env:
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
