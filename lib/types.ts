@@ -15,7 +15,7 @@ export type PolicySection = {
 };
 
 export type AiPolicyResponse = AiPolicy & {
-  id: string | number; // Generated UUIDv4
+  id: string | number; // Generated ULID
   updatedAt?: string;
   createdAt: string;
 };

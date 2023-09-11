@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { v4 as uuid4 } from "uuid";
+import { ulid } from "ulid";
 
 import {
   Active,
@@ -245,7 +245,7 @@ export function SortableSubSection({
         modifiers={modifiers}
       >
         <Wrapper style={style} center>
-          <SortableContext id={uuid4()} items={items} strategy={strategy}>
+          <SortableContext id={ulid()} items={items} strategy={strategy}>
             <Container>
               {items.map((value, index) => (
                 <SortableItem

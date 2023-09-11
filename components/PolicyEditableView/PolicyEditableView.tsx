@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { v4 as uuid4 } from "uuid";
+import { ulid } from "ulid";
 import { isEqual } from "lodash";
 import autoAnimate from "@formkit/auto-animate";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -185,7 +185,7 @@ export default function Result({
     mutate({
       serializedPayload: JSON.stringify(payload),
       policyId,
-      generatedId: isSample ? uuid4() : undefined,
+      generatedId: isSample ? ulid() : undefined,
     });
   };
 
@@ -198,11 +198,11 @@ export default function Result({
     const currentNumber = surveyContents.length;
     const newSectionNumber = currentNumber - 2;
     const newSection = {
-      id: uuid4(),
+      id: ulid(),
       title: `New Section - ${newSectionNumber}`,
       children: [
         {
-          id: uuid4(),
+          id: ulid(),
           title: "New Sub Section",
           htmlContent: "<h2>New Section</h2><p>Enter your content here</p>",
         },
