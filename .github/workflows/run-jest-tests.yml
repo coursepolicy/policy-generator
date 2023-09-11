@@ -1,4 +1,4 @@
-name: Lambdas Tests
+name: Run Jest Tests
 
 on:
   pull_request:
@@ -20,4 +20,3 @@ jobs:
 
       - run: yarn install
       - run: yarn test
-        working-directory: ./apps/lambdas

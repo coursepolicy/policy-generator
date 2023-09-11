@@ -34,7 +34,7 @@ jobs:
       - name: serverless deploy
         uses: serverless/github-action@v3.2
         with:
-          args: -c "cd ./apps/lambdas yarn deploy -s production"
-          entrypoint: /bin/sh
+          working-directory: ./apps/lambdas
+          args: deploy -s production
         env:
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
