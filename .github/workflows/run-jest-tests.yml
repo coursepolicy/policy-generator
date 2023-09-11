@@ -28,4 +28,5 @@ jobs:
         run: yarn build
 
       - name: Test
-        run: yarn test -- -u
+        working-directory: ./services/lambdas
+        run: yarn test
