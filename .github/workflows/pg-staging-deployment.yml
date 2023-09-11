@@ -1,4 +1,4 @@
-name: 'Deploy to Staging'
+name: 'Deploy Policy Generator to Staging'
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
