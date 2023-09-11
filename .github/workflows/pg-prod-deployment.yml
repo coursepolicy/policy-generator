@@ -1,4 +1,4 @@
-name: 'Deploy to Production'
+name: 'Deploy Policy Generator to Production'
 
 on:
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
