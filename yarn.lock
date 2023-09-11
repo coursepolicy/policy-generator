@@ -28,17 +28,17 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@aws-cdk/asset-awscli-v1@^2.2.177", "@aws-cdk/asset-awscli-v1@^2.2.200":
+"@aws-cdk/asset-awscli-v1@^2.2.200":
   version "2.2.200"
   resolved "https://registry.yarnpkg.com/@aws-cdk/asset-awscli-v1/-/asset-awscli-v1-2.2.200.tgz#6ead533f73f705ad7350eb46955e2538e50cd013"
   integrity sha512-Kf5J8DfJK4wZFWT2Myca0lhwke7LwHcHBo+4TvWOGJrFVVKVuuiLCkzPPRBQQVDj0Vtn2NBokZAz8pfMpAqAKg==
 
-"@aws-cdk/asset-kubectl-v20@^2.1.1", "@aws-cdk/asset-kubectl-v20@^2.1.2":
+"@aws-cdk/asset-kubectl-v20@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@aws-cdk/asset-kubectl-v20/-/asset-kubectl-v20-2.1.2.tgz#d8e20b5f5dc20128ea2000dc479ca3c7ddc27248"
   integrity sha512-3M2tELJOxQv0apCIiuKQ4pAbncz9GuLwnKFqxifWfe77wuMxyTRPmxssYHs42ePqzap1LT6GDcPygGs+hHstLg==
 
-"@aws-cdk/asset-node-proxy-agent-v5@^2.0.148", "@aws-cdk/asset-node-proxy-agent-v5@^2.0.166":
+"@aws-cdk/asset-node-proxy-agent-v5@^2.0.166":
   version "2.0.166"
   resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v5/-/asset-node-proxy-agent-v5-2.0.166.tgz#467507db141cd829ff8aa9d6ea5519310a4276b8"
   integrity sha512-j0xnccpUQHXJKPgCwQcGGNu4lRiC1PptYfdxBIH1L4dRK91iBxtSQHESRQX+yB47oGLaF/WfNN/aF3WXwlhikg==
@@ -3002,7 +3002,7 @@
   resolved "https://registry.yarnpkg.com/@tanstack/react-query-next-experimental/-/react-query-next-experimental-5.0.0-alpha.80.tgz#8ecdb7251221c000b19872f7b92789dcd68ce2e8"
   integrity sha512-J+rHrE+5BVEAoZVlvp5wryBdusKDBRrzysfpgOa4t6vcVRWHgzNlmWJFHelgipdHJrA3/4D6wSir8xmkp8ijtA==
 
-"@tanstack/react-query@^4.35.0":
+"@tanstack/react-query@4.35.0":
   version "4.35.0"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.35.0.tgz#6286d2706e69384accc4d6b9ff8e4becd427db74"
   integrity sha512-LLYDNnM9ewYHgjm2rzhk4KG/puN2rdoqCUD+N9+V7SwlsYwJk5ypX58rpkoZAhFyZ+KmFUJ7Iv2lIEOoUqydIg==
@@ -3797,25 +3797,6 @@ available-typed-arrays@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
-
-aws-cdk-lib@2.84.0:
-  version "2.84.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.84.0.tgz#cb08033f5cfba5aed3c0b0cb11a46fc1cbe1586c"
-  integrity sha512-4zLtCLCIs5Ia4WRGqiXRwxSkpGaNy3NxMexO9qYHSuIYpqf4sHObzZ0tDHZCFL5Wkui3sCu3OLQWrRHrr93HvA==
-  dependencies:
-    "@aws-cdk/asset-awscli-v1" "^2.2.177"
-    "@aws-cdk/asset-kubectl-v20" "^2.1.1"
-    "@aws-cdk/asset-node-proxy-agent-v5" "^2.0.148"
-    "@balena/dockerignore" "^1.0.2"
-    case "1.6.3"
-    fs-extra "^11.1.1"
-    ignore "^5.2.4"
-    jsonschema "^1.4.1"
-    minimatch "^3.1.2"
-    punycode "^2.3.0"
-    semver "^7.5.1"
-    table "^6.8.1"
-    yaml "1.10.2"
 
 aws-cdk-lib@2.91.0:
   version "2.91.0"
@@ -8555,7 +8536,7 @@ semver@^6.3.0, semver@^6.3.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
 
-semver@^7.0.0, semver@^7.1.1, semver@^7.3.5, semver@^7.3.7, semver@^7.3.8, semver@^7.5.1, semver@^7.5.3, semver@^7.5.4:
+semver@^7.0.0, semver@^7.1.1, semver@^7.3.5, semver@^7.3.7, semver@^7.3.8, semver@^7.5.3, semver@^7.5.4:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
   integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
@@ -8796,10 +8777,10 @@ sst-aws-cdk@2.91.0:
   optionalDependencies:
     fsevents "2.3.2"
 
-sst@^2.23.14:
-  version "2.24.26"
-  resolved "https://registry.yarnpkg.com/sst/-/sst-2.24.26.tgz#3ae651fa7691f6cbf91352934ac36d4c0ad595e6"
-  integrity sha512-gPbbBIF+/mHHmO0HoXW6KWkl42IZCLc4flKIDpPeF2k43Uc0KQ4MZGCEZ9q/YL3mVrLAhBSIH/n4bH3NNAQVBg==
+sst@^2.24.27:
+  version "2.24.27"
+  resolved "https://registry.yarnpkg.com/sst/-/sst-2.24.27.tgz#2f5501e5526e47eb316fe26659b187fd0e8e4b0d"
+  integrity sha512-V1EMkLV0JkOj/GfmqX5zzSjpXJvQXHn1rDmMsPdcGg+Yv18fVkleo7s9MrrBUesu9cT9h4K34k9b8sq+xKDa/w==
   dependencies:
     "@aws-cdk/aws-apigatewayv2-alpha" "^2.91.0-alpha.0"
     "@aws-cdk/aws-apigatewayv2-authorizers-alpha" "^2.91.0-alpha.0"
