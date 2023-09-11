@@ -30,7 +30,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --no-frozen-lockfile
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
