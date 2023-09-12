@@ -35,7 +35,7 @@ export default function CompletedSurveyButton({
             }
           }
         }}
-        className="inline-flex h-10 w-[100%] items-center justify-center gap-2.5 rounded-none bg-coursePolicyGreen py-2 text-base font-bold leading-normal text-white hover:bg-coursePolicyHoverGreen md:max-w-[300px]"
+        className="inline-flex h-10 w-[100%] w-[90%] items-center justify-center gap-2.5 rounded-none bg-coursePolicyGreen py-2 text-base font-bold leading-normal text-white hover:bg-coursePolicyHoverGreen md:max-w-[300px]"
       >
         Generate my policy
       </Button>

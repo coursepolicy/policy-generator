@@ -126,7 +126,7 @@ export default function About() {
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
           About the team
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
           {staff.map((member) => (
             <article key={member.id}>
               <div className="grid grid-flow-row justify-center gap-3">

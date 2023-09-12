@@ -5,7 +5,7 @@ export default function CarouselButtonSection() {
   return (
     <div
       className="gap- grid grid-flow-row items-center
-     gap-3 sm:justify-center md:grid-flow-col md:justify-start md:gap-7"
+     gap-6 sm:justify-center md:grid-flow-col md:justify-start md:gap-4"
     >
       <ReadSurvayInsightButton />
       <ViewSamplePolicyButton />
