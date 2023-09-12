@@ -13,7 +13,7 @@ export default function AccordionSurveyContainer() {
       </AccordionTrigger>
       <AccordionContent>
         <div
-          className="h-[calc(100vh_-_440px)] overflow-y-auto
+          className="h-[calc(100vh_-_365px)] overflow-y-auto
           md:h-[calc(100vh_-_450px)]"
         >
           <Iframe

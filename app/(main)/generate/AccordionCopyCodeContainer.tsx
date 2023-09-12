@@ -16,7 +16,7 @@ export default function AccordionCopyCodeContainer({ uniqueId }: Props) {
         Step 1: Copy your uniquely configured code
       </AccordionTrigger>
       <AccordionContent className="md:ml-9">
-        <div className="flex flex-col">
+        <div className="flex flex-col px-2 md:px-0">
           <p className="mt-4">
             Please copy and save the unique ID for your AI course policy. more
             information goes here more information goes heremore information

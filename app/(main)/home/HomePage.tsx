@@ -1,4 +1,3 @@
-import { Footer } from "@/components/Footer/";
 import CTAButtonSection from "./CTAButtonSection";
 import CarouselContainer from "./CarouselContainer";
 import HomeHeadingCopyText from "./HomeHeadingCopyText";
