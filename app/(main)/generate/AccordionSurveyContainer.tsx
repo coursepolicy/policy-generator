@@ -13,8 +13,8 @@ export default function AccordionSurveyContainer() {
       </AccordionTrigger>
       <AccordionContent>
         <div
-          className="h-[calc(100vh_-_400px)] overflow-y-auto
-md:h-[calc(100vh_-_500px)]"
+          className="h-[calc(100vh_-_500px)] overflow-y-auto
+          md:h-[calc(100vh_-_490px)]"
         >
           <Iframe
             url={process.env.SURVEY_URL as string}
