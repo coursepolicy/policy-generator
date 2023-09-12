@@ -9,11 +9,11 @@ export default function Generate() {
   const uniqueId = ulid();
   return (
     <div className="grid grid-flow-row gap-4">
-      <h1 className="text-xl font-bold leading-normal text-indigo-900">
+      <h1 className="pl-2 pt-2 text-xl font-bold leading-normal text-indigo-900 md:pl-0 md:pt-0">
         Generate a policy
       </h1>
       <div className="grid grid-flow-row gap-2">
-        <p className="text-sm font-normal leading-normal text-black">
+        <p className="pl-2 text-sm font-normal leading-normal text-black md:pl-0">
           Some brief text about this to provide context. Some brief text about
           this to provide context.
         </p>
