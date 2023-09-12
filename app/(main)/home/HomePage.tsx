@@ -12,8 +12,8 @@ export default function HomePage() {
         <CTAButtonSection />
         <CarouselContainer />
       </main>
-      <section
-        className="flex h-[145px] justify-center
+      <footer
+        className="flex h-[145px] justify-center px-10
       sm:mx-0"
       >
         <div className="grid grid-flow-row gap-5 md:gap-6">
@@ -38,7 +38,7 @@ export default function HomePage() {
             </Button>
           </p>
         </div>
-      </section>
+      </footer>
     </>
   );
 }

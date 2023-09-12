@@ -15,10 +15,7 @@ export default function Generate() {
       <div className="grid grid-flow-row gap-2">
         <p className="text-sm font-normal leading-normal text-black">
           Some brief text about this to provide context. Some brief text about
-          this to provide context. Some brief text about this to provide
-          context. Some brief text about this to provide context. Some brief
-          text about this to provide context. Some brief text about this to
-          provide context.
+          this to provide context.
         </p>
         <Accordion
           type="single"
