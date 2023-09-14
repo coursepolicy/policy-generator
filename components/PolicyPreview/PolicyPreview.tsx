@@ -12,28 +12,32 @@ export function Preview({
 }: Props) {
   return (
     <main
-      className={`${pdf ? "preview-container-no-shadow" : "preview-container"}`}
+      className={`${
+        pdf ? "preview-container-no-shadow" : "preview-container"
+      } px-[20px] pt-[39px]`}
     >
       <div className="preview">
         <div>
-          <header
-            className="tiptap preview-header"
-            dangerouslySetInnerHTML={{ __html: heading }}
-          />
-          <p className="preview-header mb-[20px] pl-[20px]">
-            Last updated on{" "}
-            {updatedAt
-              ? format(new Date(updatedAt), "PPP")
-              : format(new Date(createdAt), "PPP")}
-          </p>
+          <header className="mb-[48px] flex w-[100%] max-w-[inherit] flex-col justify-between border-b border-[#CCCCCC]">
+            <div
+              className="tiptap preview-header"
+              dangerouslySetInnerHTML={{ __html: heading }}
+            />
+            <p className="preview-header mb-[20px] pl-[20px]">
+              Last updated on{" "}
+              {updatedAt
+                ? format(new Date(updatedAt), "PPP")
+                : format(new Date(createdAt), "PPP")}
+            </p>
+          </header>
         </div>
         <article>
           {sections.map((section, index) => (
             <section
               key={section.id}
-              className={`mb-[24px] ${
-                index !== sections.length - 1 ? "border-b border-zinc-400" : ""
-              } pb-[24px]`}
+              className={`mb-[48px] ${
+                index !== sections.length - 1 ? "border-b border-[#CCCCCC]" : ""
+              } pb-[48px]`}
             >
               {section.children &&
                 section.children.map((subSection: PolicySection) => {
@@ -48,7 +52,7 @@ export function Preview({
                       "No restrictions": "bg-green-200",
                     };
                     return (
-                      <section
+                      <div
                         key={subSection.id}
                         className="relative flex break-inside-avoid justify-between"
                       >
@@ -72,7 +76,7 @@ export function Preview({
                             </p>
                           </div>
                         </div>
-                      </section>
+                      </div>
                     );
                   }
 
@@ -86,7 +90,7 @@ export function Preview({
                     return (
                       <section
                         key={subSection.id}
-                        className="use-cases-container flex w-[100%] break-inside-avoid break-after-page flex-row items-stretch justify-between px-[20px] pb-[10px]"
+                        className="grid h-[100%] w-[100%] break-inside-avoid break-after-page grid-flow-col items-stretch justify-between gap-2 py-[24px]"
                       >
                         {Array.isArray(subSection.htmlContent) &&
                           subSection.htmlContent.map(
@@ -94,7 +98,7 @@ export function Preview({
                               return (
                                 <div
                                   key={`${subSection.id}${index}`}
-                                  className={`w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases break-inside-avoid sm:px-[25px] sm:py-[30px]`}
+                                  className={`w-[100%] max-w-[485px] ${bgColorMapper[index]} use-cases break-inside-avoid sm:px-[25px] sm:py-[30px]`}
                                 >
                                   <div
                                     className="tiptap"
@@ -112,7 +116,7 @@ export function Preview({
                   return (
                     <section key={subSection.id} className="break-inside-avoid">
                       <div
-                        className="tiptap"
+                        className="tiptap px-0"
                         dangerouslySetInnerHTML={{
                           __html: subSection.htmlContent || "",
                         }}

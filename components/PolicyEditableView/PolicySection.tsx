@@ -40,7 +40,7 @@ export default function PolicySection({
               "No restrictions": "bg-green-200",
             };
             return (
-              <header
+              <div
                 key={subSection.id}
                 className="flex flex-col-reverse md:relative  md:justify-between"
               >
@@ -71,7 +71,7 @@ export default function PolicySection({
                     </p>
                   </div>
                 </div>
-              </header>
+              </div>
             );
           }
 
@@ -85,7 +85,8 @@ export default function PolicySection({
             return (
               <section
                 key={subSection.id}
-                className="flex h-[100%] w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-stretch md:justify-between"
+                className="grid h-[100%] w-[100%] grid-flow-row items-center gap-2 py-[24px] md:grid-flow-col
+                md:items-stretch md:justify-between"
               >
                 {subSection.htmlContent &&
                   Array.isArray(subSection.htmlContent) &&
@@ -93,7 +94,7 @@ export default function PolicySection({
                     return (
                       <div
                         key={`${subSection.id}${index}`}
-                        className={`w-[100%] max-w-[445px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
+                        className={`w-[100%] md:max-w-[475px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
                       >
                         <Editor
                           content={useCase}
