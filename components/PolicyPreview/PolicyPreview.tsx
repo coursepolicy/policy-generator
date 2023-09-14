@@ -54,7 +54,7 @@ export function Preview({
                     return (
                       <div
                         key={subSection.id}
-                        className="relative flex break-inside-avoid justify-between"
+                        className="relative flex justify-between"
                       >
                         <div
                           className="tiptap"
@@ -90,7 +90,7 @@ export function Preview({
                     return (
                       <section
                         key={subSection.id}
-                        className="grid h-[100%] w-[100%] break-inside-avoid break-after-page grid-flow-col items-stretch justify-between gap-2 py-[24px]"
+                        className="grid h-[100%] w-[100%] grid-flow-col items-stretch justify-between gap-2 py-[24px]"
                       >
                         {Array.isArray(subSection.htmlContent) &&
                           subSection.htmlContent.map(
@@ -98,7 +98,7 @@ export function Preview({
                               return (
                                 <div
                                   key={`${subSection.id}${index}`}
-                                  className={`w-[100%] max-w-[485px] ${bgColorMapper[index]} use-cases break-inside-avoid sm:px-[25px] sm:py-[30px]`}
+                                  className={`w-[100%] max-w-[485px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
                                 >
                                   <div
                                     className="tiptap"
@@ -114,7 +114,7 @@ export function Preview({
                     );
                   }
                   return (
-                    <section key={subSection.id} className="break-inside-avoid">
+                    <section key={subSection.id}>
                       <div
                         className="tiptap px-0"
                         dangerouslySetInnerHTML={{
