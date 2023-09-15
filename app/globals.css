@@ -85,7 +85,6 @@ body {
     )
     rgb(var(--background-start-rgb));
   margin: 0 auto;
-  /* max-width: 1600px; */
   width: 100%;
   position: relative;
   font-variant-ligatures: none;
@@ -98,16 +97,9 @@ body {
   }
 }
 
-.preview-goback {
-  width: 100%;
-  max-width: 985px; 
-  margin: 0 auto; 
-  padding: 20px; 
-}
-
 .preview-container {
   width: 100%;
-  max-width: 985px; 
+  max-width: 1000px; 
   margin: 0 auto; 
   padding: 20px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
@@ -116,7 +108,7 @@ body {
 
 .preview-container-no-shadow {
   width: 100%;
-  max-width: 985px; 
+  max-width: 1000px; 
   margin: 0 auto; 
   background-color: #fff; 
 }
@@ -290,13 +282,6 @@ text-decoration-line: underline;
 
 .editor-links::after {
   content: "\1F517";
-}
-
-@media print {
-  body {
-    font-size: "16px";
-    color: "lightgrey";
-  }
 }
 
 .dragging-container {

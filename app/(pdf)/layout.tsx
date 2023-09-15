@@ -5,5 +5,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <body className="overscroll-y-contain">{children}</body>;
+  return <body className="overscroll-y-contain bg-white">{children}</body>;
 }
