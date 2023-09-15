@@ -97,6 +97,44 @@ body {
   }
 }
 
+@media print {
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  hr {
+    margin: 1rem 0;
+  }
+
+  h1 + p {
+    color: #818181;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin: 0;
+  }
+  
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+}
+
+
 .preview-container {
   width: 100%;
   max-width: 1000px; 

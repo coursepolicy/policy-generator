@@ -98,7 +98,7 @@ export function Preview({
                               return (
                                 <div
                                   key={`${subSection.id}${index}`}
-                                  className={`w-[100%] max-w-[485px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
+                                  className={`w-[100%] max-w-[485px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px]`}
                                 >
                                   <div
                                     className="tiptap"
