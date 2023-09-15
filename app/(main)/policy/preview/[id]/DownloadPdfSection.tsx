@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Props = {
   id: string;
 };
@@ -12,6 +14,14 @@ export default function DownloadPdfSection({ id }: Props) {
       >
         <strong>Download PDF</strong>
       </a>
+      <button>
+        <a>
+          <strong>Publish policy</strong>
+        </a>
+      </button>
+      <Link href="">
+        <strong>View published policy</strong>
+      </Link>
     </div>
   );
 }
