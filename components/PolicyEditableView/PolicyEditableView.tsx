@@ -16,6 +16,7 @@ import {
   type AiPolicy,
   savePolicy,
   SAMPLE_POLICY_ID,
+  useAiPolicy,
 } from "@/lib";
 import { Editor } from "../Editor";
 import UpdatedAt from "../UpdatedAt";
@@ -29,12 +30,7 @@ import PolicySection from "./PolicySection";
 import PolicyNewSections from "./PolicyNewSections";
 
 export default function Result({
-  aiPolicy: {
-    createdAt,
-    updatedAt,
-    sections: initialSections,
-    heading: initialHeading,
-  },
+  aiPolicy,
   policyId,
   isSample,
 }: {
@@ -42,6 +38,15 @@ export default function Result({
   policyId: string;
   isSample?: boolean;
 }) {
+  const { data } = useAiPolicy(policyId, aiPolicy);
+
+  const {
+    createdAt,
+    updatedAt,
+    sections: initialSections,
+    heading: initialHeading,
+  } = data || {};
+
   const queryClient = useQueryClient();
   const router = useRouter();
   const [noChanges, setNoChanges] = useState<boolean>(true);
@@ -52,7 +57,7 @@ export default function Result({
   const parentRef = useRef(null);
   const headerRef = useRef(null);
 
-  const { isLoading, mutate } = useMutation(
+  const { isLoading, mutateAsync } = useMutation(
     ({
       serializedPayload,
       policyId,
@@ -64,7 +69,7 @@ export default function Result({
     }) => savePolicy(serializedPayload, policyId, generatedId),
     {
       onSuccess: async (savedPolicyResponse) => {
-        await queryClient.invalidateQueries([policyId]);
+        await queryClient.invalidateQueries(["policy", policyId]);
         toast.success(
           SAMPLE_POLICY_ID === policyId
             ? "A new policy has been created!"
@@ -180,7 +185,7 @@ export default function Result({
       },
     };
 
-    mutate({
+    await mutateAsync({
       serializedPayload: JSON.stringify(payload),
       policyId,
       generatedId: isSample ? ulid() : undefined,

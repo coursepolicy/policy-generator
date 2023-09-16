@@ -23,7 +23,9 @@ export default function CompletedSurveyButton({
         onClick={async () => {
           try {
             setLoading(true);
-            await queryClient.fetchQuery([uniqueId], () => getPolicy(uniqueId));
+            await queryClient.fetchQuery(["policy", uniqueId], () =>
+              getPolicy(uniqueId),
+            );
 
             router.push(`/policy/${uniqueId}`);
           } catch (error) {

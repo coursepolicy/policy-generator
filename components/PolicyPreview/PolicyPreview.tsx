@@ -5,10 +5,12 @@ import { format } from "date-fns";
 interface Props {
   data: AiPolicyResponse;
   pdf?: boolean;
+  publish?: boolean;
 }
 export function Preview({
   data: { sections, heading, createdAt, updatedAt },
   pdf,
+  publish,
 }: Props) {
   return (
     <main
@@ -23,12 +25,14 @@ export function Preview({
               className="tiptap preview-header"
               dangerouslySetInnerHTML={{ __html: heading }}
             />
-            <p className="preview-header mb-[20px] pl-[20px]">
-              Last updated on{" "}
-              {updatedAt
-                ? format(new Date(updatedAt), "PPP")
-                : format(new Date(createdAt), "PPP")}
-            </p>
+            {!publish && (
+              <p className="preview-header mb-[20px] pl-[20px]">
+                Last updated on{" "}
+                {updatedAt
+                  ? format(new Date(updatedAt), "PPP")
+                  : format(new Date(createdAt), "PPP")}
+              </p>
+            )}
           </header>
         </div>
         <article>

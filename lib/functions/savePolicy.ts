@@ -16,7 +16,6 @@ export async function savePolicy(
     }`,
     {
       method: "post",
-      cache: "no-store",
       body,
       headers: { "Content-Type": "application/json" },
     },

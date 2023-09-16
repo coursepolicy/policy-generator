@@ -23,7 +23,10 @@ export default function SubmitForm() {
         e.preventDefault();
         try {
           setLoading(true);
-          await queryClient.fetchQuery([input], () => getPolicy(input));
+          await queryClient.prefetchQuery({
+            queryKey: ["policy", input],
+            queryFn: () => getPolicy(input),
+          });
           router.push(`/policy/${input}`);
         } catch (error) {
           setLoading(false);
