@@ -18,6 +18,7 @@ export type AiPolicyResponse = AiPolicy & {
   id: string | number; // Generated ULID
   updatedAt?: string;
   createdAt: string;
+  publishId?: string;
 };
 
 export interface GenerativeAiPolicy {

@@ -41,3 +41,4 @@ next-env.d.ts
 .sst
 /.sst/
 cdk.context.json
+node_modules
