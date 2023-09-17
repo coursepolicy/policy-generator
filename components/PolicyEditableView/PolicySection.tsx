@@ -1,4 +1,6 @@
 import React from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 import type { AiPolicy, PolicySections, PolicySection } from "@/lib";
 import { Editor } from "@/components/Editor";
 
@@ -25,8 +27,12 @@ export default function PolicySection({
   ) => void;
   isLoading: boolean;
 }) {
+  const [parent] = useAutoAnimate();
   return (
-    <section className="mb-[48px] border-b border-[#CCCCCC] pb-[48px]">
+    <section
+      className="mb-[48px] border-b border-[#CCCCCC] pb-[48px]"
+      ref={parent}
+    >
       {section.children &&
         section.children.map((subSection, subSectionIndex) => {
           const { miscData, title } = subSection || {};

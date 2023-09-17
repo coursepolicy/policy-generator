@@ -1,3 +1,4 @@
+import { cn } from "@/lib";
 import BottomDeleteButton from "./BottomDeleteButton";
 import BottomDiscardButton from "./BottomDiscardButton";
 import BottomSaveButton from "./BottomSaveButton";
@@ -10,6 +11,7 @@ type Props = {
   hideDeleteButton?: boolean;
   setIsHovering: (isHovering: boolean) => void;
   useCaseBgColor?: string;
+  className?: string;
 };
 
 export default function BottomBar({
@@ -20,14 +22,18 @@ export default function BottomBar({
   loading,
   setIsHovering,
   useCaseBgColor,
+  className,
 }: Props) {
   return (
     <div
-      className={`bottom-x absolute bottom-[-40px] right-0 z-10 h-[45px] w-[100%] border-b border-[#cccccc] ${
-        useCaseBgColor ? useCaseBgColor : "bg-white"
-      } shadow-bottom-shadow-on-edit`}
+      className={cn(
+        `z-10 w-[100%] ${
+          useCaseBgColor ? useCaseBgColor : "bg-white"
+        } shadow-bottom-shadow-on-edit`,
+        className,
+      )}
     >
-      <div className="absolute bottom-[10px] left-[10px] flex">
+      <div className="flex pt-4">
         <BottomSaveButton
           handleOnSave={handleOnSave}
           loading={loading}

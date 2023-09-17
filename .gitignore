@@ -42,3 +42,5 @@ next-env.d.ts
 /.sst/
 cdk.context.json
 node_modules
+.yarn
+.yarn/*

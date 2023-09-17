@@ -13,7 +13,7 @@ import { PolicySections } from "../../lib";
 
 type Props = {
   surveyContents: PolicySections;
-  handleSectionDragEvent: any;
+  handleSectionDragEvent: any; // To-do: Fix me
   handleSubSectionDragEvent: any;
   handleDeleteSubSection: any;
   handleDeleteSection: any;
@@ -30,9 +30,12 @@ export function SortableContainer({
     return defaultAnimateLayoutChanges({ ...args, wasDragging: false });
   };
   return (
-    <div className="my-[20px] flex max-h-[500px] w-[300px] justify-center self-center overflow-y-auto bg-zinc-100 shadow sm:w-[451px] sm:max-w-[100%] md:absolute md:right-0 md:top-[65px] md:m-0">
-      <div className="pb-[10px] pl-[5px] pr-[5px] pt-[10px] sm:pb-[40px] sm:pl-[18px] sm:pr-[15px] sm:pt-[13px]">
-        <p className="flex justify-center text-sm font-normal leading-normal text-zinc-500 sm:justify-start">
+    <div
+      className="my-[20px] mb-0 mt-0 flex max-h-[500px] w-[300px] justify-center self-center 
+    overflow-y-auto bg-zinc-100 shadow sm:m-0 sm:w-[451px] sm:max-w-[100%] md:m-0"
+    >
+      <div className="pb-[10px] pt-[10px] sm:pb-[40px] sm:pl-[18px] sm:pr-[15px] sm:pt-[13px]">
+        <p className="flex justify-center px-[45px] text-sm font-normal leading-normal text-zinc-500 sm:justify-start sm:px-0">
           <i>
             To reorder sections and subsections, hover over the handles on the
             left and and start dragging

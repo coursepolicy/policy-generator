@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
-import autoAnimate from "@formkit/auto-animate";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import StarterKit from "@tiptap/starter-kit";
 import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
 import { AiPolicy, PolicySection } from "../../lib";
@@ -68,7 +68,7 @@ export function Editor({
 
   const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState(false);
-  const parentRef = useRef(null);
+  const [parentRef] = useAutoAnimate({ duration: 100, easing: "ease-in-out" });
 
   const htmlString = editor?.getHTML();
 
@@ -211,10 +211,6 @@ export function Editor({
   }, [handleHeadingOnChanges, heading, htmlString]);
 
   useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current, { duration: 0 });
-  }, [parentRef]);
-
-  useEffect(() => {
     if (!editor || !htmlString) return;
     handleStringHeadingChanges();
     handleStringSectionChanges();
@@ -228,7 +224,7 @@ export function Editor({
 
   return (
     <div
-      className={`editor-container relative hover:shadow-shadow-on-edit ${
+      className={`editor-container hover:shadow-shadow-on-edit ${
         isEditorFocused
           ? "shadow-shadow-on-edit"
           : "hover:shadow-shadow-on-edit"
