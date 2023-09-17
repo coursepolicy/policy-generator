@@ -29,7 +29,12 @@ import PolicySection from "./PolicySection";
 import PolicyNewSections from "./PolicyNewSections";
 
 export default function Result({
-  aiPolicy,
+  aiPolicy: {
+    createdAt,
+    updatedAt,
+    sections: initialSections,
+    heading: initialHeading,
+  },
   policyId,
   isSample,
 }: {
@@ -37,15 +42,7 @@ export default function Result({
   policyId: string;
   isSample?: boolean;
 }) {
-  const { data } = useAiPolicy(policyId, aiPolicy);
   const focusSortableRef = useRef<HTMLDivElement>(null);
-
-  const {
-    createdAt,
-    updatedAt,
-    sections: initialSections,
-    heading: initialHeading,
-  } = data || {};
 
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -69,7 +66,9 @@ export default function Result({
     }) => savePolicy(serializedPayload, policyId, generatedId),
     {
       onSuccess: async (savedPolicyResponse) => {
-        await queryClient.invalidateQueries(["policy", policyId]);
+        if (!isSample) {
+          await queryClient.invalidateQueries(["policy", policyId]);
+        }
         toast.success(
           SAMPLE_POLICY_ID === policyId
             ? "A new policy has been created!"
@@ -279,13 +278,6 @@ export default function Result({
             />
           )}
         </div>
-        {/* <SortableContainer
-          surveyContents={surveyContents}
-          handleSectionDragEvent={handleSectionDragEvent}
-          handleSubSectionDragEvent={handleSubSectionDragEvent}
-          handleDeleteSection={handleDeleteSection}
-          handleDeleteSubSection={handleDeleteSubSection}
-        /> */}
       </section>
       <article ref={parentRef}>
         <Tooltip />
