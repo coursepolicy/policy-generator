@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { ulid } from "ulid";
 import { isEqual } from "lodash";
-import autoAnimate from "@formkit/auto-animate";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
 
@@ -54,8 +54,8 @@ export default function Result({
   const [surveyContents, setSurveyContents] =
     useState<PolicySections>(initialSections);
   const [isReordering, setIsReordering] = useState<boolean>(false);
-  const parentRef = useRef(null);
-  const headerRef = useRef(null);
+  const [parentRef] = useAutoAnimate();
+  const [headerRef] = useAutoAnimate();
 
   const { isLoading, mutateAsync } = useMutation(
     ({
@@ -216,13 +216,6 @@ export default function Result({
       return [...prevState, newSection];
     });
   };
-  useEffect(() => {
-    parentRef.current && autoAnimate(parentRef.current);
-  }, [parentRef]);
-
-  useEffect(() => {
-    headerRef.current && autoAnimate(headerRef.current);
-  }, [headerRef]);
 
   useEffect(() => {
     if (!isSample) return;
