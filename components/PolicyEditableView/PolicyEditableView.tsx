@@ -22,7 +22,6 @@ import { Editor } from "../Editor";
 import UpdatedAt from "../UpdatedAt";
 
 import SampleTextEditing from "./SampleTextEditing";
-import { SortableContainer } from "../Sortable";
 import Tooltip from "../Tooltip";
 import PolicySectionModifier from "./PolicySectionModifier";
 import TextEditing from "./TextEditing";
@@ -39,6 +38,7 @@ export default function Result({
   isSample?: boolean;
 }) {
   const { data } = useAiPolicy(policyId, aiPolicy);
+  const focusSortableRef = useRef<HTMLDivElement>(null);
 
   const {
     createdAt,
@@ -192,8 +192,8 @@ export default function Result({
     });
   };
 
-  const changeIsReorderingState = () => {
-    setIsReordering(!isReordering);
+  const changeIsReorderingState = (bool: boolean) => {
+    setIsReordering(bool);
   };
 
   const AddNewSection = () => {
@@ -230,9 +230,15 @@ export default function Result({
     }
   }, [heading, initialSections, initialHeading, surveyContents, isSample]);
 
+  useEffect(() => {
+    if (isReordering && focusSortableRef.current) {
+      focusSortableRef.current.focus();
+    }
+  }, [isReordering]);
+
   return (
     <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px] ">
-      <header
+      <section
         ref={headerRef}
         className="mb-[24px] flex w-[100%] max-w-[inherit] flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[165px] md:z-20 md:flex-row"
       >
@@ -249,7 +255,7 @@ export default function Result({
           />
           <UpdatedAt updatedAt={updatedAt} createdAt={createdAt} />
         </div>
-        <div className="grid grid-flow-col items-start justify-between gap-2 md:mt-[27px] md:justify-start">
+        <div className="grid grid-flow-col items-end justify-end gap-2 md:mt-[27px] md:items-start md:justify-start">
           <PolicySectionModifier
             surveyContents={surveyContents}
             handleSectionDragEvent={handleSectionDragEvent}
@@ -273,16 +279,14 @@ export default function Result({
             />
           )}
         </div>
-        {isReordering && (
-          <SortableContainer
-            surveyContents={surveyContents}
-            handleSectionDragEvent={handleSectionDragEvent}
-            handleSubSectionDragEvent={handleSubSectionDragEvent}
-            handleDeleteSection={handleDeleteSection}
-            handleDeleteSubSection={handleDeleteSubSection}
-          />
-        )}
-      </header>
+        {/* <SortableContainer
+          surveyContents={surveyContents}
+          handleSectionDragEvent={handleSectionDragEvent}
+          handleSubSectionDragEvent={handleSubSectionDragEvent}
+          handleDeleteSection={handleDeleteSection}
+          handleDeleteSubSection={handleDeleteSubSection}
+        /> */}
+      </section>
       <article ref={parentRef}>
         <Tooltip />
         {surveyContents.map((section, sectionIndex) => (

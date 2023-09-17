@@ -16,7 +16,6 @@ import {
   MouseSensor,
   MeasuringConfiguration,
   PointerActivationConstraint,
-  ScreenReaderInstructions,
   TouchSensor,
   UniqueIdentifier,
   useSensor,

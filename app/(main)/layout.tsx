@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <body>
+    <body className="md:mr-[17px]">
       <Toaster />
       <Header />
       {children}

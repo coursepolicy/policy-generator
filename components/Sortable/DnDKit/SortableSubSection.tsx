@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 import { createPortal } from "react-dom";
 import { ulid } from "ulid";
 
@@ -148,6 +150,8 @@ export function SortableSubSection({
       coordinateGetter,
     }),
   );
+  const [parent] = useAutoAnimate();
+
   const isFirstAnnouncement = useRef(true);
   const getIndex = (id: UniqueIdentifier) =>
     items.findIndex((section) => section.id === id);
@@ -246,7 +250,7 @@ export function SortableSubSection({
       >
         <Wrapper style={style} center>
           <SortableContext id={ulid()} items={items} strategy={strategy}>
-            <Container>
+            <Container ref={parent}>
               {items.map((value, index) => (
                 <SortableItem
                   key={value.id}

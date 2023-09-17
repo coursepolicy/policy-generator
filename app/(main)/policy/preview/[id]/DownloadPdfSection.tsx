@@ -32,7 +32,11 @@ export default function DownloadPdfSection({
         }}
         loading={isLoading}
       >
-        <strong>Publish policy</strong>
+        {publishId ? (
+          <strong>Republish policy</strong>
+        ) : (
+          <strong>Create Publishable link</strong>
+        )}
       </Button>
       {publishId && (
         <Button asChild variant="link">
