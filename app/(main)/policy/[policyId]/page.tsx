@@ -1,7 +1,7 @@
 import React from "react";
 
 import { getPolicy } from "@/lib";
-import { PolicyEditableView } from "@/components/PolicyEditableView";
+import PolicyResults from "./PolicyResults";
 
 export default async function Policy({
   params: { policyId },
@@ -13,7 +13,7 @@ export default async function Policy({
   return (
     <>
       <div className="z-10 hidden h-[75px] w-[100%] max-w-[inherit] bg-white md:fixed md:block" />
-      <PolicyEditableView aiPolicy={data} policyId={policyId} />
+      <PolicyResults aiPolicy={data} policyId={policyId} />
     </>
   );
 }
