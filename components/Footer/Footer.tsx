@@ -11,21 +11,12 @@ export function Footer({ stickied }: { stickied?: boolean }) {
       <p className="text-sm font-bold leading-normal text-stone-500">
         Have a question or concern? Email us{" "}
         <a
-          href="#"
-          target="blank"
-          className="text-sm font-bold leading-normal text-stone-500 underline"
-        >
-          here
-        </a>{" "}
-        or fill out an anonymous feedback form{" "}
-        <a
-          href="#"
+          href="mailto:here@coursepolicy.ai"
           target="blank"
           className="text-sm font-bold leading-normal text-stone-500 underline"
         >
           here
         </a>
-        .
       </p>
     </footer>
   );

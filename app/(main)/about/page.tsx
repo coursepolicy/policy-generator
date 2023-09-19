@@ -13,7 +13,7 @@ const staff = [
     name: "Max Lu",
     title: "Product",
     description:
-      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
+      "Doctoral. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times.",
     picture: "/images/staff/max.jfif",
     socials: [
       {
@@ -27,11 +27,10 @@ const staff = [
     id: 2,
     name: "Genesia Ting",
     title: "Design",
-    description:
-      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
+    description: "Senior UX designer at EchoUser. Formery at and L.A. Times.",
     picture: "/images/staff/genetia.jfif",
     socials: [
-      { id: 1, name: "Website", url: "www.github.com" },
+      { id: 1, name: "Website", url: "https://genesiating.com/" },
       {
         id: 1,
         name: "LinkedIn",
@@ -173,6 +172,11 @@ export default function About() {
               </div>
             </article>
           ))}
+        </div>
+        <div>
+          We also want to thank Kevin Bowen Zhang from the University of
+          Pennsylvania for his support in conducting the survey and data
+          analysis during the summer.
         </div>
       </section>
 

@@ -14,8 +14,7 @@ export default function Generate() {
       </h1>
       <div className="grid grid-flow-row gap-2">
         <p className="pl-2 text-sm font-normal leading-normal text-black md:pl-0">
-          Some brief text about this to provide context. Some brief text about
-          this to provide context.
+          Three simple steps to generate an AI policy for your course.
         </p>
         <Accordion
           type="single"
