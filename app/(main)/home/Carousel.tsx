@@ -4,12 +4,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
-import CarouselSlide from "./CarouselSlide";
+import CarouselSlide1 from "./CarouselSlide1";
+import CarouselSlide2 from "./CarouselSlide2";
+import CarouselSlide3 from "./CarouselSlide3";
 
 const components: React.FC<React.HTMLProps<HTMLDivElement>>[] = [
-  CarouselSlide,
-  CarouselSlide,
-  CarouselSlide,
+  CarouselSlide1,
+  CarouselSlide2,
+  CarouselSlide3,
 ];
 
 export default function Carousel() {
