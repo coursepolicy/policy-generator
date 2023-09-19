@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../ui/button";
 
 export function Footer({ stickied }: { stickied?: boolean }) {
   return (
@@ -10,13 +11,15 @@ export function Footer({ stickied }: { stickied?: boolean }) {
     >
       <p className="text-sm font-bold leading-normal text-stone-500">
         Have a question or concern? Email us{" "}
-        <a
-          href="mailto:here@coursepolicy.ai"
-          target="blank"
-          className="text-sm font-bold leading-normal text-stone-500 underline"
+        <Button
+          asChild
+          variant="link"
+          className="h-0 w-0 text-sm font-bold leading-normal text-stone-500 underline"
         >
-          here
-        </a>
+          <a href="mailto:here@coursepolicy.ai" target="blank">
+            here
+          </a>
+        </Button>
       </p>
     </footer>
   );

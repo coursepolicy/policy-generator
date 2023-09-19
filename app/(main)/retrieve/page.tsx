@@ -1,5 +1,6 @@
 import React from "react";
 import SubmitForm from "./SubmitForm";
+import { Button } from "@/components/ui/button";
 
 export default function ExistingPolicy() {
   return (
@@ -12,10 +13,22 @@ export default function ExistingPolicy() {
           Enter your policy ID below to review, edit, and export your course’s
           AI policy. Each course would have its own unique policy ID. If you
           never used our course AI policy generator before, get started{" "}
-          <a href="https://coursepolicy.ai/generate">here.</a> If you can’t find
-          your course policy ID, please email us at{" "}
-          <a href="mailto:here@coursepolicy.ai">here@coursepolicy.ai</a> with
-          your name, email, and course number.
+          <Button
+            asChild
+            variant="link"
+            className="h-0 cursor-pointer p-0 text-blue-500"
+          >
+            <a href="https://coursepolicy.ai/generate">here.</a>
+          </Button>{" "}
+          If you can’t find your course policy ID, please email us at{" "}
+          <Button
+            asChild
+            variant="link"
+            className="h-0 cursor-pointer p-0 text-blue-500"
+          >
+            <a href="mailto:here@coursepolicy.ai">here@coursepolicy.ai</a>
+          </Button>{" "}
+          with your name, email, and course number.
         </p>
         <p className="mt-[33px]">
           <strong>Enter the policy ID for your course below:</strong>
