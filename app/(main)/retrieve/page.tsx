@@ -1,6 +1,7 @@
 import React from "react";
 import SubmitForm from "./SubmitForm";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function ExistingPolicy() {
   return (
@@ -18,7 +19,7 @@ export default function ExistingPolicy() {
             variant="link"
             className="h-0 cursor-pointer p-0 text-blue-500"
           >
-            <a href="https://coursepolicy.ai/generate">here.</a>
+            <Link href="/generate">here.</Link>
           </Button>{" "}
           If you can’t find your course policy ID, please email us at{" "}
           <Button
