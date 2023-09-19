@@ -27,7 +27,7 @@ const staff = [
     id: 2,
     name: "Genesia Ting",
     title: "Design",
-    description: "Senior UX designer at EchoUser. Formery at and L.A. Times.",
+    description: "Senior UX designer at EchoUser and formery at  L.A. Times.",
     picture: "/images/staff/genetia.jfif",
     socials: [
       { id: 1, name: "Website", url: "https://genesiating.com/" },
