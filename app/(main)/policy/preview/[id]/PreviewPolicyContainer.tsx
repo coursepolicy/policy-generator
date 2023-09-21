@@ -3,7 +3,7 @@
 import { PolicyPreview } from "@/components/PolicyPreview";
 import { publishPolicy, AiPolicyResponse, useAiPolicy } from "@/lib";
 import base62 from "base62";
-import DownloadPdfSection from "./DownloadPdfSection";
+import PreviewHeaderSection from "./PreviewHeaderSection";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -60,7 +60,7 @@ export default function PreviewPolicyContainer({ id, aiPolicy }: Props) {
   }
   return (
     <div>
-      <DownloadPdfSection
+      <PreviewHeaderSection
         id={id}
         publishId={data.publishId}
         mutate={mutate}

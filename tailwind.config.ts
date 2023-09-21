@@ -96,10 +96,20 @@ const config: Config = {
             "box-shadow": "var(--box-shadow-picked-up)",
           },
         },
+        rotate: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(180deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        rotate: "rotate 0.2s ease-out",
+        enger: "",
       },
       boxShadow: {
         "shadow-on-edit": "0px 4px 15px 0px rgba(0, 0, 0, 0.15)",
