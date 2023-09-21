@@ -66,7 +66,7 @@ export default function PreviewPolicyContainer({ id, aiPolicy }: Props) {
         mutate={mutate}
         isLoading={isLoading}
       />
-      <PolicyPreview data={data} publish />
+      <PolicyPreview data={data} />
     </div>
   );
 }
