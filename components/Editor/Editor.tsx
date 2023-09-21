@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -68,7 +68,7 @@ export function Editor({
 
   const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [parentRef] = useAutoAnimate({ duration: 100, easing: "ease-in-out" });
+  const [parentRef] = useAutoAnimate();
 
   const htmlString = editor?.getHTML();
 
@@ -114,7 +114,7 @@ export function Editor({
     setIsEditorFocused(() => false);
   };
 
-  const handleArraySectionChanges = useCallback(() => {
+  const handleArraySectionChanges = () => {
     if (
       !handleSectionsOnChanges ||
       !sections ||
@@ -158,16 +158,9 @@ export function Editor({
       },
     );
     handleSectionsOnChanges(newSections);
-  }, [
-    contentIndex,
-    handleSectionsOnChanges,
-    htmlString,
-    sectionId,
-    sections,
-    subSectionId,
-  ]);
+  };
 
-  const handleStringSectionChanges = useCallback(() => {
+  const handleStringSectionChanges = () => {
     if (!handleSectionsOnChanges || !sections) return;
     if (!sections) return;
     const newSections: AiPolicy["sections"] = sections.map(
@@ -197,9 +190,9 @@ export function Editor({
       },
     );
     handleSectionsOnChanges(newSections);
-  }, [handleSectionsOnChanges, htmlString, sectionId, sections, subSectionId]);
+  };
 
-  const handleStringHeadingChanges = useCallback(() => {
+  const handleStringHeadingChanges = () => {
     if (
       !htmlString ||
       !handleHeadingOnChanges ||
@@ -208,7 +201,7 @@ export function Editor({
     )
       return;
     handleHeadingOnChanges(htmlString);
-  }, [handleHeadingOnChanges, heading, htmlString]);
+  };
 
   useEffect(() => {
     if (!editor || !htmlString) return;

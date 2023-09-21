@@ -17,30 +17,29 @@ export default function CompletedSurveyButton({
   const queryClient = useQueryClient();
 
   return (
-    <div className="mt-4 flex justify-center">
-      <Button
-        loading={loading}
-        onClick={async () => {
-          try {
-            setLoading(true);
-            await queryClient.fetchQuery(["policy", uniqueId], () =>
-              getPolicy(uniqueId),
-            );
+    <Button
+      loading={loading}
+      onClick={async () => {
+        try {
+          setLoading(true);
+          await queryClient.fetchQuery(["policy", uniqueId], () =>
+            getPolicy(uniqueId),
+          );
 
-            router.push(`/policy/${uniqueId}`);
-          } catch (error) {
-            setLoading(false);
-            if (error instanceof Error) {
-              toast.error(error.message);
-            } else {
-              toast.error("Something went wrong");
-            }
+          router.push(`/policy/${uniqueId}`);
+        } catch (error) {
+          setLoading(false);
+          if (error instanceof Error) {
+            toast.error(error.message);
+          } else {
+            toast.error("Something went wrong");
           }
-        }}
-        className="inline-flex h-10 w-[100%] w-[90%] items-center justify-center gap-2.5 rounded-none bg-coursePolicyGreen py-2 text-base font-bold leading-normal text-white hover:bg-coursePolicyHoverGreen md:max-w-[300px]"
-      >
-        Generate my policy
-      </Button>
-    </div>
+        }
+      }}
+      className="inline-flex h-10 w-[90%] items-center justify-center gap-2.5 rounded-none bg-coursePolicyGreen
+      py-2 text-base font-bold leading-normal text-white hover:bg-coursePolicyHoverGreen md:w-[100%] md:max-w-[300px]"
+    >
+      Generate my policy
+    </Button>
   );
 }

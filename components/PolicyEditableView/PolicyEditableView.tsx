@@ -16,7 +16,6 @@ import {
   type AiPolicy,
   savePolicy,
   SAMPLE_POLICY_ID,
-  useAiPolicy,
 } from "@/lib";
 import { Editor } from "../Editor";
 import UpdatedAt from "../UpdatedAt";

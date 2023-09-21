@@ -30,7 +30,6 @@ $focused-outline-color: #4c9ffe;
 
 .Wrapper {
   display: flex;
-  /* border: 1px solid red; */
   width: 100%;
   box-sizing: border-box;
   transform: translate3d(var(--translate-x, 0), var(--translate-y, 0), 0)

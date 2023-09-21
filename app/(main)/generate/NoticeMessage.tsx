@@ -15,8 +15,8 @@ export default function NoticeMessage({
   return (
     <div
       className={cn(
-        `mt-5 h-[100%] w-[90%] self-center rounded-[5px] border
-        border-[#FFA113] bg-[#FFF4E4] p-[15px] md:w-[100%] md:max-w-[725px]`,
+        `mt-5 h-[100%] w-[100%] self-center rounded-[5px]
+        border-[2px] border-[#FFA113] bg-[#FFF4E4] p-[15px] md:max-w-[725px]`,
         className,
       )}
     >

@@ -72,7 +72,7 @@ export default function RootLayout({
         <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
       ) : null}
       <Providers>
-        <body className="md:mr-[17px]">
+        <body>
           <Toaster />
           <Header />
           {children}
