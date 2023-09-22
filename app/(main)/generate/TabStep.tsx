@@ -37,7 +37,7 @@ export default function TabStep({ stepNumber, hidden, text }: Props) {
         return event;
       }}
     >
-      <div className="badge-container md:flex md:items-center md:gap-2">
+      <div className="badge-container flex flex-col md:flex-row md:items-center md:gap-2">
         <span className="p-0 md:hidden">Step {stepNumber}</span>
         <span className="hidden p-0 md:inline">{text}</span>
         {hasClicked && <Badge className="badge text-[10px]">VIEWED</Badge>}
@@ -50,9 +50,9 @@ export default function TabStep({ stepNumber, hidden, text }: Props) {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="lucide lucide-chevron-right hidden md:block"
       >
         <path d="m9 18 6-6-6-6" />
