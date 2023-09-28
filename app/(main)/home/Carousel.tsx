@@ -16,7 +16,7 @@ const components: React.FC<React.HTMLProps<HTMLDivElement>>[] = [
 
 export default function Carousel() {
   const [viewportRef, embla] = useEmblaCarousel({}, [
-    Autoplay({ delay: 15_000 }),
+    Autoplay({ delay: 10_000 }),
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>(

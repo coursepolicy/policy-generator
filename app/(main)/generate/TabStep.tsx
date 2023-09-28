@@ -16,15 +16,16 @@ export default function TabStep({ stepNumber, hidden, text }: Props) {
       value={`step-${stepNumber}`}
       className={`
        grid
-      min-h-[70px] min-w-[100px] grid-flow-row rounded-none bg-[#EEF0FD]
+       min-h-[70px]
+      grow-[1]  grid-flow-row rounded-none bg-[#EEF0FD]
       text-sm font-bold
       leading-normal text-[#364071]
       hover:bg-[#DFE4FF]
       data-[state=active]:bg-[#4A558E]
       data-[state=active]:text-[#F7F8FF]
-      data-[state=active]:shadow-sm sm:min-w-[200px]
+      data-[state=active]:shadow-sm
       md:min-h-[42px]
-      md:min-w-[340px]
+  
       md:grid-flow-col
       md:justify-between [&>div.badge-container>div.badge]:bg-[#C8E9E1]
       [&>div.badge-container>div.badge]:text-[#0AA680]

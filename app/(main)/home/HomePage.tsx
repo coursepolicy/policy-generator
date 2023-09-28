@@ -12,10 +12,10 @@ export default function HomePage() {
         <CarouselContainer />
       </main>
       <footer
-        className="flex h-[145px] justify-center px-10
+        className="flex justify-center px-10
       sm:mx-0"
       >
-        <div className="grid grid-flow-row gap-5 md:gap-6">
+        <div className="grid grid-flow-row gap-2">
           <h3 className=" w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
             Contact Us
           </h3>
@@ -38,6 +38,7 @@ export default function HomePage() {
           </p>
         </div>
       </footer>
+      <div className="pb-[50px]" />
     </>
   );
 }

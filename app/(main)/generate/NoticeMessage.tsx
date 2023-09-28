@@ -16,13 +16,13 @@ export default function NoticeMessage({
     <div
       className={cn(
         `mt-5 h-[100%] w-[100%] self-center rounded-[5px]
-        border-[2px] border-[#FFA113] bg-[#FFF4E4] p-[15px] md:max-w-[725px]`,
+        border-[2px] border-[#FFA113] bg-[#FFF4E4] p-[10px] md:max-w-[725px]`,
         className,
       )}
     >
       <div className="flex flex-col items-center md:grid md:grid-flow-col md:gap-9">
         <div className="flex flex-col items-center md:flex-row md:items-start md:justify-start">
-          <div className="md:mr-[5px] md:pt-[4px]">
+          <div className="min-w-[24px] md:mr-[5px] md:pt-[4px]">
             <Image alt="notice text" src={notice} />
           </div>
           <p className="text-sm font-normal leading-normal text-black">
