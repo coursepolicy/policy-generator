@@ -47,4 +47,4 @@ jobs:
 
       - name: Deploy app to production
         run: |
-          pnpm sst deploy --stage production
+          yarn sst deploy --stage production
