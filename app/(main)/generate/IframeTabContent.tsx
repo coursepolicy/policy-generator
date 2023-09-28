@@ -10,7 +10,7 @@ export default function IframeTabContent({ value }: Props) {
     <TabsContent value={value} className="w-full">
       <Iframe
         url={process.env.SURVEY_URL as string}
-        className="h-[calc(100vh_-_160px)] w-full border-0 md:h-[calc(100vh_-_180px)] md:max-w-[600px]"
+        className="h-[calc(100vh_-_160px)] w-full max-w-[600px] border-0 md:h-[calc(100vh_-_180px)]"
       />
     </TabsContent>
   );
