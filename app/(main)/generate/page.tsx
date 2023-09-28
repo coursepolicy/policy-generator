@@ -2,13 +2,13 @@
 import React from "react";
 import { ulid } from "ulid";
 import { Tabs, TabsList } from "@/components/ui/tabs";
-import { useMediaQuery } from "@uidotdev/usehooks";
 
 import TabStep from "./TabStep";
 import IntroMessageTabContent from "./IntroMessageTabContent";
 import CopyCodeTabContent from "./CopyCodeTabContent";
 import IframeTabContent from "./IframeTabContent";
 import GeneratePolicyTabContent from "./GeneratePolicyTabContent";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Generate() {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");

@@ -4722,16 +4722,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uidotdev/usehooks@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "@uidotdev/usehooks@npm:2.3.1"
-  peerDependencies:
-    react: ">=18.0.0"
-    react-dom: ">=18.0.0"
-  checksum: a1339b91bdb4176f59fc2dd8273065fccacb17749b7022879982ff874bda8e4e54a3f8d74f126e6224164fb2ad422f1cc40dac8705467960df525b207fcd3a79
-  languageName: node
-  linkType: hard
-
 "@whatwg-node/events@npm:0.0.2":
   version: 0.0.2
   resolution: "@whatwg-node/events@npm:0.0.2"
@@ -10697,7 +10687,6 @@ __metadata:
     "@types/node": 20.4.9
     "@types/react": 18.2.19
     "@types/react-dom": 18.2.7
-    "@uidotdev/usehooks": ^2.3.1
     autoprefixer: 10.4.14
     aws-cdk-lib: 2.91.0
     base62: ^2.0.1
