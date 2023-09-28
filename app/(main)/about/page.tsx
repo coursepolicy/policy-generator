@@ -13,7 +13,7 @@ const staff = [
     name: "Max Lu",
     title: "Product",
     description:
-      "Doctoral. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times.",
+      "Doctoral student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times.",
     picture: "/images/staff/max.jfif",
     socials: [
       {
@@ -55,15 +55,6 @@ const staff = [
       },
     ],
   },
-  // {
-  //   id: 4,
-  //   name: "Kevin Zhang",
-  //   title: "Data",
-  //   description:
-  //     "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times",
-  //   picture: "",
-  //   socials: [{ id: 1, name: "LinkedIn", url: "www.github.com" }],
-  // },
 ];
 
 const socialIconMapper: { [key: string]: React.JSX.Element } = {
@@ -79,14 +70,14 @@ export default function About() {
         <h1 className="w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           About this Project
         </h1>
-        <p className="w-[100%] text-sm font-normal leading-normal text-black">
+        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
           As more educators confront the inevitable adoption of generative AI in
           student learning, many universities have released guidelines and
           roadmaps on how to incorporate AI into teaching and learning. A
           defining statement in these policies is that individual instructors
           are encouraged to determine the AI policy for their own courses.
         </p>
-        <p className="w-[100%] text-sm font-normal leading-normal text-black">
+        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
           While this effort should be applauded, because every course is
           different, it also creates potential problems. First, not all
           instructors are equally knowledgeable about AI, and thus, not all are
@@ -95,7 +86,7 @@ export default function About() {
           taking multiple courses simultaneously, confusion can quickly become
           overwhelming.
         </p>
-        <p className="w-[100%] text-sm font-normal leading-normal text-black">
+        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
           Therefore, we developed the policy generator, a self-guided tool for
           anyone to create a policy for their course. With our thoughtfully
           designed policy template, this tool also simplifies the process for
@@ -174,9 +165,11 @@ export default function About() {
           ))}
         </div>
         <div>
-          We also want to thank Kevin Bowen Zhang from the University of
-          Pennsylvania for his support in conducting the survey and data
-          analysis during the summer.
+          <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+            We also want to thank Kevin Bowen Zhang from the University of
+            Pennsylvania for his support in conducting the survey and data
+            analysis during the summer.
+          </p>
         </div>
       </section>
 
@@ -184,7 +177,7 @@ export default function About() {
         <h3 className=" w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           Contact Us
         </h3>
-        <p className="text-sm font-normal leading-normal text-black">
+        <p className="text-sm font-medium leading-normal text-stone-500">
           Are you a course instructor, student, university admin, or a
           technologist? We would love to hear from you. Drop us an email at{" "}
           <Button
@@ -193,7 +186,7 @@ export default function About() {
             className="cursor-pointer p-0 text-blue-500"
           >
             <a
-              className="text-sm font-normal leading-normal text-blue-500"
+              className="text-sm font-medium leading-normal text-blue-500"
               href="mailto:here@coursepolicy.ai"
               target="_blank"
             >

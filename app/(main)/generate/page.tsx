@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { ulid } from "ulid";
 import { Tabs, TabsList } from "@/components/ui/tabs";
@@ -7,19 +8,22 @@ import IntroMessageTabContent from "./IntroMessageTabContent";
 import CopyCodeTabContent from "./CopyCodeTabContent";
 import IframeTabContent from "./IframeTabContent";
 import GeneratePolicyTabContent from "./GeneratePolicyTabContent";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Generate() {
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
   const uniqueId = ulid();
   return (
     <div>
       <div className="pt-[10px] md:pt-[80px]" />
       <Tabs
-        className="flex w-full flex-col items-center justify-center self-center md:flex-row md:items-start md:justify-start md:gap-10 md:self-start"
+        className=" grid w-full  md:flex md:flex-row md:items-start md:justify-start md:gap-10 md:self-start"
         defaultValue="step-0"
+        orientation={isSmallDevice ? "horizontal" : "vertical"}
       >
         <TabsList
-          className="grid h-full grid-flow-col justify-around gap-2 bg-neutral-50 
-        sm:justify-center sm:justify-items-center md:relative md:h-0 md:grid-flow-row"
+          className="flex h-full gap-2  bg-neutral-50 
+        md:relative md:grid md:h-0 md:grid-flow-row md:justify-around md:gap-2"
         >
           <TabStep stepNumber={1} text="Step 1: Copy the code" />
           <TabStep stepNumber={2} text="Step 2: Fill out information" />

@@ -7,6 +7,7 @@ type Props = {
 export default function IntroMessageTabContent({ value }: Props) {
   return (
     <TabsContent value={value}>
+      <div className="py-4 md:py-0" />
       <div className="grid grid-flow-row px-2 md:w-full md:max-w-[800px]">
         <h1 className=" text-2xl font-bold leading-normal text-[#4A558E]">
           Generate a Policy
