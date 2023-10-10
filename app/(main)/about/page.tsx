@@ -27,7 +27,8 @@ const staff = [
     id: 2,
     name: "Genesia Ting",
     title: "Design",
-    description: "Senior UX designer at EchoUser and formery at  L.A. Times.",
+    description:
+      "Senior Product designer with extensive experiences in the civic tech and social impact space. Previously at Los Angeles Times, Census Open Innovation Labs, Mapbox, and more.",
     picture: "/images/staff/genetia.jfif",
     socials: [
       { id: 1, name: "Website", url: "https://genesiating.com/" },
