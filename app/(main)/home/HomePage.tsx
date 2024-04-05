@@ -1,16 +1,18 @@
-import CTAButtonSection from "./CTAButtonSection";
 import CarouselContainer from "./CarouselContainer";
 import HomeHeadingCopyText from "./HomeHeadingCopyText";
 import { Button } from "@/components/ui/button";
+import HeadingImage from "./HeadingImage";
 
 export default function HomePage() {
   return (
     <>
-      <main className="mb-[150px] flex flex-col items-center justify-center">
+      <main className="mb-[150px] flex flex-row items-center justify-center bg-[#191f3c]">
         <HomeHeadingCopyText />
-        <CTAButtonSection />
-        <CarouselContainer />
+        <HeadingImage />
       </main>
+      <div>
+        <CarouselContainer />
+      </div>
       <footer
         className="flex justify-center px-10
       sm:mx-0"

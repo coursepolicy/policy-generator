@@ -8,7 +8,6 @@ export default function CarouselButtonSection() {
      gap-6 sm:justify-center md:grid-flow-col md:justify-start md:gap-4"
     >
       <ReadSurvayInsightButton />
-      <ViewSamplePolicyButton />
     </div>
   );
 }
