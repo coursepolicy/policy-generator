@@ -2,28 +2,50 @@ import CarouselContainer from "./CarouselContainer";
 import HomeHeadingCopyText from "./HomeHeadingCopyText";
 import { Button } from "@/components/ui/button";
 import HeadingImage from "./HeadingImage";
+import MidSection from "./MidSection";
+import HomeWorldWideSection from "./HomeWorldWideSection";
+import UnitedStatesImage from "./UnitedStatesImage";
 
 export default function HomePage() {
   return (
     <>
-      <main className="mb-[150px] flex flex-row items-center justify-center bg-[#191f3c]">
-        <HomeHeadingCopyText />
-        <HeadingImage />
+      <main className="justify-left mb-[150px] flex flex-row items-center bg-[#191f3c]">
+        <div>
+          <HomeHeadingCopyText />
+        </div>
+        <div>
+          <HeadingImage />
+        </div>
       </main>
-      <div>
+      <div className="mb-[150px] flex flex-row items-center justify-center">
         <CarouselContainer />
       </div>
+      <div>
+        <MidSection />
+      </div>
+      <div className="justify-left mb-[150px] flex flex-row items-center bg-[#191f3c]">
+        <div>
+          <HomeWorldWideSection />
+        </div>
+        <div>
+          <UnitedStatesImage />
+        </div>
+      </div>
       <footer
-        className="flex justify-center px-10
+        className=" flex items-center justify-center px-10 text-center
       sm:mx-0"
       >
         <div className="grid grid-flow-row gap-2">
-          <h3 className=" w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
+          <h3 className=" w-[100%]  text-3xl font-bold leading-normal text-[#364071]">
             Contact Us
           </h3>
           <p className="text-sm font-normal leading-normal text-black">
             Are you a course instructor, student, university admin, or a
-            technologist? We would love to hear from you. Drop us an email at{" "}
+            technologist? We would love to hear from you.
+          </p>
+          <p>
+            {" "}
+            Drop us an email at{" "}
             <Button
               asChild
               variant={"link"}

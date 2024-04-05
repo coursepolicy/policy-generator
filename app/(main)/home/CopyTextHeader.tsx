@@ -6,8 +6,8 @@ export default function CopyTextHeader() {
        md:pt-14 md:text-[50px] md:leading-[70px]"
     >
       The step-by-step
-      <span className="text-coursePolicyLightGreen"> AI policy generator </span>
-      for university course instructors.
+      <span className="text-coursePolicyLightGreen"> AI policy generator</span>
+      <span> for </span>university course instructors.
     </h1>
   );
 }

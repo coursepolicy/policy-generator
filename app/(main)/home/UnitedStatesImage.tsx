@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function HeadingImage() {
+export default function UnitedStatesImage() {
   return (
     <div className=" mr-[70px] mt-[25px]">
       <Image
-        src="/images/hp_image1.png"
+        src="/images/UnitedStates.png"
         width={800}
         height={800}
-        alt="header-image"
+        alt="USA-image"
       />
     </div>
   );
