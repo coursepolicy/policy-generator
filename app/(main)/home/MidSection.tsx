@@ -1,7 +1,15 @@
+import MidSectionImages from "./MidSectionImages";
+import MidSectionText from "./MidSectionText";
+
 export default function MidSection() {
   return (
-    <h1 className="justify-center text-center text-3xl font-bold font-bold leading-[45px] text-[#364071]">
-      Why use CoursePolicy?
-    </h1>
+    <div>
+      <div>
+        <MidSectionText />
+      </div>
+      <div>
+        <MidSectionImages />
+      </div>
+    </div>
   );
 }

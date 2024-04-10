@@ -69,7 +69,7 @@ export default function Carousel() {
             </article>
           ))}
         </div>
-        <div className="absolute bottom-8 left-1/2 grid -translate-x-1/2 -translate-y-10 transform grid-flow-col justify-center gap-3">
+        <div className="absolute bottom-8 left-1/2 grid -translate-x-1/2 -translate-y-12 transform grid-flow-col justify-center gap-3">
           {scrollSnaps.map((_, index) => (
             <Button
               variant={"outline"}
@@ -77,8 +77,8 @@ export default function Carousel() {
               aria-current={index === selectedIndex ? "true" : "false"}
               aria-label={`scroll to slide ${index + 1}`}
               onClick={() => scrollTo(index)}
-              className={` h-[3px]
-             w-[30px] cursor-pointer touch-manipulation rounded-none border-none ${
+              className={` h-[2px]
+             w-[23px] cursor-pointer touch-manipulation rounded-none border-none ${
                index === selectedIndex ? "bg-[#8b95ca]" : "bg-[#dedede]"
              }  p-0`}
             />

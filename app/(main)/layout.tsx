@@ -67,10 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${messinaSans.variable} bg-neutral-50 font-sans`}
-    >
+    <html lang="en" className={`${messinaSans.variable}  font-sans`}>
       {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
         <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
       ) : null}
