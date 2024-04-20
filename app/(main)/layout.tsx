@@ -54,7 +54,7 @@ const messinaSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CourcePolicy.AI",
+  title: "CoursePolicy.AI",
   description: "AI Policy Generation",
   icons: {
     icon: "/icon.ico",

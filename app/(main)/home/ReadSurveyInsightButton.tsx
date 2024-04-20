@@ -8,7 +8,7 @@ export default function ReadSurvayInsightButton() {
     <div>
       <Button
         asChild
-        className=" mb-[50px] flex h-[41px] w-[205px] items-center justify-start gap-2.5 rounded-[100px] border border-[#4A558E]
+        className="mb-[5px] flex h-[41px] w-[205px] items-center justify-start gap-2.5 rounded-[100px] border border-[#4A558E]
               text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E] sm:mt-[10px]"
         variant={"outline"}
       >

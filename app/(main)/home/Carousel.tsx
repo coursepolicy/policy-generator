@@ -69,7 +69,7 @@ export default function Carousel() {
             </article>
           ))}
         </div>
-        <div className="absolute bottom-8 left-1/2 grid -translate-x-1/2 -translate-y-12 transform grid-flow-col justify-center gap-3">
+        <div className="absolute bottom-8 left-1/2 mb-[2px] ml-[8px] grid -translate-x-1/2 -translate-y-12 transform grid-flow-col justify-center gap-3">
           {scrollSnaps.map((_, index) => (
             <Button
               variant={"outline"}

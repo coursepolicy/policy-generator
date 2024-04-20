@@ -1,40 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function WorldWideList() {
   return (
-    <div className="flex">
-      <div>
-        <ul className="list-none text-left text-white md:p-8">
-          <li>Boston,MA</li>
-          <li>Palo Alto,CA</li>
-          <li>New York,NY</li>
-          <li>Toronta,CA</li>
-          <li>Toronta,CA</li>
-        </ul>
+    <div className="mt-[78px] flex justify-between">
+      <ul className="list-none space-y-3 text-[21px] text-white">
+        <li>Boston,MA</li>
+        <li>Palo Alto,CA</li>
+        <li>New York,NY</li>
+        <li>Toronto,CA</li>
+        <li>Toronto,CA</li>
+      </ul>
+      <div className="relative w-[15%]">
+        <Image src="/images/Line_14.svg" alt="line" objectFit="contain" fill />
       </div>
-      <div
-        className="h-[1px] w-[150px] rotate-90
-             cursor-pointer touch-manipulation self-center rounded-none border-none bg-white"
-      ></div>
-      <div>
-        <ul className="list-none text-left text-white md:p-8">
-          <li>Boston,MA</li>
-          <li>Palo Alto,CA</li>
-          <li>New York,NY</li>
-          <li>Toronta,CA</li>
-          <li>Toronta,CA</li>
-        </ul>
+      <ul className="list-none space-y-3 text-[21px] text-white ">
+        <li>Boston,MA</li>
+        <li>Palo Alto,CA</li>
+        <li>New York,NY</li>
+        <li>New York,NY</li>
+        <li>New York,NY</li>
+      </ul>
+      <div className="relative w-[15%]">
+        <Image src="/images/Line_14.svg" alt="line" objectFit="contain" fill />
       </div>
-      <div
-        className="h-[1px] w-[150px]
-             rotate-90 cursor-pointer touch-manipulation self-center rounded-none border-none bg-white"
-      ></div>
       <div>
-        <ul className="list-none text-left text-white md:p-8">
+        <ul className=" list-none space-y-3 text-[21px] text-white">
           <li>Boston,MA</li>
           <li>Palo Alto,CA</li>
-          <li>New York,NY</li>
-          <li>Toronta,CA</li>
+          <li>Westwood,CA</li>
+          <li>Toronto,CA</li>
           <li>
             <Link href="" className="text-[#38406e]">
               and more!

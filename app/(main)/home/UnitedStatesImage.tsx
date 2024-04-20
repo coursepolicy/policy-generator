@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function UnitedStatesImage() {
   return (
-    <div className=" mr-[70px] mt-[25px]">
+    <div className="mr-[130px] mt-[88px] max-w-[675px] ">
       <Image
         src="/images/UnitedStates.png"
         width={800}
