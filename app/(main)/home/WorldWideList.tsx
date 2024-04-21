@@ -8,7 +8,7 @@ export default function WorldWideList() {
         <li>Boston,MA</li>
         <li>Palo Alto,CA</li>
         <li>New York,NY</li>
-        <li>Toronto,CA</li>
+        <li>Dallas,TX</li>
         <li>Toronto,CA</li>
       </ul>
       <div className="relative w-[15%]">
@@ -17,9 +17,9 @@ export default function WorldWideList() {
       <ul className="list-none space-y-3 text-[21px] text-white ">
         <li>Boston,MA</li>
         <li>Palo Alto,CA</li>
-        <li>New York,NY</li>
-        <li>New York,NY</li>
-        <li>New York,NY</li>
+        <li>Austin,TX</li>
+        <li>San Francisco,CA</li>
+        <li>LA,CA</li>
       </ul>
       <div className="relative w-[15%]">
         <Image src="/images/Line_14.svg" alt="line" objectFit="contain" fill />

@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function MidSectionImages() {
   return (
-    <div className="mt-[72px] flex max-w-[1600px] justify-center ">
-      <div className="flex w-[35%] flex-col items-center pl-[135px] text-center">
+    <div className="mt-[72px] max-w-[1600px] lg:flex">
+      <div className="flex flex-col items-center text-center lg:w-[35%] lg:pl-[135px]">
         <div>
           <Image
             src="/images/step1_pic.png"
@@ -25,7 +25,7 @@ export default function MidSectionImages() {
       <div className=" relative mb-[120px] w-[11%]">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
-      <div className="flex w-[25%] flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center lg:w-[25%]">
         <div>
           <Image
             src="/images/step2_pic.png"
@@ -47,7 +47,7 @@ export default function MidSectionImages() {
       <div className="relative mb-[120px] w-[11%]">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
-      <div className="flex w-[35%] flex-col items-center pr-[150px] text-center">
+      <div className="flex flex-col items-center text-center lg:w-[35%] lg:pr-[150px]">
         <div>
           <Image
             src="/images/step3_pic.png"

@@ -13,15 +13,17 @@ export default function HomePage() {
   return (
     <>
       <main className="bg-[#191f3c]">
-        <div className="mx-auto flex max-w-[1600px] justify-between">
-          <div className="ml-[147px]">
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center text-center lg:flex-row lg:justify-center lg:text-left 2xl:justify-between 2xl:text-left">
+          <div className="lg:ml-[147px]">
             <CopyTextHeader />
-            <div className="flex md:mt-[20px]">
+            <div className="mt-[20px] flex items-center justify-center lg:justify-between">
               <CopyTextParagraph />
             </div>
             <CTAButtonSection />
           </div>
-          <HeadingImage />
+          <div className="hidden 2xl:block">
+            <HeadingImage />
+          </div>
         </div>
       </main>
       <div className="mx-auto flex max-w-[1600px] justify-center bg-white pt-[43px]">
@@ -34,9 +36,11 @@ export default function HomePage() {
         </div>
       </div>
       <div className="bg-[#191f3c] pb-[105px]">
-        <div className="mx-auto flex max-w-[1600px] justify-between">
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center 2xl:flex-row 2xl:justify-between 2xl:text-left">
           <HomeWorldWideSection />
-          <UnitedStatesImage />
+          <div className="hidden 2xl:block">
+            <UnitedStatesImage />
+          </div>
         </div>
       </div>
       <footer

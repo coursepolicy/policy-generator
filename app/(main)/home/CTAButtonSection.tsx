@@ -5,12 +5,11 @@ import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 
 export default function CTAButtonSection() {
   return (
-    <div className="justify-left my-[30px]  grid grid-flow-row gap-6 md:mb-[90px] md:mt-[65px] md:grid-flow-col md:gap-2">
-      <div>
+    <div className=" lg:my-[30px] lg:mb-[90px] lg:mt-[65px] lg:grid lg:grid-flow-row">
+      <div className=" mt-[50px] flex flex-col items-center lg:mb-[8px] lg:mt-[0px] lg:flex-row">
         <Button
           asChild
-          className=" inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] 
-          bg-coursePolicyGreen text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen"
+          className="mb-6 inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] bg-coursePolicyGreen text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen lg:mb-[0px] lg:mr-4"
         >
           <Link href="/generate">
             Create an AI Policy{" "}
@@ -20,8 +19,7 @@ export default function CTAButtonSection() {
         <Button
           asChild
           variant={"outline"}
-          className="justify-left ml-[22px] inline-flex h-[40px] w-[170px] items-center gap-2.5 rounded-[100px] border border-[#4A558E]
-            bg-transparent  text-right text-sm font-semibold leading-[25px] text-white hover:text-[#4A558E]"
+          className="mb-[50px] inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E] bg-transparent text-right text-sm font-semibold leading-[25px] text-white hover:text-[#4A558E] lg:mb-0 lg:ml-[5px] lg:w-auto  2xl:w-[170px]"
         >
           <Link href="/retrieve">View sample policy</Link>
         </Button>
