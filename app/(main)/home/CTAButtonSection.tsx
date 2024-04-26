@@ -9,7 +9,7 @@ export default function CTAButtonSection() {
       <div className=" mt-[50px] flex flex-col items-center lg:mb-[8px] lg:mt-[0px] lg:flex-row">
         <Button
           asChild
-          className="mb-6 inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] bg-coursePolicyGreen text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen lg:mb-[0px] lg:mr-4"
+          className="mb-6 inline-flex items-center justify-center gap-2.5 rounded-[100px] bg-coursePolicyGreen text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen lg:mb-[0px] lg:mr-4"
         >
           <Link href="/generate">
             Create an AI Policy{" "}
@@ -19,7 +19,7 @@ export default function CTAButtonSection() {
         <Button
           asChild
           variant={"outline"}
-          className="mb-[50px] inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E] bg-transparent text-right text-sm font-semibold leading-[25px] text-white hover:text-[#4A558E] lg:mb-0 lg:ml-[5px] lg:w-auto  2xl:w-[170px]"
+          className="mb-[50px] inline-flex  items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E] bg-transparent text-right text-sm font-semibold leading-[25px] text-white hover:text-[#4A558E] lg:mb-0 lg:ml-[5px] lg:w-auto  2xl:w-[170px]"
         >
           <Link href="/retrieve">View sample policy</Link>
         </Button>

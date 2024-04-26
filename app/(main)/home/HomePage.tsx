@@ -8,47 +8,70 @@ import MidSectionText from "./MidSectionText";
 import MidSectionImages from "./MidSectionImages";
 import HomeWorldWideSection from "./HomeWorldWideSection";
 import UnitedStatesImage from "./UnitedStatesImage";
+import Image from "next/image";
+import Link from "next/link";
+import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 
 export default function HomePage() {
   return (
     <>
-      <main className="bg-[#191f3c]">
-        <div className="mx-auto flex max-w-[1600px] flex-col items-center text-center lg:flex-row lg:justify-center lg:text-left 2xl:justify-between 2xl:text-left">
-          <div className="lg:ml-[147px]">
-            <CopyTextHeader />
-            <div className="mt-[20px] flex items-center justify-center lg:justify-between">
-              <CopyTextParagraph />
-            </div>
-            <CTAButtonSection />
+      <main>
+        <div className="flex bg-black">
+          <div className="text-md mx-auto flex max-w-[1600px] py-3">
+            <p className="text-center text-[12px] text-white">
+              To access CoursePolicy through Harvard Graduate School of
+              Education, click{" "}
+              <span className="text-[12px] text-coursePolicyLightGreen underline">
+                here
+              </span>
+            </p>
+            <Link href="/"></Link>
+            <Image
+              className="ml-[5px]"
+              alt="right pointed arrow"
+              src={rightArrowWhite}
+            />
           </div>
-          <div className="hidden 2xl:block">
-            <HeadingImage />
+        </div>
+        <div className="bg-[#191f3c]">
+          <div className="mx-auto flex max-w-[1600px] flex-col items-center text-center lg:flex-row lg:justify-center lg:text-left 2xl:justify-between 2xl:text-left">
+            <div className="px-4 lg:ml-[147px] lg:px-0">
+              <CopyTextHeader />
+              <div className="mt-[20px] flex items-center justify-center lg:justify-between">
+                <CopyTextParagraph />
+              </div>
+              <CTAButtonSection />
+            </div>
+            <div className="hidden 2xl:block">
+              <HeadingImage />
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto flex max-w-[1600px] justify-center bg-white bg-white pt-[43px]">
+          <CarouselContainer />
+        </div>
+        <div className="bg-[#F6F6F9] pb-[88px]">
+          <div className="mx-auto flex max-w-[1600px] flex-col justify-center">
+            <MidSectionText />
+            <MidSectionImages />
+          </div>
+        </div>
+        <div className="bg-[#191f3c] pb-[105px]">
+          <div className="mx-auto flex max-w-[1600px] flex-col items-center px-4 lg:px-0 2xl:flex-row 2xl:justify-between 2xl:text-left">
+            <HomeWorldWideSection />
+            <div className="hidden 2xl:block">
+              <UnitedStatesImage />
+            </div>
           </div>
         </div>
       </main>
-      <div className="mx-auto flex max-w-[1600px] justify-center bg-white pt-[43px]">
-        <CarouselContainer />
-      </div>
-      <div className="bg-[#F6F6F9] pb-[88px]">
-        <div className="mx-auto flex max-w-[1600px] flex-col justify-center">
-          <MidSectionText />
-          <MidSectionImages />
-        </div>
-      </div>
-      <div className="bg-[#191f3c] pb-[105px]">
-        <div className="mx-auto flex max-w-[1600px] flex-col items-center 2xl:flex-row 2xl:justify-between 2xl:text-left">
-          <HomeWorldWideSection />
-          <div className="hidden 2xl:block">
-            <UnitedStatesImage />
-          </div>
-        </div>
-      </div>
+
       <footer
         className="flex items-center justify-center text-center
       sm:mx-0"
       >
-        <div className="grid max-w-[1600px] grid-flow-row gap-2">
-          <h3 className="mt-[105px] w-[100%]  text-[40px] font-bold leading-normal text-[#364071]">
+        <div className="mb-[120px] grid max-w-[1600px] grid-flow-row gap-2">
+          <h3 className=" mt-[45px] w-[100%] text-[40px]  font-bold leading-normal text-[#364071] lg:mt-[105px]">
             Contact Us
           </h3>
           <p className="mt-[25px] text-[16px] font-normal leading-normal text-black">

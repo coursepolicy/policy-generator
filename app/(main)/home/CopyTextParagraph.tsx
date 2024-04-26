@@ -4,7 +4,7 @@ export default function CopyTextParagraph() {
       <p
         className="max-w-[640px] 
        text-[16px] leading-normal
-        text-stone-500 text-white "
+        text-white"
       >
         Are you trying to set clear boundaries around the use if generative AI
         in your course? CoursePolicy.AI has a tool to help. By setting clear

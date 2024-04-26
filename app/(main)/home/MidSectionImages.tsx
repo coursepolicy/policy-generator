@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function MidSectionImages() {
   return (
-    <div className="mt-[72px] max-w-[1600px] lg:flex">
-      <div className="flex flex-col items-center text-center lg:w-[35%] lg:pl-[135px]">
-        <div>
+    <div className="mt-[72px] max-w-[1600px] xl:flex">
+      <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[35%] xl:pl-[135px]">
+        <div className="min-w-[290px]">
           <Image
             src="/images/step1_pic.png"
             alt="step1-image"
@@ -15,18 +15,18 @@ export default function MidSectionImages() {
         <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 text-[11px] font-bold text-[#38406e]">
           STEP ONE: BEFORE
         </div>
-        <div className="mt-[20px] max-w-[350px] items-center text-[24px] font-bold text-[#364071] text-[#38406e]">
+        <div className="mt-[20px] max-w-[350px] items-center text-[24px] font-bold text-[#38406e]">
           <h6>
             {" "}
             To clear up confusing course <span>guidelines for students</span>
           </h6>
         </div>
       </div>
-      <div className=" relative mb-[120px] w-[11%]">
+      <div className=" relative mb-[120px] w-[100%] max-w-[150px]">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
-      <div className="flex flex-col items-center text-center lg:w-[25%]">
-        <div>
+      <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[25%]">
+        <div className="min-w-[290px]">
           <Image
             src="/images/step2_pic.png"
             alt="step1-image"
@@ -44,11 +44,11 @@ export default function MidSectionImages() {
           </h6>
         </div>
       </div>
-      <div className="relative mb-[120px] w-[11%]">
+      <div className="relative mb-[120px] w-[100%] max-w-[150px]">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
-      <div className="flex flex-col items-center text-center lg:w-[35%] lg:pr-[150px]">
-        <div>
+      <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[35%] xl:pr-[150px]">
+        <div className="min-w-[290px]">
           <Image
             src="/images/step3_pic.png"
             alt="step1-image"

@@ -18,8 +18,8 @@ export default function WorldWideList() {
         <li>Boston,MA</li>
         <li>Palo Alto,CA</li>
         <li>Austin,TX</li>
-        <li>San Francisco,CA</li>
-        <li>LA,CA</li>
+        <li>New York,NY</li>
+        <li>New York,NY</li>
       </ul>
       <div className="relative w-[15%]">
         <Image src="/images/Line_14.svg" alt="line" objectFit="contain" fill />
