@@ -5,15 +5,16 @@ import { TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 
 type Props = {
-  stepNumber: number;
+  value: string;
   hidden?: boolean;
   text: string;
+  stepNumber: number;
 };
-export default function TabStep({ stepNumber, hidden, text }: Props) {
+export default function TabStep({ value, hidden, text, stepNumber }: Props) {
   const [hasClicked, setHasClicked] = useState(false);
   return (
     <TabsTrigger
-      value={`step-${stepNumber}`}
+      value={value}
       className={`
        grid
        min-h-[70px]
