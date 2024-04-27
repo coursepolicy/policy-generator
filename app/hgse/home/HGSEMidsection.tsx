@@ -10,7 +10,7 @@ export default function HGSEMidsection() {
         will use generative AI, regardless of what
       </p>
       <div className="flex flex-col items-center justify-center p-4 lg:flex-row lg:justify-between lg:p-0 lg:pt-[45px]">
-        <div className="mr-[35px] flex w-[100%] max-w-[240px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:pb-[32px] lg:pt-[23px] lg:text-left">
+        <div className="mr-[35px] flex w-[100%] max-w-[450px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:max-w-[240px] lg:pb-[32px] lg:pt-[23px] lg:text-left">
           <p className="text-center font-serif text-[24px] lg:text-left">
             Students recieve clarity
           </p>
@@ -20,7 +20,7 @@ export default function HGSEMidsection() {
             of.
           </p>
         </div>
-        <div className="mr-[35px] flex w-[100%] max-w-[240px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:pb-[32px] lg:pt-[23px] lg:text-left">
+        <div className="mr-[35px] flex w-[100%] max-w-[450px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:max-w-[240px] lg:pb-[32px] lg:pt-[23px] lg:text-left">
           <p className="text-center font-serif text-[24px] lg:text-left">
             Ease of use, right-out-of-the box tool
           </p>
@@ -30,7 +30,7 @@ export default function HGSEMidsection() {
             of.
           </p>
         </div>
-        <div className="mr-[35px] flex w-[100%] max-w-[240px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:pb-[32px] lg:pt-[23px] lg:text-left">
+        <div className="mr-[35px] flex w-[100%] max-w-[450px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:max-w-[240px] lg:pb-[32px] lg:pt-[23px] lg:text-left">
           <p className="text-center font-serif text-[24px] lg:text-left">
             See what other professors are doing
           </p>

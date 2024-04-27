@@ -5,7 +5,7 @@ import TextParagraph from "./TextParagraph";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import rightArrowWhite from "@/public/images/right-arrow-white.svg";
+import rightArrowBlue from "@/public/images/right-arrow-blue.svg";
 import LowerSection from "./LowerSection";
 import HGSEMidsection from "./HGSEMidsection";
 
@@ -17,7 +17,7 @@ export default function HomePage() {
           <HarvardLogoSection />
         </div>
         <div className="bg-[#F6F6F9] lg:mt-[20px] lg:pb-[70px]">
-          <div className="mx-auto flex max-w-[1600px] flex-col items-center lg:flex-row lg:text-left">
+          <div className="mx-auto flex max-w-[1600px] flex-col items-center lg:flex-row">
             <div className="lg:flex-start">
               <TextHeader />
             </div>
@@ -50,7 +50,7 @@ export default function HomePage() {
             Are you a course instructor, student, university admin, or a
             technologist? We would love to hear from you.
           </p>
-          <p className="mb-[40px] mt-[-19px] text-[17px] text-white">
+          <p className="mb-[40px] text-[17px] text-white">
             {" "}
             Drop us an email at{" "}
             <Button
@@ -59,7 +59,7 @@ export default function HomePage() {
               className="cursor-pointer p-0 text-blue-500"
             >
               <a
-                className="text-sm font-normal leading-normal text-blue-500"
+                className="text-sm font-normal leading-normal text-blue-500 underline"
                 href="mailto:here@coursepolicy.ai"
                 target="_blank"
               >
@@ -70,12 +70,12 @@ export default function HomePage() {
         </div>
       </footer>
       <div className="flex bg-[#252d54]">
-        <div className="text-md mx-auto flex max-w-[1600px] py-3 text-center text-[#7983b6] ">
+        <div className="text-md mx-auto flex max-w-[1600px] py-3 text-center text-[#acb8f1] ">
           <Link href="/">Take me to the full website</Link>
           <Image
             className="ml-[5px]"
             alt="right pointed arrow"
-            src={rightArrowWhite}
+            src={rightArrowBlue}
           />
         </div>
       </div>

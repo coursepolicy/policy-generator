@@ -3,8 +3,8 @@ export default function TextParagraph() {
     <div className="flex md:mt-[7px]">
       <p
         className="max-w-[640px] 
-         px-4 pt-[20px]
-          text-center text-[16px] leading-normal text-stone-500 lg:px-0 lg:text-left"
+          px-4
+          pt-[20px] text-left text-[16px] leading-normal text-stone-500 lg:px-0"
       >
         With the rise of tools like ChatGPT in student learning, how prepared
         are educators to set clear guidelines? We surveyed professors from 14
