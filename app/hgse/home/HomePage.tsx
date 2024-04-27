@@ -8,6 +8,7 @@ import Image from "next/image";
 import rightArrowBlue from "@/public/images/right-arrow-blue.svg";
 import LowerSection from "./LowerSection";
 import HGSEMidsection from "./HGSEMidsection";
+import LowerButtonSection from "./LowerButtonSection";
 
 export default function HomePage() {
   return (
@@ -34,7 +35,7 @@ export default function HomePage() {
         <div className="flex items-center justify-center bg-[#F6F6F9]">
           <div className="flex max-w-[1600px] flex-col lg:mr-[30px] lg:mt-[38px] lg:pb-[60px] lg:text-left">
             <LowerSection />
-            <ButtonSection />
+            <LowerButtonSection />
           </div>
         </div>
       </main>
