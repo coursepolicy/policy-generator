@@ -4,10 +4,12 @@ import Iframe from "react-iframe";
 type Props = {
   id: string;
   value: string;
-  survey_url: string;
+  survey_url?: string;
 };
 
 export default function IframeTabContent({ value, id, survey_url }: Props) {
+  if (!survey_url) throw new Error("Invalid survey url");
+
   return (
     <TabsContent value={value} className="w-full">
       <Iframe

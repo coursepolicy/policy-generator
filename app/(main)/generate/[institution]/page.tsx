@@ -19,10 +19,15 @@ type IProps = {
   params: { institution: string };
 };
 
+const institutionMapper: {
+  [key: string]: string | undefined;
+} = {
+  'hgse': process.env.HGSE_SURVEY_URL
+}
+
 export default function InstitutionGenerate({ params }: IProps) {
   const policyId = ulid();
-  const capitalizedInstitution = params.institution.toUpperCase();
-  const survey_url = process.env[`${capitalizedInstitution}_SURVEY_URL`]
+  const survey_url = institutionMapper[params.institution.toLowerCase()]
   // can do some logic here depending on the institution name
   return (
     <GeneratePolicy tabs={tabs}>
