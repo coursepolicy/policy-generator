@@ -20,12 +20,13 @@ export default function HomePage() {
           <div className="text-md mx-auto flex max-w-[1600px] py-3">
             <p className="text-center text-[12px] text-white">
               To access CoursePolicy through Harvard Graduate School of
-              Education, click{" "}
-              <span className="text-[12px] text-coursePolicyLightGreen underline">
-                here
-              </span>
+              Education, click&nbsp;
             </p>
-            <Link href="/"></Link>
+            <Link href="/hgse">
+              <p className="text-[12px] text-coursePolicyLightGreen underline">
+                here
+              </p>
+            </Link>
             <Image
               className="ml-[5px]"
               alt="right pointed arrow"
