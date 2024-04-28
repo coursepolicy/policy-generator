@@ -21,11 +21,13 @@ type IProps = {
 
 export default function InstitutionGenerate({ params }: IProps) {
   const policyId = ulid();
-  // can do some logic here depeing on the institution name
+  const capitalizedInstitution = params.institution.toUpperCase();
+  const survey_url = process.env[`${capitalizedInstitution}_SURVEY_URL`]
+  // can do some logic here depending on the institution name
   return (
     <GeneratePolicy tabs={tabs}>
       <IntroMessageTabContent value="initial" />
-      <IframeTabContent value="fill-info" id={policyId} />
+      <IframeTabContent value="fill-info" id={policyId} survey_url={survey_url as string} />
       <GeneratePolicyTabContent value="generate-policy" id={policyId} />
     </GeneratePolicy>
   );

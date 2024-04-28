@@ -44,3 +44,4 @@ cdk.context.json
 node_modules
 .yarn
 .yarn/*
+/.idea
