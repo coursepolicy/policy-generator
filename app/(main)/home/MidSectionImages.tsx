@@ -16,10 +16,7 @@ export default function MidSectionImages() {
           STEP ONE: BEFORE
         </div>
         <div className="mt-[20px] max-w-[350px] items-center text-[24px] font-bold text-[#38406e]">
-          <h6>
-            {" "}
-            To clear up confusing course <span>guidelines for students</span>
-          </h6>
+          <h6>To clear up confusing course guidelines for students</h6>
         </div>
       </div>
       <div className="relative mb-[120px] hidden w-[100%] max-w-[150px] lg:block">
