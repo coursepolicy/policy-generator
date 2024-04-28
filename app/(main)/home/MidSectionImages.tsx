@@ -22,7 +22,7 @@ export default function MidSectionImages() {
           </h6>
         </div>
       </div>
-      <div className=" relative mb-[120px] w-[100%] max-w-[150px]">
+      <div className="relative mb-[120px] hidden w-[100%] max-w-[150px] lg:block">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
       <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[25%]">
@@ -44,7 +44,7 @@ export default function MidSectionImages() {
           </h6>
         </div>
       </div>
-      <div className="relative mb-[120px] w-[100%] max-w-[150px]">
+      <div className="relative mb-[120px] hidden w-[100%] max-w-[150px] lg:block lg:block">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
       <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[35%] xl:pr-[150px]">

@@ -10,7 +10,7 @@ import HomeWorldWideSection from "./HomeWorldWideSection";
 import UnitedStatesImage from "./UnitedStatesImage";
 import Image from "next/image";
 import Link from "next/link";
-import rightArrowWhite from "@/public/images/right-arrow-white.svg";
+import rightArrowGreen from "@/public/images/right-arrow-green.svg";
 
 export default function HomePage() {
   return (
@@ -29,7 +29,7 @@ export default function HomePage() {
             <Image
               className="ml-[5px]"
               alt="right pointed arrow"
-              src={rightArrowWhite}
+              src={rightArrowGreen}
             />
           </div>
         </div>
