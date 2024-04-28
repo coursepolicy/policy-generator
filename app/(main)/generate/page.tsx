@@ -27,7 +27,7 @@ export default function Generate() {
     <GeneratePolicy tabs={tabs}>
       <IntroMessageTabContent value="initial" />
       <CopyCodeTabContent value="copy-code" id={policyId} />
-      <IframeTabContent value="fill-info" id={policyId} />
+      <IframeTabContent value="fill-info" id={policyId} survey_url={process.env.SURVEY_URL as string} />
       <GeneratePolicyTabContent value="generate-policy" id={policyId} />
     </GeneratePolicy>
   );
