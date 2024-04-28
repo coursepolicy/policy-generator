@@ -11,7 +11,7 @@ export default function WorldWideList() {
         <li>Dallas,TX</li>
         <li>Toronto,CA</li>
       </ul>
-      <ul className="list-none space-y-3 border-y-2 pb-[20px] pt-[20px] text-[21px] text-white lg:border-x-2 lg:border-y-0 lg:pb-0 lg:pl-[45px] lg:pr-[45px] lg:pt-0 ">
+      <ul className="list-none space-y-3 border-y-2 pb-[20px] pt-[20px] text-[21px] text-white lg:border-x lg:border-y-0 lg:pb-[20px] lg:pl-[45px] lg:pr-[45px] lg:pt-[20px] ">
         <li>Boston,MA</li>
         <li>Palo Alto,CA</li>
         <li>Austin,TX</li>
@@ -25,7 +25,7 @@ export default function WorldWideList() {
           <li>New York,NY</li>
           <li>Dallas,TX</li>
           <li>
-            <Link href="" className="text-[#38406e]">
+            <Link href="" className="text-[#7983b6]">
               and more!
             </Link>
           </li>
