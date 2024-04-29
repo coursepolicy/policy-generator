@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function WorldWideList() {
   return (
-    <div className="mt-[78px] flex flex-col items-center lg:flex-row lg:justify-between">
+    <div className="mt-[30px] flex flex-col items-center lg:flex-row lg:justify-between">
       <ul className="list-none space-y-3 pb-[20px] text-[21px] text-white lg:pb-0">
         <li>Boston,MA</li>
         <li>Palo Alto,CA</li>
