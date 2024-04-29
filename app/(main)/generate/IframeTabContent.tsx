@@ -8,7 +8,16 @@ type Props = {
 };
 
 export default function IframeTabContent({ value, id, survey_url }: Props) {
-  if (!survey_url) throw new Error("Invalid survey url");
+  // TODO - add error boundary
+  if (!survey_url) return (
+    <TabsContent value={value}>
+      <div className="text-center text-lg text-gray-500 p-4">
+        <h2 className="text-6xl">404</h2>
+        Oops! We can&apos;t seem to find the page you&apos;re looking for. Please check the URL and try again.
+        If you&apos;re still having issues, reach out to our support team for help.
+      </div>
+    </TabsContent>
+  );
 
   return (
     <TabsContent value={value} className="w-full">
