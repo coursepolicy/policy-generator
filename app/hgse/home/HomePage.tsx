@@ -17,7 +17,7 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-[1600px] justify-center">
           <HarvardLogoSection />
         </div>
-        <div className="bg-[#F6F6F9] lg:mt-[20px] lg:pb-[70px]">
+        <div className="bg-[#F6F6F9] px-4 lg:mt-[20px] lg:px-0 lg:pb-[70px]">
           <div className="mx-auto flex max-w-[1600px] flex-col items-center lg:flex-row">
             <div className="lg:flex-start">
               <TextHeader />
@@ -28,11 +28,18 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="mx-auto flex max-w-[1600px] items-center justify-center lg:pb-[72px] ">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-center px-4 lg:px-0 lg:pb-[72px] ">
           <HGSEMidsection />
-          <div className="hidden h-[400px] w-[100%] max-w-[445px] bg-[#d9d9d9] xl:block"></div>
+          <div className="hidden h-[400px] w-[100%] max-w-[620px] xl:mt-[50px] xl:block">
+            <Image
+              src="/images/hgse/splash-image.jpg"
+              alt="campus-image"
+              width={800}
+              height={800}
+            />
+          </div>
         </div>
-        <div className="flex items-center justify-center bg-[#F6F6F9]">
+        <div className="flex items-center justify-center bg-[#F6F6F9] px-4 lg:px-0">
           <div className="flex max-w-[1600px] flex-col lg:mr-[30px] lg:mt-[38px] lg:pb-[60px] lg:text-left">
             <LowerSection />
             <LowerButtonSection />
@@ -40,8 +47,8 @@ export default function HomePage() {
         </div>
       </main>
       <footer
-        className="flex  justify-center bg-[#181f3e] text-center
-      sm:mx-0"
+        className="flex justify-center bg-[#181f3e] px-4 text-center sm:mx-0
+      lg:px-0"
       >
         <div className="grid max-w-[1600px] grid-flow-row gap-2 lg:mb-[18px] lg:mr-[30px] lg:text-left">
           <h3 className="mt-[45px] font-serif text-[32px] text-white lg:mt-[58px]">

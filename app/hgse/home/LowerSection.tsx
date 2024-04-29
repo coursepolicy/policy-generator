@@ -6,7 +6,7 @@ export default function LowerSection() {
       </p>
       <p className="max-w-[740px] px-4 pt-[20px] text-left text-[16px] leading-normal text-stone-500 lg:px-0 lg:pt-[35px] lg:text-left">
         When we conducted a survey etc etc, we found that over 90% of course
-        instructors think their students will use g enerative AI, regardless of
+        instructors think their students will use generative AI, regardless of
         what course policies say. Other insights. When we conducted a survey etc
         etc, we found that over 90% of course instructors think their students
         will use generative AI, regardless of what

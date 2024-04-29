@@ -5,7 +5,7 @@ import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 
 export default function LowerButtonSection() {
   return (
-    <div className="lg:mt-[35px] lg:grid lg:grid-flow-row">
+    <div className="lg:mt-[35px]">
       <div className="mt-[50px] flex flex-col px-4 lg:mt-[0px] lg:flex-row lg:px-0">
         <Button
           asChild
