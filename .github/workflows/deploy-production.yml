@@ -60,6 +60,7 @@ jobs:
       - name: Fetch env var values from aws
         run: |
           echo "SURVEY_URL=$(aws ssm get-parameter --name survey-url --query Parameter.Value --output text)" >> $GITHUB_ENV
+          echo "HGSE_SURVEY_URL=$(aws ssm get-parameter --name hgse-survey-url --query Parameter.Value --output text)" >> $GITHUB_ENV
           echo "LAMBDAS_API_BASE_URL=$(aws ssm get-parameter --name lambdas-base-url --query Parameter.Value --output text)" >> $GITHUB_ENV
           echo "SAMPLE_PDF_URL=$(aws ssm get-parameter --name sample-pdf-url --query Parameter.Value --output text)" >> $GITHUB_ENV
 
