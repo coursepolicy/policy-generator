@@ -21,7 +21,7 @@ export default function CTAButtonSection() {
           variant={"outline"}
           className="mb-[50px] inline-flex  items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E] bg-transparent text-right text-sm font-semibold leading-[25px] text-white hover:text-[#4A558E] lg:mb-0 lg:ml-[5px] lg:w-auto  2xl:w-[170px]"
         >
-          <Link href="/retrieve">View sample policy</Link>
+          <Link href="/policy/sample">View sample policy</Link>
         </Button>
       </div>
     </div>
