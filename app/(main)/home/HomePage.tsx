@@ -20,7 +20,7 @@ export default function HomePage() {
           <div className="text-md mx-auto flex flex-col items-center lg:justify-center lg:flex-row max-w-[1600px] py-3">
             <p className="text-center px-[5px] lg:px-0 text-[12px] text-white">
               To access CoursePolicy through Harvard Graduate School of
-              Education,
+              Education,&nbsp;
             </p>
             <Link className="flex items-center" href="/hgse">
               <span className="text-[12px] text-white">click&nbsp;</span>
