@@ -10,7 +10,7 @@ export default function Tooltip() {
             src="/images/lightbulb_white.png"
             width="12"
             height="13"
-            className="inline-block"
+            className="mb-[5px] inline-block"
           />
         </span>
         <span className="text-xs font-bold leading-normal text-white"> </span>
