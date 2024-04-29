@@ -56,7 +56,7 @@ export default function Carousel() {
         xl:min-h-[356px] xl:max-w-[573px]
         "
       >
-        <div className=" flex touch-pan-x">
+        <div className="flex touch-pan-x">
           {components.map((Component, index) => (
             <article
               key={index}
@@ -79,7 +79,7 @@ export default function Carousel() {
               aria-current={index === selectedIndex ? "true" : "false"}
               aria-label={`scroll to slide ${index + 1}`}
               onClick={() => scrollTo(index)}
-              className={` h-[2px]
+              className={`h-[2px]
              w-[23px] cursor-pointer touch-manipulation rounded-none border-none ${
                index === selectedIndex ? "bg-[#8b95ca]" : "bg-[#dedede]"
              }  p-0`}

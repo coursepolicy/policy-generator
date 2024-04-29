@@ -11,7 +11,7 @@ export default function ButtonSection() {
           asChild
           className="mb-6 inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] bg-[#A41D30] text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen lg:mb-[0px] lg:mr-4"
         >
-          <Link href="/generate">
+          <Link href="/generate/hgse">
             Create an AI Policy{" "}
             <Image alt="right pointed arrow" src={rightArrowWhite} />
           </Link>
