@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 import CarouselSlide1 from "./CarouselSlide1";
@@ -15,7 +15,7 @@ const components: React.FC<React.HTMLProps<HTMLDivElement>>[] = [
 ];
 
 export default function Carousel() {
-  const [viewportRef, embla] = useEmblaCarousel({}, [
+  const [viewportRef, embla]: UseEmblaCarouselType = useEmblaCarousel({}, [
     Autoplay({ delay: 10_000 }),
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -28,11 +28,13 @@ export default function Carousel() {
     [embla],
   );
 
-  const onInit = useCallback((embla: EmblaCarouselType) => {
+  const onInit = useCallback((embla: UseEmblaCarouselType[1]) => {
+    if (!embla) return;
     setScrollSnaps(embla.scrollSnapList());
   }, []);
 
-  const onSelect = useCallback((embla: EmblaCarouselType) => {
+  const onSelect = useCallback((embla: UseEmblaCarouselType[1]) => {
+    if (!embla) return;
     setSelectedIndex(embla.selectedScrollSnap());
   }, []);
   useEffect(() => {
