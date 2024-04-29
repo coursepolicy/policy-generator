@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Tooltip() {
   return (
-    <div className="flex min-h-[34px] w-[100%] max-w-[904px]  items-center justify-start rounded-[3px] bg-[#3284ff] bg-indigo-50 pl-[20px] md:ml-[20px] md:w-[96%]">
+    <div className="flex min-h-[34px] w-[100%] max-w-[904px]  items-center justify-start rounded-[3px] bg-[#3284ff] pl-[20px] md:ml-[20px] md:w-[96%]">
       <p>
         <span className="text-xs font-normal leading-normal text-blue-500">
           <Image
