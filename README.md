@@ -4,11 +4,10 @@ This is the frontend app that generates survey responses into a document that us
 
 ## Installation
 
-
 ```bash
 git clone policy-gen
 cd policy-gen
-pnpm install
+pnpm i
 pnpm dev
 
 ```

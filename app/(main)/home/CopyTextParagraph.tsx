@@ -1,10 +1,10 @@
 export default function CopyTextParagraph() {
   return (
-    <div className="flex justify-center md:mt-[20px]">
+    <div className="flex md:mt-[7px]">
       <p
-        className="inline-flex max-w-[875px] justify-center self-center
-      p-[20px] text-center text-base font-medium leading-normal
-        text-stone-500 md:p-8 md:pt-0"
+        className="max-w-[640px] 
+       text-[16px] leading-normal
+        text-white"
       >
         Are you trying to set clear boundaries around the use if generative AI
         in your course? CoursePolicy.AI has a tool to help. By setting clear

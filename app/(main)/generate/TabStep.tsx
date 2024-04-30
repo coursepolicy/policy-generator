@@ -16,9 +16,10 @@ export default function TabStep({ value, hidden, text, stepNumber }: Props) {
     <TabsTrigger
       value={value}
       className={`
-       grid
-       min-h-[70px]
-      grow-[1]  grid-flow-row rounded-none bg-[#EEF0FD]
+      grid
+      min-h-[70px]
+      grow-[1]
+      grid-flow-row rounded-none bg-[#F9F9F9]
       text-sm font-bold
       leading-normal text-[#364071]
       hover:bg-[#DFE4FF]
@@ -26,7 +27,6 @@ export default function TabStep({ value, hidden, text, stepNumber }: Props) {
       data-[state=active]:text-[#F7F8FF]
       data-[state=active]:shadow-sm
       md:min-h-[42px]
-  
       md:grid-flow-col
       md:justify-between [&>div.badge-container>div.badge]:bg-[#C8E9E1]
       [&>div.badge-container>div.badge]:text-[#0AA680]
