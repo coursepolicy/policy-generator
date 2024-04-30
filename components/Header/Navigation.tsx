@@ -12,7 +12,7 @@ export default function Navigation() {
             <Button variant={"link"} className="p-0 text-white" asChild>
               <Link
                 href={item.href}
-                className=" text-right font-semibold leading-snug text-[sm] text-indigo-100 hover:text-slate-50 hover:underline lg:leading-[25px]"
+                className="text-right font-semibold leading-snug text-[sm] text-indigo-100 hover:text-slate-50 hover:underline lg:leading-[25px]"
               >
                 {item.title}
               </Link>

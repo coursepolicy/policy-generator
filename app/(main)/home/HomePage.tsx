@@ -10,8 +10,8 @@ import HomeWorldWideSection from "./HomeWorldWideSection";
 import UnitedStatesImage from "./UnitedStatesImage";
 import Image from "next/image";
 import Link from "next/link";
-import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 import rightArrowGreen from "@/public/images/right-arrow-green.svg";
+
 export default function HomePage() {
   return (
     <>
@@ -70,15 +70,15 @@ export default function HomePage() {
         className="flex items-center justify-center text-center
       sm:mx-0"
       >
-        <div className="mb-[120px] grid max-w-[1600px] grid-flow-row gap-2">
-          <h3 className=" mt-[45px] w-[100%] text-[40px]  font-bold leading-normal text-[#364071] lg:mt-[105px]">
+        <div className="mb-[120px] grid max-w-[1600px] grid-flow-row gap-2 px-4 lg:px-4 ">
+          <h3 className=" mt-[45px] w-[100%] text-[40px] font-bold leading-normal text-[#364071] lg:mt-[105px]">
             Contact Us
           </h3>
           <p className="mt-[25px] text-[16px] font-normal leading-normal text-black">
             Are you a course instructor, student, university admin, or a
             technologist? We would love to hear from you.
           </p>
-          <p className="mt-[-19px] text-[17px]">
+          <p className="text-[17px]">
             {" "}
             Drop us an email at{" "}
             <Button

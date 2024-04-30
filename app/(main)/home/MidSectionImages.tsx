@@ -16,13 +16,10 @@ export default function MidSectionImages() {
           STEP ONE: BEFORE
         </div>
         <div className="mt-[20px] max-w-[350px] items-center text-[24px] font-bold text-[#38406e]">
-          <h6>
-            {" "}
-            To clear up confusing course <span>guidelines for students</span>
-          </h6>
+          <h6>To clear up confusing course guidelines for students</h6>
         </div>
       </div>
-      <div className=" relative mb-[120px] w-[100%] max-w-[150px]">
+      <div className="relative mb-[120px] w-[100%] max-w-[150px] lg:block">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
       <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[25%]">
@@ -44,7 +41,7 @@ export default function MidSectionImages() {
           </h6>
         </div>
       </div>
-      <div className="relative mb-[120px] w-[100%] max-w-[150px]">
+      <div className="relative mb-[120px] w-[100%] max-w-[150px] lg:block">
         <Image src="/images/Line.svg" alt="line" objectFit="contain" fill />
       </div>
       <div className="flex flex-col items-center text-center xl:w-[100%] xl:max-w-[35%] xl:pr-[150px]">

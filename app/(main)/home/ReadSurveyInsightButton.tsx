@@ -5,7 +5,7 @@ import rightArrow from "@/public/images/right-arrow.svg";
 
 export default function ReadSurvayInsightButton() {
   return (
-    <div className="w-[205px] ">
+    <div className="w-[205px]">
       <Button
         asChild
         className="mb-[5px] flex h-[41px] items-center justify-start gap-2.5 rounded-[100px] border border-[#4A558E]
