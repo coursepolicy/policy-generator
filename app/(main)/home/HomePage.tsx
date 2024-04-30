@@ -16,23 +16,6 @@ export default function HomePage() {
   return (
     <>
       <main>
-        <div className="bg-black">
-          <div className="text-md mx-auto flex max-w-[1600px] flex-col items-center py-3 lg:flex-row lg:justify-center">
-            <p className="px-[5px] text-center text-[12px] text-white lg:px-0">
-              To access CoursePolicy through Harvard Graduate School of
-              Education,&nbsp;
-            </p>
-            <Link className="flex items-center" href="/hgse">
-              <span className="text-[12px] text-white">click&nbsp;</span>
-              <p className="text-[12px] text-coursePolicyLightGreen underline">
-                here
-              </p>
-              <span className="ml-[5px]">
-                <Image alt="right pointed arrow" src={rightArrowGreen} />
-              </span>
-            </Link>
-          </div>
-        </div>
         <div className="bg-[#191f3c]">
           <div className="mx-auto flex max-w-[1600px] flex-col items-center text-center lg:flex-row lg:justify-center lg:text-left 2xl:justify-between 2xl:text-left">
             <div className="px-4 lg:ml-[147px] lg:px-0">
