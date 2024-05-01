@@ -18,7 +18,7 @@ export function Header(props: Props) {
 
   return (
     <header
-      className="sticky top-0 z-[50] flex h-[50px] items-center justify-between bg-[#252D54] md:h-[85px]"
+      className="sticky top-0 z-[50] flex h-[50px] items-center justify-between bg-[#252D54] lg:h-[85px]"
       {...props}
     >
       <Logo toggleMenu={toggleMenu} />
