@@ -3,8 +3,8 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import greenPointer from "../../public/images/green-pointer.svg";
-import { navItems } from "../../lib/constants";
+import greenPointer from "@/public/images/green-pointer.svg";
+import { navItems } from "@/lib";
 import { Button } from "@/components/ui/button";
 
 interface NavigationAltProps {
@@ -48,7 +48,7 @@ export default function NavigationAlt({
     <>
       {isMenuOpen && (
         <nav
-          className="absolute top-[50px] z-10 w-[100%] md:hidden"
+          className="absolute top-[50px] z-10 w-[100%] lg:hidden"
           style={{ backgroundColor: "#364071" }}
         >
           <ul className="borde list-none">
