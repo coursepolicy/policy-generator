@@ -64,22 +64,15 @@ export function Editor({
     addKeyboardShortcuts() {
       return {
         'Enter': () => {
-          this.editor.commands.blur();
           if (!htmlString) return true;
 
-          handleUpdatePolicy()
-            .then(() => {
-              setSavedContent(() => htmlString);
-              setIsEditorFocused(() => false);
-            })
-            .catch(() => {
-              console.error("Error saving changes")
-            });
+          setSavedContent(() => htmlString);
+          this.editor.commands.blur();
+          setIsEditorFocused(() => false);
           return true;  // Prevent the default Enter behavior
         },
         'Escape': () => {
           this.editor.commands.blur();
-
           setIsEditorFocused(() => false);
           return true;
         }
