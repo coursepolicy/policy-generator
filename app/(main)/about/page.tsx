@@ -137,7 +137,7 @@ export default function About() {
                     </h3>
                     <p
                       className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500"
-                      aria-label={`${member.name}'s Job Title`}
+                      aria-label={`${member.name}'s Job Department: ${member.title}`}
                     >
                       {member.title}
                     </p>
@@ -155,11 +155,11 @@ export default function About() {
                           className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
                           no-underline hover:bg-transparent"
                         >
-                          <Link href={social.url}>
-                            <span className="mr-[5px] ">
+                          <Link href={social.url} aria-label={`${member.name}'s ${social.name}`}>
+                            <span className="mr-[5px]">
                               {socialIconMapper[social.name.toLowerCase()]}
                             </span>
-                            <span className="hover:underline" aria-label={`${member.name}'s ${social.name}`}>
+                            <span className="hover:underline">
                               {social.name}
                             </span>
                           </Link>
