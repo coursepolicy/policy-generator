@@ -73,13 +73,13 @@ export function Editor({
               setIsEditorFocused(() => false);
             })
             .catch(() => {
-              alert("Error saving changes");
+              console.error("Error saving changes")
             });
           return true;  // Prevent the default Enter behavior
         },
         'Escape': () => {
           this.editor.commands.blur();
-          this.editor.commands.setContent(savedContent)
+
           setIsEditorFocused(() => false);
           return true;
         }
