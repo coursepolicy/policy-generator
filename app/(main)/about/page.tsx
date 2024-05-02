@@ -135,7 +135,10 @@ export default function About() {
                     <h3 className="w-[100%] max-w-[180px] text-xl font-bold leading-normal text-[#606DAB]">
                       {member.name}
                     </h3>
-                    <p className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500">
+                    <p
+                      className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500"
+                      aria-label={`${member.name}'s Job Title`}
+                    >
                       {member.title}
                     </p>
                   </div>
@@ -143,12 +146,12 @@ export default function About() {
                     {member.description}
                   </p>
                 </div>
-                <ul className="flex flex-col items-start">
+                <ul className="flex flex-col items-start" role="presentation">
                     {member.socials.map((social) => (
                       <li className="list-none" key={social.id}>
                         <Button
                           asChild
-                          variant={"ghost"}
+                          variant="ghost"
                           className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
                           no-underline hover:bg-transparent"
                         >
