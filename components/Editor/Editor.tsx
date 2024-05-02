@@ -5,8 +5,8 @@ import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import StarterKit from "@tiptap/starter-kit";
-import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
-import { AiPolicy, PolicySection } from "../../lib";
+import { EditorContent, Extension, HTMLContent, useEditor } from "@tiptap/react";
+import { AiPolicy, PolicySection } from "@/lib";
 import BottomBar from "./BottomBar";
 import LinkingMenu from "./LinkingMenu";
 
@@ -52,6 +52,41 @@ export function Editor({
   useCaseBgColor,
   hideDeleteButton = false,
 }: Props) {
+  const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [parentRef] = useAutoAnimate();
+
+  const [savedContent, setSavedContent] = useState<HTMLContent>(content);
+
+  const CustomKeyBindings = Extension.create({
+    name: 'customKeyBindings',
+
+    addKeyboardShortcuts() {
+      return {
+        'Enter': () => {
+          this.editor.commands.blur();
+          if (!htmlString) return true;
+
+          handleUpdatePolicy()
+            .then(() => {
+              setSavedContent(() => htmlString);
+              setIsEditorFocused(() => false);
+            })
+            .catch(() => {
+              alert("Error saving changes");
+            });
+          return true;  // Prevent the default Enter behavior
+        },
+        'Escape': () => {
+          this.editor.commands.blur();
+          this.editor.commands.setContent(savedContent)
+          setIsEditorFocused(() => false);
+          return true;
+        }
+      }
+    }
+  })
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -62,17 +97,12 @@ export function Editor({
         },
         protocols: ["mailto"],
       }),
+      CustomKeyBindings
     ],
     content,
   });
 
-  const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [parentRef] = useAutoAnimate();
-
   const htmlString = editor?.getHTML();
-
-  const [savedContent, setSavedContent] = useState<HTMLContent>(content);
 
   const handleEditorOnFocus = ({ target }: React.FocusEvent<HTMLElement>) => {
     if (target.closest(".tiptap")) {

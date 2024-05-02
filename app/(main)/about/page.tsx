@@ -143,24 +143,27 @@ export default function About() {
                     {member.description}
                   </p>
                 </div>
-                <div className="flex flex-col items-start">
-                  {member.socials.map((social) => (
-                    <Button
-                      asChild
-                      variant={"ghost"}
-                      key={social.id}
-                      className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
-                      no-underline hover:bg-transparent"
-                    >
-                      <Link href={social.url}>
-                        <span className="mr-[5px] ">
-                          {socialIconMapper[social.name.toLowerCase()]}
-                        </span>
-                        <span className="hover:underline">{social.name}</span>
-                      </Link>
-                    </Button>
-                  ))}
-                </div>
+                <ul className="flex flex-col items-start">
+                    {member.socials.map((social) => (
+                      <li className="list-none" key={social.id}>
+                        <Button
+                          asChild
+                          variant={"ghost"}
+                          className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
+                          no-underline hover:bg-transparent"
+                        >
+                          <Link href={social.url}>
+                            <span className="mr-[5px] ">
+                              {socialIconMapper[social.name.toLowerCase()]}
+                            </span>
+                            <span className="hover:underline" aria-label={`${member.name}'s ${social.name}`}>
+                              {social.name}
+                            </span>
+                          </Link>
+                        </Button>
+                      </li>
+                    ))}
+                </ul>
               </div>
             </article>
           ))}
