@@ -39,7 +39,7 @@ export default function SubmitForm() {
       }}
       className="mt-[10px] flex md:w-[425px]"
     >
-      <Input onChange={handleChange} value={input} />
+      <Input onChange={handleChange} value={input} aria-label="Policy ID Input"/>
       <Button
         loading={loading}
         disabled={input.length === 0 || loading}

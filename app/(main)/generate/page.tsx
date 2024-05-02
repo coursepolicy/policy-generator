@@ -24,11 +24,14 @@ const tabs: Tab[] = [
 export default function Generate() {
   const policyId = ulid();
   return (
-    <GeneratePolicy tabs={tabs}>
-      <IntroMessageTabContent value="initial" />
-      <CopyCodeTabContent value="copy-code" id={policyId} />
-      <IframeTabContent value="fill-info" id={policyId} survey_url={process.env.SURVEY_URL as string} />
-      <GeneratePolicyTabContent value="generate-policy" id={policyId} />
-    </GeneratePolicy>
+    <>
+      <h1 className="sr-only">Generate your course policy</h1>
+      <GeneratePolicy tabs={tabs}>
+        <IntroMessageTabContent value="initial" />
+        <CopyCodeTabContent value="copy-code" id={policyId} />
+        <IframeTabContent value="fill-info" id={policyId} survey_url={process.env.SURVEY_URL as string} />
+        <GeneratePolicyTabContent value="generate-policy" id={policyId} />
+      </GeneratePolicy>
+    </>
   );
 }
