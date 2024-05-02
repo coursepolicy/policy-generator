@@ -5,8 +5,8 @@ import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import StarterKit from "@tiptap/starter-kit";
-import { EditorContent, HTMLContent, useEditor } from "@tiptap/react";
-import { AiPolicy, PolicySection } from "../../lib";
+import { EditorContent, Extension, HTMLContent, useEditor } from "@tiptap/react";
+import { AiPolicy, PolicySection } from "@/lib";
 import BottomBar from "./BottomBar";
 import LinkingMenu from "./LinkingMenu";
 
@@ -52,6 +52,23 @@ export function Editor({
   useCaseBgColor,
   hideDeleteButton = false,
 }: Props) {
+  const CustomKeyBindings = Extension.create({
+    name: 'customKeyBindings',
+
+    addKeyboardShortcuts() {
+      return {
+        'Enter': () => {
+          this.editor.commands.blur();
+          return true;
+        },
+        'Escape': () => {
+          this.editor.commands.blur();
+          return true;
+        }
+      }
+    }
+  })
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -62,6 +79,7 @@ export function Editor({
         },
         protocols: ["mailto"],
       }),
+      CustomKeyBindings
     ],
     content,
   });
