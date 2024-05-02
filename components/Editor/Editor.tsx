@@ -52,28 +52,17 @@ export function Editor({
   useCaseBgColor,
   hideDeleteButton = false,
 }: Props) {
-  const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [parentRef] = useAutoAnimate();
-
-  const [savedContent, setSavedContent] = useState<HTMLContent>(content);
-
   const CustomKeyBindings = Extension.create({
     name: 'customKeyBindings',
 
     addKeyboardShortcuts() {
       return {
         'Enter': () => {
-          if (!htmlString) return true;
-
-          setSavedContent(() => htmlString);
           this.editor.commands.blur();
-          setIsEditorFocused(() => false);
-          return true;  // Prevent the default Enter behavior
+          return true;
         },
         'Escape': () => {
           this.editor.commands.blur();
-          setIsEditorFocused(() => false);
           return true;
         }
       }
@@ -95,7 +84,13 @@ export function Editor({
     content,
   });
 
+  const [isEditorFocused, setIsEditorFocused] = useState<boolean>(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [parentRef] = useAutoAnimate();
+
   const htmlString = editor?.getHTML();
+
+  const [savedContent, setSavedContent] = useState<HTMLContent>(content);
 
   const handleEditorOnFocus = ({ target }: React.FocusEvent<HTMLElement>) => {
     if (target.closest(".tiptap")) {
