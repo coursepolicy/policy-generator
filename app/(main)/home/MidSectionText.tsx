@@ -1,7 +1,7 @@
 export default function MidSectionText() {
   return (
-    <p className="mr-[3px] px-2 mt-[55px] mb-5 lg:px-0 text-center text-[38px] font-bold text-[#364071]">
+    <h2 className="mb-5 mr-[3px] mt-[80px] px-2 text-center text-[38px] font-bold text-[#364071] lg:px-0">
       Why use <span className="inline-block pt-5 lg:pt-0">CoursePolicy?</span>
-    </p>
+    </h2>
   );
 }

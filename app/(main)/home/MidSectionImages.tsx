@@ -12,11 +12,11 @@ export default function MidSectionImages() {
             height={289}
           />
         </div>
-        <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 text-[11px] font-bold text-[#38406e]">
+        <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 pl-[10px] pr-[10px] text-[11px] font-bold text-[#38406e]">
           STEP ONE: BEFORE
         </div>
-        <div className="mt-[20px] max-w-[350px] items-center text-[24px] font-bold text-[#38406e]">
-          <h6>To clear up confusing course guidelines for students</h6>
+        <div className="mt-[20px] max-w-[350px] items-center text-[22px] font-bold text-[#38406e]">
+          <h3>To clear up confusing course guidelines for students</h3>
         </div>
       </div>
       <div className="relative mb-[120px] w-[100%] max-w-[150px] lg:block">
@@ -31,14 +31,13 @@ export default function MidSectionImages() {
             height={289}
           />
         </div>
-        <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 text-[11px] font-bold text-[#38406e]">
+        <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 pl-[10px] pr-[10px] text-[11px] font-bold text-[#38406e]">
           STEP TWO: USAGE
         </div>
-        <div className="mt-[20px] max-w-[300px] items-center text-[24px] font-bold text-[#364071] text-[#38406e]">
-          <h6>
-            {" "}
+        <div className="mt-[20px] max-w-[300px] items-center text-[22px] font-bold text-[#364071] text-[#38406e]">
+          <h3>
             To quickly and effectively <span>create an AI policy</span>
-          </h6>
+          </h3>
         </div>
       </div>
       <div className="relative mb-[120px] w-[100%] max-w-[150px] lg:block">
@@ -53,14 +52,13 @@ export default function MidSectionImages() {
             height={289}
           />
         </div>
-        <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 text-[11px] font-bold text-[#38406e]">
+        <div className="mt-[34px] rounded-full bg-[#e0e4fd] p-1 pl-[10px] pr-[10px] text-[11px] font-bold text-[#38406e]">
           STEP THREE: AFTER
         </div>
-        <div className="mt-[20px] max-w-[300px] items-center text-[24px] font-bold text-[#364071] text-[#38406e]">
-          <h6>
-            {" "}
+        <div className="mt-[20px] max-w-[300px] items-center text-[22px] font-bold text-[#364071] text-[#38406e]">
+          <h3>
             To help students operate <span>with success! &#x2705;</span>
-          </h6>
+          </h3>
         </div>
       </div>
     </div>

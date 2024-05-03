@@ -1,3 +1,4 @@
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
@@ -7,13 +8,18 @@ interface LogoProps {
 }
 
 export default function Logo({ toggleMenu }: LogoProps) {
+  const pathname = usePathname();
+  const isHGSE = pathname.includes("hgse");
   return (
     <Button
       asChild
       variant={"link"}
       className="ml-[16px] no-underline hover:no-underline md:ml-[32px]"
     >
-      <Link href="/" onClick={() => toggleMenu(false)}>
+      <Link
+        href={isHGSE ? "/institution/hgse" : "/"}
+        onClick={() => toggleMenu(false)}
+      >
         <span className="text-xl font-bold leading-[35px] text-white md:text-2xl md:leading-9">
           CoursePolicy.
         </span>

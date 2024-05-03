@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { getPolicy } from "@/lib";
 import { useQueryClient } from "@tanstack/react-query";
@@ -15,6 +16,8 @@ export default function CompletedSurveyButton({
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const queryClient = useQueryClient();
+  const pathname = usePathname();
+  const isHGSE = pathname.includes("hgse");
 
   return (
     <Button
@@ -26,7 +29,9 @@ export default function CompletedSurveyButton({
             getPolicy(uniqueId),
           );
 
-          router.push(`/policy/${uniqueId}`);
+          router.push(
+            isHGSE ? `/policy/${uniqueId}/hgse` : `/policy/${uniqueId}`,
+          );
         } catch (error) {
           setLoading(false);
           if (error instanceof Error) {

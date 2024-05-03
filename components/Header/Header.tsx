@@ -1,21 +1,20 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-
 import Logo from "./Logo";
 import Navigation from "./Navigation";
 import BurgerMenu from "./BurgerMenu";
-
 import NavigationAlt from "./NavigationAlt";
-import React from "react";
+import HGSENavigation from "../HeaderHgse/HGSENavigation";
 
 interface Props {}
 
 export function Header(props: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = (pref: boolean) => setIsMenuOpen(pref);
-
+  const pathname = usePathname();
+  const isHGSE = pathname.includes("hgse");
   return (
     <header
       className="sticky top-0 z-[50] flex h-[50px] items-center justify-between bg-[#252D54] lg:h-[85px]"
@@ -24,7 +23,7 @@ export function Header(props: Props) {
       <Logo toggleMenu={toggleMenu} />
       <BurgerMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
       <NavigationAlt toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
-      <Navigation />
+      {isHGSE ? <HGSENavigation /> : <Navigation />}
     </header>
   );
 }

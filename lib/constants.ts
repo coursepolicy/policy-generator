@@ -18,6 +18,21 @@ export const navItems = [
   },
 ];
 
+export const hgseNavItems = [
+  {
+    title: "Survey Insights",
+    href: "/blog/hgse",
+  },
+  {
+    title: "About",
+    href: "/about/hgse",
+  },
+  {
+    title: "Retrieve existing policy",
+    href: "/retrieve/hgse",
+  },
+];
+
 export const samplePolicy: AiPolicyResponse = {
   id: "Sample_Policy_for_all",
   heading:
