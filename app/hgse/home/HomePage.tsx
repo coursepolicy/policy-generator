@@ -30,10 +30,10 @@ export default function HomePage() {
         </div>
         <div className="mx-auto flex max-w-[1600px] items-center justify-center px-4 lg:px-0 lg:pb-[72px] ">
           <HGSEMidsection />
-          <div className="hidden h-[400px] w-[100%] max-w-[620px] xl:mt-[50px] xl:block">
+          <div className="hidden h-[400px] w-[100%] max-w-[620px] xl:mt-[40px] xl:block">
             <Image
               src="/images/hgse/splash-image.jpg"
-              alt="campus-image"
+              alt="Photo of student graduation at Harvard"
               width={800}
               height={800}
             />
@@ -51,26 +51,21 @@ export default function HomePage() {
       lg:px-0"
       >
         <div className="grid max-w-[1600px] grid-flow-row gap-2 lg:mb-[18px] lg:mr-[30px] lg:text-left">
-          <h3 className="mt-[45px] font-serif text-[32px] text-white lg:mt-[58px]">
+          <h2 className="mt-[45px] font-serif text-[32px] text-white lg:mt-[58px]">
             Contact Us
-          </h3>
+          </h2>
           <p className="mt-[25px] text-[16px] font-normal text-white">
             Are you a course instructor, student, university admin, or a
             technologist? We would love to hear from you.
           </p>
           <p className="mb-[40px] text-[17px] text-white">
-            {" "}
-            Drop us an email at{" "}
+            Drop us an email at&nbsp;
             <Button
               asChild
               variant={"link"}
-              className="cursor-pointer p-0 text-blue-500"
+              className="cursor-pointer p-0 text-[16px] text-blue-500 underline"
             >
-              <a
-                className="text-sm font-normal leading-normal text-blue-500 underline"
-                href="mailto:here@coursepolicy.ai"
-                target="_blank"
-              >
+              <a href="mailto:here@coursepolicy.ai" target="_blank">
                 here@coursepolicy.ai
               </a>
             </Button>

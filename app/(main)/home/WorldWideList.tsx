@@ -32,9 +32,7 @@ export default function WorldWideList() {
         <li>New York,NY</li>
         <li>Dallas,TX</li>
         <li>
-          <Link href="" className="text-[#7983b6]">
-            and more!
-          </Link>
+          <span className="text-[#7983b6]">and more!</span>
         </li>
       </ul>
     </div>

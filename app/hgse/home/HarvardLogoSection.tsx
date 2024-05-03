@@ -9,7 +9,7 @@ export default function HarvardLogoSection() {
       <Image
         className="lg:mr-[18px]"
         src="/images/hgse/HGSE_Logo_H.svg"
-        alt="hgse-logo"
+        alt="Harvard College Logo"
         width={425}
         height={41}
       />

@@ -56,7 +56,7 @@ export default function HomePage() {
             <MidSectionImages />
           </div>
         </div>
-        <div className="bg-[#191f3c] pb-[105px]">
+        <div className="hidden bg-[#191f3c] pb-[105px]">
           <div className="mx-auto flex max-w-[1600px] flex-col items-center px-4 lg:px-0 2xl:flex-row 2xl:justify-between 2xl:text-left">
             <HomeWorldWideSection />
             <div className="hidden 2xl:block">
@@ -84,13 +84,9 @@ export default function HomePage() {
             <Button
               asChild
               variant={"link"}
-              className="cursor-pointer p-0 text-blue-500"
+              className="cursor-pointer p-0 text-[16px] text-blue-500"
             >
-              <a
-                className="text-sm font-normal leading-normal text-blue-500"
-                href="mailto:here@coursepolicy.ai"
-                target="_blank"
-              >
+              <a href="mailto:here@coursepolicy.ai" target="_blank">
                 here@coursepolicy.ai
               </a>
             </Button>
