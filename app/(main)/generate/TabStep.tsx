@@ -21,7 +21,7 @@ export default function TabStep({ value, hidden, text, stepNumber }: Props) {
       grow-[1]
       grid-flow-row
       rounded-none
-      bg-[#F9F9F9]
+      bg-[#F6F6F9]
       text-sm font-bold
       leading-normal text-[#364071]
       hover:bg-[#DFE4FF]

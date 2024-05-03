@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { navItems } from "../../lib/constants";
+import { hgseNavItems } from "../../lib/constants";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-export default function Navigation() {
+export default function HGSENavigation() {
   return (
     <nav className="hidden md:block ">
       <ul className="mr-[22px] grid list-none grid-flow-col place-items-center gap-9 ">
-        {navItems.map((item, i) => (
+        {hgseNavItems.map((item, i) => (
           <li key={i}>
             <Button variant={"link"} className="p-0 text-white" asChild>
               <Link
@@ -26,7 +26,7 @@ export default function Navigation() {
             className="mr-[27px] flex w-[164px] items-center justify-center gap-2.5 rounded-[100px] bg-[#A41D30] px-5 py-2 hover:bg-coursePolicyHoverGreen hover:no-underline"
           >
             <Link
-              href="/generate"
+              href="/generate/hgse"
               className="GenerateAPolicy inline-flex items-center justify-center text-right text-sm font-semibold leading-[25px] text-white"
             >
               Generate AI Policy
