@@ -10,7 +10,7 @@ export default function Banner() {
           To access CoursePolicy through Harvard Graduate School of
           Education,&nbsp;
         </p>
-        <Link className="flex items-center" href="/hgse">
+        <Link className="flex items-center" href="/institution/hgse">
           <span className="text-[12px] text-white">click&nbsp;</span>
           <p className="text-[12px] text-coursePolicyLightGreen underline">
             here
