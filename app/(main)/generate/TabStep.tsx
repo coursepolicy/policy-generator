@@ -47,7 +47,7 @@ export default function TabStep({ value, hidden, text, stepNumber }: Props) {
       </div>
       <div className="badge-container flex">
         <Badge
-          className={`badge ${!hasClicked ? "invisible" : ""} ml-2 text-[10px]`}
+          className={`badge ${!hasClicked ? "aria-hidden='true' invisible" : ""} ml-2 text-[10px]`}
         >
           VIEWED
         </Badge>
