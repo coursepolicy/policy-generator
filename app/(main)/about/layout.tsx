@@ -1,5 +1,4 @@
 import Script from "next/script";
-import { Footer } from "@/components/Footer";
 
 export default function PageLayout({
   children,

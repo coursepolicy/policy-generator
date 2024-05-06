@@ -30,10 +30,13 @@ export default function InstitutionGenerate({ params }: IProps) {
   const survey_url = institutionMapper[params.institution.toLowerCase()]
   // can do some logic here depending on the institution name
   return (
-    <GeneratePolicy tabs={tabs}>
-      <IntroMessageTabContent value="initial" />
-      <IframeTabContent value="fill-info" id={policyId} survey_url={survey_url as string} />
-      <GeneratePolicyTabContent value="generate-policy" id={policyId} />
-    </GeneratePolicy>
+    <main>
+      <h1 className="sr-only">Generate your course policy</h1>
+      <GeneratePolicy tabs={tabs}>
+        <IntroMessageTabContent value="initial"/>
+        <IframeTabContent value="fill-info" id={policyId} survey_url={survey_url as string}/>
+        <GeneratePolicyTabContent value="generate-policy" id={policyId}/>
+      </GeneratePolicy>
+    </main>
   );
 }
