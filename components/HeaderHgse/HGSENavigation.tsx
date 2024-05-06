@@ -23,7 +23,7 @@ export default function HGSENavigation() {
           <Button
             asChild
             variant={"link"}
-            className="mr-[27px] flex w-[164px] items-center justify-center gap-2.5 rounded-[100px] bg-[#A41D30] px-5 py-2 hover:bg-coursePolicyHoverGreen hover:no-underline"
+            className="mr-[27px] flex w-[164px] items-center justify-center gap-2.5 rounded-[100px] bg-[#A41D30] px-5 py-2 hover:bg-[#911526] hover:no-underline"
           >
             <Link
               href="/generate/hgse"
