@@ -16,7 +16,11 @@ export default function Banner() {
             here
           </p>
           <span className="ml-[5px]">
-            <Image alt="right pointed arrow" src={rightArrowGreen} />
+            <Image
+              alt="right pointed arrow"
+              src={rightArrowGreen}
+              aria-hidden="true"
+            />
           </span>
         </Link>
       </div>

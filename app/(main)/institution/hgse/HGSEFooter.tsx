@@ -33,12 +33,16 @@ export default function HGSEFooter() {
       </footer>
       <div className="flex bg-[#252d54]">
         <div className="text-md mx-auto flex max-w-[1600px] py-3 text-center text-[#acb8f1] ">
-          <Link href="/">Take me to the full website</Link>
-          <Image
-            className="ml-[5px]"
-            alt="right pointed arrow"
-            src={rightArrowBlue}
-          />
+          <Link href="/" className="flex items-center">
+            Take me to the full website
+            <span className="ml-[5px]">
+              <Image
+                alt="right pointed arrow"
+                src={rightArrowBlue}
+                aria-hidden="true"
+              />
+            </span>
+          </Link>
         </div>
       </div>
     </>
