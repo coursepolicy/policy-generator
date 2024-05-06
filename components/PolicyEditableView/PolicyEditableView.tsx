@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -53,6 +54,9 @@ export default function Result({
   const [parentRef] = useAutoAnimate();
   const [headerRef] = useAutoAnimate();
 
+  const pathname = usePathname();
+  const isHGSE = pathname.includes("hgse");
+
   const { isLoading, mutateAsync } = useMutation(
     ({
       serializedPayload,
@@ -74,7 +78,11 @@ export default function Result({
             : "Changes have been saved!",
         );
         if (isSample) {
-          router.push(`/policy/${savedPolicyResponse.data.id}`);
+          router.push(
+            isHGSE
+              ? `/policy/${savedPolicyResponse.data.id}/hgse`
+              : `/policy/${savedPolicyResponse.data.id}`,
+          );
         }
       },
       onError: (error) => {

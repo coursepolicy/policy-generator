@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,6 +24,8 @@ export default function PreviewHeaderSection({
   isLoading,
 }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isHGSE = pathname.includes("hgse");
 
   return (
     <div className="mb-[20px] flex items-center justify-between">
@@ -87,7 +90,10 @@ export default function PreviewHeaderSection({
             border-[#FFA113] bg-[#FFF4E4] p-[15px] md:w-[100%] md:max-w-[725px]"
             >
               <Button asChild variant="link">
-                <Link href={`/${publishId}`} target="_blank">
+                <Link
+                  href={isHGSE ? `/${publishId}/hgse` : `/${publishId}`}
+                  target="_blank"
+                >
                   View published policy
                 </Link>
               </Button>

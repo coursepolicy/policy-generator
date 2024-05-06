@@ -31,7 +31,7 @@ export default function GeneratePolicy({ tabs, children }: IProps) {
               key={tab.id}
               value={tab.id}
               text={tab.label}
-              stepNumber={index}
+              stepNumber={index + 1}
             />
           ))}
         </TabsList>

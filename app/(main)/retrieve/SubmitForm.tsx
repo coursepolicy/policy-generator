@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,8 @@ export default function SubmitForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
+  const pathname = usePathname();
+  const isHGSE = pathname.includes("hgse");
 
   return (
     <form
@@ -27,7 +30,7 @@ export default function SubmitForm() {
             queryKey: ["policy", input],
             queryFn: () => getPolicy(input),
           });
-          router.push(`/policy/${input}`);
+          router.push(isHGSE ? `/policy/${input}/hgse` : `/policy/${input}`);
         } catch (error) {
           setLoading(false);
           if (error instanceof Error) {
@@ -39,7 +42,11 @@ export default function SubmitForm() {
       }}
       className="mt-[10px] flex md:w-[425px]"
     >
-      <Input onChange={handleChange} value={input} aria-label="Policy ID Input"/>
+      <Input
+        onChange={handleChange}
+        value={input}
+        aria-label="Policy ID Input"
+      />
       <Button
         loading={loading}
         disabled={input.length === 0 || loading}
