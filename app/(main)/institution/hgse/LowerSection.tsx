@@ -8,11 +8,10 @@ export default function LowerSection() {
             Ready to get started?
           </h2>
           <p className="max-w-[800px] px-4 pt-[30px] text-left text-[16px] leading-normal text-stone-500 lg:px-0 lg:text-left">
-            When we conducted a survey etc etc, we found that over 90% of course
-            instructors think their students will use generative AI, regardless
-            of what course policies say. Other insights. When we conducted a
-            survey etc etc, we found that over 90% of course instructors think
-            their students will use generative AI, regardless of what
+            If you are interested in beginning the process of creating a policy
+            - start by viewing a sample policy, or creating your own. Within the
+            policy builder, you&apos;re able to make changes directly, customize
+            your sections, and reorder as needed.
           </p>
         </div>
         <LowerButtonSection />

@@ -13,7 +13,7 @@ const staff = [
     name: "Max Lu",
     title: "Product",
     description:
-      "Doctoral student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times.",
+      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D at Los Angeles Times.",
     picture: "/images/staff/max.jfif",
     socials: [
       {
@@ -43,8 +43,7 @@ const staff = [
     id: 3,
     name: "Cecil John Tantay",
     title: "Engineering",
-    description:
-      "Software engineer in Las Vegas, Nevada. Formerly at Hotel Engine and L.A. Times",
+    description: "Software engineer at Los Angeles Times, Vocadian.AI",
     picture: "/images/staff/cj.jfif",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
@@ -55,6 +54,59 @@ const staff = [
         url: "https://www.linkedin.com/in/cjtantay/",
       },
     ],
+  },
+  {
+    id: 4,
+    name: "James Homrighausen",
+    title: "Engineering",
+    description: "Dallas-based project manager with UI developer experience.",
+    picture: "/images/staff/james.jpg",
+    socials: [
+      { id: 1, name: "Github", url: "https://www.github.com/jh-tx" },
+      { id: 1, name: "Website", url: "https://www.homrighausen3d.com" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/jameshomrighausen/",
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Ben Tsao",
+    title: "Engineering",
+    description: "Magic enjoyer and software engineer in Texas.",
+    picture: "/images/staff/ben.png",
+    socials: [
+      { id: 1, name: "Github", url: "https://www.github.com/cbtsao47" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/cbtsao/",
+      },
+    ],
+  },
+];
+
+const thanks = [
+  {
+    id: 5,
+    name: '"Kevin" Bowen Yang',
+    title: "University of Pennsylvania",
+    description:
+      "For his support in conducting the survey and data analysis during the summer",
+  },
+  {
+    id: 6,
+    name: "Professor Name",
+    title: "Harvard Graduate School of Education",
+    description: "For xyz",
+  },
+  {
+    id: 7,
+    name: "Professor Name",
+    title: "Harvard Graduate School of Education",
+    description: "For xyz",
   },
 ];
 
@@ -67,9 +119,9 @@ const socialIconMapper: { [key: string]: React.JSX.Element } = {
 export default function About() {
   return (
     <>
-      <section className="grid grid-flow-row gap-5 md:gap-6">
+      <section className="grid grid-flow-row gap-5 md:gap-6 md:pt-[30px]">
         <h1 className="w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
-          About this Project
+          About CoursePolicy.AI
         </h1>
         <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
           As more educators confront the inevitable adoption of generative AI in
@@ -93,91 +145,105 @@ export default function About() {
           designed policy template, this tool also simplifies the process for
           instructors to communicate their policies to students.
         </p>
-        <div>
-          <Button
-            asChild
-            variant={"ghost"}
-            className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E]
-            bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E]"
-          >
-            <Link
-              href="/generate"
-              className="inline-flex items-center justify-center"
-            >
-              Generate AI Policy
-              <Image alt="right pointed arrow" src={rightArrow} />
-            </Link>
-          </Button>
-        </div>
       </section>
       <section
-        className="my-[30px] grid grid-flow-row gap-5 border-y border-[#B4B4B4] pb-[60px]
-       pt-[60px] md:my-[60px] md:gap-6"
+        className="my-[30px]  flex flex-col gap-5 border-y border-[#B4B4B4] pb-[60px]
+       pt-[65px] md:my-[60px] md:gap-6"
       >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
-          About the team
+          Meet the team
         </h2>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:justify-center md:gap-0 lg:grid-cols-2 lg:pt-[28px]">
           {staff.map((member) => (
-            <article key={member.id}>
-              <div className="grid grid-flow-row justify-center gap-3">
-                <div className="relative h-60 w-60 overflow-hidden bg-zinc-300">
-                  <Image
-                    src={`${member.picture}`}
-                    width={242}
-                    height={242}
-                    alt={`${member.name} profile picture`}
-                    className="absolute inset-0 h-full w-full object-cover object-center"
-                  />
-                </div>
-                <div className="grid grid-flow-row gap-3">
-                  <div className="grid grid-flow-row gap-1">
-                    <h3 className="w-[100%] max-w-[180px] text-xl font-bold leading-normal text-[#606DAB]">
-                      {member.name}
-                    </h3>
-                    <p
-                      className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500"
-                      aria-label={`${member.name}'s Job Department: ${member.title}`}
-                    >
-                      {member.title}
-                    </p>
-                  </div>
-                  <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black">
-                    {member.description}
+            <article key={member.id} className="flex gap-5">
+              <div className="relative h-40 w-40 overflow-hidden rounded-lg bg-zinc-300 lg:mb-[100px]">
+                <img
+                  alt={member.name + " profile picture"}
+                  loading="lazy"
+                  width={242}
+                  height={242}
+                  decoding="async"
+                  src={member.picture}
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                />
+              </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1">
+                  <h3 className="w-[100%] max-w-[2500px] text-xl font-bold leading-normal text-[#606DAB]">
+                    {member.name}
+                  </h3>
+                  <p
+                    className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500"
+                    aria-label={
+                      member.name + "'s Job Department: " + member.title
+                    }
+                  >
+                    {member.title}
                   </p>
                 </div>
-                <ul className="flex flex-col items-start" role="presentation">
-                    {member.socials.map((social) => (
-                      <li className="list-none" key={social.id}>
-                        <Button
-                          asChild
-                          variant="ghost"
-                          className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
-                          no-underline hover:bg-transparent"
+                <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black">
+                  {member.description}
+                </p>
+                <ul
+                  className="flex flex-col items-start lg:flex-row "
+                  role="presentation"
+                >
+                  {member.socials.map((social) => (
+                    <li className="mr-[5px] list-none" key={social.id}>
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500 no-underline
+                          hover:bg-transparent"
+                      >
+                        <Link
+                          href={social.url}
+                          aria-label={`${member.name}'s ${social.name}`}
                         >
-                          <Link href={social.url} aria-label={`${member.name}'s ${social.name}`}>
-                            <span className="mr-[5px]">
-                              {socialIconMapper[social.name.toLowerCase()]}
-                            </span>
-                            <span className="hover:underline">
-                              {social.name}
-                            </span>
-                          </Link>
-                        </Button>
-                      </li>
-                    ))}
+                          <span className="mr-[5px]">
+                            {socialIconMapper[social.name.toLowerCase()]}
+                          </span>
+                          <span className="hover:underline">{social.name}</span>
+                        </Link>
+                      </Button>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </article>
           ))}
         </div>
-        <div>
-          <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
-            We also want to thank Kevin Bowen Zhang from the University of
-            Pennsylvania for his support in conducting the survey and data
-            analysis during the summer.
-          </p>
-        </div>
+        <section className="border-t border-[#B4B4B4]">
+          <h2 className="w-[100%] max-w-[554px] pt-[65px] text-3xl font-bold leading-normal text-[#364071]">
+            Special Thanks
+          </h2>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
+            {thanks.map((member) => (
+              <article key={member.id}>
+                <div className="grid grid-flow-row gap-3">
+                  <div className="grid grid-flow-row gap-3">
+                    <div className="grid grid-flow-row gap-1">
+                      <h3 className="w-[100%] max-w-[200px] text-xl font-bold leading-normal text-[#606DAB] lg:pt-[45px]">
+                        {member.name}
+                      </h3>
+                      <p
+                        className="w-[100%] max-w-[200px] text-sm font-normal leading-normal text-stone-500"
+                        aria-label={`${member.name}'s Job Department: ${member.title}`}
+                      >
+                        {member.title}
+                      </p>
+                    </div>
+                    <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black">
+                      {member.description}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div></div>
+        </section>
+        <div></div>
       </section>
 
       <section className="grid grid-flow-row gap-5 md:gap-6">
@@ -193,7 +259,7 @@ export default function About() {
             className="cursor-pointer p-0 text-blue-500"
           >
             <a
-              className="text-sm font-medium leading-normal text-blue-500"
+              className="text-sm font-medium leading-normal text-blue-500 underline"
               href="mailto:here@coursepolicy.ai"
               target="_blank"
             >

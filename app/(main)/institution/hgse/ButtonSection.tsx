@@ -5,11 +5,11 @@ import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 
 export default function ButtonSection() {
   return (
-    <div className="lg:grid lg:grid-flow-row lg:pt-[40px] ">
-      <div className="mt-[50px] flex flex-col px-4 lg:mt-[0px] lg:flex-row lg:px-0 ">
+    <div className="lg:grid lg:grid-flow-row lg:pb-2 lg:pt-[20px]">
+      <div className="mt-[50px] flex flex-col px-4 lg:mt-[0px] lg:flex-row lg:px-0">
         <Button
           asChild
-          className="mb-6 inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] bg-[#A41D30] text-sm leading-[25px] text-white hover:bg-coursePolicyHoverGreen lg:mb-[0px] lg:mr-4"
+          className="mb-6 inline-flex h-[40px] w-[195px] items-center justify-center gap-2.5 rounded-[100px] bg-[#A41D30] text-sm leading-[25px] text-white hover:bg-[#911526] lg:mb-[0px] lg:mr-4"
         >
           <Link href="/generate/hgse">
             Create an AI Policy{" "}

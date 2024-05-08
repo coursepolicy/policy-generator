@@ -3,54 +3,52 @@ export default function HGSEMidsection() {
   return (
     <div className="bg-[#FFFFFF]">
       <section className="mx-auto flex max-w-[1600px] items-center justify-center px-4 lg:pb-[72px]">
-        <div className="flex flex-col pt-[85px] text-center lg:text-left">
-          <h2 className="font-serif text-[32px]">Why use CoursePolicy?</h2>
+        <div className="flex flex-col pt-[100px] text-center lg:text-left">
+          <h2 className="font-serif text-[32px]">
+            Why do I need an AI policy?
+          </h2>
           <p className="max-w-[800px] px-4 pt-[20px] text-center text-[16px] leading-normal text-stone-500 lg:px-0  lg:pt-[30px] lg:text-left">
-            When we conducted a survey etc etc, we found that over 90% of course
-            instructors think their students will use generative AI, regardless
-            of what course policies say. Other insights. When we conducted a
-            survey etc etc, we found that over 90% of course instructors think
-            their students will use generative AI, regardless of what
+            A clear AI policy clarifies academic expectations, enhances
+            communication, and fosters open dialogue about the use of AI,
+            ensuring a productive educational environment.
           </p>
           <div className="flex flex-col items-center justify-center p-4 lg:flex-row lg:justify-between lg:p-0 lg:pt-[45px]">
             <div className="flex w-[100%] max-w-[450px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:mr-[35px] lg:max-w-[240px] lg:pb-[32px] lg:pt-[23px] lg:text-left">
               <h3 className="text-center font-serif text-[24px] lg:text-left">
-                Students recieve clarity
+                Empower student learning
               </h3>
               <p className="pt-[20px] text-center text-[16px] text-stone-500 lg:text-left">
-                When we conducted a survey etc etc, we found that over 90% of
-                course instructors think their students will sue generative AI,
-                regardless of.
+                Clear AI policies help s tudents effectively manage their
+                coursework and utilize AI tools responsibly.
               </p>
             </div>
             <div className="flex w-[100%] max-w-[450px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:mr-[35px] lg:max-w-[240px] lg:pb-[32px] lg:pt-[23px] lg:text-left">
               <h3 className="text-center font-serif text-[24px] lg:text-left">
-                Ease of use, right-out-of-the box tool
+                Facilitate policy communication
               </h3>
               <p className="pt-[20px] text-center text-[16px] text-stone-500 lg:text-left">
-                When we conducted a survey etc etc, we found that over 90% of
-                course instructors think their students will sue generative AI,
-                regardless of.
+                Well-defined AI policies reduce confusion and inquiries,
+                allowing students to concentrate on their learning.
               </p>
             </div>
             <div className="flex w-[100%] max-w-[450px] flex-col border-t-[3px] border-[#A41D30] py-8 text-center lg:mr-[35px] lg:max-w-[240px] lg:pb-[32px] lg:pt-[23px] lg:text-left">
               <h3 className="text-center font-serif text-[24px] lg:text-left">
-                See what other professors are doing
+                Encourage constructive discourse
               </h3>
-              <p className="pt-[20px] text-center text-[16px] text-stone-500 lg:text-left">
-                When we conducted a survey etc etc, we found that over 90% of
-                course instructors think their students will sue generative AI,
-                regardless of.
+              <p className="pt-[20px] text-center text-[16px] text-stone-500 lg:mb-[24px] lg:text-left">
+                Transparent guidelines promote open discussions about the
+                beneficial use of AI in education.
               </p>
             </div>
           </div>
         </div>
-        <div className="hidden h-[470px] w-full max-w-[470px] xl:relative xl:block">
+        <div className="hidden xl:relative xl:mr-[100px] xl:mt-[90px] xl:block">
           <Image
-            src="/images/hgse/splash-image.jpg"
+            src="/images/hgse/splash-image2.jpg"
             alt="Photo of student graduation at Harvard"
             objectFit="contain"
-            fill
+            width={370}
+            height={370}
           />
         </div>
       </section>

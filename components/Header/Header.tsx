@@ -7,7 +7,7 @@ import Navigation from "./Navigation";
 import BurgerMenu from "./BurgerMenu";
 import NavigationAlt from "./NavigationAlt";
 import HGSENavigation from "../HeaderHgse/HGSENavigation";
-import HGSEBurgerMenu from "../HeaderHgse/HGSEBurgerMenu";
+
 interface Props {}
 
 export function Header(props: Props) {
@@ -21,11 +21,7 @@ export function Header(props: Props) {
       {...props}
     >
       <Logo toggleMenu={toggleMenu} />
-      {isHGSE ? (
-        <HGSEBurgerMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
-      ) : (
-        <BurgerMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
-      )}
+      <BurgerMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
       <NavigationAlt toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
       {isHGSE ? <HGSENavigation /> : <Navigation />}
     </header>

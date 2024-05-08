@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 
 export default function HGSENavigation() {
   return (
-    <nav className="hidden md:block ">
-      <ul className="mr-[22px] grid list-none grid-flow-col place-items-center gap-9 ">
+    <nav className="hidden lg:block ">
+      <ul className="mr-[22px] grid list-none grid-flow-col place-items-center gap-9">
         {hgseNavItems.map((item, i) => (
           <li key={i}>
             <Button variant={"link"} className="p-0 text-white" asChild>
               <Link
                 href={item.href}
-                className="text-right font-semibold leading-snug text-[sm] text-indigo-100 hover:text-slate-50 hover:underline lg:leading-[25px]"
+                className="text-right leading-snug text-[sm] text-indigo-100 hover:text-slate-50 hover:underline lg:leading-[25px]"
               >
                 {item.title}
               </Link>
@@ -27,7 +27,7 @@ export default function HGSENavigation() {
           >
             <Link
               href="/generate/hgse"
-              className="GenerateAPolicy inline-flex items-center justify-center text-right text-sm font-semibold leading-[25px] text-white"
+              className="GenerateAPolicy inline-flex items-center justify-center text-right text-sm leading-[25px] text-white"
             >
               Generate AI Policy
             </Link>
