@@ -1,4 +1,4 @@
-import rightArrow from "@/public/images/right-arrow.svg";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -43,7 +43,8 @@ const staff = [
     id: 3,
     name: "Cecil John Tantay",
     title: "Engineering",
-    description: "Software engineer at Los Angeles Times, Vocadian.AI",
+    description:
+      "Software engineer at Los Angeles Times and Vocadian.AI. Previously at Hotel Engine.",
     picture: "/images/staff/cj.jfif",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
@@ -59,7 +60,7 @@ const staff = [
     id: 4,
     name: "James Homrighausen",
     title: "Engineering",
-    description: "Dallas-based project manager with UI developer experience.",
+    description: "Frontend engineer in Dallas.",
     picture: "/images/staff/james.jpg",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/jh-tx" },
@@ -123,14 +124,14 @@ export default function About() {
         <h1 className="w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           About CoursePolicy.AI
         </h1>
-        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+        <p className="w-[100%] text-[16px] font-medium leading-normal text-stone-500">
           As more educators confront the inevitable adoption of generative AI in
           student learning, many universities have released guidelines and
           roadmaps on how to incorporate AI into teaching and learning. A
           defining statement in these policies is that individual instructors
           are encouraged to determine the AI policy for their own courses.
         </p>
-        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+        <p className="w-[100%] text-[16px] font-medium leading-normal text-stone-500">
           While this effort should be applauded, because every course is
           different, it also creates potential problems. First, not all
           instructors are equally knowledgeable about AI, and thus, not all are
@@ -139,7 +140,7 @@ export default function About() {
           taking multiple courses simultaneously, confusion can quickly become
           overwhelming.
         </p>
-        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+        <p className="w-[100%] text-[16px] font-medium leading-normal text-stone-500">
           Therefore, we developed the policy generator, a self-guided tool for
           anyone to create a policy for their course. With our thoughtfully
           designed policy template, this tool also simplifies the process for
@@ -147,29 +148,31 @@ export default function About() {
         </p>
       </section>
       <section
-        className="my-[30px]  flex flex-col gap-5 border-y border-[#B4B4B4] pb-[60px]
-       pt-[65px] md:my-[60px] md:gap-6"
+        className="my-[30px] flex flex-col gap-5 border-y border-[#B4B4B4] pb-[60px]
+       pt-[65px] md:gap-6"
       >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
-          Meet the team
+          Meet the Team
         </h2>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:justify-center md:gap-0 lg:grid-cols-2 lg:pt-[28px]">
+        <div className="grid grid-cols-1 gap-10 md:justify-center md:gap-0 lg:grid-cols-2 lg:pt-[28px]">
           {staff.map((member) => (
-            <article key={member.id} className="flex gap-5">
-              <div className="relative h-40 w-40 overflow-hidden rounded-lg bg-zinc-300 lg:mb-[100px]">
-                <img
-                  alt={member.name + " profile picture"}
-                  loading="lazy"
-                  width={242}
-                  height={242}
-                  decoding="async"
-                  src={member.picture}
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                />
+            <article key={member.id} className="flex gap-7">
+              <div className="relative max-h-[145px] w-full max-w-[145px] overflow-hidden rounded lg:mb-[100px]">
+                <AspectRatio ratio={1 / 1}>
+                  <Image
+                    alt={`${member.picture}`}
+                    loading="lazy"
+                    width={150}
+                    height={150}
+                    decoding="async"
+                    src={member.picture}
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                  />
+                </AspectRatio>
               </div>
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-1">
-                  <h3 className="w-[100%] max-w-[2500px] text-xl font-bold leading-normal text-[#606DAB]">
+                  <h3 className="w-[100%] max-w-[250px] text-xl font-bold leading-normal text-[#606DAB]">
                     {member.name}
                   </h3>
                   <p
@@ -181,7 +184,7 @@ export default function About() {
                     {member.title}
                   </p>
                 </div>
-                <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black">
+                <p className="w-[100%] text-sm font-normal leading-normal text-black">
                   {member.description}
                 </p>
                 <ul
@@ -214,7 +217,7 @@ export default function About() {
           ))}
         </div>
         <section className="border-t border-[#B4B4B4]">
-          <h2 className="w-[100%] max-w-[554px] pt-[65px] text-3xl font-bold leading-normal text-[#364071]">
+          <h2 className="w-[100%] max-w-[554px] pt-[20px] text-3xl font-bold leading-normal text-[#364071]">
             Special Thanks
           </h2>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
@@ -227,7 +230,7 @@ export default function About() {
                         {member.name}
                       </h3>
                       <p
-                        className="w-[100%] max-w-[200px] text-sm font-normal leading-normal text-stone-500"
+                        className="w-[100%] max-w-[250px] text-sm font-normal leading-normal text-stone-500"
                         aria-label={`${member.name}'s Job Department: ${member.title}`}
                       >
                         {member.title}
