@@ -42,7 +42,7 @@ export default function HGSEMidsection() {
             </div>
           </div>
         </div>
-        <div className="hidden xl:relative xl:ml-[100px] xl:mr-[100px] xl:mt-[90px] xl:block">
+        <div className="hidden lg:ml-[100px] xl:relative xl:mr-[100px] xl:mt-[90px] xl:block">
           <Image
             src="/images/hgse/splash-image2.jpg"
             alt="Photo of student graduation at Harvard"
