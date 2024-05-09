@@ -148,7 +148,7 @@ export default function About() {
         </p>
       </section>
       <section
-        className="my-[30px] flex flex-col gap-5 border-y border-[#B4B4B4] pt-[70px]
+        className="my-[30px] flex flex-col gap-5 border-t border-[#B4B4B4] pt-[70px]
        md:gap-6"
       >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
@@ -220,7 +220,7 @@ export default function About() {
           ))}
         </div>
       </section>
-      <section className="pb-[40px]">
+      <section className="border-t border-[#B4B4B4] pb-[40px] pt-[30px]">
         <h2 className="w-[100%] max-w-[554px] pb-[20px] pt-[20px] text-3xl font-bold leading-normal text-[#364071]">
           Special Thanks
         </h2>
