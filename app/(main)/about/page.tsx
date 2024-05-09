@@ -97,18 +97,18 @@ const thanks = [
     description:
       "For his support in conducting the survey and data analysis during the summer",
   },
-  {
-    id: 6,
-    name: "Professor Name",
-    title: "Harvard Graduate School of Education",
-    description: "For xyz",
-  },
-  {
-    id: 7,
-    name: "Professor Name",
-    title: "Harvard Graduate School of Education",
-    description: "For xyz",
-  },
+  // {
+  //   id: 6,
+  //   name: "Professor Name",
+  //   title: "Harvard Graduate School of Education",
+  //   description: "For xyz",
+  // },
+  // {
+  //   id: 7,
+  //   name: "Professor Name",
+  //   title: "Harvard Graduate School of Education",
+  //   description: "For xyz",
+  // },
 ];
 
 const socialIconMapper: { [key: string]: React.JSX.Element } = {
