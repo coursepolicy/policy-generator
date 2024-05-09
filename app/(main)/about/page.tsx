@@ -60,7 +60,7 @@ const staff = [
     id: 4,
     name: "James Homrighausen",
     title: "Engineering",
-    description: "Frontend engineer in Dallas.",
+    description: "Frontend engineer with project manager experience in Dallas.",
     picture: "/images/staff/james.jpg",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/jh-tx" },
@@ -148,22 +148,25 @@ export default function About() {
         </p>
       </section>
       <section
-        className="my-[30px] flex flex-col gap-5 border-y border-[#B4B4B4] pb-[60px]
-       pt-[65px] md:gap-6"
+        className="my-[30px] flex flex-col gap-5 border-y border-[#B4B4B4] pt-[70px]
+       md:gap-6"
       >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
           Meet the Team
         </h2>
-        <div className="grid grid-cols-1 gap-10 md:justify-center md:gap-0 lg:grid-cols-2 lg:pt-[28px]">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:justify-center md:gap-0 lg:pt-[28px]">
           {staff.map((member) => (
-            <article key={member.id} className="flex gap-7">
-              <div className="relative max-h-[145px] w-full max-w-[145px] overflow-hidden rounded lg:mb-[100px]">
+            <article
+              key={member.id}
+              className="mx-auto flex w-full max-w-[240px] flex-col justify-center gap-7 md:mx-0 md:max-w-none md:flex-row md:justify-start md:pr-[10px]"
+            >
+              <div className="relative w-full overflow-hidden rounded md:max-h-[145px] md:max-w-[145px] lg:mb-[100px]">
                 <AspectRatio ratio={1 / 1}>
                   <Image
                     alt={`${member.picture}`}
                     loading="lazy"
-                    width={150}
-                    height={150}
+                    width={240}
+                    height={240}
                     decoding="async"
                     src={member.picture}
                     className="absolute inset-0 h-full w-full object-cover object-center"
@@ -184,7 +187,7 @@ export default function About() {
                     {member.title}
                   </p>
                 </div>
-                <p className="w-[100%] text-sm font-normal leading-normal text-black">
+                <p className="max-w-[300px] text-sm font-normal leading-normal text-black lg:w-[100%] lg:max-w-none">
                   {member.description}
                 </p>
                 <ul
@@ -216,44 +219,42 @@ export default function About() {
             </article>
           ))}
         </div>
-        <section className="border-t border-[#B4B4B4]">
-          <h2 className="w-[100%] max-w-[554px] pt-[20px] text-3xl font-bold leading-normal text-[#364071]">
-            Special Thanks
-          </h2>
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
-            {thanks.map((member) => (
-              <article key={member.id}>
+      </section>
+      <section className="pb-[40px]">
+        <h2 className="w-[100%] max-w-[554px] pb-[20px] pt-[20px] text-3xl font-bold leading-normal text-[#364071]">
+          Special Thanks
+        </h2>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
+          {thanks.map((member) => (
+            <article key={member.id}>
+              <div className="grid grid-flow-row justify-center gap-3 md:justify-start">
                 <div className="grid grid-flow-row gap-3">
-                  <div className="grid grid-flow-row gap-3">
-                    <div className="grid grid-flow-row gap-1">
-                      <h3 className="w-[100%] max-w-[200px] text-xl font-bold leading-normal text-[#606DAB] lg:pt-[45px]">
-                        {member.name}
-                      </h3>
-                      <p
-                        className="w-[100%] max-w-[250px] text-sm font-normal leading-normal text-stone-500"
-                        aria-label={`${member.name}'s Job Department: ${member.title}`}
-                      >
-                        {member.title}
-                      </p>
-                    </div>
-                    <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black">
-                      {member.description}
+                  <div className="grid grid-flow-row gap-1">
+                    <h3 className="w-[100%] max-w-[200px] text-xl font-bold leading-normal text-[#606DAB]">
+                      {member.name}
+                    </h3>
+                    <p
+                      className="w-[100%] max-w-[250px] text-sm font-normal leading-normal text-stone-500"
+                      aria-label={`${member.name}'s Job Department: ${member.title}`}
+                    >
+                      {member.title}
                     </p>
                   </div>
+                  <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black lg:pb-[20px] ">
+                    {member.description}
+                  </p>
                 </div>
-              </article>
-            ))}
-          </div>
-          <div></div>
-        </section>
+              </div>
+            </article>
+          ))}
+        </div>
         <div></div>
       </section>
-
-      <section className="grid grid-flow-row gap-5 md:gap-6">
+      <section className="grid grid-flow-row gap-5 border-t border-[#B4B4B4] pt-[44px] md:gap-2">
         <h3 className=" w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           Contact Us
         </h3>
-        <p className="text-sm font-medium leading-normal text-stone-500">
+        <p className="text-[16px] font-medium leading-normal text-stone-500">
           Are you a course instructor, student, university admin, or a
           technologist? We would love to hear from you. Drop us an email at{" "}
           <Button
