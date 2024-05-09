@@ -260,10 +260,10 @@ export default function About() {
           <Button
             asChild
             variant={"link"}
-            className="cursor-pointer p-0 text-blue-500"
+            className="cursor-pointer p-0 text-[16px] text-blue-500"
           >
             <a
-              className="text-sm font-medium leading-normal text-blue-500 underline"
+              className="font-medium leading-normal text-blue-500 underline"
               href="mailto:here@coursepolicy.ai"
               target="_blank"
             >
