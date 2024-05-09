@@ -17,7 +17,7 @@ export default function GeneratePolicyTabContent({
       <div className="py-4 md:py-0" />
       <div className="grid grid-flow-row px-2 md:w-full md:max-w-[800px]">
         <h2 className="text-lg font-bold leading-normal text-[#4A558E]">
-          Step 3: Generate your AI Policy
+          Step 2: Generate your AI Policy
         </h2>
         <div className="py-2" />
         <div className="grid w-full max-w-[800px] grid-flow-row justify-items-center px-2">
