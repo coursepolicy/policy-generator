@@ -22,18 +22,22 @@ type IProps = {
 const institutionMapper: {
   [key: string]: string | undefined;
 } = {
-  'hgse': process.env.HGSE_SURVEY_URL
-}
+  hgse: process.env.HGSE_SURVEY_URL,
+};
 
 export default function InstitutionGenerate({ params }: IProps) {
   const policyId = ulid();
-  const survey_url = institutionMapper[params.institution.toLowerCase()]
+  const survey_url = institutionMapper[params.institution.toLowerCase()];
   // can do some logic here depending on the institution name
   return (
     <GeneratePolicy tabs={tabs}>
       <IntroMessageTabContent value="initial" />
-      <IframeTabContent value="fill-info" id={policyId} survey_url={survey_url as string} />
-      <GeneratePolicyTabContent value="generate-policy" id={policyId} />
+      <IframeTabContent
+        value="fill-info"
+        id={policyId}
+        survey_url={survey_url as string}
+      />
+      <GeneratePolicyTabContent value="generate-policy" id={policyId} hgse />
     </GeneratePolicy>
   );
 }
