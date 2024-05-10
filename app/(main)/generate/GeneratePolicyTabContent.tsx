@@ -7,17 +7,14 @@ type Props = React.PropsWithChildren & {
   value: string;
   id: string;
   hgse?: boolean;
-  banana?: string;
 };
 
 export default function GeneratePolicyTabContent({
   value,
   id,
   hgse,
-  banana,
   ...rest
 }: Props) {
-  console.log(banana);
   return (
     <TabsContent value={value} {...rest}>
       <div className="py-4 md:py-0" />
