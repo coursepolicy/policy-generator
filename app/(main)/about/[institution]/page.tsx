@@ -1,4 +1,4 @@
-import rightArrow from "@/public/images/right-arrow.svg";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -13,7 +13,7 @@ const staff = [
     name: "Max Lu",
     title: "Product",
     description:
-      "Doctoral student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D Lead at L.A. Times.",
+      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D at Los Angeles Times.",
     picture: "/images/staff/max.jfif",
     socials: [
       {
@@ -44,7 +44,7 @@ const staff = [
     name: "Cecil John Tantay",
     title: "Engineering",
     description:
-      "Software engineer in Las Vegas, Nevada. Formerly at Hotel Engine and L.A. Times",
+      "Software engineer at Los Angeles Times and Vocadian.AI. Previously at Hotel Engine.",
     picture: "/images/staff/cj.jfif",
     socials: [
       { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
@@ -55,6 +55,47 @@ const staff = [
         url: "https://www.linkedin.com/in/cjtantay/",
       },
     ],
+  },
+  {
+    id: 4,
+    name: "James Homrighausen",
+    title: "Engineering",
+    description: "Frontend engineer with project manager experience in Dallas.",
+    picture: "/images/staff/james.jpg",
+    socials: [
+      { id: 1, name: "Github", url: "https://www.github.com/jh-tx" },
+      { id: 1, name: "Website", url: "https://www.homrighausen3d.com" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/jameshomrighausen/",
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Ben Tsao",
+    title: "Engineering",
+    description: "Magic enjoyer and software engineer in Texas.",
+    picture: "/images/staff/ben.png",
+    socials: [
+      { id: 1, name: "Github", url: "https://www.github.com/cbtsao47" },
+      {
+        id: 1,
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/cbtsao/",
+      },
+    ],
+  },
+];
+
+const thanks = [
+  {
+    id: 5,
+    name: '"Kevin" Bowen Yang',
+    title: "University of Pennsylvania",
+    description:
+      "For his support in conducting the survey and data analysis during the summer",
   },
 ];
 
@@ -67,18 +108,18 @@ const socialIconMapper: { [key: string]: React.JSX.Element } = {
 export default function About() {
   return (
     <>
-      <section className="grid grid-flow-row gap-5 md:gap-6">
+      <section className="grid grid-flow-row gap-5 md:gap-6 md:pt-[30px]">
         <h1 className="w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
-          About this Project
+          About CoursePolicy.AI
         </h1>
-        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+        <p className="w-[100%] text-[16px] font-medium leading-normal text-stone-500">
           As more educators confront the inevitable adoption of generative AI in
           student learning, many universities have released guidelines and
           roadmaps on how to incorporate AI into teaching and learning. A
           defining statement in these policies is that individual instructors
           are encouraged to determine the AI policy for their own courses.
         </p>
-        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+        <p className="w-[100%] text-[16px] font-medium leading-normal text-stone-500">
           While this effort should be applauded, because every course is
           different, it also creates potential problems. First, not all
           instructors are equally knowledgeable about AI, and thus, not all are
@@ -87,73 +128,67 @@ export default function About() {
           taking multiple courses simultaneously, confusion can quickly become
           overwhelming.
         </p>
-        <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
+        <p className="w-[100%] text-[16px] font-medium leading-normal text-stone-500">
           Therefore, we developed the policy generator, a self-guided tool for
           anyone to create a policy for their course. With our thoughtfully
           designed policy template, this tool also simplifies the process for
           instructors to communicate their policies to students.
         </p>
-        <div>
-          <Button
-            asChild
-            variant={"ghost"}
-            className="inline-flex h-[41px] w-[210px] items-center justify-center gap-2.5 rounded-[100px] border border-[#4A558E]
-            bg-white px-6 py-2 text-right text-sm font-semibold leading-[25px] text-[#4A558E] hover:text-[#4A558E]"
-          >
-            <Link
-              href="/generate"
-              className="inline-flex items-center justify-center"
-            >
-              Generate AI Policy
-              <Image alt="right pointed arrow" src={rightArrow} />
-            </Link>
-          </Button>
-        </div>
       </section>
       <section
-        className="my-[30px] grid grid-flow-row gap-5 border-y border-[#B4B4B4] pb-[60px]
-       pt-[60px] md:my-[60px] md:gap-6"
+        className="my-[30px] flex flex-col gap-5 border-t border-[#B4B4B4] pt-[70px]
+       md:gap-6"
       >
         <h2 className="w-[100%] max-w-[554px] text-3xl font-bold leading-normal text-[#364071]">
-          About the team
+          Meet the Team
         </h2>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:justify-center md:gap-0 lg:pt-[28px]">
           {staff.map((member) => (
-            <article key={member.id}>
-              <div className="grid grid-flow-row justify-center gap-3">
-                <div className="relative h-60 w-60 overflow-hidden bg-zinc-300">
+            <article
+              key={member.id}
+              className="mx-auto flex w-full max-w-[240px] flex-col justify-center gap-7 md:mx-0 md:max-w-none md:flex-row md:justify-start md:pr-[10px]"
+            >
+              <div className="relative w-full overflow-hidden rounded md:max-h-[145px] md:max-w-[145px] lg:mb-[100px]">
+                <AspectRatio ratio={1 / 1}>
                   <Image
-                    src={`${member.picture}`}
-                    width={242}
-                    height={242}
-                    alt={`${member.name} profile picture`}
+                    alt={`${member.picture}`}
+                    loading="lazy"
+                    width={240}
+                    height={240}
+                    decoding="async"
+                    src={member.picture}
                     className="absolute inset-0 h-full w-full object-cover object-center"
                   />
-                </div>
-                <div className="grid grid-flow-row gap-3">
-                  <div className="grid grid-flow-row gap-1">
-                    <h3 className="w-[100%] max-w-[180px] text-xl font-bold leading-normal text-[#606DAB]">
-                      {member.name}
-                    </h3>
-                    <p
-                      className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500"
-                      aria-label={`${member.name}'s Job Department: ${member.title}`}
-                    >
-                      {member.title}
-                    </p>
-                  </div>
-                  <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black">
-                    {member.description}
+                </AspectRatio>
+              </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1">
+                  <h3 className="w-[100%] max-w-[250px] text-xl font-bold leading-normal text-[#606DAB]">
+                    {member.name}
+                  </h3>
+                  <p
+                    className="w-[100%] max-w-[158px] text-sm font-normal leading-normal text-stone-500"
+                    aria-label={
+                      member.name + "'s Job Department: " + member.title
+                    }
+                  >
+                    {member.title}
                   </p>
                 </div>
-                <ul className="flex flex-col items-start" role="presentation">
+                <p className="max-w-[300px] text-sm font-normal leading-normal text-black lg:w-[100%] lg:max-w-none">
+                  {member.description}
+                </p>
+                <ul
+                  className="flex flex-col items-start lg:flex-row "
+                  role="presentation"
+                >
                   {member.socials.map((social) => (
-                    <li className="list-none" key={social.id}>
+                    <li className="mr-[5px] list-none" key={social.id}>
                       <Button
                         asChild
                         variant="ghost"
-                        className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500
-                          no-underline hover:bg-transparent"
+                        className="m-0 flex h-[30px] bg-transparent p-0 text-sm font-normal leading-normal text-stone-500 no-underline
+                          hover:bg-transparent"
                       >
                         <Link
                           href={social.url}
@@ -172,29 +207,51 @@ export default function About() {
             </article>
           ))}
         </div>
-        <div>
-          <p className="w-[100%] text-sm font-medium leading-normal text-stone-500">
-            We also want to thank Kevin Bowen Zhang from the University of
-            Pennsylvania for his support in conducting the survey and data
-            analysis during the summer.
-          </p>
-        </div>
       </section>
-
-      <section className="grid grid-flow-row gap-5 md:gap-6">
+      <section className="border-t border-[#B4B4B4] pb-[40px] pt-[30px]">
+        <h2 className="w-[100%] max-w-[554px] pb-[20px] pt-[20px] text-3xl font-bold leading-normal text-[#364071]">
+          Special Thanks
+        </h2>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
+          {thanks.map((member) => (
+            <article key={member.id}>
+              <div className="grid grid-flow-row justify-center gap-3 md:justify-start">
+                <div className="grid grid-flow-row gap-3">
+                  <div className="grid grid-flow-row gap-1">
+                    <h3 className="w-[100%] max-w-[200px] text-xl font-bold leading-normal text-[#606DAB]">
+                      {member.name}
+                    </h3>
+                    <p
+                      className="w-[100%] max-w-[250px] text-sm font-normal leading-normal text-stone-500"
+                      aria-label={`${member.name}'s Job Department: ${member.title}`}
+                    >
+                      {member.title}
+                    </p>
+                  </div>
+                  <p className="w-[100%] max-w-[242px] text-sm font-normal leading-normal text-black lg:pb-[20px] ">
+                    {member.description}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div></div>
+      </section>
+      <section className="grid grid-flow-row gap-5 border-t border-[#B4B4B4] pt-[44px] md:gap-2">
         <h3 className=" w-[100%] max-w-[565.42px] text-3xl font-bold leading-normal text-[#364071]">
           Contact Us
         </h3>
-        <p className="text-sm font-medium leading-normal text-stone-500">
+        <p className="text-[16px] font-medium leading-normal text-stone-500">
           Are you a course instructor, student, university admin, or a
           technologist? We would love to hear from you. Drop us an email at{" "}
           <Button
             asChild
             variant={"link"}
-            className="cursor-pointer p-0 text-blue-500"
+            className="cursor-pointer p-0 text-[16px] text-blue-500"
           >
             <a
-              className="text-sm font-medium leading-normal text-blue-500"
+              className="font-medium leading-normal text-blue-500 underline"
               href="mailto:here@coursepolicy.ai"
               target="_blank"
             >

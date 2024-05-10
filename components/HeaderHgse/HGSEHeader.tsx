@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Logo from "../Header/Logo";
-import BurgerMenu from "./BurgerMenu";
+import BurgerMenu from "./HGSEBurgerMenu";
 import NavigationAlt from "../Header/NavigationAlt";
 import React from "react";
 import Navigation from "./HGSENavigation";

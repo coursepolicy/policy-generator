@@ -1,4 +1,3 @@
-"use client";
 import { ulid } from "ulid";
 import GeneratePolicy, { Tab } from "./GeneratePolicy";
 import IntroMessageTabContent from "./IntroMessageTabContent";
@@ -29,7 +28,11 @@ export default function Generate() {
       <GeneratePolicy tabs={tabs}>
         <IntroMessageTabContent value="initial" />
         <CopyCodeTabContent value="copy-code" id={policyId} />
-        <IframeTabContent value="fill-info" id={policyId} survey_url={process.env.SURVEY_URL as string} />
+        <IframeTabContent
+          value="fill-info"
+          id={policyId}
+          survey_url={process.env.SURVEY_URL as string}
+        />
         <GeneratePolicyTabContent value="generate-policy" id={policyId} />
       </GeneratePolicy>
     </>

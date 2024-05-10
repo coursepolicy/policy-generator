@@ -12,7 +12,7 @@ export default function Navigation() {
             <Button variant={"link"} className="p-0 text-white" asChild>
               <Link
                 href={item.href}
-                className="text-right font-semibold leading-snug text-[sm] text-indigo-100 hover:text-slate-50 hover:underline lg:leading-[25px]"
+                className="text-right leading-snug text-[sm] text-indigo-100 hover:text-slate-50 hover:underline lg:leading-[25px]"
               >
                 {item.title}
               </Link>
@@ -27,7 +27,7 @@ export default function Navigation() {
           >
             <Link
               href="/generate"
-              className="GenerateAPolicy inline-flex items-center justify-center text-right text-sm font-semibold leading-[25px] text-white"
+              className="GenerateAPolicy inline-flex items-center justify-center text-right text-sm leading-[25px] text-white"
             >
               Generate AI Policy
             </Link>

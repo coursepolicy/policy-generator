@@ -9,8 +9,8 @@ export default function HGSEFooter() {
         className="flex justify-center bg-[#181f3e] px-4 text-center sm:mx-0
       lg:px-0"
       >
-        <div className="grid max-w-[1600px] grid-flow-row gap-2 lg:mb-[18px] lg:mr-[30px] lg:text-left">
-          <h2 className="mt-[45px] font-serif text-[32px] text-white lg:mt-[58px]">
+        <div className="grid max-w-[1600px] grid-flow-row gap-2 lg:mb-[18px] lg:mr-[32px] lg:text-left">
+          <h2 className="mt-[45px] font-serif text-[32px] text-white lg:mt-[68px]">
             Contact Us
           </h2>
           <p className="mt-[25px] text-[16px] font-normal text-white">
@@ -32,7 +32,7 @@ export default function HGSEFooter() {
         </div>
       </footer>
       <div className="flex bg-[#252d54]">
-        <div className="text-md mx-auto flex max-w-[1600px] py-3 text-center text-[#acb8f1] ">
+        <div className="text-md mx-auto flex max-w-[1600px] py-3 text-center text-[#acb8f1]">
           <Link href="/" className="flex items-center">
             Take me to the full website
             <span className="ml-[5px]">
