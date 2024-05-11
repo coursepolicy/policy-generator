@@ -6,98 +6,7 @@ import React from "react";
 import websiteIcon from "@/public/images/socials/website-icon.svg";
 import githubIcon from "@/public/images/socials/linkedin-icon.svg";
 import linkedinIcon from "@/public/images/socials/github-icon.svg";
-
-const staff = [
-  {
-    id: 1,
-    name: "Max Lu",
-    title: "Product",
-    description:
-      "Incoming Ph.D. student at the Harvard Graduate School of Education and formerly Product Development Lead at Bloomberg Media and R&D at Los Angeles Times.",
-    picture: "/images/staff/max.jfif",
-    socials: [
-      {
-        id: 1,
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/maxhaolu/",
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Genesia Ting",
-    title: "Design",
-    description:
-      "Senior Product designer with extensive experiences in the civic tech and social impact space. Previously at Los Angeles Times, Census Open Innovation Labs, Mapbox, and more.",
-    picture: "/images/staff/genetia.jfif",
-    socials: [
-      { id: 1, name: "Website", url: "https://genesiating.com/" },
-      {
-        id: 1,
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/genesiating/",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Cecil John Tantay",
-    title: "Engineering",
-    description:
-      "Software engineer at Los Angeles Times and Vocadian.AI. Previously at Hotel Engine.",
-    picture: "/images/staff/cj.jfif",
-    socials: [
-      { id: 1, name: "Github", url: "https://www.github.com/cjbt" },
-      { id: 1, name: "Website", url: "https://www.cjtantay.com/" },
-      {
-        id: 1,
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/cjtantay/",
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "James Homrighausen",
-    title: "Engineering",
-    description: "Frontend engineer with project manager experience in Dallas.",
-    picture: "/images/staff/james.jpg",
-    socials: [
-      { id: 1, name: "Github", url: "https://www.github.com/jh-tx" },
-      { id: 1, name: "Website", url: "https://www.homrighausen3d.com" },
-      {
-        id: 1,
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/jameshomrighausen/",
-      },
-    ],
-  },
-  {
-    id: 8,
-    name: "Ben Tsao",
-    title: "Engineering",
-    description: "Magic enjoyer and software engineer in Texas.",
-    picture: "/images/staff/ben.png",
-    socials: [
-      { id: 1, name: "Github", url: "https://www.github.com/cbtsao47" },
-      {
-        id: 1,
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/cbtsao/",
-      },
-    ],
-  },
-];
-
-const thanks = [
-  {
-    id: 5,
-    name: '"Kevin" Bowen Yang',
-    title: "University of Pennsylvania",
-    description:
-      "For his support in conducting the survey and data analysis during the summer",
-  },
-];
+import { honorableMentions, staff } from "@/lib";
 
 const socialIconMapper: { [key: string]: React.JSX.Element } = {
   github: <Image alt="github icon" src={githubIcon} />,
@@ -213,7 +122,7 @@ export default function About() {
           Special Thanks
         </h2>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[repeat(auto-fit,minmax(25%,1fr))] md:justify-center md:gap-0">
-          {thanks.map((member) => (
+          {honorableMentions.map((member) => (
             <article key={member.id}>
               <div className="grid grid-flow-row justify-center gap-3 md:justify-start">
                 <div className="grid grid-flow-row gap-3">
