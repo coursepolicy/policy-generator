@@ -7,8 +7,8 @@ export default function Banner() {
     <div className="bg-black">
       <div className="text-md mx-auto flex max-w-[1600px] flex-col items-center py-3 lg:flex-row lg:justify-center">
         <p className="px-[5px] text-center text-[12px] text-white lg:px-0">
-          To access CoursePolicy through Harvard Graduate School of
-          Education,&nbsp;
+          To access the customized CoursePolicy for the Harvard Graduate School
+          of Education,&nbsp;
         </p>
         <Link className="flex items-center" href="/institution/hgse">
           <span className="text-[12px] text-white">click&nbsp;</span>
