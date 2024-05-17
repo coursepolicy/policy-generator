@@ -15,13 +15,12 @@ export default function Tooltip() {
         </span>
         <span className="text-xs font-bold leading-normal text-white"> </span>
         <span className="text-xs font-bold leading-normal text-white">
-          TIP:{" "}
+          TIP:
         </span>
         <span className="text-xs font-normal leading-normal text-white">
           <i>
-            To make modifications to your AI policy, try clicking on a section
-            to start editing the content. Bold and italic shortcuts are
-            supported.
+            To make modifications to your AI policy, click on a section to start
+            editing the content. Bold and italic shortcuts are supported.
           </i>
         </span>
       </p>

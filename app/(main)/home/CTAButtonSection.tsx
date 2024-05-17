@@ -5,8 +5,8 @@ import rightArrowWhite from "@/public/images/right-arrow-white.svg";
 
 export default function CTAButtonSection() {
   return (
-    <div className=" lg:my-[30px] lg:mb-[90px] lg:mt-[65px] lg:grid lg:grid-flow-row">
-      <div className=" mt-[50px] flex flex-col items-center lg:mb-[8px] lg:mt-[0px] lg:flex-row">
+    <div className="lg:my-[30px] lg:mb-[90px] lg:mt-[65px] lg:grid lg:grid-flow-row">
+      <div className="mt-[50px] flex flex-col items-center lg:mb-[8px] lg:mt-[0px] lg:flex-row">
         <Button
           asChild
           className="mb-6 inline-flex items-center justify-center gap-2.5 rounded-[100px] bg-coursePolicyGreen text-sm font-semibold leading-[25px] text-white hover:bg-coursePolicyHoverGreen lg:mb-[0px] lg:mr-4"

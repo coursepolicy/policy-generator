@@ -10,14 +10,14 @@ export function Footer({ stickied }: { stickied?: boolean }) {
       justify-center text-center sm:mx-0`}
     >
       <p className="text-sm font-bold leading-normal text-stone-500">
-        Have a question or concern? Email us{" "}
+        Have a question or concern?
         <Button
           asChild
           variant="link"
-          className="h-0 w-0 text-sm font-bold leading-normal text-stone-500 underline"
+          className="h-0 px-2 text-sm font-bold leading-normal text-stone-500 underline"
         >
           <a href="mailto:here@coursepolicy.ai" target="blank">
-            here
+            Email us
           </a>
         </Button>
       </p>
