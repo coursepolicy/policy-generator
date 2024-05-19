@@ -35,7 +35,7 @@ export function Preview({
             )}
           </header>
         </div>
-        <article>
+        {/* <article>
           {sections.map((section, index) => (
             <section
               key={section.id}
@@ -130,7 +130,7 @@ export function Preview({
                 })}
             </section>
           ))}
-        </article>
+        </article> */}
       </div>
     </main>
   );
