@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
   return (
-    <nav className="hidden lg:block ">
+    <nav className="hidden lg:block">
       <ul className="mr-[22px] grid list-none grid-flow-col place-items-center gap-9">
         {navItems.map((item, i) => (
           <li key={i}>

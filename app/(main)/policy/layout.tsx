@@ -8,7 +8,9 @@ export default function GenerateLayout({
   return (
     <>
       {children}
-      <Footer />
+      <div className="print:hidden">
+        <Footer />
+      </div>
     </>
   );
 }
