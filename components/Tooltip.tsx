@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Tooltip() {
   return (
     <div className="flex min-h-[59px] w-[100%] max-w-[904px]  items-center justify-start rounded-[3px] bg-[#3284ff] pl-[20px] md:ml-[20px] md:w-[96%]">

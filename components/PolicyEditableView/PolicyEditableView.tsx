@@ -9,7 +9,6 @@ import { isEqual } from "lodash";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   type PolicySections,
