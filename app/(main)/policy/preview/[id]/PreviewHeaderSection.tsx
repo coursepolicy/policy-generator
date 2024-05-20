@@ -32,7 +32,7 @@ export default function PreviewHeaderSection({
   };
 
   return (
-    <div className="mb-[20px] flex items-center justify-between print:hidden">
+    <div className="mb-[20px] flex flex-col items-center justify-between px-[20px] print:hidden sm:flex-row lg:px-0">
       <div className="grid grid-flow-row items-center justify-center">
         <h1 className="text-2xl font-bold leading-normal text-black">
           Preview Page

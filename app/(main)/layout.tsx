@@ -76,7 +76,9 @@ export default function RootLayout({
       ) : null}
       <Providers>
         <body>
-          <Toaster />
+          <div className="print:hidden">
+            <Toaster />
+          </div>
           <Header />
           {children}
         </body>
