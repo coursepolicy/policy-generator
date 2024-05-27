@@ -105,7 +105,6 @@ export default function PreviewHeaderSection({
           )}
         </HoverCard>
         <Button
-          asChild
           onClick={handlePrint}
           className="inline-flex h-9 w-[130px] cursor-pointer items-center justify-center gap-1.5 rounded-[3px] bg-coursePolicyGreen
           px-3 py-1.5 hover:bg-coursePolicyHoverGreen"
