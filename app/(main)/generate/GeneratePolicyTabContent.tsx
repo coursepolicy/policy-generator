@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation";
 import { TabsContent } from "@/components/ui/tabs";
 import CompletedSurveyButton from "./CompletedSurveyButton";
 import React from "react";

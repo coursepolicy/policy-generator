@@ -9,7 +9,6 @@ import { isEqual } from "lodash";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { DragEndEvent } from "@dnd-kit/core";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   type PolicySections,
@@ -246,7 +245,7 @@ export default function Result({
     <div className="p-[10px] px-[5px] md:px-[20px] md:pt-[39px]">
       <section
         ref={headerRef}
-        className="mb-[24px] flex w-[100%] max-w-[inherit] flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[165px] md:z-20 md:flex-row"
+        className="mb-[24px] flex w-[100%] max-w-[inherit] flex-col justify-between border-b border-[#CCCCCC] bg-white md:sticky md:top-[190px] md:z-20 md:flex-row"
       >
         <div className="flex flex-col">
           <Editor

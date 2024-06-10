@@ -27,8 +27,12 @@ export default function PreviewHeaderSection({
   const pathname = usePathname();
   const isHGSE = pathname.includes("hgse");
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
-    <div className="mb-[20px] flex items-center justify-between">
+    <div className="mb-[20px] flex flex-col items-center justify-between px-[20px] print:hidden sm:flex-row lg:px-0">
       <div className="grid grid-flow-row items-center justify-center">
         <h1 className="text-2xl font-bold leading-normal text-black">
           Preview Page
@@ -101,18 +105,13 @@ export default function PreviewHeaderSection({
           )}
         </HoverCard>
         <Button
-          asChild
-          // TODO - Temporarily hid button. Readd inline-flex
-          className="hidden h-9 w-[130px] items-center justify-center gap-1.5 rounded-[3px]
-          bg-coursePolicyGreen px-3 py-1.5 hover:bg-coursePolicyHoverGreen"
+          onClick={handlePrint}
+          className="inline-flex h-9 w-[130px] cursor-pointer items-center justify-center gap-1.5 rounded-[3px] bg-coursePolicyGreen
+          px-3 py-1.5 hover:bg-coursePolicyHoverGreen"
         >
-          <a
-            href={`${process.env.LAMBDAS_API_BASE_URL}/generated-pdf?generatedId=${id}`}
-            target="_blank"
-            className="text-center text-xs font-bold leading-normal text-white"
-          >
-            <strong>Download PDF</strong>
-          </a>
+          <p className="text-center text-xs font-bold leading-normal text-white">
+            Download PDF
+          </p>
         </Button>
       </div>
     </div>

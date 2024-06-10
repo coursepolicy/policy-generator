@@ -58,7 +58,7 @@ export function Preview({
                     return (
                       <div
                         key={subSection.id}
-                        className="relative flex justify-between"
+                        className="flex flex-col-reverse sm:relative sm:justify-between"
                       >
                         <div
                           className="tiptap"
@@ -66,7 +66,7 @@ export function Preview({
                             __html: subSection.htmlContent || "",
                           }}
                         />
-                        <div className="absolute right-0 top-0 mb-0 flex flex-col items-center">
+                        <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between sm:absolute sm:mb-0 sm:flex-row print:!flex-col">
                           <p className="text-xs font-bold leading-normal text-stone-500">
                             Overall Generative AI Policy:
                           </p>
@@ -94,7 +94,8 @@ export function Preview({
                     return (
                       <section
                         key={subSection.id}
-                        className="grid h-[100%] w-[100%] grid-flow-col items-stretch justify-between gap-2 py-[24px]"
+                        className="grid h-[100%] w-[100%] grid-flow-row items-center gap-2 py-[24px] sm:grid-flow-col
+                        sm:items-stretch sm:justify-between"
                       >
                         {Array.isArray(subSection.htmlContent) &&
                           subSection.htmlContent.map(
@@ -102,7 +103,7 @@ export function Preview({
                               return (
                                 <div
                                   key={`${subSection.id}${index}`}
-                                  className={`w-[100%] max-w-[485px] ${bgColorMapper[index]} use-cases px-[25px] py-[30px]`}
+                                  className={`w-[100%] sm:max-w-[475px] ${bgColorMapper[index]} use-cases sm:px-[25px] sm:py-[30px]`}
                                 >
                                   <div
                                     className="tiptap"
