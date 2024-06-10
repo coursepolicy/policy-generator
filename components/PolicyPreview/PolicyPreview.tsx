@@ -66,7 +66,7 @@ export function Preview({
                             __html: subSection.htmlContent || "",
                           }}
                         />
-                        <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between sm:absolute sm:mb-0 sm:flex-row">
+                        <div className="right-0 top-0 mb-[10px] flex flex-col items-center justify-between sm:absolute sm:mb-0 sm:flex-row print:!flex-col">
                           <p className="text-xs font-bold leading-normal text-stone-500">
                             Overall Generative AI Policy:
                           </p>
