@@ -75,8 +75,8 @@ export default function RootLayout({
         <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
       ) : null}
       <Providers>
-        <body>
-          <Toaster />
+        <body className="m-0">
+          <Toaster containerClassName="print:hidden" />
           <Header />
           {children}
         </body>

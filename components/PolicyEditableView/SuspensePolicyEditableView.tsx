@@ -51,7 +51,7 @@ export default function SuspenseResult() {
           <section>
             <Skeleton className="ml-[20px] h-[100px] w-[920px] rounded-sm" />
           </section>
-          <section className="flex h-[100%] w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-stretch md:justify-between">
+          <section className="flex h-[100%] w-[100%] flex-col items-center px-[20px] py-[24px] md:flex-row md:items-stretch">
             <div
               className={`use-cases w-[100%] max-w-[445px] bg-stone-100 sm:px-[25px] sm:py-[30px]`}
             >

@@ -32,7 +32,7 @@ export default function PreviewHeaderSection({
   };
 
   return (
-    <div className="mb-[20px] flex items-center justify-between">
+    <div className="mb-[20px] flex flex-col items-center justify-between px-[20px] print:hidden sm:flex-row lg:px-0">
       <div className="grid grid-flow-row items-center justify-center">
         <h1 className="text-2xl font-bold leading-normal text-black">
           Preview Page
@@ -105,6 +105,7 @@ export default function PreviewHeaderSection({
           )}
         </HoverCard>
         <Button
+<<<<<<< HEAD
           asChild
           onClick={handlePrint}
           className="inline-flex h-9 w-[130px] items-center justify-center gap-1.5 rounded-[3px]
@@ -112,6 +113,14 @@ export default function PreviewHeaderSection({
         >
           <p className="text-center text-xs font-bold leading-normal text-white">
             Print PDF
+=======
+          onClick={handlePrint}
+          className="inline-flex h-9 w-[130px] cursor-pointer items-center justify-center gap-1.5 rounded-[3px] bg-coursePolicyGreen
+          px-3 py-1.5 hover:bg-coursePolicyHoverGreen"
+        >
+          <p className="text-center text-xs font-bold leading-normal text-white">
+            Download PDF
+>>>>>>> main
           </p>
         </Button>
       </div>

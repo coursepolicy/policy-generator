@@ -48,7 +48,7 @@ export default function PolicySection({
             return (
               <div
                 key={subSection.id}
-                className="flex flex-col-reverse md:relative  md:justify-between"
+                className="flex flex-col-reverse md:relative md:justify-between"
               >
                 <Editor
                   content={String(subSection.htmlContent)}
@@ -92,7 +92,7 @@ export default function PolicySection({
               <section
                 key={subSection.id}
                 className="grid h-[100%] w-[100%] grid-flow-row items-center gap-2 py-[24px] md:grid-flow-col
-                md:items-stretch md:justify-between"
+                md:items-stretch"
               >
                 {subSection.htmlContent &&
                   Array.isArray(subSection.htmlContent) &&
