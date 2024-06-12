@@ -64,6 +64,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "inter", "sans-serif"],
+        crimson:['CrimsonText','serif']
       },
       backgroundColor: {
         coursePolicyGreen: "#0AA680",
