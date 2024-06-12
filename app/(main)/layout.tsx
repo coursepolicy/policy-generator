@@ -53,6 +53,17 @@ const messinaSans = localFont({
   variable: "--font-messina-sans",
 });
 
+const CrimsonText = localFont({
+  src: [
+    {
+      path: "../../public/fonts/CrimsonText-Regular.ttf",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-crimson-text",
+});
+
 export const metadata: Metadata = {
   title: "CoursePolicy.AI",
   description: "AI Policy Generation",
@@ -69,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${messinaSans.variable} bg-neutral-50 font-sans`}
+      className={`${messinaSans.variable} ${CrimsonText.variable} bg-neutral-50 font-sans`}
     >
       {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
         <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />

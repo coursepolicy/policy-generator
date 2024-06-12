@@ -34,13 +34,6 @@
  
     --radius: 0.5rem;
   }
- 
-@font-face{
-  font-family: 'CrimsonText';
-  src: url('/public/fonts/CrimsonText-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
   .dark {
     --background: 240 10% 3.9%;
