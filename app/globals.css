@@ -76,7 +76,6 @@
 }
 
 body {
-  font-family: 'MessinaSans', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,

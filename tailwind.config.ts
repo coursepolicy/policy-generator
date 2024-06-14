@@ -63,7 +63,7 @@ const config: Config = {
         "bg-desktop": "url('/images/bg-desktop.svg')",
       },
       fontFamily: {
-        sans: ["var(--font-poppins)", "inter", "sans-serif"],
+        sans: ["var(--font-messina-sans)", "inter", "sans-serif"],
         crimson:['var(--font-crimson-text)','serif']
       },
       backgroundColor: {
