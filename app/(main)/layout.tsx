@@ -67,9 +67,6 @@ const CrimsonText = localFont({
 export const metadata: Metadata = {
   title: "CoursePolicy.AI",
   description: "AI Policy Generation",
-  icons: {
-    icon: "/icon.ico",
-  },
 };
 
 export default function RootLayout({

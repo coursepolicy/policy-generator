@@ -52,9 +52,6 @@ const messinaSans = localFont({
 export const metadata: Metadata = {
   title: "CoursePolicy.AI",
   description: "AI Policy Generation - Policy Preview",
-  icons: {
-    icon: "/icon.ico",
-  },
 };
 
 export default function PDFLayout({ children }: { children: React.ReactNode }) {
