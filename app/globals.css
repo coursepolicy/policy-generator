@@ -34,7 +34,7 @@
  
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -76,7 +76,6 @@
 }
 
 body {
-  font-family: 'MessinaSans', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
