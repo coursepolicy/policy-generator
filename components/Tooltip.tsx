@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { useState } from "react";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 export default function Tooltip() {
   const [hidden, setHidden] = useState(false);
@@ -20,7 +20,7 @@ export default function Tooltip() {
         </span>
       </div>
       <button className="mb-4 p-2 text-white" onClick={removeTooltip}>
-        <Image src="/images/x.svg" alt="x icon" width={20} height={20} />
+        <Cross2Icon className="aspect-auto" />
       </button>
     </div>
   );
